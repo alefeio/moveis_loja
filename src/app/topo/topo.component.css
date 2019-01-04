@@ -1,0 +1,51 @@
+.menu {
+    background: #000
+}
+
+.nav-link {
+    color: #C1E4FF
+}
+
+.nav-link:hover{
+    color: #FFF
+}
+
+.active {
+    color: #FFF ;
+}
+
+.topo{
+    background: #FFF
+}
+
+.nav-item{
+    padding: 5px 10px;
+    vertical-align: bottom
+}
+
+.navbar{
+    position: absolute;
+    background: transparent !important;
+}
+
+.navbar-collapse{
+    z-index: 1100;
+}
+
+.navbar-collapse ul li{
+    opacity:1;
+}
+
+.navbar-toggler{
+    background: #efefef;
+}
+
+@media(max-width: 500px){
+    .navbar-collapse{
+        background: #efefef;
+        padding: 10px;
+        border-radius: 0 5px 5px 5px;
+        z-index: 1100;
+        opacity:1;
+    }
+}

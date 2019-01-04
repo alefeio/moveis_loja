@@ -1,0 +1,66 @@
+h1 {
+    color: #555
+}
+
+.oferta {
+    margin-top: 25px
+}
+
+.oferta img {
+    width: 372px;
+    height: 240px;
+}
+
+.thumbnails {
+    margin-top: 10px;
+}
+
+.thumbnails img {
+    width: 124px;
+    height: 80px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+}
+
+/**THE SAME CSS IS USED IN ALL 3 DEMOS**/    
+/**gallery margins**/  
+ul.gallery{    
+    margin-left: 3vw;     
+    margin-right:3vw;  
+    }    
+    
+    .zoom {      
+    -webkit-transition: all 0.35s ease-in-out;    
+    -moz-transition: all 0.35s ease-in-out;    
+    transition: all 0.35s ease-in-out;     
+    cursor: -webkit-zoom-in;      
+    cursor: -moz-zoom-in;      
+    cursor: zoom-in;  
+    }     
+    
+    .zoom:hover,  
+    .zoom:active,   
+    .zoom:focus {
+    /**adjust scale to desired size, 
+    add browser prefixes**/
+    -ms-transform: scale(2);    
+    -moz-transform: scale(2);  
+    -webkit-transform: scale(2);  
+    -o-transform: scale(2);  
+    transform: scale(2);    
+    position:relative;      
+    z-index:100;  
+    }
+    
+    /**To keep upscaled images visible on mobile, 
+    increase left & right margins a bit**/  
+    @media only screen and (max-width: 768px) {   
+    ul.gallery {      
+    margin-left: 15vw;       
+    margin-right: 15vw;
+    }
+    
+    /**TIP: Easy escape for touch screens,
+    give gallery's parent container a cursor: pointer.**/
+    .DivName {cursor: pointer}
+    }

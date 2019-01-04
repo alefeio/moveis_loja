@@ -1,0 +1,89 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" routerLink="/"><img src="/assets/logo.png" class="img-fluid" /></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#conteudoNavbarSuportado"
+    aria-controls="conteudoNavbarSuportado" aria-expanded="false" aria-label="Alterna navegação">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="conteudoNavbarSuportado">
+    <ul class="navbar-nav mr-auto">
+      <!-- <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Dropdown
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="#">Ação</a>
+          <a class="dropdown-item" href="#">Outra ação</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#">Algo mais aqui</a>
+        </div>
+      </li> -->
+      <li class="nav-item">
+        <a class="nav-link text-center" routerLinkActive="active" routerLink="/quarto">
+          <img src="/assets/quarto.png" class="img-fluid" style="width: 30px" />
+          <br>Quarto
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-center" routerLinkActive="active" routerLink="/sala">
+          <img src="/assets/sala.png" class="img-fluid" style="width: 30px" />
+          <br>Sala
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-center" routerLinkActive="active" routerLink="/cozinha">
+          <img src="/assets/cozinha.png" class="img-fluid" style="width: 30px" />
+          <br>Cozinha
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-center" routerLinkActive="active" routerLink="/diversos">
+          <img src="/assets/diversos.png" class="img-fluid" style="width: 30px" />
+          <br>Diversos
+        </a>
+      </li>
+      <li class="nav-link text-center">
+        <input class="form-control mr-sm-2" type="search" placeholder="Pesquise por ofertas..." #termoDaPesquisa
+          (keyup)="pesquisa(termoDaPesquisa.value)" aria-label="Pesquisar">
+        <ul class="list-group" style="position: absolute; background: #fff; z-index: 1000">
+          <li class="list-group-item d-flex justify-content-between align-items-center" *ngFor="let oferta of ofertas | async">
+            <a [routerLink]="['/oferta', oferta.id]" (click)="limpaPesquisa()">
+              {{oferta.titulo | descricaoReduzida:20:0 }}
+              <!-- <span class="badge badge-primary badge-pill">7</span> -->
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-center" routerLinkActive="active" routerLink="/home">
+          <img src="/assets/home.png" class="img-fluid" style="width: 30px" />
+          <br>Home
+        </a>
+      </li>
+      <li class="nav-item text-center">
+        <a class="nav-link" routerLinkActive="active" routerLink="ordem-compra">
+          <img src="/assets/carrinho.png" class="img-fluid" style="width: 30px" />
+          <br>Carrinho
+        </a>
+      </li>
+      <li class="nav-item text-center" *ngIf="!autenticacao.token_id">
+        <a class="nav-link" routerLinkActive="active" routerLink="acesso">
+          <img src="/assets/login.png" class="img-fluid" style="width: 30px" />
+          <br>Login
+        </a>
+      </li>
+      <li class="nav-item text-center" *ngIf="autenticacao.token_id">
+        <a class="nav-link" routerLinkActive="active" routerLink="cliente">
+          <img src="/assets/user.png" class="img-fluid" style="width: 30px" />
+          <br>Área do Cliente
+        </a>
+      </li>
+      <li class="nav-item text-center" *ngIf="autenticacao.token_id">
+        <button class="nav-link" (click)="sair()" style="background: transparent; border: none; cursor: pointer;">
+          <img src="/assets/sair.png" class="img-fluid" style="width: 30px" />
+          <br>Sair
+        </button>
+      </li>
+    </ul>
+  </div>
+</nav>

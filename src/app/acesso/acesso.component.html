@@ -1,0 +1,16 @@
+<div class="banner">
+    <!-- <p>&nbsp;</p> -->
+    <!-- <img src="/assets/banners/img_1.jpg" /> -->
+  </div>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12 d-flex justify-content-center" style="padding: 50px">
+      <div *ngIf="cadastro; else formLogin">
+        <app-cadastro (exibirPainel)="exibirPainel($event)"></app-cadastro>
+      </div>
+      <ng-template #formLogin>
+        <app-login (exibirPainel)="exibirPainel($event)"></app-login>
+      </ng-template>
+    </div>  
+  </div>
+</div>

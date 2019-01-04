@@ -1,0 +1,28 @@
+<h6 class="card-text text-center">Entre com seu E-mail e Senha</h6>
+<div class="card" style="width: 20rem;">
+  <div class="card-body text-center">
+    <!-- <div class="card-title"></div> -->
+
+    <form [formGroup]="form" (ngSubmit)="autenticar()">
+      <div class="form-group">
+        <input type="email" class="form-control" placeholder="E-mail" formControlName="email">
+      </div>
+      <div class="form-group">
+        <input type="password" class="form-control" placeholder="Senha" formControlName="senha">
+      </div>
+      <button type="submit" class="btn btn-primary btn-sm btn-block" [disabled]="!form.valid">Entrar</button>
+    </form>
+    <hr />
+
+    <p class="small text-danger text-center" *ngIf="autenticacao.msgErro != undefined">{{autenticacao.msgErro}}</p>
+
+  </div>
+</div>
+<br />
+<div class="card text-center" style="width: 20rem;">
+  <div class="card-body">
+    <p class="card-text">
+      Não tem uma conta? <button (click)="exibirPainelCadastro()" class="btn btn-sm btn-primary">Cadastre-se</button>
+    </p>
+  </div>
+</div>

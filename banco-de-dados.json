@@ -1,0 +1,264 @@
+{
+  "ofertas": [
+    {
+      "id": 1,
+      "ambiente": "Quarto",
+      "linha": "Cama Solteiro",
+      "titulo": "Cama de Solteiro Azul",
+      "fornecedor": "Original Burger",
+      "valor": 600,
+      "destaque": true,
+      "imagens": [
+        {
+          "url": "/assets/ofertas/cama-solteiro/01.jpg"
+        },
+        {
+          "url": "/assets/ofertas/cama-solteiro/02.jpg"
+        },
+        {
+          "url": "/assets/ofertas/cama-solteiro/01.jpg"
+        },
+        {
+          "url": "/assets/ofertas/cama-solteiro/02.jpg"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "ambiente": "Quarto",
+      "linha": "Cama Casal",
+      "titulo": "Cama de Casal Box",
+      "fornecedor": "Mexicana",
+      "valor": 660,
+      "destaque": true,
+      "imagens": [
+        {
+          "url": "/assets/ofertas/cama-casal/01.jpg"
+        },
+        {
+          "url": "/assets/ofertas/cama-casal/01.jpg"
+        },
+        {
+          "url": "/assets/ofertas/cama-casal/01.jpg"
+        },
+        {
+          "url": "/assets/ofertas/cama-casal/01.jpg"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "ambiente": "Quarto",
+      "linha": "Cama Solteiro",
+      "titulo": "Cama de Solteiro Mola",
+      "fornecedor": "Estância das águas",
+      "valor": 750,
+      "destaque": false,
+      "imagens": [
+        {
+          "url": "/assets/ofertas/cama-solteiro/02.jpg"
+        },
+        {
+          "url": "/assets/ofertas/cama-solteiro/01.jpg"
+        },
+        {
+          "url": "/assets/ofertas/cama-solteiro/02.jpg"
+        },
+        {
+          "url": "/assets/ofertas/cama-solteiro/01.jpg"
+        },
+        {
+          "url": "/assets/ofertas/cama-solteiro/02.jpg"
+        },
+        {
+          "url": "/assets/ofertas/cama-solteiro/01.jpg"
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "ambiente": "Sala",
+      "linha": "Sofá",
+      "titulo": "Sofa 2x3 Lugares 660 pu Cafe",
+      "fornecedor": "Estância das águas",
+      "valor": 2000,
+      "destaque": true,
+      "imagens": [
+        {
+          "url": "/assets/ofertas/sofa/01.jpg"
+        },
+        {
+          "url": "/assets/ofertas/sofa/01.jpg"
+        },
+        {
+          "url": "/assets/ofertas/sofa/01.jpg"
+        },
+        {
+          "url": "/assets/ofertas/sofa/01.jpg"
+        }
+      ]
+    }
+  ],
+  "detalhes": [
+    {
+      "id": 1,
+      "Altura": 1125,
+      "Largura": 980,
+      "Profundidade": 2050,
+      "descricao": [
+        {
+          "item": "Detalhe na Cabeceira"
+        },
+        {
+          "item": "Travessões em Compensado Prensados (+Ecológico)"
+        },
+        {
+          "item": "Dispositivo Anti-Ruído nos travessões da cama"
+        },
+        {
+          "item": "Pés Robustos"
+        },
+        {
+          "item": "Medida para Colchão de 0,88m"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "Altura": 1125,
+      "Largura": 1470,
+      "Profundidade": 2050,
+      "descricao": [
+        {
+          "item": "Travessões em Compensado Prensados (+Ecológico) 2"
+        },
+        {
+          "item": "Dispositivo Anti-Ruído nos travessões da cama 2"
+        },
+        {
+          "item": "Pés Robustos 2"
+        },
+        {
+          "item": "Detalhe na Cabeceira 2"
+        },
+        {
+          "item": "Medida para Colchão de 1,38m 2"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "Altura": 1200,
+      "Largura": 990,
+      "Profundidade": 2085,
+      "descricao": [
+        {
+          "item": "Painel e Peseira com Detalhe Robusto"
+        },
+        {
+          "item": "Travessões em Compensado Prensados (+Ecológico)"
+        },
+        {
+          "item": "Dispositivo Anti-Ruído nos travessões da cama"
+        },
+        {
+          "item": "Pés Robustos"
+        },
+        {
+          "item": "Medida para Colchão de 0,88m"
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "Altura": 880,
+      "Largura": 1410,
+      "Profundidade": 790,
+      "descricao": [
+        {
+          "item": "Espuma: 100% poliuretano com adição de poliol vegetal sustentável"
+        },
+        {
+          "item": "Espuma do Encosto: D20 Selado especial para Estofado"
+        },
+        {
+          "item": "Espuma do Assento: D23 Selado especial para Estofado"
+        }
+      ]
+    }
+  ],
+  "pedidos": [
+    {
+      "endereco": "Tv. 14 de Abril",
+      "numero": "123",
+      "complemento": null,
+      "formaPagamento": "debito",
+      "itens": [
+        {
+          "id": 4,
+          "img": {
+            "url": "/assets/ofertas/sofa/01.jpg"
+          },
+          "titulo": "Sofa 2x3 Lugares 660 pu Cafe",
+          "valor": 2000,
+          "quantidade": 2
+        },
+        {
+          "id": 1,
+          "img": {
+            "url": "/assets/ofertas/cama-solteiro/01.jpg"
+          },
+          "titulo": "Cama de Solteiro Azul",
+          "valor": 600,
+          "quantidade": 1
+        }
+      ],
+      "id": 11
+    },
+    {
+      "endereco": "Rua teste",
+      "numero": "12",
+      "complemento": "rsrsrs",
+      "formaPagamento": "dinheiro",
+      "itens": [
+        {
+          "id": 4,
+          "img": {
+            "url": "/assets/ofertas/sofa/01.jpg"
+          },
+          "titulo": "Sofa 2x3 Lugares 660 pu Cafe",
+          "valor": 2000,
+          "quantidade": 1
+        }
+      ],
+      "id": 12
+    },
+    {
+      "endereco": "Tv. sem nome",
+      "numero": "123",
+      "complemento": null,
+      "formaPagamento": "dinheiro",
+      "itens": [
+        {
+          "id": 1,
+          "img": {
+            "url": "/assets/ofertas/cama-solteiro/01.jpg"
+          },
+          "titulo": "Cama de Solteiro Azul",
+          "valor": 600,
+          "quantidade": 3
+        },
+        {
+          "id": 4,
+          "img": {
+            "url": "/assets/ofertas/sofa/01.jpg"
+          },
+          "titulo": "Sofa 2x3 Lugares 660 pu Cafe",
+          "valor": 2000,
+          "quantidade": 1
+        }
+      ],
+      "id": 13
+    }
+  ]
+}
