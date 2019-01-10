@@ -14,7 +14,7 @@ export class CadastroComponent implements OnInit {
 
   public formCadastro: FormGroup = new FormGroup({
     'nome': new FormControl(null, [Validators.required]),
-    'email': new FormControl(null, [Validators.required]),
+    'email': new FormControl(null, [Validators.required, Validators.email]),
     'cpf': new FormControl(null, [Validators.required]),
     'nascimento': new FormControl(null, [Validators.required]),
     'sexo': new FormControl(null, [Validators.required]),
@@ -45,6 +45,7 @@ export class CadastroComponent implements OnInit {
       .then(() => {
         this.autenticacao.autenticar(this.formCadastro.value.email, this.formCadastro.value.senha)
       })
+      .catch((erro: Error) => console.log(erro))
   }
 
 }

@@ -1,0 +1,76 @@
+<!-- Modal -->
+<div class="modal fade" id="adicionarChamado" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+
+    <div class="modal-content" *ngIf="progressoPublicacao === 'pendente'">
+      <form [formGroup]="formChamado" (ngSubmit)="adicionarChamado()">
+        <div class="modal-header">
+          <h5 class="modal-title d-flex justify-content-center" id="exampleModalLabel">Novo Chamado</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="form-group">
+              <label for="recipient-name" class="col-form-label">Escolha o setor</label>
+            <select class="form-control" formControlName="destinatario">
+              <option value="venda">Venda</option>
+              <option value="montagem">Montagem</option>
+              <option value="assistencia">Assistência</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <input type="text" class="form-control" formControlName="titulo" placeholder="Qual o assunto?">
+          </div>
+          <div class="form-group">
+            <textarea class="form-control" id="message-text" formControlName="mensagem" placeholder="Digite sua mensagem."></textarea>
+          </div>
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Envie uma imagem (opcional):</label>
+            <input type="file" class="form-control" accept="image/*" (change)="preparaImagemUpload($event)">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+          <button type="submit" class="btn btn-primary">Enviar</button>
+        </div>
+      </form>
+    </div>
+
+    <div class="modal-content" *ngIf="progressoPublicacao === 'andamento'">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Enviando chamado</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Progresso: {{ porcentegemUpload }}%
+
+        <div class="progress">
+          <div class="progress-bar w-{{ porcentegemUpload }}"></div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+      </div>
+    </div>
+
+    <div class="modal-content" *ngIf="progressoPublicacao === 'concluido'">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Chamado Concluído</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Seu chamado foi criado com sucesso!
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+      </div>
+    </div>
+
+  </div>
+</div>

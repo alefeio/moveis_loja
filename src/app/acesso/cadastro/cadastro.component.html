@@ -33,7 +33,7 @@
       <div class="form-group">
         <input type="password" class="form-control" placeholder="Senha (mín. 6 caracteres)" formControlName="senha">
       </div>
-      <button type="submit" class="btn btn-primary btn-sm btn-block">Cadastre-se</button>
+      <button type="submit" class="btn btn-primary btn-sm btn-block" [disabled]="!formCadastro.valid">Cadastre-se</button>
     </form>
     <br>
     <p class="small text-danger text-center" *ngIf="autenticacao.msgErro != undefined">{{autenticacao.msgErro}}</p>

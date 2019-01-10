@@ -1,11 +1,30 @@
 <div class="banner">
-    <!-- <p>&nbsp;</p> -->
-    <!-- <img src="/assets/banners/img_1.jpg" /> -->
-  </div>
+  <!-- <p>&nbsp;</p> -->
+  <!-- <img src="/assets/banners/img_1.jpg" /> -->
+</div>
 <div class="container">
   <div class="row">
-    <div class="col-sm-12 d-flex justify-content-center" style="padding: 50px">
+    <div class="col-sm-2">
+      <ul class="nav flex-column">
+        <li class="nav-item">
+          <a class="nav-link active" routerLink="/cliente/editar-perfil">Editar Perfil</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" href="#">Meus Pedidos</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/cliente/chamados">Meus Chamados</a>
+        </li>
+        <li class="nav-item">
+          <a href="#" class="nav-link" data-toggle="modal" data-target="#adicionarChamado">Novo Chamado</a>
+        </li>
+      </ul>
+    </div>
+    <div class="col-sm-10" style="padding: 50px">
       <h2>Área do Cliente</h2>
-    </div>  
+      <p>Seja bem-vindo, <strong>{{usuario.nome}}</strong>.</p>
+      <router-outlet #publicacoes></router-outlet>
+    </div>
   </div>
+  <app-adicionar-chamado (consultarChamados)="consultarChamados()"></app-adicionar-chamado>
 </div>

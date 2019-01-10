@@ -43,7 +43,7 @@
         </a>
       </li>
       <li class="nav-link text-center">
-        <input class="form-control mr-sm-2" type="search" placeholder="Pesquise por ofertas..." #termoDaPesquisa
+        <input class="form-control mr-sm-2" type="search" placeholder="Pesquisar oferta" #termoDaPesquisa
           (keyup)="pesquisa(termoDaPesquisa.value)" aria-label="Pesquisar">
         <ul class="list-group" style="position: absolute; background: #fff; z-index: 1000">
           <li class="list-group-item d-flex justify-content-between align-items-center" *ngFor="let oferta of ofertas | async">

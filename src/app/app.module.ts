@@ -31,6 +31,13 @@ import { LoginComponent } from './acesso/login/login.component';
 import { CadastroComponent } from './acesso/cadastro/cadastro.component';
 import { Autenticacao } from './autenticacao.service';
 import { ClienteComponent } from './cliente/cliente.component';
+import { CozinhaComponent } from './cozinha/cozinha.component';
+import { DiversosComponent } from './diversos/diversos.component';
+import { AdicionarChamadoComponent } from './cliente/adicionar-chamado/adicionar-chamado.component';
+import { Bd } from './bd.service';
+import { Progresso } from './progresso.service';
+import { ChamadosComponent } from './cliente/chamados/chamados.component';
+import { EditarPerfilComponent } from './cliente/editar-perfil/editar-perfil.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +56,12 @@ import { ClienteComponent } from './cliente/cliente.component';
     AcessoComponent,
     LoginComponent,
     CadastroComponent,
-    ClienteComponent
+    ClienteComponent,
+    CozinhaComponent,
+    DiversosComponent,
+    AdicionarChamadoComponent,
+    ChamadosComponent,
+    EditarPerfilComponent
   ],
   imports: [
     BrowserModule,
@@ -62,7 +74,9 @@ import { ClienteComponent } from './cliente/cliente.component';
     { provide: LOCALE_ID, useValue: 'pt-Br' }, 
     CarrinhoService, 
     Autenticacao,
-    AutenticacaoGuard
+    AutenticacaoGuard,
+    Bd,
+    Progresso
   ],
   bootstrap: [AppComponent]
 })

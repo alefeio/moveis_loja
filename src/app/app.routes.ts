@@ -12,12 +12,18 @@ import { AcessoComponent } from './acesso/acesso.component';
 import { LoginComponent } from './acesso/login/login.component';
 import { CadastroComponent } from './acesso/cadastro/cadastro.component';
 import { ClienteComponent } from './cliente/cliente.component';
+import { CozinhaComponent } from './cozinha/cozinha.component';
+import { DiversosComponent } from './diversos/diversos.component';
+import { ChamadosComponent } from './cliente/chamados/chamados.component';
+import { EditarPerfilComponent } from './cliente/editar-perfil/editar-perfil.component';
 
 export const ROUTES: Routes = [
     { path: '', component: HomeComponent },
     { path: 'home', component: HomeComponent },
     { path: 'quarto', component: QuartoComponent },
     { path: 'sala', component: SalaComponent },
+    { path: 'cozinha', component: CozinhaComponent },
+    { path: 'diversos', component: DiversosComponent },
     { path: 'oferta', component: HomeComponent },
     { path: 'oferta/:id', component: OfertaComponent, 
         children: [
@@ -35,5 +41,10 @@ export const ROUTES: Routes = [
             { path: 'cadastro', component: CadastroComponent }
         ]
     },
-    { path: 'cliente', component: ClienteComponent, canActivate: [ AutenticacaoGuard ] }
+    { path: 'cliente', component: ClienteComponent, canActivate: [ AutenticacaoGuard ],
+        children: [
+            { path: 'chamados', component: ChamadosComponent },
+            { path: 'editar-perfil', component: EditarPerfilComponent }
+        ]
+    }
 ]
