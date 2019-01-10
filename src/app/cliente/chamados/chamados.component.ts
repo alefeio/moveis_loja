@@ -10,7 +10,7 @@ import * as backend from 'firebase'
 export class ChamadosComponent implements OnInit {
 
   public email: string
-  public publicacoes: any
+  public chamados: any
 
   constructor(private bd: Bd) { }
 
@@ -25,7 +25,7 @@ export class ChamadosComponent implements OnInit {
   public consultarChamados(): void {
     this.bd.consultarChamados(this.email)
       .then((chamados: any) => {
-        this.publicacoes = chamados
+        this.chamados = chamados
         // console.log(this.chamados)
       })
   }

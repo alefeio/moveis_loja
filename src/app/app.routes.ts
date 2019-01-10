@@ -41,10 +41,5 @@ export const ROUTES: Routes = [
             { path: 'cadastro', component: CadastroComponent }
         ]
     },
-    { path: 'cliente', component: ClienteComponent, canActivate: [ AutenticacaoGuard ],
-        children: [
-            { path: 'chamados', component: ChamadosComponent },
-            { path: 'editar-perfil', component: EditarPerfilComponent }
-        ]
-    }
+    { path: 'cliente', component: ClienteComponent, canActivate: [ AutenticacaoGuard ] }
 ]

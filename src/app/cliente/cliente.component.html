@@ -3,27 +3,46 @@
   <!-- <img src="/assets/banners/img_1.jpg" /> -->
 </div>
 <div class="container">
-  <div class="row">
-    <div class="col-sm-2">
-      <ul class="nav flex-column">
+  <div class="row text-center">
+    <div class="col-sm-12" style="margin: 50px 0 20px">
+      <h2>Minha Conta</h2>
+    </div>
+  </div>
+
+  <div class="row text-center">
+    <div class="col-sm-12" style="margin: 0 0 30px">
+
+
+      <ul class="nav justify-content-center">
         <li class="nav-item">
-          <a class="nav-link active" routerLink="/cliente/editar-perfil">Editar Perfil</a>
+          <button class="btn btn-warning" (click)="alterarLink('inicio')"><i class="fas fa-home"></i> Início</button>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" href="#">Meus Pedidos</a>
+          <button class="btn btn-warning" (click)="alterarLink('pedidos')"><i class="fas fa-cart-arrow-down"></i> Meus
+            Pedidos</button>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="/cliente/chamados">Meus Chamados</a>
+          <button class="btn btn-warning" (click)="alterarLink('chamados')"><i class="fas fa-address-card"></i> Meus
+            Chamados</button>
         </li>
         <li class="nav-item">
-          <a href="#" class="nav-link" data-toggle="modal" data-target="#adicionarChamado">Novo Chamado</a>
+          <button class="btn btn-warning" (click)="alterarLink('editarPerfil')"><i class="fas fa-user"></i> Editar
+            Perfil</button>
         </li>
       </ul>
+
     </div>
-    <div class="col-sm-10" style="padding: 50px">
-      <h2>Área do Cliente</h2>
-      <p>Seja bem-vindo, <strong>{{usuario.nome}}</strong>.</p>
-      <router-outlet #publicacoes></router-outlet>
+  </div>
+
+  <div class="row text-center">
+    <div class="col-sm-12" style="padding-bottom: 50px">
+
+      <div *ngIf="link === 'inicio'">
+          <p>Seja bem-vindo, <strong>{{usuario.nome}}</strong>.</p>
+      </div>
+      <app-editar-perfil *ngIf="link === 'editarPerfil'"></app-editar-perfil>
+      <app-chamados #chamados *ngIf="link === 'chamados'"></app-chamados>
+
     </div>
   </div>
   <app-adicionar-chamado (consultarChamados)="consultarChamados()"></app-adicionar-chamado>

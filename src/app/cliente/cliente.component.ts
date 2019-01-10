@@ -9,10 +9,11 @@ import * as backend from 'firebase'
 })
 export class ClienteComponent implements OnInit {
 
-  @ViewChild('publicacoes') public publicacoes: any
+  @ViewChild('chamados') public chamados: any
 
   public email: any
   public usuario: any = ''
+  public link: string = 'inicio'
 
   constructor(private bd: Bd) { }
 
@@ -33,7 +34,11 @@ export class ClienteComponent implements OnInit {
   }
 
   public consultarChamados(): void { 
-    this.publicacoes.consultarChamados()
+    this.chamados.consultarChamados()
+  }
+
+  public alterarLink(link: string): void {
+    this.link = link
   }
 
 }

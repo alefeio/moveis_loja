@@ -71,14 +71,14 @@ export class AdicionarChamadoComponent implements OnInit {
           this.consultarChamados.emit()
 
           continua.next(false)
-          // setTimeout(()=>{
-          //   this.progressoPublicacao = 'pendente'
-          //   this.formChamado.patchValue({
-          //     destinatario: null,
-          //     titulo: null,
-          //     mensagem: null
-          //   })
-          // }, 4000)
+          setTimeout(()=>{
+            this.progressoPublicacao = 'pendente'
+            this.formChamado.patchValue({
+              destinatario: null,
+              titulo: null,
+              mensagem: null
+            })
+          }, 4000)
         }
       })
   }
