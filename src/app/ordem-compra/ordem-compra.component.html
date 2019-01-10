@@ -51,7 +51,7 @@
 
       <br />
 
-      <h5>Dados de entrega</h5>
+      <!-- <h5>Dados de entrega</h5>
       <hr />
 
       <div class="form-row">
@@ -75,7 +75,7 @@
         </div>
 
       </div>
-      <br />
+      <br /> -->
 
       <h5>Dados de pagamento</h5>
       <hr />
@@ -102,4 +102,7 @@
   <div class="ordem-compra" *ngIf="idPedidoCompra !== undefined">
     <app-ordem-compra-sucesso [idPedidoCompra]="idPedidoCompra"></app-ordem-compra-sucesso>
   </div>
+</div>
+<div class="alert alert-{{estiloAlerta}} fixed-top text-center" role="alert" *ngIf="alerta != ''">
+  <strong>{{alerta}}</strong>
 </div>

@@ -38,6 +38,11 @@ import { Bd } from './bd.service';
 import { Progresso } from './progresso.service';
 import { ChamadosComponent } from './cliente/chamados/chamados.component';
 import { EditarPerfilComponent } from './cliente/editar-perfil/editar-perfil.component';
+import { AdminComponent } from './admin/admin.component';
+import { ProdutosComponent } from './admin/produtos/produtos.component';
+import { AdicionarProdutoComponent } from './admin/adicionar-produto/adicionar-produto.component';
+import { AmbienteComponent } from './ambiente/ambiente.component';
+import { LinhaComponent } from './linha/linha.component';
 
 @NgModule({
   declarations: [
@@ -61,7 +66,12 @@ import { EditarPerfilComponent } from './cliente/editar-perfil/editar-perfil.com
     DiversosComponent,
     AdicionarChamadoComponent,
     ChamadosComponent,
-    EditarPerfilComponent
+    EditarPerfilComponent,
+    AdminComponent,
+    ProdutosComponent,
+    AdicionarProdutoComponent,
+    AmbienteComponent,
+    LinhaComponent
   ],
   imports: [
     BrowserModule,

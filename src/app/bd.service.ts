@@ -80,6 +80,45 @@ export class Bd {
 
     }
 
+    public adicionarProduto(produto: any): void {
+
+        backend.database().ref('produtos')
+            .push({
+                ambiente: produto.ambiente,
+                linha: produto.linha,
+                titulo: produto.titulo,
+                descricao_oferta: produto.descricao_oferta,
+                marca: produto.marca,
+                valor: produto.valor,
+                destaque: produto.destaque
+            })
+            .then((resposta) => {
+                let nomeImagem = resposta.key
+
+                backend.storage().ref()
+                    .child(`produtos/${nomeImagem}`)
+                    .put(produto.imagem)
+                    .on(backend.storage.TaskEvent.STATE_CHANGED,
+                        // acompanhamento do progresso do upload
+                        (snapshot: any) => {
+                            this.progresso.status = 'andamento'
+                            this.progresso.estado = snapshot
+                            // console.log('Snapshot capturado no on() ',snapshot)
+                        },
+                        (error) => {
+                            this.progresso.status = 'erro'
+                            // console.log(error)
+                        },
+                        () => {
+                            // finalização do processo
+                            this.progresso.status = 'concluido'
+                            // console.log('Upload completo!')
+                        }
+                    )
+            })
+
+    }
+
     public consultarChamados(email: string): Promise<any> {
 
         return new Promise((resolve, reject) => {
@@ -127,6 +166,50 @@ export class Bd {
                     })
 
                     resolve(publicacoes)
+
+                })
+        })
+    }
+
+    public consultarProdutos(): Promise<any> {
+
+        return new Promise((resolve, reject) => {
+
+            // consultar chamados
+            backend.database().ref('produtos')
+                .orderByKey()
+                .once('value')
+                .then((snapshot: any) => {
+                    // console.log(snapshot.val())
+
+                    let produtos: Array<any> = []
+
+                    snapshot.forEach((childSnapshot: any) => {
+
+                        let produto = childSnapshot.val()
+                        produto.key = childSnapshot.key
+
+                        produtos.push(produto)
+                    })
+
+                    // resolve(publicacoes)
+                    return produtos.reverse()
+                })
+                .then((produtos: any) => {
+
+                    produtos.forEach(produto => {
+
+                        // consultar a url da imagem
+                        backend.storage().ref()
+                            .child(`produtos/${produto.key}`)
+                            .getDownloadURL()
+                            .then((url: string) => {
+
+                                produto.url_imagem = url
+                            })
+                    })
+
+                    resolve(produtos)
 
                 })
         })

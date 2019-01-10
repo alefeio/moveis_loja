@@ -5,7 +5,7 @@
       "ambiente": "Quarto",
       "linha": "Cama Solteiro",
       "titulo": "Cama de Solteiro Azul",
-      "fornecedor": "Original Burger",
+      "marca": "Original",
       "valor": 600,
       "destaque": true,
       "imagens": [
@@ -259,6 +259,120 @@
         }
       ],
       "id": 13
+    },
+    {
+      "endereco": "aasdasdasd",
+      "numero": "123",
+      "complemento": "asdas",
+      "formaPagamento": "dinheiro",
+      "itens": [
+        {
+          "id": 4,
+          "img": {
+            "url": "/assets/ofertas/sofa/01.jpg"
+          },
+          "titulo": "Sofa 2x3 Lugares 660 pu Cafe",
+          "valor": 2000,
+          "quantidade": 1
+        }
+      ],
+      "id": 14
+    },
+    {
+      "nome": "Alexandre Feio",
+      "email": "alefeio@gmail.com",
+      "cpf": "103.018.197-77",
+      "telefone": "(91) 3222-9622",
+      "celular": "(91) 98239-9986",
+      "endereco": {
+        "bairro": "Cremação",
+        "cep": "66063485",
+        "cidade": "Belém",
+        "complemento": "Ap. 201",
+        "numero": "2389",
+        "rua": "Travessa Quatorze de Abril",
+        "uf": "PA"
+      },
+      "formaPagamento": "dinheiro",
+      "itens": [
+        {
+          "id": 4,
+          "img": {
+            "url": "/assets/ofertas/sofa/01.jpg"
+          },
+          "titulo": "Sofa 2x3 Lugares 660 pu Cafe",
+          "valor": 2000,
+          "quantidade": 1
+        }
+      ],
+      "id": 15
+    },
+    {
+      "nome": "Alexandre Feio",
+      "email": "alefeio@gmail.com",
+      "cpf": "103.018.197-77",
+      "telefone": "(91) 3222-9622",
+      "celular": "(91) 98239-9986",
+      "endereco": {
+        "bairro": "Cremação",
+        "cep": "66063485",
+        "cidade": "Belém",
+        "complemento": "Ap. 201",
+        "numero": "2389",
+        "rua": "Travessa Quatorze de Abril",
+        "uf": "PA"
+      },
+      "formaPagamento": "dinheiro",
+      "itens": [
+        {
+          "id": 1,
+          "img": {
+            "url": "/assets/ofertas/cama-solteiro/01.jpg"
+          },
+          "titulo": "Cama de Solteiro Azul",
+          "valor": 600,
+          "quantidade": 1
+        },
+        {
+          "id": 2,
+          "img": {
+            "url": "/assets/ofertas/cama-casal/01.jpg"
+          },
+          "titulo": "Cama de Casal Box",
+          "valor": 660,
+          "quantidade": 1
+        }
+      ],
+      "id": 16
+    },
+    {
+      "nome": "Alexandre Feio",
+      "email": "alefeio@gmail.com",
+      "cpf": "103.018.197-77",
+      "telefone": "(91) 3222-9622",
+      "celular": "(91) 98239-9986",
+      "endereco": {
+        "bairro": "Cremação",
+        "cep": "66063485",
+        "cidade": "Belém",
+        "complemento": "Ap. 201",
+        "numero": "2389",
+        "rua": "Travessa Quatorze de Abril",
+        "uf": "PA"
+      },
+      "formaPagamento": "dinheiro",
+      "itens": [
+        {
+          "id": 1,
+          "img": {
+            "url": "/assets/ofertas/cama-solteiro/01.jpg"
+          },
+          "titulo": "Cama de Solteiro Azul",
+          "valor": 600,
+          "quantidade": 1
+        }
+      ],
+      "id": 17
     }
   ]
 }

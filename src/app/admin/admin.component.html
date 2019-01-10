@@ -1,0 +1,50 @@
+<div class="banner">
+    <!-- <p>&nbsp;</p> -->
+    <!-- <img src="/assets/banners/img_1.jpg" /> -->
+</div>
+<div class="container">
+    <div class="row text-center">
+        <div class="col-sm-12" style="margin: 50px 0 20px">
+            <h2>Administração do E-commerce</h2>
+        </div>
+    </div>
+
+    <div class="row text-center">
+        <div class="col-sm-12" style="margin: 0 0 30px">
+
+
+            <ul class="nav justify-content-center">
+                <li class="nav-item">
+                    <button class="btn btn-warning" (click)="alterarLink('inicio')"><i class="fas fa-home"></i> Início</button>
+                </li>
+                <li class="nav-item">
+                    <button class="btn btn-warning" data-toggle="modal" data-target="#incluirProduto"><i class="fas fa-edit"></i>
+                        Incluir Produto</button>
+                </li>
+                <li class="nav-item">
+                    <button class="btn btn-warning" (click)="alterarLink('produtos')"><i class="fas fa-address-card"></i>
+                        Produtos</button>
+                </li>
+                <!-- <li class="nav-item">
+                    <button class="btn btn-warning" (click)="alterarLink('editarPerfil')"><i class="fas fa-user"></i>
+                        Editar
+                        Perfil</button>
+                </li> -->
+            </ul>
+
+        </div>
+    </div>
+
+    <div class="row text-center">
+        <div class="col-sm-12" style="padding-bottom: 50px">
+
+            <div *ngIf="link === 'inicio'">
+                <p>Seja bem-vindo, <strong>{{usuario.nome}}</strong>.</p>
+            </div>
+            <!-- <app-editar-perfil *ngIf="link === 'editarPerfil'"></app-editar-perfil> -->
+            <app-produtos #produtos *ngIf="link === 'produtos'"></app-produtos>
+
+        </div>
+    </div>
+    <app-adicionar-produto (consultarProdutos)="consultarProdutos()"></app-adicionar-produto>
+</div>

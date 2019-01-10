@@ -1,6 +1,4 @@
-import { ItemCarrinho } from "./item-carrinho.model";
-
-export class Pedido {
+export class UsuarioPedido {
     constructor(
         public nome: string,
         public email: string,
@@ -15,8 +13,6 @@ export class Pedido {
             cep: string,
             cidade: string,
             uf: string
-        },
-        public formaPagamento: string,
-        public itens: Array<ItemCarrinho>
+        }
     ) {}
 }

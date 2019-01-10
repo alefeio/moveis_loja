@@ -1,3 +1,4 @@
+import { AdminComponent } from './admin/admin.component';
 import { AutenticacaoGuard } from './autenticacao-guard.service';
 import { Routes } from '@angular/router'
 
@@ -41,5 +42,6 @@ export const ROUTES: Routes = [
             { path: 'cadastro', component: CadastroComponent }
         ]
     },
-    { path: 'cliente', component: ClienteComponent, canActivate: [ AutenticacaoGuard ] }
+    { path: 'cliente', component: ClienteComponent, canActivate: [ AutenticacaoGuard ] },
+    { path: 'admin', component: AdminComponent, canActivate: [ AutenticacaoGuard ] }
 ]
