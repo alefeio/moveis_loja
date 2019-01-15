@@ -18,7 +18,7 @@ export class AmbienteComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-
+    window.scrollTo(0, 0)
     this.route.params.subscribe((parametros: Params) => {
 
       this.ambiente = parametros.param
