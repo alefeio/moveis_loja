@@ -84,14 +84,7 @@
       </a>
       <div class="dropbtn">
         <div class="dropdown-content">
-          <a class="encher">Mesa 4 Cadeiras</a>
-          <a class="encher">Mesa 6 cadeiras Buffet</a>
-          <a class="encher">Aparador</a>
-          <a class="encher">Mesa de Centro</a>
-          <a class="encher">Mesa Lateral</a>
-          <a class="encher">Cadeira Decorativa</a>
-          <a class="encher">Sofá</a>
-          <a class="encher">Sofá-Cama</a>
+          <a class="encher" *ngFor="let linha of linhas">linha.nome</a>
         </div>
       </div>
     </div>

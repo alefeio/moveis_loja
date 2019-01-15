@@ -10,15 +10,16 @@ import { Oferta } from '../shared/oferta.model'
   selector: 'app-topo',
   templateUrl: './topo.component.html',
   styleUrls: ['./topo.component.css'],
-  providers: [ OfertasService ]
+  providers: [OfertasService]
 })
 export class TopoComponent implements OnInit {
 
   public ofertas: Observable<Oferta[]>
   private subjectPesquisa: Subject<string> = new Subject<string>()
   public ambientes: Array<any> = []
+  public linhas: Array<any> = []
 
-  public 
+  public ambiente: string
 
   constructor(
     private ofertasService: OfertasService,
@@ -27,6 +28,7 @@ export class TopoComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+
     this.consultarAmbientes()
 
     this.ofertas = this.subjectPesquisa
@@ -35,20 +37,20 @@ export class TopoComponent implements OnInit {
         distinctUntilChanged(),
         switchMap((termo: string) => {
 
-          if(termo.trim() === ''){
+          if (termo.trim() === '') {
             return of<Oferta[]>([])
           }
           return this.ofertasService.pesquisaOfertas(termo)
         })
       )
-      
+
   }
 
   public pesquisa(termoDaBusca: string): void {
     this.subjectPesquisa.next(termoDaBusca)
   }
 
-  public limpaPesquisa(): void{
+  public limpaPesquisa(): void {
     this.subjectPesquisa.next('')
   }
 
@@ -59,7 +61,13 @@ export class TopoComponent implements OnInit {
   public consultarAmbientes(): void {
     this.bd.consultarAmbientes()
       .then((ambientes: any) => {
+        this.ambiente = ambientes.nome
         this.ambientes = ambientes.reverse()
+
+        // this.bd.consultarLinhasPorAmbiente(this.ambiente)
+        //   .then((linhas: any) => {
+        //     this.linhas = linhas
+        //   })
       })
   }
 

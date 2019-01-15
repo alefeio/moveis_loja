@@ -233,6 +233,34 @@ export class Bd {
         })
     }
 
+    public consultarLinhasPorAmbiente(ambiente: string): Promise<any> {
+
+        return new Promise((resolve, reject) => {
+
+            // consultar chamados
+            backend.database().ref('linhas')
+                .orderByChild('ambiente')
+                .equalTo(ambiente)
+                .once('value')
+                .then((snapshot: any) => {
+                    // console.log(snapshot.val())
+
+                    let linhas: Array<any> = []
+
+                    snapshot.forEach((childSnapshot: any) => {
+
+                        let linha = childSnapshot.val()
+                        linha.key = childSnapshot.key
+
+                        linhas.push(linha)
+                    })
+
+                    // resolve(publicacoes)
+                    resolve(linhas)
+                })
+        })
+    }
+
     public consultarProdutosPorFiltro(filtro: string, valor: string): Promise<any> {
 
         return new Promise((resolve, reject) => {
@@ -286,7 +314,7 @@ export class Bd {
             backend.database().ref('produtos')
                 .orderByChild(filtro)
                 .equalTo(valor)
-                .limitToFirst(3)
+                .limitToFirst(4)
                 .once('value')
                 .then((snapshot: any) => {
                     // console.log(snapshot.val())

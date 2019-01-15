@@ -10,7 +10,7 @@
       <div class="form-group">
         <input type="password" class="form-control" placeholder="Senha" formControlName="senha">
       </div>
-      <button type="submit" class="btn btn-primary btn-sm btn-block" [disabled]="!form.valid">Entrar</button>
+      <button type="submit" class="btn btn-warning btn-sm btn-block" [disabled]="!form.valid">Entrar</button>
     </form>
     <hr />
 
@@ -22,7 +22,7 @@
 <div class="card text-center" style="width: 20rem;">
   <div class="card-body">
     <p class="card-text">
-      Não tem uma conta? <button (click)="exibirPainelCadastro()" class="btn btn-sm btn-primary">Cadastre-se</button>
+      Não tem uma conta? <button (click)="exibirPainelCadastro()" class="btn btn-sm btn-warning">Cadastre-se</button>
     </p>
   </div>
 </div>

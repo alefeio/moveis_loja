@@ -3,6 +3,8 @@ import { OfertasService } from '../ofertas.service'
 import { Oferta } from '../shared/oferta.model'
 import { Bd } from 'src/app/bd.service';
 
+declare var $: any
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -20,7 +22,14 @@ export class HomeComponent implements OnInit {
   public pCozinha: Array<any> = []
   public pDiversos: Array<any> = []
 
-  constructor(private ofertasService: OfertasService, private bd: Bd) { }
+  constructor(private ofertasService: OfertasService, private bd: Bd) { 
+    $(document).ready(function(){
+
+      $(window).scroll(function(){
+        console.log('teste')
+      })
+    })
+  }
 
   ngOnInit() {
     //this.ofertas = this.ofertasService.getOfertas()

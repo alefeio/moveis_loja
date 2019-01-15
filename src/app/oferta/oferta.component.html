@@ -1,5 +1,5 @@
 <div class="container">
-  <div class="oferta" *ngIf="oferta !== undefined">
+  <div class="oferta">
     <!-- <div class="row">
       <div class="col">
         <a [routerLink]="['/oferta', 1]">Oferta 1</a>
@@ -15,8 +15,8 @@
 
     <div class="row">
       <div class="col-md-6" style="overflow: hidden">
-        <div class="zoom">
-          <img [src]="oferta.url_imagem || ''" class="img-zoom" alt="">
+        <div class="zoom img-fluid">
+          <img [src]="oferta.url_imagem || ''" class="img-zoom img-fluid" alt="">
           
         </div>
 

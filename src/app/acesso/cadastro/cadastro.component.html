@@ -1,4 +1,4 @@
-<h6 class="card-text text-center">Cadastre-se e aproveite as nossas ofertas. <small>Ou <button (click)="exibirPainelLogin()" class="btn btn-sm btn-primary">Faça login</button></small></h6>
+<h6 class="card-text text-center">Cadastre-se e aproveite as nossas ofertas. <small>Ou <button (click)="exibirPainelLogin()" class="btn btn-sm btn-warning">Faça login</button></small></h6>
 <div class="card">
   <div class="card-body">
     <form [formGroup]="formCadastro" (ngSubmit)="cadastrarUsuario()">
@@ -33,7 +33,7 @@
       <div class="form-group">
         <input type="password" class="form-control" placeholder="Senha (mín. 6 caracteres)" formControlName="senha">
       </div>
-      <button type="submit" class="btn btn-primary btn-sm btn-block" [disabled]="!formCadastro.valid">Cadastre-se</button>
+      <button type="submit" class="btn btn-warning btn-sm btn-block" [disabled]="!formCadastro.valid">Cadastre-se</button>
     </form>
     <br>
     <p class="small text-danger text-center" *ngIf="autenticacao.msgErro != undefined">{{autenticacao.msgErro}}</p>
