@@ -1,0 +1,8 @@
+.breadcrumb{
+    background: black;
+    border-radius: 0%;
+}
+
+.breadcrumb-item a{
+    color: white
+}

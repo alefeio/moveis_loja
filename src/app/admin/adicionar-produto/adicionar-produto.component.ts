@@ -1,7 +1,6 @@
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Bd } from 'src/app/bd.service';
-import * as backend from 'firebase'
 import { Progresso } from 'src/app/progresso.service';
 import { Observable, interval, observable, Subject, pipe } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
@@ -16,6 +15,10 @@ export class AdicionarProdutoComponent implements OnInit {
   @Output() public consultarProdutos: EventEmitter<any> = new EventEmitter<any>()
   public email: string
   private imagem: any
+  public ambientes: Array<any> = []
+  public linhas: Array<any> = []
+
+  public key: string
 
   constructor(private bd: Bd, private progresso: Progresso) { }
 
@@ -26,16 +29,19 @@ export class AdicionarProdutoComponent implements OnInit {
     'ambiente': new FormControl(null, [Validators.required]),
     'linha': new FormControl(null, [Validators.required]),
     'titulo': new FormControl(null, [Validators.required]),
-    'descricao_oferta': new FormControl(null, [Validators.required]),
-    'marca': new FormControl(null, [Validators.required]),
+    'descricao_oferta': new FormControl(null),
+    'marca': new FormControl(null),
     'valor': new FormControl(null, [Validators.required]),
+    'cor': new FormControl(null),
     'destaque': new FormControl(null, [Validators.required])
   })
 
   ngOnInit() {
+    this.consultarAmbientes()
+    this.consultarLinhas()
   }
 
-  public adicionarProduto(): void {
+  public adicionarProduto(key): void {
 
     let produto: any = {
 
@@ -45,16 +51,24 @@ export class AdicionarProdutoComponent implements OnInit {
       descricao_oferta: this.formProduto.value.descricao_oferta,
       marca: this.formProduto.value.marca,
       valor: this.formProduto.value.valor,
+      cor: this.formProduto.value.cor,
       destaque: this.formProduto.value.destaque,
       imagem: this.imagem[0]
 
     }
 
+    // console.log(produto)
+
     this.bd.adicionarProduto(produto)
 
+    this.acompanhaUpload()
+
+  }
+
+  public acompanhaUpload(): void {
     let continua = new Subject()
 
-    let acompanhamentoUpload = interval(1500)
+    let acompanhamentoUpload = interval(500)
 
     continua.next(true)
 
@@ -71,6 +85,9 @@ export class AdicionarProdutoComponent implements OnInit {
         if (this.progresso.status === 'concluido') {
           this.progressoPublicacao = 'concluido'
 
+          // emitir um evento do component parent (cliente)
+          this.consultarProdutos.emit()
+
           continua.next(false)
           setTimeout(() => {
             this.progressoPublicacao = 'pendente'
@@ -81,6 +98,7 @@ export class AdicionarProdutoComponent implements OnInit {
               descricao_oferta: null,
               marca: null,
               valor: null,
+              cor: null,
               destaque: null
             })
           }, 4000)
@@ -90,7 +108,21 @@ export class AdicionarProdutoComponent implements OnInit {
 
   public preparaImagemUpload(event: Event): void {
     this.imagem = (<HTMLInputElement>event.target).files
-    // console.log(this.imagem)
+    console.log(this.imagem)
+  }
+
+  public consultarAmbientes(): void {
+    this.bd.consultarAmbientes()
+      .then((ambientes: any) => {
+        this.ambientes = ambientes
+      })
+  }
+
+  public consultarLinhas(): void {
+    this.bd.consultarLinhas()
+      .then((linhas: any) => {
+        this.linhas = linhas
+      })
   }
 
 }

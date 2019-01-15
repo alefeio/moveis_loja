@@ -24,7 +24,7 @@ h1 {
 
 /**THE SAME CSS IS USED IN ALL 3 DEMOS**/    
 /**gallery margins**/  
-ul.gallery{    
+/* ul.gallery{    
     margin-left: 3vw;     
     margin-right:3vw;  
     }    
@@ -42,7 +42,7 @@ ul.gallery{
     .zoom:active,   
     .zoom:focus {
     /**adjust scale to desired size, 
-    add browser prefixes**/
+    add browser prefixes
     -ms-transform: scale(2);    
     -moz-transform: scale(2);  
     -webkit-transform: scale(2);  
@@ -53,7 +53,7 @@ ul.gallery{
     }
     
     /**To keep upscaled images visible on mobile, 
-    increase left & right margins a bit**/  
+    increase left & right margins a bit
     @media only screen and (max-width: 768px) {   
     ul.gallery {      
     margin-left: 15vw;       
@@ -61,6 +61,198 @@ ul.gallery{
     }
     
     /**TIP: Easy escape for touch screens,
-    give gallery's parent container a cursor: pointer.**/
+    give gallery's parent container a cursor: pointer.
     .DivName {cursor: pointer}
     }
+
+    span {
+    font-weight: bold;
+} */
+
+/* Underline From Center */
+.hvr-underline-from-center {
+    background-color: #f5f7fa;
+    display: inline-block;
+    vertical-align: middle;
+    -webkit-transform: perspective(1px) translateZ(0);
+    transform: perspective(1px) translateZ(0);
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+    position: relative;
+    overflow: hidden;
+  }
+  .hvr-underline-from-center:before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    left: 51%;
+    right: 51%;
+    bottom: 0;
+    background: rgba(243, 156, 18, 1);
+    height: 4px;
+    -webkit-transition-property: left, right;
+    transition-property: left, right;
+    -webkit-transition-duration: 0.3s;
+    transition-duration: 0.3s;
+    -webkit-transition-timing-function: ease-out;
+    transition-timing-function: ease-out;
+  }
+  .hvr-underline-from-center:hover:before, .hvr-underline-from-center:focus:before, .hvr-underline-from-center:active:before {
+    left: 0;
+    right: 0;
+  }
+  .btn-finalizar {
+    display: inline-block;
+    min-width: 160px;
+    height: 55px;
+    border: none;
+    padding: 0 7px;
+    font-size: 18px;
+    line-height: 56px;
+    font-weight: 400;
+  }
+  /* Sweep To Right */
+.hvr-sweep-to-right {
+  border-radius: 20px;
+  -webkit-transform: perspective(1px) translateZ(0);
+  transform: perspective(1px) translateZ(0);
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+  position: relative;
+  -webkit-transition-property: color;
+  transition-property: color;
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+}
+.hvr-sweep-to-right:before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  border-radius: 20px;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(243, 156, 18, 1);
+  -webkit-transform: scaleX(0);
+  transform: scaleX(0);
+  -webkit-transform-origin: 0 50%;
+  transform-origin: 0 50%;
+  -webkit-transition-property: transform;
+  transition-property: transform;
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  -webkit-transition-timing-function: ease-out;
+  transition-timing-function: ease-out;
+}
+.hvr-sweep-to-right:hover, .hvr-sweep-to-right:focus, .hvr-sweep-to-right:active {
+  color: black;
+}
+.hvr-sweep-to-right:hover:before, .hvr-sweep-to-right:focus:before, .hvr-sweep-to-right:active:before {
+  -webkit-transform: scaleX(1);
+  transform: scaleX(1);
+}
+
+.esp-num {
+  margin-left: 3%;
+  margin-right: 3%;
+  font-size: 25px;
+}
+/* novo */
+
+
+.gallery-wrap .img-big-wrap img {
+  height: 400px;
+  width: 400px;
+ /* width: auto;*/
+  display: inline-block;
+  cursor: zoom-in;
+}
+
+
+.gallery-wrap .img-small-wrap .item-gallery {
+  width: 70px;
+  height: auto;
+  margin: 7px 2px;
+  display: inline-block;
+  overflow: hidden;
+}
+
+.gallery-wrap .img-small-wrap {
+  text-align: center;
+}
+.gallery-wrap .img-small-wrap img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: cover;
+  border-radius: 4px;
+  /*cursor: zoom-in;*/
+}
+.price-title{
+  font-weight: 700;
+}
+.price{
+  font-size: 24px;
+  line-height: 31px;
+  text-transform: uppercase;
+  max-height: 66px;
+  overflow: hidden;
+  font-family: 'Open Sans',Arial,sans-serif;
+  font-weight: 700;
+  width: 100%;
+  padding: 0;
+  float: none;
+
+
+}
+.color-price-waanbii{
+  color: #FA3A11; 
+}
+.color-box-waanbii{
+  background: #FD6342; 
+  color:white;
+}
+
+.fa-beat {
+animation:fa-beat 5s ease infinite;
+}
+@keyframes fa-beat {
+0% {
+  transform:scale(1);
+}
+5% {
+  transform:scale(1.25);
+}
+20% {
+  transform:scale(1);
+}
+30% {
+  transform:scale(1);
+}
+35% {
+  transform:scale(1.25);
+}
+50% {
+  transform:scale(1);
+}
+55% {
+  transform:scale(1.25);
+}
+70% {
+  transform:scale(1);
+}
+}
+
+/* estrelas */
+
+.estrelas input[type=radio] {
+  display: none;
+}
+.estrelas label i.fa:before {
+  content:'\f005';
+  color: rgb(255, 217, 0);
+}
+.estrelas input[type=radio]:checked ~ label i.fa:before {
+  color: #636363;
+}
+.estrelas > label > i {
+font-size: 25px
+}

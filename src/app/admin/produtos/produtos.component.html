@@ -1,29 +1,41 @@
-<h4><i class="fas fa-address-card"></i> Produtos
+<h4><i class="fas fa-object-group"></i> Produtos
     <button class="btn btn-sm btn-primary position-absolute" data-toggle="modal" data-target="#incluirProduto" style="margin-bottom: 50px; right:0; top: 0">
         <i class="fas fa-edit"></i> Incluir Produto
     </button>
 </h4>
 
 <div class="row" style="background: #555; color: white; font-weight: bold;">
-    <div class="col-sm-5" style="border:1px solid #bbb">
+    <div class="col-sm-3" style="border:1px solid #bbb">
         Título
     </div>
-    <div class="col-sm-4" style="border:1px solid #bbb">
+    <div class="col-sm-3" style="border:1px solid #bbb">
         Linha/Ambiente
+    </div>
+    <div class="col-sm-3" style="border:1px solid #bbb">
+        Descricao
     </div>
     <div class="col-sm-3" style="border:1px solid #bbb">
         Imagem
     </div>
 </div>
 <div *ngFor="let produto of produtos" class="row" style="background: #efefef">
-    <div class="col-sm-5" style="border:1px solid #bbb">
+    <div class="col-sm-3" style="border:1px solid #bbb">
         {{produto.titulo}}
     </div>
-    <div class="col-sm-4" style="border:1px solid #bbb">
+    <div class="col-sm-3" style="border:1px solid #bbb">
         Ambiente: {{produto.ambiente}} <br>
-        Linha: {{produto.linha}}
+        Linha: {{produto.linha}} <br>
+        Cor: {{produto.cor}} <br>
+        Marca: {{produto.marca}} <br>
+        Valor: {{produto.valor}} <br>
+        Destaque: {{produto.destaque}}
+    </div>
+    <div class="col-sm-3 text-left" style="border:1px solid #bbb">
+        <pre>{{produto.descricao_oferta}}</pre>
     </div>
     <div class="col-sm-3" style="border:1px solid #bbb">
-        <img [src]="produto.url_imagem || ''" class="img-fluid" alt="">
+        <!-- <button (click)=""> -->
+            <img [src]="produto.url_imagem || ''" class="img-fluid" alt="">
+        <!-- </button> -->
     </div>
 </div>

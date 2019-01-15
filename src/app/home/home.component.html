@@ -1,28 +1,78 @@
-<div class="banner">
-  &nbsp;
+<div style="margin-left: 10%">
+  <h2 style="margin: 0">Produtos em Destaque</h2>
+  <span style="background-color: rgba(243, 156, 18, 1);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
 </div>
+
 <div class="container">
-  
-  <div class="secao">
-    <h3 class="text-center">Destaques do dia!</h3>
-    <h5 class="text-center">Aproveite as super ofertas que separamos para você:</h5>
-  </div>
-
-  <hr />
-
+  <br>
   <div class="row">
-    <div class="col-sm-4 box" *ngFor="let oferta of ofertas">
-      <div class="card">
-        <img class="card-img-top" [src]="oferta.imagens[0].url">
-        <div class="card-block padding">
-          <small class="card-title">{{ oferta.ambiente }} &raquo; {{ oferta.linha }}</small>
-          <h4 class="card-title">{{ oferta.titulo }}</h4>
-          <p class="card-text">{{ oferta.descricao_oferta }}</p>
-          <p class="preco">{{ oferta.valor | currency: 'BRL' }}</p>
-          <a [routerLink]="['/oferta', oferta.id]" class="btn btn-outline-primary">Ver oferta</a>
+    <div class="col-sm-4 card info-widget flutuar" *ngFor="let oferta of destaques">
+      <div class="text-center">
+        <img class="img-fluid" [src]="oferta.url_imagem || ''">
+      </div>
+      <div class="card-block padding">
+        <small class="card-title">{{ oferta.ambiente }} &raquo; {{ oferta.linha }}</small>
+        <h5 style="padding: 1%">{{ oferta.titulo }}</h5>
+        <!-- <pre>{{ oferta.descricao_oferta | descricaoReduzida:100:0 }}</pre> -->
+        <p style="padding: 1%">Por: {{ oferta.valor | currency: 'BRL' }}</p>
+        <div class="text-center">
+          <button class="btn btn-padrao" [routerLink]="['/oferta', oferta.key]">Ver Oferta</button>
         </div>
       </div>
     </div>
-  <hr />
-  
+  </div>
 </div>
+
+<br><br>
+
+<div style="margin-left: 10%">
+  <h2 style="margin: 0">Para seu quarto <small><button class="btn btn-sm btn-warning" [routerLink]="['/ambiente', 'Quarto']">+</button></small></h2>
+  <span style="background-color: rgba(243, 156, 18, 1);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+</div>
+<div class="container">
+  <br>
+  <div class="row">
+    <div class="col-sm-4 card info-widget flutuar" *ngFor="let oferta of pQuarto">
+      <div class="text-center">
+        <img class="img-fluid" [src]="oferta.url_imagem || ''">
+      </div>
+      <div class="card-block padding">
+        <small class="card-title">{{ oferta.ambiente }} &raquo; {{ oferta.linha }}</small>
+        <h5 style="padding: 1%">{{ oferta.titulo }}</h5>
+        <!-- <pre>{{ oferta.descricao_oferta | descricaoReduzida:100:0 }}</pre> -->
+        <p style="padding: 1%">Por: {{ oferta.valor | currency: 'BRL' }}</p>
+        <div class="text-center">
+          <button class="btn btn-padrao" [routerLink]="['/oferta', oferta.key]">Ver Oferta</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<br><br>
+
+<!-- <div class="row">
+
+<div class="col-md-12">
+    <h1 class="text-center mb-3" style="padding: 1%">Para seu quarto</h1>
+    <div #scrollHorizontalDiversos class="middle">
+      <a class="prev" (click)="scroll('esquerda', 'quarto')">&#10094;</a>
+      <div *ngFor="let oferta of pQuarto" style="padding: 3%" class="card info-widget flutuar" style="width: 18rem; margin: 1em">
+        <img [src]="oferta.url_imagem || ''" class="card-img-top">
+        <div class="card-body">
+          <h5>{{ oferta.titulo }}</h5>
+          <div class="row">
+            <div class="col">
+              <p class="card-text pb-3">Por: {{ oferta.valor | currency: 'BRL' }}</p>
+            </div>
+          </div>
+          <div class="text-center">
+            <button class="btn btn-padrao" [routerLink]="['/oferta', oferta.key]">Ver Oferta</button>
+          </div>
+        </div>
+      </div>
+      <a class="next" (click)="scroll('direita', 'quarto')" style="margin-right: 1em">&#10095;</a>
+    </div>
+  </div>
+
+</div> -->

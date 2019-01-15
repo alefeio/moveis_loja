@@ -1,7 +1,3 @@
-<div class="banner">
-    <!-- <p>&nbsp;</p> -->
-    <!-- <img src="/assets/banners/img_1.jpg" /> -->
-</div>
 <div class="container">
     <div class="row text-center">
         <div class="col-sm-12" style="margin: 50px 0 20px">
@@ -17,14 +13,22 @@
                 <li class="nav-item">
                     <button class="btn btn-warning" (click)="alterarLink('inicio')"><i class="fas fa-home"></i> Início</button>
                 </li>
-                <li class="nav-item">
+                <!-- <li class="nav-item">
                     <button class="btn btn-warning" data-toggle="modal" data-target="#incluirProduto"><i class="fas fa-edit"></i>
                         Incluir Produto</button>
-                </li>
+                </li> -->
                 <li class="nav-item">
-                    <button class="btn btn-warning" (click)="alterarLink('produtos')"><i class="fas fa-address-card"></i>
+                    <button class="btn btn-warning" (click)="alterarLink('produtos')"><i class="fas fa-object-group"></i>
                         Produtos</button>
                 </li>
+                <li class="nav-item">
+                        <button class="btn btn-warning" (click)="alterarLink('ambientes')"><i class="fas fa-object-group"></i>
+                            Ambientes</button>
+                    </li>
+                    <li class="nav-item">
+                            <button class="btn btn-warning" (click)="alterarLink('linhas')"><i class="fas fa-object-group"></i>
+                                Linhas</button>
+                        </li>
                 <!-- <li class="nav-item">
                     <button class="btn btn-warning" (click)="alterarLink('editarPerfil')"><i class="fas fa-user"></i>
                         Editar
@@ -43,8 +47,12 @@
             </div>
             <!-- <app-editar-perfil *ngIf="link === 'editarPerfil'"></app-editar-perfil> -->
             <app-produtos #produtos *ngIf="link === 'produtos'"></app-produtos>
+            <app-ambientes #ambientes *ngIf="link === 'ambientes'"></app-ambientes>
+            <app-linhas #linhas *ngIf="link === 'linhas'"></app-linhas>
 
         </div>
     </div>
     <app-adicionar-produto (consultarProdutos)="consultarProdutos()"></app-adicionar-produto>
+    <app-adicionar-ambiente (consultarAmbientes)="consultarAmbientes()"></app-adicionar-ambiente>
+    <app-adicionar-linha (consultarLinhas)="consultarLinhas()"></app-adicionar-linha>
 </div>

@@ -1,3 +1,4 @@
+import { Bd } from './../bd.service';
 import { Autenticacao } from './../autenticacao.service';
 import { Component, OnInit } from '@angular/core';
 import { OfertasService } from './../ofertas.service';
@@ -15,13 +16,19 @@ export class TopoComponent implements OnInit {
 
   public ofertas: Observable<Oferta[]>
   private subjectPesquisa: Subject<string> = new Subject<string>()
+  public ambientes: Array<any> = []
+
+  public 
 
   constructor(
     private ofertasService: OfertasService,
-    private autenticacao: Autenticacao
+    private autenticacao: Autenticacao,
+    private bd: Bd
   ) { }
 
   ngOnInit() {
+    this.consultarAmbientes()
+
     this.ofertas = this.subjectPesquisa
       .pipe(
         debounceTime(1000),
@@ -47,6 +54,13 @@ export class TopoComponent implements OnInit {
 
   public sair(): void {
     this.autenticacao.sair()
+  }
+
+  public consultarAmbientes(): void {
+    this.bd.consultarAmbientes()
+      .then((ambientes: any) => {
+        this.ambientes = ambientes.reverse()
+      })
   }
 
 }

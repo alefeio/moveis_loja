@@ -1,6 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Bd } from 'src/app/bd.service';
-import * as backend from 'firebase'
 
 @Component({
   selector: 'app-produtos',
@@ -9,8 +8,9 @@ import * as backend from 'firebase'
 })
 export class ProdutosComponent implements OnInit {
 
-  public email: string
   public produtos: any
+
+  @Output() public adicionarProduto: EventEmitter<any> = new EventEmitter<any>()
 
   constructor(private bd: Bd) { }
 
@@ -22,6 +22,7 @@ export class ProdutosComponent implements OnInit {
     this.bd.consultarProdutos()
       .then((produtos: any) => {
         this.produtos = produtos
+        console.log(this.produtos)
       })
   }
 

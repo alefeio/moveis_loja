@@ -18,30 +18,12 @@
           <a class="dropdown-item" href="#">Algo mais aqui</a>
         </div>
       </li> -->
-      <li class="nav-item">
-        <a class="nav-link text-center" routerLinkActive="active" routerLink="/quarto">
-          <img src="/assets/quarto.png" class="img-fluid" style="width: 30px" />
-          <br>Quarto
+      <!-- <li class="nav-item" *ngFor="let ambiente of ambientes">
+        <a class="nav-link text-center" routerLinkActive="active" [routerLink]="['/ambiente', ambiente.nome]">
+          <img [src]="ambiente.url_imagem || ''" alt="" style="width: 50px">
+          <br>{{ambiente.nome}}
         </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link text-center" routerLinkActive="active" routerLink="/sala">
-          <img src="/assets/sala.png" class="img-fluid" style="width: 30px" />
-          <br>Sala
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link text-center" routerLinkActive="active" routerLink="/cozinha">
-          <img src="/assets/cozinha.png" class="img-fluid" style="width: 30px" />
-          <br>Cozinha
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link text-center" routerLinkActive="active" routerLink="/diversos">
-          <img src="/assets/diversos.png" class="img-fluid" style="width: 30px" />
-          <br>Diversos
-        </a>
-      </li>
+      </li> -->
       <li class="nav-link text-center">
         <input class="form-control mr-sm-2" type="search" placeholder="Pesquisar oferta" #termoDaPesquisa
           (keyup)="pesquisa(termoDaPesquisa.value)" aria-label="Pesquisar">
@@ -87,3 +69,31 @@
     </ul>
   </div>
 </nav>
+<div class="banner">
+    &nbsp;
+  </div>
+  <div class="row tam-row">
+    <div class="img"></div>
+    <div class="col-1" id="esconder"></div>
+    <div *ngFor="let ambiente of ambientes" class="col cor-dropdown esp-icone text-center dropdown icones">
+      <a routerLinkActive="active" [routerLink]="['/ambiente', ambiente.nome]" style="color: black">
+        <div style="height: 100%" class="sacodida-horizontal">
+          <img [src]="ambiente.url_imagem || ''" height="100" width="100">
+          <h1>{{ambiente.nome}}</h1>
+        </div>
+      </a>
+      <div class="dropbtn">
+        <div class="dropdown-content">
+          <a class="encher">Mesa 4 Cadeiras</a>
+          <a class="encher">Mesa 6 cadeiras Buffet</a>
+          <a class="encher">Aparador</a>
+          <a class="encher">Mesa de Centro</a>
+          <a class="encher">Mesa Lateral</a>
+          <a class="encher">Cadeira Decorativa</a>
+          <a class="encher">Sofá</a>
+          <a class="encher">Sofá-Cama</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-1" id="esconder"></div>
+  </div>

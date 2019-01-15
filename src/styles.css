@@ -47,3 +47,48 @@ h3 {
     background-size: cover;
     height: 300px;
 }
+
+.btn-padrao {
+    -webkit-box-shadow: none;
+      box-shadow: none;
+    border-radius: 40px !important;
+    display: inline-block;
+    vertical-align: middle;
+    -webkit-transform: perspective(1px) translateZ(0);
+    transform: perspective(1px) translateZ(0);
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+    position: relative;
+    background: rgba(243, 156, 18, 0.6);
+    -webkit-transition-property: color;
+    transition-property: color;
+    -webkit-transition-duration: 0.3s;
+    transition-duration: 0.3s;
+    }
+  .btn-padrao:before {
+    content: "";
+    position: absolute;
+    border-radius: 40px;
+    z-index: -1;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(243, 156, 18, 1);
+    -webkit-transform: scaleX(0);
+    transform: scaleX(0);
+    -webkit-transform-origin: 50%;
+    transform-origin: 50%;
+    -webkit-transition-property: transform;
+    transition-property: transform;
+    -webkit-transition-duration: 0.3s;
+    transition-duration: 0.3s;
+    -webkit-transition-timing-function: ease-out;
+    transition-timing-function: ease-out;
+  }
+  .btn-padrao:hover, .btn-padrao:focus, .btn-padrao:active {
+    color: white;
+  }
+    .btn-padrao:hover:before, .btn-padrao:focus:before, .btn-padrao:active:before {
+    -webkit-transform: scaleX(1);
+    transform: scaleX(1);
+  }

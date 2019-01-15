@@ -78,7 +78,7 @@ export class AdicionarChamadoComponent implements OnInit {
               titulo: null,
               mensagem: null
             })
-          }, 4000)
+          }, 3000)
         }
       })
   }

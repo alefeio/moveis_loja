@@ -10,6 +10,8 @@ import * as backend from 'firebase'
 export class AdminComponent implements OnInit {
 
   @ViewChild('produtos') public produtos: any
+  @ViewChild('ambientes') public ambientes: any
+  @ViewChild('linhas') public linhas: any
 
   public email: any
   public usuario: any = ''
@@ -23,6 +25,8 @@ export class AdminComponent implements OnInit {
 
       this.consultarUsuario()
     })
+
+    console.log(this.link)
   }
 
   public consultarUsuario(): void {
@@ -35,6 +39,14 @@ export class AdminComponent implements OnInit {
 
   public consultarProdutos(): void { 
     this.produtos.consultarProdutos()
+  }
+
+  public consultarAmbientes(): void { 
+    this.ambientes.consultarAmbientes()
+  }
+
+  public consultarLinhas(): void { 
+    this.linhas.consultarLinhas()
   }
 
   public alterarLink(link: string): void {

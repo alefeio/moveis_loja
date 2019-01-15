@@ -1,3 +1,4 @@
+import { Util } from './util.service';
 import { AutenticacaoGuard } from './autenticacao-guard.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { LOCALE_ID, NgModule } from '@angular/core';
@@ -15,7 +16,6 @@ import { RodapeComponent } from './rodape/rodape.component';
 import { QuartoComponent } from './quarto/quarto.component';
 import { SalaComponent } from './sala/sala.component';
 import { OfertaComponent } from './oferta/oferta.component';
-import { DetalhesComponent } from './oferta/detalhes/detalhes.component';
 import { ContatoComponent } from './contato/contato.component';
 import { registerLocaleData } from "@angular/common";
 import localePt from "@angular/common/locales/pt";
@@ -43,6 +43,10 @@ import { ProdutosComponent } from './admin/produtos/produtos.component';
 import { AdicionarProdutoComponent } from './admin/adicionar-produto/adicionar-produto.component';
 import { AmbienteComponent } from './ambiente/ambiente.component';
 import { LinhaComponent } from './linha/linha.component';
+import { AmbientesComponent } from './admin/ambientes/ambientes.component';
+import { LinhasComponent } from './admin/linhas/linhas.component';
+import { AdicionarAmbienteComponent } from './admin/adicionar-ambiente/adicionar-ambiente.component';
+import { AdicionarLinhaComponent } from './admin/adicionar-linha/adicionar-linha.component';
 
 @NgModule({
   declarations: [
@@ -53,7 +57,6 @@ import { LinhaComponent } from './linha/linha.component';
     QuartoComponent,
     SalaComponent,
     OfertaComponent,
-    DetalhesComponent,
     ContatoComponent,
     DescricaoReduzida,
     OrdemCompraComponent,
@@ -71,7 +74,11 @@ import { LinhaComponent } from './linha/linha.component';
     ProdutosComponent,
     AdicionarProdutoComponent,
     AmbienteComponent,
-    LinhaComponent
+    LinhaComponent,
+    AmbientesComponent,
+    LinhasComponent,
+    AdicionarAmbienteComponent,
+    AdicionarLinhaComponent
   ],
   imports: [
     BrowserModule,
@@ -86,7 +93,8 @@ import { LinhaComponent } from './linha/linha.component';
     Autenticacao,
     AutenticacaoGuard,
     Bd,
-    Progresso
+    Progresso,
+    Util
   ],
   bootstrap: [AppComponent]
 })

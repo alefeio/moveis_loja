@@ -373,6 +373,64 @@
         }
       ],
       "id": 17
+    },
+    {
+      "nome": "Alexandre Thiago Feio Penha",
+      "email": "alefeio@gmail.com",
+      "cpf": "103.018.197-77",
+      "telefone": "(91) 3222-9622",
+      "celular": "(91) 98239-9986",
+      "endereco": {
+        "bairro": "Cremação",
+        "cep": "66063485",
+        "cidade": "Belém",
+        "complemento": "Ap. 201",
+        "numero": "2389",
+        "rua": "Travessa Quatorze de Abril",
+        "uf": "PA"
+      },
+      "formaPagamento": "dinheiro",
+      "itens": [
+        {
+          "key": "-LW2Et-PHgNJcdikTGPG",
+          "titulo": "Cama Casal Grecia",
+          "valor": 429.9,
+          "quantidade": 1
+        },
+        {
+          "key": "-LW2EVZqKnAOS4t3N31-",
+          "titulo": "Cama Casal Reali",
+          "valor": 539.9,
+          "quantidade": 1
+        }
+      ],
+      "id": 18
+    },
+    {
+      "nome": "Alexandre Thiago Feio Penha",
+      "email": "alefeio@gmail.com",
+      "cpf": "103.018.197-77",
+      "telefone": "(91) 3222-9622",
+      "celular": "(91) 98239-9986",
+      "endereco": {
+        "bairro": "Cremação",
+        "cep": "66063485",
+        "cidade": "Belém",
+        "complemento": "Ap. 201",
+        "numero": "2389",
+        "rua": "Travessa Quatorze de Abril",
+        "uf": "PA"
+      },
+      "formaPagamento": "debito",
+      "itens": [
+        {
+          "key": "-LW2Et-PHgNJcdikTGPG",
+          "titulo": "Cama Casal Grecia",
+          "valor": 429.9,
+          "quantidade": 4
+        }
+      ],
+      "id": 19
     }
   ]
 }
