@@ -69,6 +69,16 @@ export class TopoComponent implements OnInit {
         //   .then((linhas: any) => {
         //     this.linhas = linhas
         //   })
+
+        this.consultarLinhas()
+
+      })
+  }
+
+  public consultarLinhas(): void {
+    this.bd.consultarLinhas()
+      .then((linhas: any) => {
+        this.linhas = linhas
       })
   }
 

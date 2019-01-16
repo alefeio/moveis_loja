@@ -1,9 +1,3 @@
-<nav aria-label="breadcrumb">
-  <ol class="breadcrumb">
-    <li class="breadcrumb-item"><a routerLink="/home">HOME</a></li>
-    <li class="breadcrumb-item active text-warning">AMBIENTE: {{ambiente | uppercase}}</li>
-  </ol>
-</nav>
 <div class="container">
 
 
@@ -19,6 +13,13 @@
       </div>
     </div>
     <div class="col-md-9">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a routerLink="/home">HOME</a></li>
+          <li class="breadcrumb-item active text-warning">AMBIENTE: {{ambiente | uppercase}}</li>
+        </ol>
+        <hr class="text-dark">
+      </nav>
       <div style="margin-left: 10%">
         <h2 style="margin: 0" *ngIf="ambiente === 'Quarto'">Produtos para seu Quarto</h2>
         <h2 style="margin: 0" *ngIf="ambiente === 'Sala'">Produtos para sua Sala</h2>

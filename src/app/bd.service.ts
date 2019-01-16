@@ -265,6 +265,8 @@ export class Bd {
 
     public consultarLinhasPorAmbiente(ambiente: string): Promise<any> {
 
+        console.log('ambiente recebido no bd: ', ambiente)
+
         return new Promise((resolve, reject) => {
 
             // consultar chamados

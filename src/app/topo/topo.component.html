@@ -25,8 +25,8 @@
         </a>
       </li> -->
       <li class="nav-link text-center">
-        <input class="form-control mr-sm-2" type="search" placeholder="Pesquisar oferta" #termoDaPesquisa
-          (keyup)="pesquisa(termoDaPesquisa.value)" aria-label="Pesquisar">
+        <input class="form-control mr-sm-2" type="search" placeholder="Pesquisar oferta" #termoDaPesquisa (keyup)="pesquisa(termoDaPesquisa.value)"
+          aria-label="Pesquisar">
         <ul class="list-group" style="position: absolute; background: #fff; z-index: 1000">
           <li class="list-group-item d-flex justify-content-between align-items-center" *ngFor="let oferta of ofertas | async">
             <a [routerLink]="['/oferta', oferta.key]" (click)="limpaPesquisa()">
@@ -70,23 +70,27 @@
   </div>
 </nav>
 <div class="banner">
-    &nbsp;
-  </div>
-  <div class="row tam-row">
-    <div class="img"></div>
-    <div class="col-1" id="esconder"></div>
-    <div *ngFor="let ambiente of ambientes" class="col cor-dropdown esp-icone text-center dropdown icones">
-      <a routerLinkActive="active" [routerLink]="['/ambiente', ambiente.nome]" style="color: black">
-        <div style="height: 100%" class="sacodida-horizontal">
-          <img [src]="ambiente.url_imagem || ''" height="100" width="100">
-          <h1>{{ambiente.nome}}</h1>
-        </div>
-      </a>
-      <div class="dropbtn">
-        <div class="dropdown-content">
-          <a class="encher" *ngFor="let linha of linhas">linha.nome</a>
-        </div>
+  &nbsp;
+</div>
+<div class="row tam-row">
+  <div class="img"></div>
+  <div class="col-1" id="esconder"></div>
+  <div *ngFor="let ambiente of ambientes" class="col cor-dropdown esp-icone text-center dropdown icones">
+    <a routerLinkActive="active" [routerLink]="['/ambiente', ambiente.nome]" style="color: black">
+      <div style="height: 100%" class="sacodida-horizontal">
+        <img [src]="ambiente.url_imagem || ''" height="100" width="100">
+        <h1>{{ambiente.nome}}</h1>
+      </div>
+    </a>
+    <div class="dropbtn">
+      <div class="dropdown-content">
+        <span *ngFor="let linha of linhas">
+          <a class="encher" *ngIf="linha.ambiente == ambiente.nome">
+            {{linha.nome}}
+          </a>
+        </span>
       </div>
     </div>
-    <div class="col-1" id="esconder"></div>
   </div>
+  <div class="col-1" id="esconder"></div>
+</div>
