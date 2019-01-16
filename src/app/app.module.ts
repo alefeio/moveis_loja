@@ -47,6 +47,7 @@ import { AmbientesComponent } from './admin/ambientes/ambientes.component';
 import { LinhasComponent } from './admin/linhas/linhas.component';
 import { AdicionarAmbienteComponent } from './admin/adicionar-ambiente/adicionar-ambiente.component';
 import { AdicionarLinhaComponent } from './admin/adicionar-linha/adicionar-linha.component';
+import { PedidosComponent } from './cliente/pedidos/pedidos.component';
 
 @NgModule({
   declarations: [
@@ -78,7 +79,8 @@ import { AdicionarLinhaComponent } from './admin/adicionar-linha/adicionar-linha
     AmbientesComponent,
     LinhasComponent,
     AdicionarAmbienteComponent,
-    AdicionarLinhaComponent
+    AdicionarLinhaComponent,
+    PedidosComponent
   ],
   imports: [
     BrowserModule,

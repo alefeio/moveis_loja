@@ -19,8 +19,11 @@
       </div>
     </div>
     <div class="col-md-9">
-      <div style="margin-left: 10%" *ngIf="ambiente === 'Quarto'">
-        <h2 style="margin: 0">Produtos para o seu Quarto</h2>
+      <div style="margin-left: 10%">
+        <h2 style="margin: 0" *ngIf="ambiente === 'Quarto'">Produtos para seu Quarto</h2>
+        <h2 style="margin: 0" *ngIf="ambiente === 'Sala'">Produtos para sua Sala</h2>
+        <h2 style="margin: 0" *ngIf="ambiente === 'Cozinha'">Produtos para sua Cozinha</h2>
+        <h2 style="margin: 0" *ngIf="ambiente === 'Diversos'">Produtos Diversos</h2>
         <span style="background-color: rgba(243, 156, 18, 1);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
       </div>
       <!-- <div class="secao">
