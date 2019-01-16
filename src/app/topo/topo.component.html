@@ -29,7 +29,7 @@
           (keyup)="pesquisa(termoDaPesquisa.value)" aria-label="Pesquisar">
         <ul class="list-group" style="position: absolute; background: #fff; z-index: 1000">
           <li class="list-group-item d-flex justify-content-between align-items-center" *ngFor="let oferta of ofertas | async">
-            <a [routerLink]="['/oferta', oferta.id]" (click)="limpaPesquisa()">
+            <a [routerLink]="['/oferta', oferta.key]" (click)="limpaPesquisa()">
               {{oferta.titulo | descricaoReduzida:20:0 }}
               <!-- <span class="badge badge-primary badge-pill">7</span> -->
             </a>

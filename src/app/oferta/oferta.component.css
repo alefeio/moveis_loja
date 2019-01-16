@@ -209,3 +209,8 @@ animation:fa-beat 5s ease infinite;
 .estrelas > label > i {
 font-size: 25px
 }
+
+.zoom{
+  /* height: 300px; */
+  overflow: hidden;
+}

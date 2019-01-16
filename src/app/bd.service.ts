@@ -2,6 +2,8 @@ import { Util } from './util.service';
 import * as backend from 'firebase'
 import { Injectable } from '@angular/core';
 import { Progresso } from './progresso.service';
+import { Observable } from 'rxjs';
+import { map, retry } from 'rxjs/operators';
 
 @Injectable()
 export class Bd {
@@ -125,6 +127,7 @@ export class Bd {
             backend.database().ref('produtos')
                 .orderByChild("destaque")
                 .equalTo(true)
+                .limitToFirst(3)
                 .once("value")
                 .then((snapshot: any) => {
                     // console.log('Valor do snapshot: ', snapshot.val())
@@ -168,7 +171,7 @@ export class Bd {
 
             // consultar chamados
             backend.database().ref('ambientes')
-                .orderByChild('nome')
+                .orderByChild('ordem')
                 .once('value')
                 .then((snapshot: any) => {
                     // console.log(snapshot.val())
@@ -200,7 +203,7 @@ export class Bd {
                             })
                     })
 
-                    resolve(ambientes)
+                    resolve(ambientes.reverse())
 
                 })
         })
@@ -385,6 +388,81 @@ export class Bd {
 
                 })
         })
+    }
+
+    // public pesquisaOfertas(termo: string): Observable<Oferta[]> {
+    //     return this.http.get(`${URL_API}/ofertas?titulo_like=${termo}`)
+    //         .pipe(retry(10))
+    //         .pipe(map((resposta: Response) => resposta.json()))
+    // }
+
+    public pesquisarOfertas(pesquisa: string): Promise<any> {
+
+        return new Promise((resolve, reject) => {
+
+            // consultar chamados
+            backend.database().ref('produtos')
+                .orderByChild("titulo")
+                .startAt(pesquisa.toUpperCase())
+                .endAt(`${pesquisa}\uf8ff`)
+                .once("value")
+                .then((snapshot: any) => {
+                    // console.log('Valor do snapshot: ', snapshot.val())
+
+                    let produtos: Array<any> = []
+
+                    snapshot.forEach((childSnapshot: any) => {
+
+                        let produto = childSnapshot.val()
+                        produto.key = childSnapshot.key
+
+                        produtos.push(produto)
+                    })
+
+                    // resolve(publicacoes)
+                    return produtos.reverse()
+                })
+                .then((produtos: any) => {
+
+                    produtos.forEach(produto => {
+
+                        // consultar a url da imagem
+                        backend.storage().ref()
+                            .child(`produtos/${produto.key}`)
+                            .getDownloadURL()
+                            .then((url: string) => {
+
+                                produto.url_imagem = url
+                            })
+                    })
+
+                    resolve(produtos)
+
+                })
+        })
+    }
+
+    public efetivarCompra(pedido: any): Promise<any> {
+
+        return new Promise((resolve, reject) => {
+            
+            backend.database().ref(`pedidos/${btoa(pedido.email)}`)
+            .push({
+                nome: pedido.nome,
+                email: pedido.email,
+                cpf: pedido.cpf,
+                telefone: pedido.telefone,
+                celular: pedido.celular,
+                endereco: pedido.endereco,
+                formaPagamento: pedido.formaPagamento,
+                itens: pedido.itens,
+                statusPedido: 'Pendente'
+            })
+            .then((idPedido) => {
+                resolve(idPedido)
+            })
+        })
+
     }
 
     public adicionarChamado(chamado: any): void {

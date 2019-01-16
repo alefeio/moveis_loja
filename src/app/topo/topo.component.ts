@@ -40,7 +40,7 @@ export class TopoComponent implements OnInit {
           if (termo.trim() === '') {
             return of<Oferta[]>([])
           }
-          return this.ofertasService.pesquisaOfertas(termo)
+          return this.bd.pesquisarOfertas(termo)
         })
       )
 
@@ -48,6 +48,7 @@ export class TopoComponent implements OnInit {
 
   public pesquisa(termoDaBusca: string): void {
     this.subjectPesquisa.next(termoDaBusca)
+    console.log('Termo da busca: ',termoDaBusca)
   }
 
   public limpaPesquisa(): void {

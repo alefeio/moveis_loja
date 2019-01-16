@@ -5,41 +5,59 @@
   </ol>
 </nav>
 <div class="container">
-  <div class="secao">
-    <h3 class="text-center">Conforto, qualidade e muito mais!</h3>
-    <h5 class="text-center">Conheça as melhores ofertas para você relaxar e descansar.</h5>
-  </div>
 
-  <hr />
 
-  <div *ngFor="let produto of produtos" style="margin-bottom: 50px;">
-
-    <div class="row">
-      <div class="col-md-4">
-        <img [src]="produto.url_imagem || ''" class="img-fluid" alt="">
-      </div>
-
-      <div class="col-md-8">
-        <div class="row">
-          <h4>{{produto.titulo}}</h4>
-        </div>
-
-        <div class="row">
-          <pre>{{produto.descricao_oferta | descricaoReduzida:100:0}}</pre>
-        </div>
-
-        <div class="row">
-          <p>{{produto.valor | currency: 'BRL' }}</p>
-        </div>
-
-        <div class="row">
-          <button class="btn btn-outline-success" [routerLink]="['/oferta', produto.key]">Ver oferta</button>
-        </div>
+  <div class="row">
+    <div class="col-md-3">
+      <div class="bg-mega">
+        <h6 class="text-danger">Linhas deste Ambiente:</h6>
+        <ul class="nav flex-column">
+          <li class="nav-item" *ngFor="let linha of linhas">
+            <a class="btn rounded-0 hvr-underline-from-center text-dark" routerLinkActive="active" [routerLink]="['ambiente', linha.nome]">{{linha.nome}}</a>
+          </li>
+        </ul>
       </div>
     </div>
+    <div class="col-md-9">
+      <div class="secao">
+        <h3 class="text-center">Conforto, qualidade e muito mais!</h3>
+        <h5 class="text-center">Conheça as melhores ofertas para você relaxar e descansar.</h5>
+      </div>
 
-    <hr />
+      <hr />
 
+      <div *ngFor="let produto of produtos" style="margin-bottom: 50px;">
+
+        <div class="row">
+          <div class="col-md-4">
+            <img [src]="produto.url_imagem || ''" class="img-fluid" alt="">
+          </div>
+
+          <div class="col-md-8">
+            <div class="row">
+              <h4>{{produto.titulo}}</h4>
+            </div>
+
+            <div class="row">
+              <pre>{{produto.descricao_oferta | descricaoReduzida:100:0}}</pre>
+            </div>
+
+            <div class="row">
+              <p>{{produto.valor | currency: 'BRL' }}</p>
+            </div>
+
+            <div class="row">
+              <button class="btn btn-outline-success" [routerLink]="['/oferta', produto.key]">Ver oferta</button>
+            </div>
+          </div>
+        </div>
+
+        <hr />
+
+      </div>
+    </div>
   </div>
+
+
 
 </div>

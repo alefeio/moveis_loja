@@ -7,6 +7,9 @@ import { ItemCarrinho } from '../shared/item-carrinho.model';
 import { Bd } from './../bd.service';
 import * as backend from 'firebase'
 import { UsuarioPedido } from '../shared/usuario-pedido.model';
+import { Progresso } from 'src/app/progresso.service';
+import { Observable, interval, observable, Subject, pipe } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'app-ordem-compra',
@@ -21,6 +24,9 @@ export class OrdemCompraComponent implements OnInit {
 
   public alerta: string
   public estiloAlerta: string
+
+  public progressoPublicacao: string = 'pendente'
+  public porcentegemUpload: number
 
   public email: string = ''
   public usuarioPedido: UsuarioPedido = {
@@ -51,7 +57,8 @@ export class OrdemCompraComponent implements OnInit {
   constructor(
     private ordemCompraService: OrdemCompraService,
     private carrinhoService: CarrinhoService,
-    private bd: Bd
+    private bd: Bd,
+    private progresso: Progresso
   ) { }
 
   ngOnInit() {
@@ -100,10 +107,12 @@ export class OrdemCompraComponent implements OnInit {
           this.carrinhoService.exibirItens()
         )
 
-        this.ordemCompraService.efetivarCompra(pedido)
-          .subscribe((idPedido) => {
+        this.bd.efetivarCompra(pedido)
+          .then(idPedido => {
             this.idPedidoCompra = idPedido
-            this.carrinhoService.limparCarrinho()
+          })
+          .catch(error => {
+            console.log(error)
           })
 
       }
@@ -125,5 +134,39 @@ export class OrdemCompraComponent implements OnInit {
       this.alerta = ''
       this.estiloAlerta = ''
     }, 3000)
+  }
+
+  public acompanhaUpload(): void {
+    let continua = new Subject()
+
+    let acompanhamentoUpload = interval(500)
+
+    continua.next(true)
+
+    acompanhamentoUpload
+      .pipe(takeUntil(continua))
+      .subscribe(() => {
+        // console.log(this.progresso.estado)
+        // console.log(this.progresso.status)
+
+        this.progressoPublicacao = 'andamento'
+
+        this.porcentegemUpload = Math.round((this.progresso.estado.bytesTransferred / this.progresso.estado.totalBytes) * 100)
+
+        if (this.progresso.status === 'concluido') {
+          this.progressoPublicacao = 'concluido'
+
+          continua.next(false)
+          setTimeout(() => {
+            this.progressoPublicacao = 'pendente'
+            this.form.patchValue({
+              endereco: null,
+              numero: null,
+              complemento: null,
+              formaPagamento: null
+            })
+          }, 4000)
+        }
+      })
   }
 }

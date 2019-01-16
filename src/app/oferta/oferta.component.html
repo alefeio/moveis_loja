@@ -7,17 +7,12 @@
         <a [routerLink]="['/oferta', 3]">Oferta 3</a>
       </div>
     </div> -->
-    <div class="row">
-      <div class="col">
-        <h4>{{oferta.titulo}}</h4>
-      </div>
-    </div>
 
     <div class="row">
       <div class="col-md-6" style="overflow: hidden">
-        <div class="zoom img-fluid">
+        <div class="zoom">
           <img [src]="oferta.url_imagem || ''" class="img-zoom img-fluid" alt="">
-          
+
         </div>
 
         <!-- <div class="thumbnails">
@@ -28,6 +23,11 @@
       <div class="col-md-6">
         <div class="row">
           <div class="col">
+            <h2>{{oferta.titulo}}</h2>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
             <p>Por apenas</p>
           </div>
 
@@ -35,7 +35,7 @@
 
         <div class="row">
           <div class="col">
-            <h1>{{oferta.valor | currency: 'BRL'}}</h1>
+            <h4>{{oferta.valor | currency: 'BRL'}}</h4>
           </div>
         </div>
 
@@ -57,7 +57,7 @@
                 <a class="nav-link" id="contato-tab" data-toggle="tab" href="#contato" role="tab" aria-controls="contato"
                   aria-selected="false">Mais
                   opções...</a>
-              </li>
+              </li>   
             </ul>
             <div class="tab-content" id="myTabContent">
               <div class="tab-pane fade show active" id="detalhes" role="tabpanel" aria-labelledby="detalhes-tab">

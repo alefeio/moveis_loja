@@ -22,14 +22,7 @@ export class HomeComponent implements OnInit {
   public pCozinha: Array<any> = []
   public pDiversos: Array<any> = []
 
-  constructor(private ofertasService: OfertasService, private bd: Bd) { 
-    $(document).ready(function(){
-
-      $(window).scroll(function(){
-        console.log('teste')
-      })
-    })
-  }
+  constructor(private ofertasService: OfertasService, private bd: Bd) { }
 
   ngOnInit() {
     //this.ofertas = this.ofertasService.getOfertas()

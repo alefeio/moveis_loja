@@ -11,6 +11,7 @@ export class AmbienteComponent implements OnInit {
 
   public produtos: any
   public ambiente: string
+  public linhas: Array<any> = []
 
   constructor(
     private bd: Bd,
@@ -23,12 +24,27 @@ export class AmbienteComponent implements OnInit {
 
       this.ambiente = parametros.param
 
-      this.bd.consultarProdutosPorFiltro('ambiente', this.ambiente)
-        .then((produtos: any) => {
-          this.produtos = produtos
-        })
+      this.consultarProdutosPorFiltro()
+      this.consultarLinhasPorAmbiente()
+
     })
-    
+
+  }
+
+  public consultarProdutosPorFiltro() {
+    this.bd.consultarProdutosPorFiltro('ambiente', this.ambiente)
+      .then((produtos: any) => {
+        this.produtos = produtos
+      })
+  }
+
+  public consultarLinhasPorAmbiente() {
+    this.bd.consultarLinhasPorAmbiente(this.ambiente)
+      .then((linhas: any) => {
+        console.log(linhas)
+        this.linhas = linhas
+        console.log(this.linhas)
+      })
   }
 
 }
