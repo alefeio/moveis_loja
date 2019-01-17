@@ -16,6 +16,13 @@ export class AcessoComponent implements OnInit {
 
   public exibirPainel(event: string): void {
     this.cadastro = event === 'cadastro' ? true : false
+
+
+    if(event === 'cadastro'){
+      this.cadastro = true
+    } else {
+      this.cadastro = false
+    }
   }
 
 }
