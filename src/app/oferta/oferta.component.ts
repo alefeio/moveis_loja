@@ -23,7 +23,7 @@ export class OfertaComponent implements OnInit, OnDestroy {
       
       $('.zoom')
         .on('mouseover', function () {
-          $(this).children('.img-zoom').css({ 'transform': 'scale(1.5)' });
+          $(this).children('.img-zoom').css({ 'transform': 'scale(2.5)' });
         })
         .on('mouseout', function () {
           $(this).children('.img-zoom').css({ 'transform': 'scale(1)' });
