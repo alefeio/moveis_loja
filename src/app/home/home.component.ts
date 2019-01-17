@@ -79,6 +79,46 @@ export class HomeComponent implements OnInit {
       })
   }
 
+  @ViewChild('scrollHorizontalSala', { read: ElementRef }) public widgetsContentSala: ElementRef;
+
+  @ViewChild('scrollHorizontalQuarto', { read: ElementRef }) public widgetsContentQuarto: ElementRef;
+
+  @ViewChild('scrollHorizontalCozinha', { read: ElementRef }) public widgetsContentCozinha: ElementRef;
+
+  @ViewChild('scrollHorizontalDiversos', { read: ElementRef }) public widgetsContentDiversos: ElementRef;
+
+  public scrollDireita(ambiente: string): void {
+    if(ambiente === 'Sala') {
+      console.log(ambiente)
+      this.widgetsContentSala.nativeElement.scrollTo({ left: (this.widgetsContentSala.nativeElement.scrollLeft + 320), behavior: 'smooth' });
+    }
+
+    if(ambiente == 'Quarto') {
+      console.log(ambiente)
+      this.widgetsContentQuarto.nativeElement.scrollTo({ left: (this.widgetsContentQuarto.nativeElement.scrollLeft + 320), behavior: 'smooth' });
+    }
+
+    if(ambiente === 'Cozinha') {
+      console.log(ambiente)
+      this.widgetsContentCozinha.nativeElement.scrollTo({ left: (this.widgetsContentCozinha.nativeElement.scrollLeft + 320), behavior: 'smooth' });
+    }
+
+    if(ambiente === 'Diversos') {
+      console.log(ambiente)
+      this.widgetsContentDiversos.nativeElement.scrollTo({ left: (this.widgetsContentDiversos.nativeElement.scrollLeft + 320), behavior: 'smooth' });
+    }
+  }
+
+  public scrollEsquerda(ambiente: string): void {
+    if(ambiente === 'Sala') this.widgetsContentSala.nativeElement.scrollTo({ left: (this.widgetsContentSala.nativeElement.scrollLeft - 320), behavior: 'smooth' });
+
+    if(ambiente === 'Quarto') this.widgetsContentQuarto.nativeElement.scrollTo({ left: (this.widgetsContentQuarto.nativeElement.scrollLeft - 320), behavior: 'smooth' });
+
+    if(ambiente === 'Cozinha') this.widgetsContentCozinha.nativeElement.scrollTo({ left: (this.widgetsContentCozinha.nativeElement.scrollLeft - 320), behavior: 'smooth' });
+
+    if(ambiente === 'Diversos') this.widgetsContentDiversos.nativeElement.scrollTo({ left: (this.widgetsContentDiversos.nativeElement.scrollLeft - 320), behavior: 'smooth' });
+  }
+
   // public scroll(direcao, ambiente){
   //   let direc = direcao
   //   let amb = ambiente

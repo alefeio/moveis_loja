@@ -84,11 +84,11 @@
     </a>
     <div class="dropbtn">
       <div class="dropdown-content">
-        <span *ngFor="let linha of linhas">
-          <a class="encher" *ngIf="linha.ambiente == ambiente.nome">
+        <ng-container *ngFor="let linha of linhas">
+          <a class="encher" [routerLink]="['/linha', linha.nome]" *ngIf="linha.ambiente == ambiente.nome">
             {{linha.nome}}
           </a>
-        </span>
+        </ng-container>
       </div>
     </div>
   </div>

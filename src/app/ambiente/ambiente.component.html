@@ -7,7 +7,7 @@
         <h6 class="text-danger">Linhas deste Ambiente:</h6>
         <ul class="nav flex-column">
           <li class="nav-item" *ngFor="let linha of linhas">
-            <a class="btn rounded-0 hvr-underline-from-center text-dark" routerLinkActive="active" [routerLink]="['ambiente', linha.nome]">{{linha.nome}}</a>
+            <a class="btn rounded-0 hvr-underline-from-center text-dark" routerLinkActive="active" [routerLink]="['/linha', linha.nome]">{{linha.nome}}</a>
           </li>
         </ul>
       </div>

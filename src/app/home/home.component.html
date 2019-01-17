@@ -30,7 +30,9 @@
   <span style="background-color: rgba(243, 156, 18, 1);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
 </div>
 <div class="container">
-  <br>
+
+
+  <!-- <br>
   <div class="row">
     <div class="col-sm-3 card info-widget flutuar" *ngFor="let oferta of pQuarto">
       <div class="text-center">
@@ -39,14 +41,39 @@
       <div class="card-block padding">
         <small class="card-title">{{ oferta.ambiente }} &raquo; {{ oferta.linha }}</small>
         <h5 style="padding: 1%">{{ oferta.titulo }}</h5>
-        <!-- <pre>{{ oferta.descricao_oferta | descricaoReduzida:100:0 }}</pre> -->
+        <pre>{{ oferta.descricao_oferta | descricaoReduzida:100:0 }}</pre>
         <p style="padding: 1%">Por: {{ oferta.valor | currency: 'BRL' }}</p>
         <div class="text-center">
           <button class="btn btn-padrao" [routerLink]="['/oferta', oferta.key]">Ver Oferta</button>
         </div>
       </div>
     </div>
+  </div> -->
+  <div class="row">
+    <div class="col-md-12">
+      <div #scrollHorizontalQuarto class="middle">
+        <a class="prev" (click)="scrollEsquerda('Quarto')">&#10094;</a>
+        <div *ngFor="let oferta of pQuarto" style="padding: 3%" class="card info-widget flutuar" style="width: 18rem; margin: 1em">
+          <img [src]="oferta.url_imagem || ''" class="card-img-top">
+          <div class="card-body">
+            <h5 class="card-title">{{oferta.titulo}}</h5>
+            <div class="row">
+              <div class="col">
+                <p class="card-text pb-3">Por: {{ oferta.valor | currency: 'BRL' }}</p>
+              </div>
+            </div>
+            <div class="text-center">
+              <button class="btn btn-padrao" [routerLink]="['/oferta', oferta.key]">Ver Oferta</button>
+            </div>
+          </div>
+        </div>
+        <a class="next" (click)="scrollDireita('Quarto')" style="margin-right: 1em">&#10095;</a>
+      </div>
+    </div>
   </div>
+
+
+
 </div>
 
 <br><br>

@@ -619,11 +619,12 @@ export class Bd {
     }
     public adicionarLinha(linha: any): void {
 
-        let url: string = this.util.removeAcentoEspaco(linha)
+        let url: string = this.util.removeAcentoEspaco(linha.nome)
 
         backend.database().ref('linhas')
             .push({
-                nome: linha,
+                ambiente: linha.ambiente,
+                nome: linha.nome,
                 url: url
             })
     }
