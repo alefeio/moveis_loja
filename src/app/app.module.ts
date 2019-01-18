@@ -48,6 +48,7 @@ import { LinhasComponent } from './admin/linhas/linhas.component';
 import { AdicionarAmbienteComponent } from './admin/adicionar-ambiente/adicionar-ambiente.component';
 import { AdicionarLinhaComponent } from './admin/adicionar-linha/adicionar-linha.component';
 import { PedidosComponent } from './cliente/pedidos/pedidos.component';
+import { RecuperarSenhaComponent } from './acesso/recuperar-senha/recuperar-senha.component';
 
 @NgModule({
   declarations: [
@@ -80,7 +81,8 @@ import { PedidosComponent } from './cliente/pedidos/pedidos.component';
     LinhasComponent,
     AdicionarAmbienteComponent,
     AdicionarLinhaComponent,
-    PedidosComponent
+    PedidosComponent,
+    RecuperarSenhaComponent
   ],
   imports: [
     BrowserModule,

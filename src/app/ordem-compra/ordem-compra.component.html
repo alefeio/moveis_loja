@@ -7,26 +7,64 @@
 
       <div>
 
-        <div class="form-row" style="background: #FAFAFA; padding: 20px; border-bottom: solid 1px #F0F0F0" *ngFor="let item of itensCarrinho">
-          <div class="form-group col-sm-2">
-            <img [src]="item.img || ''" class="img-fluid" alt="">
-          </div>
-          <div class="form-group col-sm-6">
-            {{item.titulo}}
-          </div>
+        <div class="row" *ngIf="carrinhoService.exibirItens().length">
+          <div class="col-md-8">
+            <div class="form-row" style="background: #FAFAFA; padding: 20px; border-bottom: solid 1px #F0F0F0" *ngFor="let item of itensCarrinho">
+              <div class="form-group col-sm-2">
+                <img [src]="item.img || ''" class="img-fluid" alt="">
+              </div>
+              <div class="form-group col-sm-6">
+                {{item.titulo}}
+              </div>
 
-          <div>
-            <div class="row">
-              <div class="col">
-                <button type="button" class="btn btn-link" (click)="diminuir(item)">-</button>
-                {{item.quantidade}}
-                <button type="button" class="btn btn-link" (click)="adicionar(item)">+</button>
+              <div>
+                <div class="row">
+                  <div class="col">
+                    <button type="button" class="btn btn-link" (click)="diminuir(item)">-</button>
+                    {{item.quantidade}}
+                    <button type="button" class="btn btn-link" (click)="adicionar(item)">+</button>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group col-sm-2 d-flex justify-content-end">
+                {{item.valorAVista * item.quantidade | currency: 'BRL'}}
               </div>
             </div>
           </div>
-
-          <div class="form-group col-sm-2 d-flex justify-content-end">
-            {{item.valor * item.quantidade | currency: 'BRL'}}
+          <div class="col-md-4">
+            <div id="info-carrinho" *ngIf="mostrar != 0">
+              <div class="cart-summary">
+                <h5>Carrinho Total</h5>
+                <li><span>Subtotal:</span> <span>{{ carrinhoService.totalCarrinhoCompras() | currency: 'BRL' }}</span></li>
+                <li><span>Entrega:</span> <span>Grátis</span></li>
+                <li><span>Total:</span> <span>{{ carrinhoService.totalCarrinhoCompras() | currency: 'BRL' }}</span></li>
+                <div class="form-row">
+                  <div class="col" style="padding-top: 4%">
+                    <span>Forma de Pagamento</span>
+                  </div>
+                  <div class="form-group col-md-3">
+                    <select class="form-control" formControlName="formaPagamento">
+                      <option value="" selected="selected">Selecione uma opção</option>
+                      <option value="dinheiro">Dinheiro</option>
+                      <option value="debito">Débito</option>
+                    </select>
+                    <small class="form-text text-success" *ngIf="form.get('formaPagamento').valid && form.get('formaPagamento').touched">Ok</small>
+                    <small class="form-text text-danger" *ngIf="form.get('formaPagamento').invalid && form.get('formaPagamento').touched">Escolha
+                      uma forma de pagamento</small>
+                  </div>
+                </div>
+                <!-- <div class="row text-center">
+            <div class="col-6">
+              <input class="form-control rounded-0" placeholder="CEP para Entrega">
+            </div>
+            <button class="btn btn-padrao" type="submit">OK</button>
+          </div> -->
+                <div class="text-center cep-top">
+                  <button type="submit" class="btn-finalizar btn-padrao" [disabled]="!form.valid">Finalizar Compra</button>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
 
@@ -73,7 +111,7 @@
       </div>
       <br /> -->
 
-      <h5>Dados de pagamento</h5>
+      <!-- <h5>Dados de pagamento</h5>
       <hr />
 
       <div class="form-row">
@@ -88,7 +126,7 @@
           <small class="form-text text-danger" *ngIf="form.get('formaPagamento').invalid && form.get('formaPagamento').touched">Escolha
             uma forma de pagamento</small>
         </div>
-      </div>
+      </div> -->
 
       <hr />
       <button type="submit" class="btn btn-primary btn-lg">Finalizar compra</button>
@@ -96,9 +134,9 @@
   </div>
 
   <div class="ordem-compra" *ngIf="idPedidoCompra !== undefined">
+    <strong>{{alerta}}</strong>
     <app-ordem-compra-sucesso [idPedidoCompra]="idPedidoCompra"></app-ordem-compra-sucesso>
   </div>
 </div>
 <div class="alert alert-{{estiloAlerta}} fixed-top text-center" role="alert" *ngIf="alerta != ''">
-  <strong>{{alerta}}</strong>
 </div>

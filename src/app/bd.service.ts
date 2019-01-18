@@ -154,7 +154,6 @@ export class Bd {
             backend.database().ref('produtos')
                 .orderByChild("destaque")
                 .equalTo(true)
-                .limitToFirst(3)
                 .once("value")
                 .then((snapshot: any) => {
                     // console.log('Valor do snapshot: ', snapshot.val())
@@ -543,7 +542,8 @@ export class Bd {
             url: urlProduto,
             descricao_oferta: produto.descricao_oferta,
             marca: produto.marca,
-            valor: produto.valor,
+            valorAVista: produto.valorAVista,
+            valorAPrazo: produto.valorAPrazo,
             cor: produto.cor,
             destaque: destaque
         }

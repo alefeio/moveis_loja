@@ -31,7 +31,8 @@ export class AdicionarProdutoComponent implements OnInit {
     'titulo': new FormControl(null, [Validators.required]),
     'descricao_oferta': new FormControl(null),
     'marca': new FormControl(null),
-    'valor': new FormControl(null, [Validators.required]),
+    'valorAVista': new FormControl(null, [Validators.required]),
+    'valorAPrazo': new FormControl(null, [Validators.required]),
     'cor': new FormControl(null),
     'destaque': new FormControl(null, [Validators.required])
   })
@@ -50,7 +51,8 @@ export class AdicionarProdutoComponent implements OnInit {
       titulo: this.formProduto.value.titulo,
       descricao_oferta: this.formProduto.value.descricao_oferta,
       marca: this.formProduto.value.marca,
-      valor: this.formProduto.value.valor,
+      valorAVista: this.formProduto.value.valorAVista,
+      valorAPrazo: this.formProduto.value.valorAPrazo,
       cor: this.formProduto.value.cor,
       destaque: this.formProduto.value.destaque,
       imagem: this.imagem[0]

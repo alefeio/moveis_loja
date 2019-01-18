@@ -3,17 +3,16 @@ import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  selector: 'app-recuperar-senha',
+  templateUrl: './recuperar-senha.component.html',
+  styleUrls: ['./recuperar-senha.component.css']
 })
-export class LoginComponent implements OnInit {
+export class RecuperarSenhaComponent implements OnInit {
 
   @Output() public exibirPainel: EventEmitter<string> = new EventEmitter<string>()
 
   public form: FormGroup = new FormGroup({
-    'email': new FormControl(null, [Validators.required]),
-    'senha': new FormControl(null, [Validators.required])
+    'email': new FormControl(null, [Validators.required])
   })
 
   constructor(private autenticacao: Autenticacao) { }
@@ -25,8 +24,8 @@ export class LoginComponent implements OnInit {
     this.exibirPainel.emit('cadastro')
   }
 
-  public exibirPainelRecupSenha(): void {
-    this.exibirPainel.emit('recupSenha')
+  public exibirPainelLogin(): void {
+    this.exibirPainel.emit('login')
   }
 
   // autenticacao de usuario com email e senha

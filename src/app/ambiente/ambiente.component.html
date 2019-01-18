@@ -40,7 +40,7 @@
           <div class="card-block padding">
             <h5 style="padding: 1%">{{produto.titulo}}</h5>
             <!-- <pre>{{ oferta.descricao_oferta | descricaoReduzida:100:0 }}</pre> -->
-            <p style="padding: 1%">Por: {{ produto.valor | currency: 'BRL' }}</p>
+            <p style="padding: 1%">Por: {{ produto.valorAVista | currency: 'BRL' }}</p>
             <div class="text-center">
               <button class="btn btn-padrao" [routerLink]="['/oferta', produto.key]">Ver Oferta</button>
             </div>

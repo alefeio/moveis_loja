@@ -5,10 +5,10 @@
         <app-cadastro (exibirPainel)="exibirPainel($event)"></app-cadastro>
       </div>
       <div *ngIf="cadastro === 'recupSenha'">
-        <app-cadastro (exibirPainel)="exibirPainel($event)"></app-cadastro>
+        <app-recuperar-senha (exibirPainel)="exibirPainel($event)"></app-recuperar-senha>
       </div>
       <div *ngIf="cadastro === 'login'">
-        <app-login (exibirPainel)="exibirPainel($event)"></app-login>
+        <app-login (exibirPainel)="exibirPainel($event)"></app-login> 
       </div>
     </div>
   </div>

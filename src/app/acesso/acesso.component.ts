@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AcessoComponent implements OnInit {
 
-  public cadastro: boolean = false
+  public cadastro: string = 'login'
 
   constructor() { }
 
@@ -15,13 +15,12 @@ export class AcessoComponent implements OnInit {
   }
 
   public exibirPainel(event: string): void {
-    this.cadastro = event === 'cadastro' ? true : false
-
-
     if(event === 'cadastro'){
-      this.cadastro = true
+      this.cadastro = 'cadastro'
+    } else if (event === 'recupSenha') {
+      this.cadastro = 'recupSenha'
     } else {
-      this.cadastro = false
+      this.cadastro = 'login'
     }
   }
 
