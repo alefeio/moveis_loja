@@ -20,7 +20,7 @@ export class OfertaComponent implements OnInit, OnDestroy {
     private carrinhoService: CarrinhoService
   ) {
     $(document).ready(function () {
-      
+      $('html,body').scrollTop(0);
       $('.zoom')
         .on('mouseover', function () {
           $(this).children('.img-zoom').css({ 'transform': 'scale(2.5)' });

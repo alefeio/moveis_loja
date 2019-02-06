@@ -48,6 +48,7 @@ import { LinhasComponent } from './admin/linhas/linhas.component';
 import { AdicionarAmbienteComponent } from './admin/adicionar-ambiente/adicionar-ambiente.component';
 import { AdicionarLinhaComponent } from './admin/adicionar-linha/adicionar-linha.component';
 import { PedidosComponent } from './cliente/pedidos/pedidos.component';
+import { CarrouselComponent } from './carrousel/carrousel.component';
 
 @NgModule({
   declarations: [
@@ -80,7 +81,8 @@ import { PedidosComponent } from './cliente/pedidos/pedidos.component';
     LinhasComponent,
     AdicionarAmbienteComponent,
     AdicionarLinhaComponent,
-    PedidosComponent
+    PedidosComponent,
+    CarrouselComponent
   ],
   imports: [
     BrowserModule,

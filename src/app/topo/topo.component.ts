@@ -4,7 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import { OfertasService } from './../ofertas.service';
 import { Observable, Subject, of } from 'rxjs';
 import { switchMap, debounceTime, distinctUntilChanged } from 'rxjs/operators';
-import { Oferta } from '../shared/oferta.model'
+import { Oferta } from '../shared/oferta.model';
 declare var $:any
 
 @Component({
@@ -28,10 +28,20 @@ export class TopoComponent implements OnInit {
     private bd: Bd
   ) {
     $(document).ready(function () {
+      var nav = $('#menu');
+      var navAmb = $('#menu-amb');
       $('#nav-icon1').click(function () {
         $(this).toggleClass('open');
-        $('#cor').addClass({'background-color':'black'});
       });
+      $(Window).scroll(function(){
+        if($(this).scrollTop() > 200){
+          nav.addClass('menu-fixo');
+          navAmb.addClass('fixo');
+        }else{
+          nav.removeClass('menu-fixo');
+          navAmb.removeClass('fixo');
+        }
+      })
     });
   }
 
@@ -88,6 +98,10 @@ export class TopoComponent implements OnInit {
       .then((linhas: any) => {
         this.linhas = linhas
       })
+  }
+
+  mostrarLogin() {
+    $('#modal-login').modal('show');
   }
 
 }

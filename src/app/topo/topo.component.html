@@ -1,5 +1,4 @@
 <!-- ==========================começo menu alexandre ==================================== -->
-
 <!-- <nav class="navbar navbar-expand-lg navbar-light bg-light" style="background-color: rgba(255, 255, 255, 0.555) !important; width: 100%">
   <a class="navbar-brand" routerLink="/"><img src="/assets/logo.png" class="img-fluid" /></a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#conteudoNavbarSuportado"
@@ -29,7 +28,6 @@
       </li> -->
 
 <!-- ================================= fim comentado ============================ -->
-
 <!-- ============================ menu alexandre ============================== -->
 <!-- <li class="nav-link text-center">
         <input class="form-control mr-sm-2" type="search" placeholder="Pesquisar oferta" #termoDaPesquisa (keyup)="pesquisa(termoDaPesquisa.value)"
@@ -78,8 +76,8 @@
 </nav> -->
 <!-- ===========================================fim================================= -->
 
-
-<nav class="navbar navbar-expand-lg borda-top">
+<div class="banner">
+  <nav id="menu" class="navbar navbar-expand-lg borda-top">
   <a><img src="/src/assets/logo.png" height="120" width="300" class="fundo-img radius"></a>
   <button id="nav-icon1" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#conteudoNavbarSuportado"
     aria-controls="conteudoNavbarSuportado" aria-expanded="false" aria-label="Alterna navegação">
@@ -90,11 +88,11 @@
 
   <div class="collapse navbar-collapse" id="conteudoNavbarSuportado">
     <ul id="cor" class="navbar-nav mr-auto" style="width: 100% !important">
-      <li class="nav-link text-center" style="border-right: 1px solid #bbb">
-        <div class="form-inline my-2 my-lg-0 pl-5 pr-5">
-          <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-        </div>
+      <li class="nav-link text-center" style="border-right: 2px solid #C33C44;">
+        <span class="form-inline my-2 my-lg-0 pl-5 pr-5 pt-2">
+          <input class="form-control mr-sm-2" type="search" placeholder="Buscar Produto" aria-label="Search">
+          <button class="btn btn-padrao my-2 my-sm-0" type="submit">Buscar</button>
+        </span>
       </li>
       <li class="nav-item pl-5" id="espaco">
         <a class="nav-link text-center" routerLinkActive="active" routerLink="/home">
@@ -109,20 +107,99 @@
         </a>
       </li>
       <li class="nav-item text-center" *ngIf="!autenticacao.token_id">
-        <a class="nav-link" routerLinkActive="active" routerLink="acesso">
+        <a class="nav-link" routerLinkActive="active" data-toggle="modal" data-target="#modal-login" (click)="mostrarLogin()">
           <img src="/src/assets/login.png" class="img-fluid" style="width: 30px" />
           <br>Login
         </a>
       </li>
       <li class="nav-item text-center" *ngIf="autenticacao.token_id">
         <a class="nav-link" routerLinkActive="active" routerLink="cliente">
-          <img src="/user.png" class="img-fluid" style="width: 30px" />
+          <img src="/src/assets/user.png" class="img-fluid" style="width: 30px" />
           <br>Minha Conta
         </a>
       </li>
     </ul>
-  </div>
+  </div>   
 </nav>
-<div class="banner">
-  &nbsp;
+
+<div id="menu-amb" class="col-12 menu-ambiente " style="background-color: rgba(250, 250, 250, .8) !important;">
+    <ul class="nav justify-content-center">
+      <li class="nav-item dropdown" id="amb" style="border-left: 1px solid #C33C44;">
+        <div class="col text-center icones sacodida-horizontal">
+          <a>
+            <img src="/src/assets/icone-ambiente/sala.svg" height="50" width="50">&nbsp;
+            <span style="font-weight: bold;">Sala</span>
+          </a>
+          <div class="dropbtn">
+            <div class="dropdown-content">
+              <a class="encher">Mesa 4 Cadeiras</a>
+              <a class="encher">Mesa 6 cadeiras Buffet</a>
+              <a class="encher">Aparador</a>
+              <a class="encher">Mesa de Centro</a>
+              <a class="encher">Mesa Lateral</a>
+              <a class="encher">Cadeira Decorativa</a>
+              <a class="encher">Sofá</a>
+              <a class="encher">Sofá-Cama</a>
+            </div>
+          </div>
+        </div>
+      </li>
+      <li class="nav-item dropdown" id="amb" style="border-left: 1px solid #C33C44;">
+        <div class="col text-center icones sacodida-horizontal">
+          <a>
+            <img src="/src/assets/icone-ambiente/quarto.svg" height="50" width="50">&nbsp;
+            <span style="font-weight: bold;">Quarto</span>
+          </a>
+          <div class="dropbtn">
+            <div class="dropdown-content">
+              <a class="encher">Roupeiro</a>
+              <a class="encher">Cama Casal</a>
+              <a class="encher">Bicama</a>
+              <a class="encher">Cômoda</a>
+              <a class="encher">Criado Mudo</a>
+              <a class="encher">Cabeceira</a>
+              <a class="encher">Treliche</a>
+              <a class="encher">Colchão Casal</a>
+              <a class="encher">Colchão Solteiro</a>
+            </div>
+          </div>
+        </div>
+      </li>
+      <li class="nav-item dropdown" id="amb" style="border-right: 1px solid #C33C44; border-left: 1px solid #C33C44;">
+        <div class="col text-center icones sacodida-horizontal">
+          <a>
+            <img src="/src/assets/icone-ambiente/cozinha.svg" height="50" width="50">&nbsp;
+            <span style="font-weight: bold;">Cozinha</span>
+          </a>
+          <div class="dropbtn">
+            <div class="dropdown-content">
+              <a class="encher">Itatiaia</a>
+              <a class="encher">Luciane</a>
+              <a class="encher">Nesher</a>
+            </div>
+          </div>
+        </div>
+      </li>
+      <li class="nav-item dropdown" id="amb" style="border-right: 1px solid #C33C44;">
+        <div class="col text-center icones sacodida-horizontal">
+          <a>
+            <img src="/src/assets/icone-ambiente/gif_diversos_mega-moveis.gif" height="50" width="50">&nbsp;
+            <span style="font-weight: bold;">Diversos</span>
+          </a>
+          <div class="dropbtn">
+            <div class="dropdown-content">
+              <a class="encher">Itatiaia</a>
+              <a class="encher">Luciane</a>
+              <a class="encher">Nesher</a>
+            </div>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
+
+
 </div>
+
+
+

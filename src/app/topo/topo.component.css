@@ -3,15 +3,16 @@
 }
 
 .nav-link {
-    color: #C1E4FF
+    color: rgba(0, 0, 0, 0.6);
+    font-weight: bold;
 }
 
 .nav-link:hover{
-    color: #FFF
+    color: rgba(0, 0, 0, 1);
 }
 
 .active {
-    color: #FFF ;
+    color: black;
 }
 
 .topo{
@@ -27,7 +28,6 @@
     position: absolute;
     background: transparent !important;
     /* height: 300px; */
-
 }
 
 .navbar-collapse{
@@ -52,62 +52,12 @@
     }
 }
 
-.esp-icone {
-    padding: 15px !important;
-    height: 180px;
-}
 .esp-busca {
     z-index: 1; 
     position: absolute;
     top: 32%;
     left: 35%;
 }
-
-.icones {
-    top: -90px !important
-}
-
-.cor-dropdown {
-    background-color: rgba(243, 156, 18, 0.7);
-}
-
-.cor-dropdown:hover {
-    background-color: rgba(243, 156, 18, 1);
-}
-
-/* dropdown */
-.dropbtn {
-    font-size: 16px;
-    border: none;
-    cursor: pointer;
-  }
-  
-  .dropdown {
-    position: relative;
-    display: inline-block;
-  }
-  
-  .dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: #f9f9f9;
-    min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 1;
-  }
-  
-  .dropdown-content a {
-    color: black;
-    padding: 12px 16px;
-    text-decoration: none;
-    display: block;
-  }
-  
-  .dropdown:hover .dropdown-content {
-    display: block;
-  } 
-
-/* fim dropdown */
 
 .info-widget {
     padding: 5px;
@@ -187,96 +137,6 @@
   }
 }
 
-/* efeitos */
-
-@keyframes sacodida {
-    16.65% {
-      -webkit-transform: translateX(8px);
-      transform: translateX(8px);
-    }
-    33.3% {
-      -webkit-transform: translateX(-6px);
-      transform: translateX(-6px);
-    }
-    49.95% {
-      -webkit-transform: translateX(4px);
-      transform: translateX(4px);
-    }
-    66.6% {
-      -webkit-transform: translateX(-2px);
-      transform: translateX(-2px);
-    }
-    83.25% {
-      -webkit-transform: translateX(1px);
-      transform: translateX(1px);
-    }
-    100% {
-      -webkit-transform: translateX(0);
-      transform: translateX(0);
-    }
-  }
-
-  .sacodida-horizontal {
-    /* display: inline-block;
-    vertical-align: middle; */
-    -webkit-transform: perspective(1px) translateZ(0);
-    transform: perspective(1px) translateZ(0);
-    /* box-shadow: 0 0 1px rgba(0, 0, 0, 0); */
-  }
-  .sacodida-horizontal:hover, .sacodida-horizontal:focus, .sacodida-horizontal:active {
-    -webkit-animation-name: sacodida;
-    animation-name: sacodida;
-    -webkit-animation-duration: 1s;
-    animation-duration: 1s;
-    -webkit-animation-timing-function: ease-in-out;
-    animation-timing-function: ease-in-out;
-    -webkit-animation-iteration-count: 1;
-    animation-iteration-count: 1;
-  }
-
-  .encher {
-    display: inline-block;
-    vertical-align: middle;
-    -webkit-transform: perspective(1px) translateZ(0);
-    transform: perspective(1px) translateZ(0);
-    box-shadow: 0 0 1px rgba(0, 0, 0, 0);
-    position: relative;
-    -webkit-transition-property: color;
-    transition-property: color;
-    -webkit-transition-duration: 0.5s;
-    transition-duration: 0.5s;
-  }
-  .encher:before {
-    content: "";
-    position: absolute;
-    z-index: -1;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(243, 156, 18, 1);
-    -webkit-transform: scaleX(0);
-    transform: scaleX(0);
-    -webkit-transform-origin: 0 50%;
-    transform-origin: 0 50%;
-    -webkit-transition-property: transform;
-    transition-property: transform;
-    -webkit-transition-duration: 0.5s;
-    transition-duration: 0.5s;
-    -webkit-transition-timing-function: ease-out;
-    transition-timing-function: ease-out;
-  }
-  .encher:hover, .encher:focus, .encher:active {
-    color: white;
-  }
-  .encher:hover:before, .encher:focus:before, .encher:active:before {
-    -webkit-transform: scaleX(1);
-    transform: scaleX(1);
-    -webkit-transition-timing-function: cubic-bezier(0.52, 1.64, 0.37, 0.66);
-    transition-timing-function: cubic-bezier(0.52, 1.64, 0.37, 0.66);
-}
-
-
 @media only screen and (max-width: 654px) {
   #esconder {
     display: none;
@@ -352,18 +212,19 @@ a {
   cursor: pointer;
 }
 
-
 /* novo menu ray */
-
-
 .borda-top {
   width: 100%;
-  border-top: 10px solid rgba(243, 156, 18, 1);
+  border-top: 10px solid rgba(243, 156, 18, 1) !important;
+  border-bottom: 2px solid #C33C44;
+  background-color: rgba(250, 250, 250, .8) !important;
   padding-left: 4% !important;
   padding-right: 3% !important;
+  padding-top: 0 !important;
 }
 .fundo-img {
   background-color: rgba(243, 156, 18, 1);
+  box-shadow: 5px 20px 30px rgba(0,0,0,0.2);
 }
 
 .center {
@@ -385,26 +246,20 @@ a {
   cursor: pointer !important;
 }
 
-.link-a {
+#amb span{
   font-size: 20px
 }
 
-.link-a:hover {
+#amb:hover {
   transition: all .2s;
-  border-bottom: 4px solid #F3C23D;
-  color: #F3C23D !important;
-}
-
-.navbar {
-  padding: 0
+  border-bottom: 4px solid #C33C44;
+  color: #C33C44; 
 }
 
 /* hamburguer-menu */
 #nav-icon1 {
   width: 60px;
   height: 10px;
-  /* position: relative; */
-  /* margin: 50px auto; */
   -webkit-transform: rotate(0deg);
   -moz-transform: rotate(0deg);
   -o-transform: rotate(0deg);
@@ -473,6 +328,162 @@ button:focus {
   outline: 0px auto -webkit-focus-ring-color;
   outline-offset: 0px;
  }
+
  @media only screen and (max-width: 992px) {
   #cor {background-color: rgba(243, 156, 18, .8)}
+}
+
+.menu-fixo {
+  position: fixed;
+  top: 0;
+  z-index: 999;
+  transition: all 10s;
+}
+.menu-ambiente {
+  top: 8.7em; 
+  z-index: 99;
+} 
+
+.fixo{
+position: fixed; 
+top: 8.7em;
+transition: all 5s;
+z-index: 99;
+}
+
+/* novo ambientes */
+.esp-busca {
+  z-index: 1; 
+  position: absolute;
+  top: 32%;
+  left: 35%;
+}
+
+.cor-dropdown {
+  background-color: rgba(255, 188, 70, 0.9);
+}
+
+.cor-dropdown:hover {
+  background-color: #FCBE1A;
+}
+
+/* dropdown */
+.dropbtn {
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+} 
+
+
+
+@keyframes sacodida {
+  16.65% {
+    -webkit-transform: translateX(8px);
+    transform: translateX(8px);
+  }
+  33.3% {
+    -webkit-transform: translateX(-6px);
+    transform: translateX(-6px);
+  }
+  49.95% {
+    -webkit-transform: translateX(4px);
+    transform: translateX(4px);
+  }
+  66.6% {
+    -webkit-transform: translateX(-2px);
+    transform: translateX(-2px);
+  }
+  83.25% {
+    -webkit-transform: translateX(1px);
+    transform: translateX(1px);
+  }
+  100% {
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+  }
+}
+
+.sacodida-horizontal {
+  /* display: inline-block;
+  vertical-align: middle; */
+  -webkit-transform: perspective(1px) translateZ(0);
+  transform: perspective(1px) translateZ(0);
+  /* box-shadow: 0 0 1px rgba(0, 0, 0, 0); */
+}
+.sacodida-horizontal:hover, .sacodida-horizontal:focus, .sacodida-horizontal:active {
+  -webkit-animation-name: sacodida;
+  animation-name: sacodida;
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-timing-function: ease-in-out;
+  animation-timing-function: ease-in-out;
+  -webkit-animation-iteration-count: 1;
+  animation-iteration-count: 1;
+}
+
+.encher {
+  display: inline-block;
+  vertical-align: middle;
+  -webkit-transform: perspective(1px) translateZ(0);
+  transform: perspective(1px) translateZ(0);
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+  position: relative;
+  -webkit-transition-property: color;
+  transition-property: color;
+  -webkit-transition-duration: 0.5s;
+  transition-duration: 0.5s;
+}
+.encher:before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(243, 156, 18, 1);
+  -webkit-transform: scaleX(0);
+  transform: scaleX(0);
+  -webkit-transform-origin: 0 50%;
+  transform-origin: 0 50%;
+  -webkit-transition-property: transform;
+  transition-property: transform;
+  -webkit-transition-duration: 0.5s;
+  transition-duration: 0.5s;
+  -webkit-transition-timing-function: ease-out;
+  transition-timing-function: ease-out;
+}
+.encher:hover, .encher:focus, .encher:active {
+  color: #C33C44;
+}
+.encher:hover:before, .encher:focus:before, .encher:active:before {
+  -webkit-transform: scaleX(1);
+  transform: scaleX(1);
+  -webkit-transition-timing-function: cubic-bezier(0.52, 1.64, 0.37, 0.66);
+  transition-timing-function: cubic-bezier(0.52, 1.64, 0.37, 0.66);
 }
