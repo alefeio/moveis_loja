@@ -1,12 +1,15 @@
 <div class="container">
   <div class="row">
     <div class="col-sm-12 d-flex justify-content-center" style="padding: 50px">
-      <div *ngIf="cadastro; else formLogin">
+      <div *ngIf="cadastro === 'cadastro'">
         <app-cadastro (exibirPainel)="exibirPainel($event)"></app-cadastro>
       </div>
-      <ng-template #formLogin>
-        <app-login (exibirPainel)="exibirPainel($event)"></app-login>
-      </ng-template>
-    </div>  
+      <div *ngIf="cadastro === 'recupSenha'">
+        <app-recuperar-senha (exibirPainel)="exibirPainel($event)"></app-recuperar-senha>
+      </div>
+      <div *ngIf="cadastro === 'login'">
+        <app-login (exibirPainel)="exibirPainel($event)"></app-login> 
+      </div>
+    </div>
   </div>
 </div>

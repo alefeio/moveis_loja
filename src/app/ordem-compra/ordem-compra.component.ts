@@ -109,7 +109,7 @@ export class OrdemCompraComponent implements OnInit {
 
         this.bd.efetivarCompra(pedido)
           .then(idPedido => {
-            this.idPedidoCompra = idPedido
+            this.idPedidoCompra = idPedido.key
           })
           .catch(error => {
             console.log(error)

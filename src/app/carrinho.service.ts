@@ -13,7 +13,8 @@ class CarrinhoService {
             oferta.key,
             oferta.url_imagem,  
             oferta.titulo,
-            oferta.valor,
+            oferta.valorAVista,
+            oferta.valorAPrazo,
             1
         )
 
@@ -30,7 +31,7 @@ class CarrinhoService {
         let total: number = 0
 
         this.itens.map((item: ItemCarrinho) => {
-            total += (item.valor * item.quantidade)
+            total += (item.valorAVista * item.quantidade)
         })
 
         return total
