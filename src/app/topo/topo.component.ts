@@ -5,6 +5,7 @@ import { OfertasService } from './../ofertas.service';
 import { Observable, Subject, of } from 'rxjs';
 import { switchMap, debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { Oferta } from '../shared/oferta.model'
+declare var $:any
 
 @Component({
   selector: 'app-topo',
@@ -25,7 +26,14 @@ export class TopoComponent implements OnInit {
     private ofertasService: OfertasService,
     private autenticacao: Autenticacao,
     private bd: Bd
-  ) { }
+  ) {
+    $(document).ready(function () {
+      $('#nav-icon1').click(function () {
+        $(this).toggleClass('open');
+        $('#cor').addClass({'background-color':'black'});
+      });
+    });
+  }
 
   ngOnInit() {
 
@@ -48,7 +56,7 @@ export class TopoComponent implements OnInit {
 
   public pesquisa(termoDaBusca: string): void {
     this.subjectPesquisa.next(termoDaBusca)
-    console.log('Termo da busca: ',termoDaBusca)
+    console.log('Termo da busca: ', termoDaBusca)
   }
 
   public limpaPesquisa(): void {

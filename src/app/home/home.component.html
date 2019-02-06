@@ -1,3 +1,28 @@
+<div class="row tam-row">
+  <div class="img"></div>
+  <div class="col-1" id="esconder"></div>
+  <div *ngFor="let ambiente of ambientes" class="col cor-dropdown esp-icone text-center dropdown icones">
+    <a routerLinkActive="active" [routerLink]="['/ambiente', ambiente.nome]" style="color: black">
+      <div style="height: 100%" class="sacodida-horizontal">
+        <img [src]="ambiente.url_imagem || ''" height="100" width="100">
+        <h1>{{ambiente.nome}}</h1>
+      </div>
+    </a>
+    <div class="dropbtn">
+      <div class="dropdown-content">
+        <ng-container *ngFor="let linha of linhas">
+          <a class="encher" [routerLink]="['/linha', linha.nome]" *ngIf="linha.ambiente == ambiente.nome">
+            {{linha.nome}}
+          </a>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+  <div class="col-1" id="esconder"></div>
+</div>
+
+
+
 <div style="margin-left: 10%">
   <h2 style="margin: 0">Produtos em Destaque</h2>
   <span style="background-color: rgba(243, 156, 18, 1);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
@@ -5,23 +30,49 @@
 
 <!-- <div class="container"> -->
   <br>
-  <div class="row">
+  <!-- <div class="row">
     <div class="col-sm-4 card info-widget flutuar" *ngFor="let oferta of destaques">
       <div class="text-center">
         <img class="img-fluid" [src]="oferta.url_imagem || ''">
       </div>
       <div class="card-block padding">
         <small class="card-title">{{ oferta.ambiente }} &raquo; {{ oferta.linha }}</small>
-        <h5 style="padding: 1%">{{ oferta.titulo }}</h5>
+        <h5 style="padding: 1%">{{ oferta.titulo }}</h5> -->
         <!-- <pre>{{ oferta.descricao_oferta | descricaoReduzida:100:0 }}</pre> -->
-        <p style="padding: 1%">Por: {{ oferta.valor | currency: 'BRL' }}</p>
+        <!-- <p style="padding: 1%">Por: {{ oferta.valor | currency: 'BRL' }}</p>
         <div class="text-center">
           <button class="btn btn-padrao" [routerLink]="['/oferta', oferta.key]">Ver Oferta</button>
         </div>
       </div>
     </div>
-  </div>
+  </div> -->
 <!-- </div> -->
+
+<div class="row">
+  <div class="col-md-12">
+    <div #scrollHorizontalDestaques class="middle">
+      <a class="prev" (click)="scrollEsquerda('Destaques')">&#10094;</a>
+      <div *ngFor="let oferta of pQuarto" style="padding: 3%" class="card info-widget flutuar" style="width: 18rem; margin: 1em">
+        <img [src]="oferta.url_imagem || ''" class="card-img-top">
+        <div class="card-body">
+          <h5 class="card-title">{{oferta.titulo}}</h5>
+          <div class="row">
+            <div class="col">
+              <p class="card-text pb-3">Por: {{ oferta.valor | currency: 'BRL' }}</p>
+            </div>
+          </div>
+          <div class="text-center">
+            <button class="btn btn-padrao" [routerLink]="['/oferta', oferta.key]">Ver Oferta</button>
+          </div>
+        </div>
+      </div>
+      <a class="next" (click)="scrollDireita('Destaques')" style="margin-right: 1em">&#10095;</a>
+    </div>
+  </div>
+</div>
+
+
+
 
 <br><br>
 
@@ -103,3 +154,4 @@
   </div>
 
 </div> -->
+

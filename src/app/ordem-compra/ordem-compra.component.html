@@ -1,24 +1,24 @@
-<div class="container">
+<form [formGroup]="form" (ngSubmit)="confirmarCompra()" novalidate>
+  <!-- <div class="container">
   <div class="ordem-compra" *ngIf="idPedidoCompra === undefined">
-    <form [formGroup]="form" (ngSubmit)="confirmarCompra()" novalidate>
-
-      <h5>Sua Compra</h5>
-      <hr />
-
-      <div>
-
-        <div class="form-row" style="background: #FAFAFA; padding: 20px; border-bottom: solid 1px #F0F0F0" *ngFor="let item of itensCarrinho">
-          <div class="form-group col-sm-2">
-            <img [src]="item.img || ''" class="img-fluid" alt="">
-          </div>
-          <div class="form-group col-sm-6">
-            {{item.titulo}}
-          </div>
-
-          <div>
-            <div class="row">
-              <div class="col">
-                <button type="button" class="btn btn-link" (click)="diminuir(item)">-</button>
+    
+    <h5>Sua Compra</h5>
+    <hr />
+    
+    <div>
+      
+      <div class="form-row" style="background: #FAFAFA; padding: 20px; border-bottom: solid 1px #F0F0F0" *ngFor="let item of itensCarrinho">
+        <div class="form-group col-sm-2">
+          <img [src]="item.img || ''" class="img-fluid" alt="">
+        </div>
+        <div class="form-group col-sm-6">
+          {{item.titulo}}
+        </div>
+        
+        <div>
+          <div class="row">
+            <div class="col">
+              <button type="button" class="btn btn-link" (click)="diminuir(item)">-</button>
                 {{item.quantidade}}
                 <button type="button" class="btn btn-link" (click)="adicionar(item)">+</button>
               </div>
@@ -37,17 +37,19 @@
           <ng-template #carrinhoVazio>
             <div class="form-row col d-flex justify-content-end">
               <h4>Seu carrinho está vazio | &nbsp;</h4>
-              <small><a class="text-danger" routerLink="">Aproveite as <br>nossas ofertas!</a></small>
-              <!-- <p>Não perca tempo.. aproveite as ofertas.</p> -->
-            </div>
+              <small><a class="text-danger" routerLink="">Aproveite as <br>nossas ofertas!</a></small> -->
+  <!-- <p>Não perca tempo.. aproveite as ofertas.</p> -->
+  <!-- </div>
           </ng-template>
         </div>
 
       </div>
 
-      <br />
+      <br /> -->
 
-      <!-- <h5>Dados de entrega</h5>
+  <!-- ==============isso ja estava comentado========= -->
+
+  <!-- <h5>Dados de entrega</h5>
       <hr />
 
       <div class="form-row">
@@ -72,8 +74,9 @@
 
       </div>
       <br /> -->
+  <!-- =================================================== -->
 
-      <h5>Dados de pagamento</h5>
+  <!-- <h5>Dados de pagamento</h5>
       <hr />
 
       <div class="form-row">
@@ -92,13 +95,103 @@
 
       <hr />
       <button type="submit" class="btn btn-primary btn-lg">Finalizar compra</button>
-    </form>
+    </div>
+    
+    <div class="ordem-compra" *ngIf="idPedidoCompra !== undefined">
+      <app-ordem-compra-sucesso [idPedidoCompra]="idPedidoCompra"></app-ordem-compra-sucesso>
+    </div>
   </div>
+  <div class="alert alert-{{estiloAlerta}} fixed-top text-center" role="alert" *ngIf="alerta != ''">
+    <strong>{{alerta}}</strong>
+  </div> -->
 
-  <div class="ordem-compra" *ngIf="idPedidoCompra !== undefined">
-    <app-ordem-compra-sucesso [idPedidoCompra]="idPedidoCompra"></app-ordem-compra-sucesso>
+
+
+
+  <!--  ray -->
+
+  <div class="container-fluid section-padding-100">
+    <div class="row">
+      <div class="col-12 col-lg-8">
+        <h2>Meu Carrinho</h2>
+        <span style="background-color: rgba(243, 156, 18, 1);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+        <!-- <div class="row" *ngIf="idPedidoCompra === undefined">
+          <div class="col-md-12 text-right" class="vazio">
+            <span>Seu Carrinho estar Vazio!</span>
+            <div style="padding-right: 18%">
+              <button (click)="inicio()" class="btn btn-lg btn-padrao">Ver Ofertas</button>
+            </div>
+          </div>
+        </div> -->
+        <table *ngFor="let item of itensCarrinho; let i = index" class="table table-hover table-responsive-lg">
+          <thead style="background-color: #f5f7fa;">
+            <tr>
+              <th></th>
+              <th>Descrição</th>
+              <th>Preço</th>
+              <th>Quantidade</th>
+              <th><button (click)="excluiItem()" class="btn btn-padrao"><i class="far fa-trash-alt"></i></button></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="cart_product_img">
+                <img [src]="item.img" alt="Product" height="150" width="150">
+              </td>
+              <td class="cart_product_desc">
+                <h5>{{item.titulo}}</h5>
+                <!-- <span>Cor: </span><span>{{item.cor}}</span><br>
+                    <span>Marca: </span><span>{{item.marca}}</span><br> -->
+                <!-- <span>Altura: </span><span>{{item.largura}}</span><br>
+                      <span>Profundidade: </span><span>{{item.profundidade}}</span><br>
+                      <span style="font-weight: bold">{{item.montar}}</span> -->
+              </td>
+              <td class="preco">
+                <span>{{item.valor | currency:'BRL'}}</span>
+              </td>
+              <td class="esp-qtd">
+                <div class="top-table hvr-sweep-to-right text-center">
+                  <span class="esp-num" (click)="diminuir(item)"><i class="fa fa-minus"></i></span>
+                  <span class="esp-num">{{item.quantidade}}</span>
+                  <span class="esp-num" (click)="adicionar(item)"><i class="fa fa-plus" aria-hidden="true"></i></span>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div id="info-carrinho" class="col-12 col-lg-4" *ngIf="mostrar != 0">
+        <div class="cart-summary">
+          <h5>Carrinho Total</h5>
+          <li><span>Subtotal:</span> <span>{{ carrinhoService.totalCarrinhoCompras() | currency: 'BRL' }}</span></li>
+          <li><span>Entrega:</span> <span>Grátis</span></li>
+          <li><span>Total:</span> <span>{{ carrinhoService.totalCarrinhoCompras() | currency: 'BRL' }}</span></li>
+          <div class="form-row">
+            <div class="col" style="padding-top: 4%">
+              <span>Forma de Pagamento</span>
+            </div>
+            <div class="form-group col-md-3">
+              <select class="form-control" formControlName="formaPagamento">
+                <option value="" selected="selected">Selecione uma opção</option>
+                <option value="dinheiro">Dinheiro</option>
+                <option value="debito">Débito</option>
+              </select>
+              <small class="form-text text-success" *ngIf="form.get('formaPagamento').valid && form.get('formaPagamento').touched">Ok</small>
+              <small class="form-text text-danger" *ngIf="form.get('formaPagamento').invalid && form.get('formaPagamento').touched">Escolha
+                uma forma de pagamento</small>
+            </div>
+          </div>
+          <!-- <div class="row text-center">
+            <div class="col-6">
+              <input class="form-control rounded-0" placeholder="CEP para Entrega">
+            </div>
+            <button class="btn btn-padrao" type="submit">OK</button>
+          </div> -->
+          <div class="text-center cep-top">
+            <button type="submit" class="btn-finalizar btn-padrao" [disabled]="!form.valid">Finalizar Compra</button>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-</div>
-<div class="alert alert-{{estiloAlerta}} fixed-top text-center" role="alert" *ngIf="alerta != ''">
-  <strong>{{alerta}}</strong>
-</div>
+</form>

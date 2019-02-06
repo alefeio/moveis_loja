@@ -351,3 +351,128 @@
 a {
   cursor: pointer;
 }
+
+
+/* novo menu ray */
+
+
+.borda-top {
+  width: 100%;
+  border-top: 10px solid rgba(243, 156, 18, 1);
+  padding-left: 4% !important;
+  padding-right: 3% !important;
+}
+.fundo-img {
+  background-color: rgba(243, 156, 18, 1);
+}
+
+.center {
+  display: flex;
+  min-height: 10vh;
+  width: 10%;
+  margin: 0;
+  padding: 0;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column; 
+  border-right: 1px solid #d5d5d5
+}
+
+.radius {
+  border-radius: 0px 0px 30px 30px !important;
+}
+a {
+  cursor: pointer !important;
+}
+
+.link-a {
+  font-size: 20px
+}
+
+.link-a:hover {
+  transition: all .2s;
+  border-bottom: 4px solid #F3C23D;
+  color: #F3C23D !important;
+}
+
+.navbar {
+  padding: 0
+}
+
+/* hamburguer-menu */
+#nav-icon1 {
+  width: 60px;
+  height: 10px;
+  /* position: relative; */
+  /* margin: 50px auto; */
+  -webkit-transform: rotate(0deg);
+  -moz-transform: rotate(0deg);
+  -o-transform: rotate(0deg);
+  transform: rotate(0deg);
+  -webkit-transition: .5s ease-in-out;
+  -moz-transition: .5s ease-in-out;
+  -o-transition: .5s ease-in-out;
+  transition: .5s ease-in-out;
+  cursor: pointer;
+}
+
+#nav-icon1 span {
+  display: block;
+  position: absolute;
+  height: 9px;
+  width: 100%;
+  background: #d3531a;
+  border-radius: 9px;
+  opacity: 1;
+  left: 0;
+  -webkit-transform: rotate(0deg);
+  -moz-transform: rotate(0deg);
+  -o-transform: rotate(0deg);
+  transform: rotate(0deg);
+  -webkit-transition: .25s ease-in-out;
+  -moz-transition: .25s ease-in-out;
+  -o-transition: .25s ease-in-out;
+  transition: .25s ease-in-out;
+}
+
+#nav-icon1 span:nth-child(1) {
+  top: 0px;
+}
+
+#nav-icon1 span:nth-child(2) {
+  top: 18px;
+}
+
+#nav-icon1 span:nth-child(3) {
+  top: 36px;
+}
+
+#nav-icon1.open span:nth-child(1) {
+  top: 18px;
+  -webkit-transform: rotate(135deg);
+  -moz-transform: rotate(135deg);
+  -o-transform: rotate(135deg);
+  transform: rotate(135deg);
+}
+
+#nav-icon1.open span:nth-child(2) {
+  opacity: 0;
+  left: -60px;
+}
+
+#nav-icon1.open span:nth-child(3) {
+  top: 18px;
+  -webkit-transform: rotate(-135deg);
+  -moz-transform: rotate(-135deg);
+  -o-transform: rotate(-135deg);
+  transform: rotate(-135deg);
+}
+
+button:focus {
+  outline: thin dotted;
+  outline: 0px auto -webkit-focus-ring-color;
+  outline-offset: 0px;
+ }
+ @media only screen and (max-width: 992px) {
+  #cor {background-color: rgba(243, 156, 18, .8)}
+}

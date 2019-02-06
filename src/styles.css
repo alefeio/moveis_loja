@@ -43,9 +43,9 @@ h3 {
 
 .banner{
     border-bottom: 1px solid #bbb;
-    background: url("/assets/banners/img_1.jpg") center top no-repeat;
+    background: url("/assets/banners/sofa_inicio.svg") center top no-repeat;
     background-size: cover;
-    height: 300px;
+    height: 224px;
 }
 
 .btn-padrao {

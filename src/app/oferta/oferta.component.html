@@ -8,10 +8,16 @@
     </div> -->
 
   <div class="row" style="margin: 4%;">
-    <div class="col-md-6" style="overflow: hidden">
+    <div class="col-md-6" style="overflow: hidden;">
       <div class="zoom">
         <img [src]="oferta.url_imagem || ''" class="img-zoom img-fluid" alt="">
       </div>
+      <div class="row">
+          <div class="col">
+            <h5 style="color: black">Descrição: </h5>
+            <pre>{{oferta.descricao_oferta}}</pre>
+          </div>
+        </div>
       <!-- <div class="thumbnails">
           <img *ngFor="let imagem of oferta.imagens" [src]="imagem.url" />
         </div> -->
@@ -77,12 +83,13 @@
           <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
               <div class="modal-header" style="background-color: rgba(243, 156, 18, 1);">
-                <h5 class="modal-title" id="exampleModalLongTitle">Este Item foi adicionado no carrinho!</h5>
+                <h5 class="modal-title" id="exampleModalLongTitle" class="cor-titulo">Este Item foi adicionado no
+                  carrinho!</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div>
-              <div class="modal-body" style="background: #f5f7fa">
+              <div class="modal-body">
                 <div class="row">
                   <div class="col text-center">
                     <span style="font-size: 20px">{{oferta.titulo}}</span>
@@ -93,9 +100,10 @@
                     <img [src]="oferta.url_imagem || ''" class="img-fluid">
                   </div>
                   <div class="col">
-                    <!-- <span>Cor: </span>
-                    <p>{{movel.cor}}</p>
-                    <span>{{movel.montar}}</span> -->
+                    <span>Cor: </span>
+                    <p>{{oferta.cor}}</p>
+                    <span>Marca</span>
+                    <p>{{oferta.marca}}</p>
                     <span style="font-size: 25px">Valor: </span><span style="font-size: 25px">{{oferta.valor |
                       currency:
                       'BRL'}}</span>
@@ -111,22 +119,19 @@
             </div>
           </div>
         </div>
-        <!-- <div class="row">
-            <div class="col text-center">
-              <p><span>Cor: </span> {{movel.cor}}</p>
-            </div>
-          </div> -->
-        <!-- <div class="row">
-            <div class="col">
-              <p><span>Largura: </span><br> {{movel.largura}}</p>
-            </div>
-            <div class="col">
-              <p><span>Altura: </span><br>{{movel.altura}}</p>
-            </div>
-            <div class="col">
-              <p><span>Profundidade: </span><br> {{movel.profundidade}}</p>
-            </div>
-          </div> -->
+        <div class="row">
+          <div class="col text-center">
+            <p><span>Cor: </span> {{oferta.cor}}</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <p><span>Marca: </span> {{oferta.marca}}</p>
+          </div>
+          <div class="col">
+            <p><span>Ambiente: </span> {{oferta.ambiente}}</p>
+          </div>
+        </div>
         <div class="row">
           <div class="col">
             <span style="font-size: 25px">RECEBA EM CASA</span>
@@ -141,14 +146,14 @@
             <button class="btn rounded-0 hvr-underline-from-center">Veja as condições</button>
           </div>
           <div class="col text-right">
-            <p><span>2x de {{parcela | currency:'BRL':true}}</span></p>
+            <p><span>12x sem juros de R$157,00</span></p>
           </div>
         </div>
-        <div class="row">
+        <!-- <div class="row">
           <div class="col text-center">
             <span>{{movel.montar}}</span>
           </div>
-        </div>
+        </div> -->
 
         <!-- <div class="row">
             <div class="col text-center">
@@ -164,7 +169,7 @@
           </div> -->
         <div class="row">
           <div class="col text-center">
-            <p class="m-1">Avalie este Produto</p>
+            <span class="m-1">Avalie este Produto</span>
             <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
             <div class="estrelas">
               <input type="radio" id="cm_star-empty" name="fb" value="" checked />
@@ -182,7 +187,7 @@
           </div>
         </div>
         <div class="row">
-          <div class="col text-center" style="padding: 7%">
+          <div class="col text-center" style="padding: 3%">
             <button (click)="adicionarItemCarrinho()" class="btn-finalizar btn-padrao" data-toggle="modal" data-target="#exampleModalCenter">Adicionar
               ao Carrinho</button>
           </div>
