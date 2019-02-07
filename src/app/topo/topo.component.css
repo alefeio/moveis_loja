@@ -30,6 +30,23 @@
     /* height: 300px; */
 }
 
+.logo {
+  height: 120; 
+  width: 300
+}
+.logo-mobile {
+  display: none;
+}
+
+@media(max-width: 410px){ 
+  .logo {
+    display: none;
+  }
+  .logo-mobile {
+    display: block;
+  }
+}
+
 .navbar-collapse{
     z-index: 1100;
 }
@@ -340,13 +357,13 @@ button:focus {
   transition: all 10s;
 }
 .menu-ambiente {
-  top: 8.7em; 
+  top: 8em; 
   z-index: 99;
 } 
 
 .fixo{
 position: fixed; 
-top: 8.7em;
+top: 8em;
 transition: all 5s;
 z-index: 99;
 }

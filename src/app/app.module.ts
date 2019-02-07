@@ -48,11 +48,8 @@ import { LinhasComponent } from './admin/linhas/linhas.component';
 import { AdicionarAmbienteComponent } from './admin/adicionar-ambiente/adicionar-ambiente.component';
 import { AdicionarLinhaComponent } from './admin/adicionar-linha/adicionar-linha.component';
 import { PedidosComponent } from './cliente/pedidos/pedidos.component';
-<<<<<<< HEAD
 import { CarrouselComponent } from './carrousel/carrousel.component';
-=======
 import { RecuperarSenhaComponent } from './acesso/recuperar-senha/recuperar-senha.component';
->>>>>>> f3c77b110027f70930a3affd02fc8c6c6c0f433f
 
 @NgModule({
   declarations: [
@@ -86,11 +83,8 @@ import { RecuperarSenhaComponent } from './acesso/recuperar-senha/recuperar-senh
     AdicionarAmbienteComponent,
     AdicionarLinhaComponent,
     PedidosComponent,
-<<<<<<< HEAD
-    CarrouselComponent
-=======
+    CarrouselComponent,
     RecuperarSenhaComponent
->>>>>>> f3c77b110027f70930a3affd02fc8c6c6c0f433f
   ],
   imports: [
     BrowserModule,

@@ -13,19 +13,11 @@
         <img [src]="oferta.url_imagem || ''" class="img-zoom img-fluid" alt="">
       </div>
       <div class="row">
-<<<<<<< HEAD
-          <div class="col">
-            <h5 style="color: black">Descrição: </h5>
-            <pre>{{oferta.descricao_oferta}}</pre>
-          </div>
-        </div>
-=======
         <div class="col">
           <h5 style="color: black">Descrição: </h5>
           <pre>{{oferta.descricao_oferta}}</pre>
         </div>
       </div>
->>>>>>> f3c77b110027f70930a3affd02fc8c6c6c0f433f
       <!-- <div class="thumbnails">
           <img *ngFor="let imagem of oferta.imagens" [src]="imagem.url" />
         </div> -->
@@ -81,11 +73,10 @@
     </div> -->
 
     <div class="col-md-6">
-      <div style="background: #f5f7fa; border: 1px solid #E08345; padding: 5%;">
+      <div style="background: #f5f7fa; border: 1px solid #C33C44; padding: 5%;">
         <div class="text-center">
           <h2>{{oferta.titulo}}</h2>
         </div>
-<<<<<<< HEAD
         <!-- modal -->
         <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
           aria-hidden="true">
@@ -128,9 +119,6 @@
             </div>
           </div>
         </div>
-=======
-
->>>>>>> f3c77b110027f70930a3affd02fc8c6c6c0f433f
         <div class="row">
           <div class="col text-center">
             <p><span>Cor: </span> {{oferta.cor}}</p>
@@ -149,11 +137,7 @@
             <span style="font-size: 25px">RECEBA EM CASA</span>
           </div>
           <div class="col text-right">
-<<<<<<< HEAD
             <p><span style="font-size: 25px">{{oferta.valor | currency: 'BRL'}}</span></p>
-=======
-            <p><span style="font-size: 25px">{{oferta.valorAVista | currency: 'BRL'}}</span></p>
->>>>>>> f3c77b110027f70930a3affd02fc8c6c6c0f433f
           </div>
         </div>
         <div class="row">
@@ -162,11 +146,7 @@
             <button class="btn rounded-0 hvr-underline-from-center">Veja as condições</button>
           </div>
           <div class="col text-right">
-<<<<<<< HEAD
             <p><span>12x sem juros de R$157,00</span></p>
-=======
-            <p><span>Ou até 10x de {{oferta.valorAPrazo/10 | currency: 'BRL'}}</span></p>
->>>>>>> f3c77b110027f70930a3affd02fc8c6c6c0f433f
           </div>
         </div>
         <!-- <div class="row">
@@ -214,7 +194,7 @@
         </div>
       </div>
       <div class="row">
-        <div style="background: #f5f7fa; border: 1px solid #E08345; padding: 5%; margin-top: 5%; margin-left: 3%;margin-right: 3%; width: 100%">
+        <div style="background: #f5f7fa; border: 1px solid #C33C44; padding: 5%; margin-top: 5%; margin-left: 3%;margin-right: 3%; width: 100%">
           <div class="col text-center">
             <h4><span>Frete e prazo de entrega</span></h4>
           </div>
@@ -244,55 +224,4 @@
       </div>
     </div>
   </div>
-<<<<<<< HEAD
-=======
-</div>
-
-
-<!-- modal -->
-<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
-  aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header" style="background-color: rgba(243, 156, 18, 1);">
-        <h5 class="modal-title" id="exampleModalLongTitle" class="cor-titulo">Este Item foi adicionado no
-          carrinho!</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <div class="row">
-          <div class="col text-center">
-            <h2>{{oferta.titulo}}</h2>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col">
-            <img [src]="oferta.url_imagem || ''" class="img-fluid">
-          </div>
-          <div class="col">
-            <span>Cor: </span>
-            <p>{{oferta.cor}}</p>
-            <span>Marca:</span>
-            <p>{{oferta.marca}}</p>
-            <span style="font-size: 25px">Valor: </span><span style="font-size: 25px">{{oferta.valorAVista |
-              currency:
-              'BRL'}}</span>
-              <br>
-            <small>Ou 10x de {{oferta.valorAPrazo/10 |
-              currency:
-              'BRL'}}</small>
-          </div>
-        </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" routerLink="/home" class="btn btn-padrao" data-dismiss="modal">Continuar
-          Comprando?</button>
-        <button type="button" routerLink="/ordem-compra" class="btn btn-padrao" data-dismiss="modal">Ir para o
-          carrinho</button>
-      </div>
-    </div>
-  </div>
->>>>>>> f3c77b110027f70930a3affd02fc8c6c6c0f433f
 </div>

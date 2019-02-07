@@ -21,6 +21,7 @@ export class OrdemCompraComponent implements OnInit {
 
   public idPedidoCompra: number
   public itensCarrinho: ItemCarrinho[] = []
+  mostrar:number
 
   public alerta: string
   public estiloAlerta: string
@@ -63,9 +64,14 @@ export class OrdemCompraComponent implements OnInit {
 
   ngOnInit() {
     this.itensCarrinho = this.carrinhoService.exibirItens()
-
-    console.log(this.itensCarrinho)
-
+    if (this.itensCarrinho.length == 0) {
+      this.mostrar = 0
+      console.log("eu sou verdadeiro 0");
+    } else {
+      this.mostrar = 1
+      console.log("eu sou verdadeiro 1");
+    }
+    console.log(this.itensCarrinho);
     backend.auth().onAuthStateChanged((user) => {
       this.email = user.email
 
@@ -121,6 +127,9 @@ export class OrdemCompraComponent implements OnInit {
 
   public diminuir(item: ItemCarrinho) {
     this.carrinhoService.diminuirQuantidade(item)
+    if(this.itensCarrinho.length === 0) {
+      this.mostrar = 0;
+    }
   }
 
   public adicionar(item: ItemCarrinho) {

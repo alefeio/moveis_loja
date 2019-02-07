@@ -87,11 +87,7 @@ export class HomeComponent implements OnInit {
 
   @ViewChild('scrollHorizontalDiversos', { read: ElementRef }) public widgetsContentDiversos: ElementRef;
 
-<<<<<<< HEAD
   @ViewChild('scrollHorizontalDestaques', { read: ElementRef }) public widgetsContentDestaques: ElementRef;
-=======
-  @ViewChild('scrollHorizontalDestaque', { read: ElementRef }) public widgetsContentDestaque: ElementRef;
->>>>>>> f3c77b110027f70930a3affd02fc8c6c6c0f433f
 
   public scrollDireita(ambiente: string): void {
     if(ambiente === 'Sala') {
@@ -114,15 +110,9 @@ export class HomeComponent implements OnInit {
       this.widgetsContentDiversos.nativeElement.scrollTo({ left: (this.widgetsContentDiversos.nativeElement.scrollLeft + 320), behavior: 'smooth' });
     }
 
-<<<<<<< HEAD
     if(ambiente === 'Destaques') {
       console.log(ambiente)
       this.widgetsContentDestaques.nativeElement.scrollTo({ left: (this.widgetsContentDestaques.nativeElement.scrollLeft + 320), behavior: 'smooth' });
-=======
-    if(ambiente === 'Destaque') {
-      console.log(ambiente)
-      this.widgetsContentDestaque.nativeElement.scrollTo({ left: (this.widgetsContentDestaque.nativeElement.scrollLeft + 320), behavior: 'smooth' });
->>>>>>> f3c77b110027f70930a3affd02fc8c6c6c0f433f
     }
   }
 
@@ -135,11 +125,7 @@ export class HomeComponent implements OnInit {
 
     if(ambiente === 'Diversos') this.widgetsContentDiversos.nativeElement.scrollTo({ left: (this.widgetsContentDiversos.nativeElement.scrollLeft - 320), behavior: 'smooth' });
 
-<<<<<<< HEAD
     if(ambiente === 'Destaques') this.widgetsContentDestaques.nativeElement.scrollTo({ left: (this.widgetsContentDestaques.nativeElement.scrollLeft - 320), behavior: 'smooth' });
-=======
-    if(ambiente === 'Destaque') this.widgetsContentDestaque.nativeElement.scrollTo({ left: (this.widgetsContentDestaque.nativeElement.scrollLeft - 320), behavior: 'smooth' });
->>>>>>> f3c77b110027f70930a3affd02fc8c6c6c0f433f
   }
 
   // public scroll(direcao, ambiente){

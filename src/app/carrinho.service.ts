@@ -49,7 +49,7 @@ class CarrinhoService {
         if(itemcarrinhoEncotrado) {
             itemcarrinhoEncotrado.quantidade -= 1
 
-            if(itemcarrinhoEncotrado.quantidade === 0) this.itens.splice(this.itens.indexOf(itemcarrinhoEncotrado), 1)
+            if(itemcarrinhoEncotrado.quantidade === 0) this.itens.splice(this.itens.indexOf(itemcarrinhoEncotrado), 1) 
         }
     }
 

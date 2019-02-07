@@ -78,51 +78,52 @@
 
 <div class="banner">
   <nav id="menu" class="navbar navbar-expand-lg borda-top">
-  <a><img src="/src/assets/logo.png" height="120" width="300" class="fundo-img radius"></a>
-  <button id="nav-icon1" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#conteudoNavbarSuportado"
-    aria-controls="conteudoNavbarSuportado" aria-expanded="false" aria-label="Alterna navegação">
-    <span> </span>
-    <span> </span>
-    <span> </span>
-  </button>
+    <a><img src="/src/assets/logo.png" routerLink="/home" class="fundo-img radius logo"></a>
+    <a><img src="/src/assets/logo_mobile.png" routerLink="/home" class="fundo-img radius logo-mobile"></a>
+    <button id="nav-icon1" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#conteudoNavbarSuportado"
+      aria-controls="conteudoNavbarSuportado" aria-expanded="false" aria-label="Alterna navegação">
+      <span> </span>
+      <span> </span>
+      <span> </span>
+    </button>
 
-  <div class="collapse navbar-collapse" id="conteudoNavbarSuportado">
-    <ul id="cor" class="navbar-nav mr-auto" style="width: 100% !important">
-      <li class="nav-link text-center" style="border-right: 2px solid #C33C44;">
-        <span class="form-inline my-2 my-lg-0 pl-5 pr-5 pt-2">
-          <input class="form-control mr-sm-2" type="search" placeholder="Buscar Produto" aria-label="Search">
-          <button class="btn btn-padrao my-2 my-sm-0" type="submit">Buscar</button>
-        </span>
-      </li>
-      <li class="nav-item pl-5" id="espaco">
-        <a class="nav-link text-center" routerLinkActive="active" routerLink="/home">
-          <img src="/src/assets/home.png" class="img-fluid" style="width: 30px" />
-          <br>Home
-        </a>
-      </li>
-      <li class="nav-item text-center">
-        <a class="nav-link" routerLinkActive="active" routerLink="ordem-compra">
-          <img src="/src/assets/carrinho.png" class="img-fluid" style="width: 30px" />
-          <br>Carrinho
-        </a>
-      </li>
-      <li class="nav-item text-center" *ngIf="!autenticacao.token_id">
-        <a class="nav-link" routerLinkActive="active" data-toggle="modal" data-target="#modal-login" (click)="mostrarLogin()">
-          <img src="/src/assets/login.png" class="img-fluid" style="width: 30px" />
-          <br>Login
-        </a>
-      </li>
-      <li class="nav-item text-center" *ngIf="autenticacao.token_id">
-        <a class="nav-link" routerLinkActive="active" routerLink="cliente">
-          <img src="/src/assets/user.png" class="img-fluid" style="width: 30px" />
-          <br>Minha Conta
-        </a>
-      </li>
-    </ul>
-  </div>   
-</nav>
+    <div class="collapse navbar-collapse" id="conteudoNavbarSuportado">
+      <ul id="cor" class="navbar-nav mr-auto" style="width: 100% !important">
+        <li class="nav-link text-center" style="border-right: 2px solid #C33C44;">
+          <span class="form-inline my-2 my-lg-0 pl-5 pr-5 pt-2" style="z-index: -1">
+            <input class="form-control mr-sm-2" type="search" placeholder="Buscar Produto" aria-label="Search">
+            <button class="btn btn-padrao my-2 my-sm-0" type="submit">Buscar</button>
+          </span>
+        </li>
+        <li class="nav-item pl-5" id="espaco">
+          <a class="nav-link text-center" routerLinkActive="active" routerLink="/home">
+            <img src="/src/assets/home.png" class="img-fluid" style="width: 30px" />
+            <br>Home
+          </a>
+        </li>
+        <li class="nav-item text-center">
+          <a class="nav-link" routerLinkActive="active" routerLink="ordem-compra">
+            <img src="/src/assets/carrinho.png" class="img-fluid" style="width: 30px" />
+            <br>Carrinho
+          </a>
+        </li>
+        <li class="nav-item text-center" *ngIf="!autenticacao.token_id">
+          <a class="nav-link" routerLinkActive="active" data-toggle="modal" data-target="#modal-login" (click)="mostrarLogin()">
+            <img src="/src/assets/login.png" class="img-fluid" style="width: 30px" />
+            <br>Login
+          </a>
+        </li>
+        <li class="nav-item text-center" *ngIf="autenticacao.token_id">
+          <a class="nav-link" routerLinkActive="active" routerLink="cliente">
+            <img src="/src/assets/user.png" class="img-fluid" style="width: 30px" />
+            <br>Minha Conta
+          </a>
+        </li>
+      </ul>
+    </div>
+  </nav>
 
-<div id="menu-amb" class="col-12 menu-ambiente " style="background-color: rgba(250, 250, 250, .8) !important;">
+  <div id="menu-amb" class="col-12 menu-ambiente " style="background-color: rgba(250, 250, 250, .8) !important;">
     <ul class="nav justify-content-center">
       <li class="nav-item dropdown" id="amb" style="border-left: 1px solid #C33C44;">
         <div class="col text-center icones sacodida-horizontal">
@@ -197,9 +198,4 @@
       </li>
     </ul>
   </div>
-
-
 </div>
-
-
-

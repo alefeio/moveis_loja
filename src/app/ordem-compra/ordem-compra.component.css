@@ -98,7 +98,7 @@ select.ng-valid.ng-touched{
 
   .cart-summary {
     background-color: #f5f7fa;
-    border: 1px solid rgba(243, 156, 18, 1);
+    border: 1px solid #C33C44;
     position: relative;
     z-index: 1;
     padding: 30px 20px;
@@ -134,8 +134,14 @@ select.ng-valid.ng-touched{
     box-shadow: none;
 }  
 .vazio {
-    padding-top: 10% !important; 
-    padding-bottom: 10% !important
+    display: flex;
+    min-height: 30vh;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column; 
 }
 
 .vazio > span {
