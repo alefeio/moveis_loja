@@ -12,7 +12,6 @@ import { ROUTES } from './app.routes'
 import { AppComponent } from './app.component';
 import { TopoComponent } from './topo/topo.component';
 import { HomeComponent } from './home/home.component';
-import { RodapeComponent } from './rodape/rodape.component';
 import { QuartoComponent } from './quarto/quarto.component';
 import { SalaComponent } from './sala/sala.component';
 import { OfertaComponent } from './oferta/oferta.component';
@@ -57,7 +56,6 @@ import { RodaPeComponent } from './roda-pe/roda-pe.component';
     AppComponent,
     TopoComponent,
     HomeComponent,
-    RodapeComponent,
     QuartoComponent,
     SalaComponent,
     OfertaComponent,

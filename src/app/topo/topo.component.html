@@ -109,8 +109,7 @@
           </a>
         </li>
         <li class="nav-item text-center" *ngIf="!autenticacao.token_id">
-          <a class="nav-link" routerLinkActive="active" data-toggle="modal" data-target="#modal-login"
-            (click)="mostrarLogin()">
+          <a class="nav-link" routerLinkActive="active" (click)="mostrarLogin()">
             <img src="/src/assets/login.png" class="img-fluid" style="width: 30px" />
             <br>Login
           </a>
@@ -126,9 +125,11 @@
   </nav>
 
   <div id="menu-amb" class="menu-ambiente row text-center">
-    <div class="col-12 pt-2 pb-2 amb-links">
-      <div *ngFor="let ambiente of ambientes" class="col-2 icones sacodida-horizontal dropdown">
-        <a routerLinkActive="active" [routerLink]="['/ambiente', ambiente.nome]">
+    <div class="col-12 p-0 amb-links">
+      <span style="height: 100%; background-color: #C33C44;">&nbsp;</span>
+      <div id="amb" *ngFor="let ambiente of ambientes" class="col-2 icones sacodida-horizontal dropdown"
+        routerLinkActive="active" [routerLink]="['/ambiente', ambiente.nome]">
+        <a id="link-amb">
           <img [src]="ambiente.url_imagem || ''" height="50" width="50">
           <span style="font-weight: bold;"> &nbsp;{{ambiente.nome}}</span>
         </a>
@@ -142,6 +143,7 @@
           </div>
         </div>
       </div>
+      <span style="height: 100%; background-color: #C33C44;">&nbsp;</span>
     </div>
   </div>
 </div>

@@ -26,7 +26,7 @@
 <div style="margin-left: 10%; margin-top: 2%">
   <h2 style="margin: 0">Produtos em Destaque</h2>
   <span
-    style="background-color: rgba(243, 156, 18, 1);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+    style="background-color: rgba(243, 194, 61, 1);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
 </div>
 
 <!-- <div class="container"> -->
@@ -54,7 +54,7 @@
   <div class="col-md-12">
     <div #scrollHorizontalDestaques class="middle">
       <a class="prev" (click)="scrollEsquerda('Destaques')">&#10094;</a>
-      <div *ngFor="let oferta of pQuarto" style="padding: 3%" class="card info-widget flutuar"
+      <a [routerLink]="['/oferta', oferta.key]" *ngFor="let oferta of pQuarto" style="padding: 3%" class="card info-widget flutuar"
         style="width: 18rem; margin: 1em">
         <img [src]="oferta.url_imagem || ''" class="card-img-top">
         <div class="card-body">
@@ -68,7 +68,7 @@
             <button class="btn btn-padrao" [routerLink]="['/oferta', oferta.key]">Ver Oferta</button>
           </div>
         </div>
-      </div>
+      </a>
       <a class="next" (click)="scrollDireita('Destaques')" style="margin-right: 1em">&#10095;</a>
     </div>
   </div>
@@ -78,7 +78,7 @@
   <h2 style="margin: 0">Para seu quarto <small><button class="btn btn-sm btn-warning"
         [routerLink]="['/ambiente', 'Quarto']">+</button></small></h2>
   <span
-    style="background-color: rgba(243, 156, 18, 1);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+    style="background-color: rgba(243, 194, 61, 1);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
 </div>
 <!-- <div class="container"> -->
 <!-- <br>
