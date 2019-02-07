@@ -36,10 +36,10 @@ export class TopoComponent implements OnInit {
       $(Window).scroll(function(){
         if($(this).scrollTop() > 200){
           nav.addClass('menu-fixo');
-          navAmb.addClass('fixo');
+          navAmb.addClass('fixed-top');
         }else{
           nav.removeClass('menu-fixo');
-          navAmb.removeClass('fixo');
+          navAmb.removeClass('fixed-top');
         }
       })
     });

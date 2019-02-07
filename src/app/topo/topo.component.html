@@ -80,8 +80,9 @@
   <nav id="menu" class="navbar navbar-expand-lg borda-top">
     <a><img src="/src/assets/logo.png" routerLink="/home" class="fundo-img radius logo"></a>
     <a><img src="/src/assets/logo_mobile.png" routerLink="/home" class="fundo-img radius logo-mobile"></a>
-    <button id="nav-icon1" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#conteudoNavbarSuportado"
-      aria-controls="conteudoNavbarSuportado" aria-expanded="false" aria-label="Alterna navegação">
+    <button id="nav-icon1" class="navbar-toggler" type="button" data-toggle="collapse"
+      data-target="#conteudoNavbarSuportado" aria-controls="conteudoNavbarSuportado" aria-expanded="false"
+      aria-label="Alterna navegação">
       <span> </span>
       <span> </span>
       <span> </span>
@@ -108,7 +109,8 @@
           </a>
         </li>
         <li class="nav-item text-center" *ngIf="!autenticacao.token_id">
-          <a class="nav-link" routerLinkActive="active" data-toggle="modal" data-target="#modal-login" (click)="mostrarLogin()">
+          <a class="nav-link" routerLinkActive="active" data-toggle="modal" data-target="#modal-login"
+            (click)="mostrarLogin()">
             <img src="/src/assets/login.png" class="img-fluid" style="width: 30px" />
             <br>Login
           </a>
@@ -123,79 +125,23 @@
     </div>
   </nav>
 
-  <div id="menu-amb" class="col-12 menu-ambiente " style="background-color: rgba(250, 250, 250, .8) !important;">
-    <ul class="nav justify-content-center">
-      <li class="nav-item dropdown" id="amb" style="border-left: 1px solid #C33C44;">
-        <div class="col text-center icones sacodida-horizontal">
-          <a>
-            <img src="/src/assets/icone-ambiente/sala.svg" height="50" width="50">&nbsp;
-            <span style="font-weight: bold;">Sala</span>
-          </a>
-          <div class="dropbtn">
-            <div class="dropdown-content">
-              <a class="encher">Mesa 4 Cadeiras</a>
-              <a class="encher">Mesa 6 cadeiras Buffet</a>
-              <a class="encher">Aparador</a>
-              <a class="encher">Mesa de Centro</a>
-              <a class="encher">Mesa Lateral</a>
-              <a class="encher">Cadeira Decorativa</a>
-              <a class="encher">Sofá</a>
-              <a class="encher">Sofá-Cama</a>
-            </div>
+  <div id="menu-amb" class="menu-ambiente row text-center">
+    <div class="col-12 pt-2 pb-2 amb-links">
+      <div *ngFor="let ambiente of ambientes" class="col-2 icones sacodida-horizontal dropdown">
+        <a routerLinkActive="active" [routerLink]="['/ambiente', ambiente.nome]">
+          <img [src]="ambiente.url_imagem || ''" height="50" width="50">
+          <span style="font-weight: bold;"> &nbsp;{{ambiente.nome}}</span>
+        </a>
+        <div class="dropbtn">
+          <div class="dropdown-content">
+            <ng-container *ngFor="let linha of linhas">
+              <a class="encher" [routerLink]="['/linha', linha.nome]" *ngIf="linha.ambiente == ambiente.nome">
+                {{linha.nome}}
+              </a>
+            </ng-container>
           </div>
         </div>
-      </li>
-      <li class="nav-item dropdown" id="amb" style="border-left: 1px solid #C33C44;">
-        <div class="col text-center icones sacodida-horizontal">
-          <a>
-            <img src="/src/assets/icone-ambiente/quarto.svg" height="50" width="50">&nbsp;
-            <span style="font-weight: bold;">Quarto</span>
-          </a>
-          <div class="dropbtn">
-            <div class="dropdown-content">
-              <a class="encher">Roupeiro</a>
-              <a class="encher">Cama Casal</a>
-              <a class="encher">Bicama</a>
-              <a class="encher">Cômoda</a>
-              <a class="encher">Criado Mudo</a>
-              <a class="encher">Cabeceira</a>
-              <a class="encher">Treliche</a>
-              <a class="encher">Colchão Casal</a>
-              <a class="encher">Colchão Solteiro</a>
-            </div>
-          </div>
-        </div>
-      </li>
-      <li class="nav-item dropdown" id="amb" style="border-right: 1px solid #C33C44; border-left: 1px solid #C33C44;">
-        <div class="col text-center icones sacodida-horizontal">
-          <a>
-            <img src="/src/assets/icone-ambiente/cozinha.svg" height="50" width="50">&nbsp;
-            <span style="font-weight: bold;">Cozinha</span>
-          </a>
-          <div class="dropbtn">
-            <div class="dropdown-content">
-              <a class="encher">Itatiaia</a>
-              <a class="encher">Luciane</a>
-              <a class="encher">Nesher</a>
-            </div>
-          </div>
-        </div>
-      </li>
-      <li class="nav-item dropdown" id="amb" style="border-right: 1px solid #C33C44;">
-        <div class="col text-center icones sacodida-horizontal">
-          <a>
-            <img src="/src/assets/icone-ambiente/gif_diversos_mega-moveis.gif" height="50" width="50">&nbsp;
-            <span style="font-weight: bold;">Diversos</span>
-          </a>
-          <div class="dropbtn">
-            <div class="dropdown-content">
-              <a class="encher">Itatiaia</a>
-              <a class="encher">Luciane</a>
-              <a class="encher">Nesher</a>
-            </div>
-          </div>
-        </div>
-      </li>
-    </ul>
+      </div>
+    </div>
   </div>
 </div>

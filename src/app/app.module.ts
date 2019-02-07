@@ -50,6 +50,7 @@ import { AdicionarLinhaComponent } from './admin/adicionar-linha/adicionar-linha
 import { PedidosComponent } from './cliente/pedidos/pedidos.component';
 import { CarrouselComponent } from './carrousel/carrousel.component';
 import { RecuperarSenhaComponent } from './acesso/recuperar-senha/recuperar-senha.component';
+import { RodaPeComponent } from './roda-pe/roda-pe.component';
 
 @NgModule({
   declarations: [
@@ -84,7 +85,8 @@ import { RecuperarSenhaComponent } from './acesso/recuperar-senha/recuperar-senh
     AdicionarLinhaComponent,
     PedidosComponent,
     CarrouselComponent,
-    RecuperarSenhaComponent
+    RecuperarSenhaComponent,
+    RodaPeComponent
   ],
   imports: [
     BrowserModule,

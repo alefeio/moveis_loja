@@ -8,6 +8,10 @@ import { map, retry } from 'rxjs/operators';
 @Injectable()
 export class Bd {
 
+    testeCorProd:Array<any> = [{
+        
+    }]
+
     constructor(private progresso: Progresso, private util: Util) { }
 
     public consultarUsuario(email: string): Promise<any> {

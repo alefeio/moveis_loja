@@ -45,7 +45,7 @@ h3 {
     border-bottom: 1px solid #bbb;
     background: url("/assets/banners/sofa_inicio.svg") center top no-repeat !important;
     background-size: cover !important;
-    height: 189px;
+    height: 190px;
 }
 
 .btn-padrao {
@@ -58,7 +58,7 @@ h3 {
     transform: perspective(1px) translateZ(0);
     box-shadow: 0 0 1px rgba(0, 0, 0, 0);
     position: relative;
-    background: rgba(243, 156, 18, 0.6);
+    background: rgba(243, 194, 61, .6);
     -webkit-transition-property: color;
     transition-property: color;
     -webkit-transition-duration: 0.3s;
@@ -73,7 +73,7 @@ h3 {
     bottom: 0;
     left: 0;
     right: 0;
-    background: rgba(243, 156, 18, 1);
+    background: rgba(243, 194, 61, 1);
     -webkit-transform: scaleX(0);
     transform: scaleX(0);
     -webkit-transform-origin: 50%;
@@ -92,3 +92,8 @@ h3 {
     -webkit-transform: scaleX(1);
     transform: scaleX(1);
   }
+
+  .btn-padrao:focus {
+    -webkit-box-shadow: none;
+      box-shadow: none;
+   }
