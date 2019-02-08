@@ -5,3 +5,119 @@
     height: 60px;
     width: 100%;
 }
+
+.header-login {
+    background-color: rgba(243, 156, 18, 1);
+    top: -2.5em;
+    border-radius: 10px;
+    box-shadow: 0 0 4px black;
+}
+
+.form-control:focus {
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    border-bottom: 1px solid rgba(243, 156, 18, 1);
+    -webkit-animation-name: teste;
+    animation-name: teste;
+    -webkit-animation-duration: 300ms;
+    animation-duration: 300ms;
+    -webkit-animation-timing-function: ease-in-out;
+    animation-timing-function: ease-in-out;
+    -webkit-animation-iteration-count: 1;
+    animation-iteration-count: 1;
+}  
+
+@keyframes teste {
+    0%{border-bottom: 1px solid rgba(243, 156, 18, 0.5); width: 10%}
+    25%{ border-bottom: 1px solid rgba(243, 156, 18, 0.5);width: 25%}
+    50%{border-bottom: 1px solid rgba(243, 156, 18, 0.5); width: 50%}
+    75%{border-bottom: 1px solid rgba(243, 156, 18, 0.5); width: 75%}
+    100%{border-bottom: 1px solid rgba(243, 156, 18, 1); width: 100%}
+}
+input {
+    border-top: 0;
+    border-left: 0;
+    border-right: 0;  
+    border-bottom: 1px solid rgba(243, 156, 18, 1);
+}
+
+/* Underline From Center */
+.hvr-underline-from-center {
+    display: inline-block;
+    vertical-align: middle;
+    -webkit-transform: perspective(1px) translateZ(0);
+    transform: perspective(1px) translateZ(0);
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+    position: relative;
+    overflow: hidden;
+  }
+  .hvr-underline-from-center:before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    left: 51%;
+    right: 51%;
+    bottom: 0;
+    background: rgba(243, 156, 18, 1);
+    height: 4px;
+    -webkit-transition-property: left, right;
+    transition-property: left, right;
+    -webkit-transition-duration: 0.3s;
+    transition-duration: 0.3s;
+    -webkit-transition-timing-function: ease-out;
+    transition-timing-function: ease-out;
+  }
+  .hvr-underline-from-center:hover:before, .hvr-underline-from-center:focus:before, .hvr-underline-from-center:active:before {
+    left: 0;
+    right: 0;
+  }
+
+  .boxes {
+    margin: auto;
+    padding: 50px;
+    background: white;
+  }
+  
+  /*Checkboxes styles*/
+  input[type="checkbox"] { display: none; }
+  
+  input[type="checkbox"] + label {
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 20px;
+    font: 14px/20px 'Open Sans', Arial, sans-serif;
+    color: black;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+  }
+  
+  input[type="checkbox"] + label:last-child { margin-bottom: 0; }
+  
+  input[type="checkbox"] + label:before {
+    content: '';
+    display: block;
+    width: 20px;
+    height: 20px;
+    border: 1px solid rgba(243, 156, 18, 1);
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: .6;
+    -webkit-transition: all .12s, border-color .08s;
+    transition: all .12s, border-color .08s;
+  }
+  
+  input[type="checkbox"]:checked + label:before {
+    width: 10px;
+    top: -5px;
+    left: 5px;
+    border-radius: 0;
+    opacity: 1;
+    border-top-color: transparent;
+    border-left-color: transparent;
+    -webkit-transform: rotate(45deg);
+    transform: rotate(45deg);
+  }

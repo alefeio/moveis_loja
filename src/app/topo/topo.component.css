@@ -230,8 +230,9 @@ a {
 }
 /* novo menu ray */
 .borda-top {
+  z-index: 999;
   width: 100%;
-  border-top: 10px solid rgba(195, 60, 68, .9) !important;
+  border-top: 10px solid rgba(195, 60, 68, 1) !important;
   background-color: rgba(250, 250, 250, .8) !important;
   padding-left: 4% !important;
   padding-right: 3% !important;
@@ -363,24 +364,22 @@ a {
 .amb-links {
   background-color: rgba(243, 194, 61, .8) !important; 
   border-bottom: solid 2px #C33C44; 
-  z-index: 999;
+  z-index: 1;
 }
 
 .menu-fixo {
   position: fixed;
   top: 0;
-  /* height: 7em; */
-  z-index: 999;
-  transition: all 10s;
 }
 .menu-ambiente {
   padding-top: 7.9em; 
-  z-index: 99;
+  z-index: 1;
 } 
 
 .fixo{
-  top: 6em;
-  z-index: 99;
+  position: fixed;
+  width: 100%;
+  margin-left: 0;
 }
 
 /* novo ambientes */

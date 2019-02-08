@@ -10,7 +10,7 @@
 
 .bg-mega{
     background: #f5f7fa; 
-    border: 1px solid #E08345; 
+    border: 1px solid rgba(195, 60, 68, 1) !important; 
     padding: 5%;
 }
 
@@ -32,7 +32,7 @@
     left: 51%;
     right: 51%;
     bottom: 0;
-    background: rgba(243, 156, 18, 1);
+    background: rgba(195, 60, 68, .9) !important;
     height: 4px;
     -webkit-transition-property: left, right;
     transition-property: left, right;

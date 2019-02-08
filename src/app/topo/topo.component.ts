@@ -1,11 +1,11 @@
 import { Bd } from './../bd.service';
 import { Autenticacao } from './../autenticacao.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ViewChild, ElementRef, HostListener } from '@angular/core';
 import { OfertasService } from './../ofertas.service';
 import { Observable, Subject, of } from 'rxjs';
 import { switchMap, debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { Oferta } from '../shared/oferta.model';
-declare var $:any
+declare var $: any
 
 @Component({
   selector: 'app-topo',
@@ -19,29 +19,28 @@ export class TopoComponent implements OnInit {
   private subjectPesquisa: Subject<string> = new Subject<string>()
   public ambientes: Array<any> = []
   public linhas: Array<any> = []
+  scrolNumber: number = 0;
 
   public ambiente: string
+
+  // variaveis de efeito de fixed-top angular sem jquery
+  sticky: boolean = false;
+  elementPosition: any;
 
   constructor(
     private ofertasService: OfertasService,
     private autenticacao: Autenticacao,
     private bd: Bd
   ) {
+    let that = this;
+    window.onscroll = function () {
+      var top = window.pageYOffset || document.documentElement.scrollTop
+      that.scrolNumber = top;
+    }
     $(document).ready(function () {
-      var nav = $('#menu');
-      var navAmb = $('#menu-amb');
       $('#nav-icon1').click(function () {
         $(this).toggleClass('open');
       });
-      $(Window).scroll(function(){
-        if($(this).scrollTop() > 200){
-          nav.addClass('menu-fixo');
-          navAmb.addClass('fixed-top');
-        }else{
-          nav.removeClass('menu-fixo');
-          navAmb.removeClass('fixed-top');
-        }
-      })
     });
   }
 
@@ -61,7 +60,6 @@ export class TopoComponent implements OnInit {
           return this.bd.pesquisarOfertas(termo)
         })
       )
-
   }
 
   public pesquisa(termoDaBusca: string): void {
