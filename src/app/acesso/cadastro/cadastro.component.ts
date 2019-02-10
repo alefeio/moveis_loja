@@ -10,6 +10,8 @@ import { Autenticacao } from 'src/app/autenticacao.service';
 })
 export class CadastroComponent implements OnInit {
 
+  teste:any
+
   @Output() public exibirPainel: EventEmitter<string> = new EventEmitter<string>()
 
   public formCadastro: FormGroup = new FormGroup({
@@ -24,6 +26,7 @@ export class CadastroComponent implements OnInit {
   constructor(private autenticacao: Autenticacao) { }
 
   ngOnInit() {
+
   }
 
   public exibirPainelLogin(): void {
@@ -40,6 +43,8 @@ export class CadastroComponent implements OnInit {
       this.formCadastro.value.sexo,
       this.formCadastro.value.senha
     )
+
+    this.teste = usuario.sexo;
 
     this.autenticacao.cadastrarUsuario(usuario)
       .then(() => {

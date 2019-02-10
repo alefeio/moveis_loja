@@ -33,4 +33,8 @@ export class RecuperarSenhaComponent implements OnInit {
     this.autenticacao.autenticar(this.form.value.email, this.form.value.senha)
   }
 
+  recuperar() {
+    console.log(this.form.value);
+  }
+
 }

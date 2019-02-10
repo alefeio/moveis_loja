@@ -1,4 +1,5 @@
-<h6 class="card-text text-center">Cadastre-se e aproveite as nossas ofertas. <small>Ou <button (click)="exibirPainelLogin()" class="btn btn-sm btn-warning">Faça login</button></small></h6>
+<!--======================= cadastro alexandre =====================-->
+<!-- <h6 class="card-text text-center">Cadastre-se e aproveite as nossas ofertas. <small>Ou <button (click)="exibirPainelLogin()" class="btn btn-sm btn-warning">Faça login</button></small></h6>
 <div class="card">
   <div class="card-body">
     <form [formGroup]="formCadastro" (ngSubmit)="cadastrarUsuario()">
@@ -43,4 +44,74 @@
     <p class="small text-center">Ao cadastrar-se, você concorda com nossos <b>Termos</b> e <b>Política de Privacidade</b>.</p>
 
   </div>
+</div> -->
+
+<!--================================== fim =========================-->
+
+<div class="card-body">
+  <form class="form" [formGroup]="formCadastro" (ngSubmit)="cadastrarUsuario()" role="form" autocomplete="off"
+    id="formLogin" novalidate="">
+    <div class="col text-center header-login">
+      <h2>Não tem conta? cadastre-se e seja bem vindo!</h2>
+    </div>
+    <div class="form-group">
+      <label for="nome">Nome</label>
+      <input type="text" formControlName="nome" class="form-control rounded-0" required>
+      <small *ngIf="formCadastro.controls['nome'].errors && !formCadastro.controls.nome.untouched"
+        class="form-text error">
+        <span *ngIf="formCadastro.controls['nome'].errors.required" style="color: red"> Obrigatório!</span>
+      </small>
+    </div>
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input type="text" formControlName="email" class="form-control rounded-0" required>
+      <small *ngIf="formCadastro.controls['email'].errors && !formCadastro.controls.email.untouched"
+        class="form-text error">
+        <span *ngIf="formCadastro.controls['email'].errors.required" style="color: red"> Obrigatório!</span>
+      </small>
+    </div>
+    <div class="form-group">
+      <label for="cpf">CPF</label>
+      <input type="number" formControlName="cpf" class="form-control rounded-0" required>
+      <small *ngIf="formCadastro.controls['cpf'].errors && !formCadastro.controls.cpf.untouched"
+        class="form-text error">
+        <span *ngIf="formCadastro.controls['cpf'].errors.required" style="color: red"> Obrigatório!</span>
+      </small>
+    </div>
+    <div class="form-group">
+      <label for="dataNascimento">Data de Nascimento</label>
+      <input type="date" formControlName="nascimento" class="form-control rounded-0" required>
+      <small *ngIf="formCadastro.controls['nascimento'].errors && !formCadastro.controls.nascimento.untouched"
+        class="form-text error">
+        <span *ngIf="formCadastro.controls['nascimento'].errors.required" style="color: red"> Obrigatório!</span>
+      </small>
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="boxes">
+          <input type="radio" id="box-1" value="M" formControlName="sexo">
+          <label for="box-1" style="font-weight: bold">Masculino</label>
+        </div>
+        <div class="boxes">
+          <input type="radio" id="box-2" value="F" formControlName="sexo">
+          {{teste}}
+          <label for="box-2" style="font-weight: bold">Femenino</label>
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+        <label for="cpf">Senha</label>
+        <input type="password" formControlName="senha" class="form-control rounded-0" required>
+        <small *ngIf="formCadastro.controls['senha'].errors && !formCadastro.controls.senha.untouched"
+          class="form-text error">
+          <span *ngIf="formCadastro.controls['senha'].errors.required" style="color: red"> Obrigatório!</span>
+        </small>
+      </div>
+    <div class="text-center">
+      <button class="btn btn-lg btn-padrao" [disabled]="!formCadastro.valid"><span>Criar conta</span></button>
+    </div>
+    <div class="link-btn">
+      <button (click)="exibirPainelLogin()" class="btn rounded-0 hvr-underline-from-center">Já tenho conta!</button>
+    </div>
+  </form>
 </div>

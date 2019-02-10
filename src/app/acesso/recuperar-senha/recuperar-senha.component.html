@@ -1,9 +1,10 @@
-<h6 class="card-text text-center">Digite seu E-mail</h6>
+<!--================ recuperar a senha alexandre  ============-->
+<!-- <h6 class="card-text text-center">Digite seu E-mail</h6>
 <div class="card" style="width: 20rem;">
-  <div class="card-body text-center">
-    <!-- <div class="card-title"></div> -->
+  <div class="card-body text-center"> -->
+<!-- <div class="card-title"></div> -->
 
-    <form [formGroup]="form" (ngSubmit)="recuperar()">
+<!-- <form [formGroup]="form" (ngSubmit)="recuperar()">
       <div class="form-group">
         <input type="email" class="form-control" placeholder="E-mail" formControlName="email">
       </div>
@@ -22,4 +23,24 @@
       Não tem uma conta? <button (click)="exibirPainelCadastro()" class="btn btn-sm btn-warning">Cadastre-se</button>
     </p>
   </div>
+</div> -->
+<!--========================== fim ============================-->
+
+<div class="card-body">
+  <form class="form" [formGroup]="form" (ngSubmit)="recuperar()" role="form" autocomplete="off" novalidate="">
+    <div class="form-group">
+      <label for="email" style="font-weight: bold">Digite o email para recuperar a sua senha</label>
+      <input type="text" formControlName="email" class="form-control rounded-0">
+      <small *ngIf="form.controls['email'].errors && !form.controls.email.untouched"
+        class="form-text error">
+        <span *ngIf="form.controls['email'].errors.required" style="color: red"> Obrigatório!</span>
+      </small>
+    </div>
+    <div class="text-center">
+      <button type="submit" class="btn btn-lg btn-padrao" [disabled]="!form.valid"><span>Enviar</span></button>
+    </div>
+    <div>
+      <button (click)="exibirPainelLogin()" class="btn rounded-0 hvr-underline-from-center">Login</button>
+    </div>
+  </form>
 </div>

@@ -1,22 +1,54 @@
-.card-title {
+/* .card-title {
     background-image: url("/assets/logo-instagram.png");
     background-position: center;
     background-repeat: no-repeat;
     height: 60px;
     width: 100%;
+} */
+
+/* texto animado teste */
+
+.texto-dinamico {	
+  display: flex;
+	width: 100%;
+	height: 45px;
+	color: black;
+	font-size: 35px;
+	line-height: 40px;
+  overflow: hidden;
+}
+
+ul {
+	list-style: none;
+	padding-left: 10px;
+	animation: cambiar 10s infinite;
+}
+
+@keyframes cambiar {	
+	0%{ margin-top: 0;}
+	10%{ margin-top: 0;}
+	20% {margin-top: -40px;}
+	30% {margin-top: -40px;}
+  40% {margin-top: -80px;}
+  50% {margin-top: -80px;}
+  60% {margin-top: -120px;}
+  70% {margin-top: -120px;}
+  80% {margin-top: -160px;}
+  90% {margin-top: -160px;}
+	100% {margin-top: 0;}
 }
 
 .header-login {
-    background-color: rgba(243, 156, 18, 1);
-    top: -2.5em;
-    border-radius: 10px;
-    box-shadow: 0 0 4px black;
+    background-color: rgba(243, 194, 61, 1);
+    top: -20px;
+    border-radius: 0px 0px 30px 30px;
+    box-shadow: 5px 20px 30px rgba(0,0,0,0.2);
 }
 
 .form-control:focus {
     -webkit-box-shadow: none;
     box-shadow: none;
-    border-bottom: 1px solid rgba(243, 156, 18, 1);
+    border-bottom: 1px solid rgba(195, 60, 68, 1) !important;
     -webkit-animation-name: teste;
     animation-name: teste;
     -webkit-animation-duration: 300ms;
@@ -28,17 +60,17 @@
 }  
 
 @keyframes teste {
-    0%{border-bottom: 1px solid rgba(243, 156, 18, 0.5); width: 10%}
-    25%{ border-bottom: 1px solid rgba(243, 156, 18, 0.5);width: 25%}
-    50%{border-bottom: 1px solid rgba(243, 156, 18, 0.5); width: 50%}
-    75%{border-bottom: 1px solid rgba(243, 156, 18, 0.5); width: 75%}
-    100%{border-bottom: 1px solid rgba(243, 156, 18, 1); width: 100%}
+    0%{border-bottom: 1px solid rgba(195, 60, 68, 0.5); width: 10%}
+    25%{ border-bottom: 1px solid rgba(195, 60, 68, 0.5);width: 25%}
+    50%{border-bottom: 1px solid rgba(195, 60, 68, 0.5); width: 50%}
+    75%{border-bottom: 1px solid rgba(195, 60, 68, 0.5); width: 75%}
+    100%{border-bottom: 1px solid rgba(195, 60, 68, 1); width: 100%}
 }
 input {
     border-top: 0;
     border-left: 0;
     border-right: 0;  
-    border-bottom: 1px solid rgba(243, 156, 18, 1);
+    border-bottom: 1px solid rgba(195, 60, 68, 1) !important;;
 }
 
 /* Underline From Center */
@@ -58,7 +90,7 @@ input {
     left: 51%;
     right: 51%;
     bottom: 0;
-    background: rgba(243, 156, 18, 1);
+    background: rgba(195, 60, 68, 1) !important;
     height: 4px;
     -webkit-transition-property: left, right;
     transition-property: left, right;
@@ -74,7 +106,8 @@ input {
 
   .boxes {
     margin: auto;
-    padding: 50px;
+    padding-top: 2%;
+    padding-bottom: 5%;
     background: white;
   }
   
@@ -101,7 +134,7 @@ input {
     display: block;
     width: 20px;
     height: 20px;
-    border: 1px solid rgba(243, 156, 18, 1);
+    border: 2px solid rgba(195, 60, 68, 1);
     position: absolute;
     left: 0;
     top: 0;
