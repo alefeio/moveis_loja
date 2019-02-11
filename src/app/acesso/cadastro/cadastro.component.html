@@ -49,8 +49,7 @@
 <!--================================== fim =========================-->
 
 <div class="card-body">
-  <form class="form" [formGroup]="formCadastro" (ngSubmit)="cadastrarUsuario()" role="form" autocomplete="off"
-    id="formLogin" novalidate="">
+  <form class="form" [formGroup]="formCadastro" (ngSubmit)="cadastrarUsuario()">
     <div class="col text-center header-login">
       <h2>Não tem conta? cadastre-se e seja bem vindo!</h2>
     </div>
@@ -64,7 +63,7 @@
     </div>
     <div class="form-group">
       <label for="email">Email</label>
-      <input type="text" formControlName="email" class="form-control rounded-0" required>
+      <input type="email" formControlName="email" class="form-control rounded-0" required>
       <small *ngIf="formCadastro.controls['email'].errors && !formCadastro.controls.email.untouched"
         class="form-text error">
         <span *ngIf="formCadastro.controls['email'].errors.required" style="color: red"> Obrigatório!</span>
@@ -72,7 +71,7 @@
     </div>
     <div class="form-group">
       <label for="cpf">CPF</label>
-      <input type="number" formControlName="cpf" class="form-control rounded-0" required>
+      <input type="text" formControlName="cpf" class="form-control rounded-0" required>
       <small *ngIf="formCadastro.controls['cpf'].errors && !formCadastro.controls.cpf.untouched"
         class="form-text error">
         <span *ngIf="formCadastro.controls['cpf'].errors.required" style="color: red"> Obrigatório!</span>
@@ -86,31 +85,42 @@
         <span *ngIf="formCadastro.controls['nascimento'].errors.required" style="color: red"> Obrigatório!</span>
       </small>
     </div>
-    <div class="container">
-      <div class="row">
-        <div class="boxes">
-          <input type="radio" id="box-1" value="M" formControlName="sexo">
-          <label for="box-1" style="font-weight: bold">Masculino</label>
+    <div class="form-group">
+      <label for="">Sexo</label>
+      <div class="row" style="padding-left: 10%">
+        <div class="form-check col-6">
+          <input class="form-check-input" type="radio" value="M" formControlName="sexo">
+          <label class="form-check-label" for="masculino">
+            Masculino
+          </label>
         </div>
-        <div class="boxes">
-          <input type="radio" id="box-2" value="F" formControlName="sexo">
-          <label for="box-2" style="font-weight: bold">Femenino</label>
+        <div class="form-check col-6">
+          <input class="form-check-input" type="radio" value="F" formControlName="sexo">
+          <label class="form-check-label" for="feminino">
+            Feminino
+          </label>
         </div>
       </div>
     </div>
     <div class="form-group">
-        <label for="cpf">Senha</label>
-        <input type="password" formControlName="senha" class="form-control rounded-0" required>
-        <small *ngIf="formCadastro.controls['senha'].errors && !formCadastro.controls.senha.untouched"
-          class="form-text error">
-          <span *ngIf="formCadastro.controls['senha'].errors.required" style="color: red"> Obrigatório!</span>
-        </small>
-      </div>
+      <label for="senha">Senha</label>
+      <input type="password" formControlName="senha" class="form-control rounded-0" required>
+      <small *ngIf="formCadastro.controls['senha'].errors && !formCadastro.controls.senha.untouched"
+        class="form-text error">
+        <span *ngIf="formCadastro.controls['senha'].errors.required" style="color: red"> Obrigatório!</span>
+      </small>
+    </div>
     <div class="text-center">
-      <button class="btn btn-lg btn-padrao" [disabled]="!formCadastro.valid"><span>Criar conta</span></button>
+      <button type="submit" class="btn btn-lg btn-padrao" [disabled]="!formCadastro.valid"><span>Criar
+          conta</span></button>
     </div>
     <div class="link-btn">
       <button (click)="exibirPainelLogin()" class="btn rounded-0 hvr-underline-from-center">Já tenho conta!</button>
     </div>
   </form>
+  <br>
+  <p class="small text-danger text-center" *ngIf="autenticacao.msgErro != undefined">{{autenticacao.msgErro}}</p>
+  <p class="small text-center">Fique tranquilo, nosso site é seguro!</p>
+  <hr/>
+  <p class="small text-center">Ao cadastrar-se, você concorda com nossos <b>Termos</b> e <b>Política de Privacidade</b>.</p>
 </div>
