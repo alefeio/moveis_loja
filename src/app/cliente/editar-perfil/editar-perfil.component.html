@@ -252,6 +252,9 @@
           </div>
         </div>
       </div>
+      <div class="alert alert-success mt-3" role="alert" *ngIf="alerta != ''">
+        <strong>{{alerta}}</strong>
+      </div>
       <div class="text-center top-btn-edt">
         <button type="submit" class="btn-finalizar btn-padrao" [disabled]="!formPerfil.valid">Editar Perfil</button>
       </div>

@@ -45,7 +45,9 @@ export class Autenticacao implements OnDestroy {
                     })
             })
             .catch((erro: Error) => {
-                this.msgErro = erro.message
+                // this.msgErro = erro.message
+                this.msgErro = "Email ou Senha Inválido";
+
             })
 
     }
@@ -82,5 +84,4 @@ export class Autenticacao implements OnDestroy {
     ngOnDestroy(){
         this.msgErro = undefined
     }
-
 }

@@ -15,7 +15,7 @@ export class EditarPerfilComponent implements OnInit {
 
   public email: any
 
-  public alerta: string
+  public alerta: string = '';
   public estiloAlerta: string
 
   public perfilUsuario: PerfilUsuario = {
@@ -130,6 +130,7 @@ export class EditarPerfilComponent implements OnInit {
     this.bd.editarPerfil(usuario)
       .then((feed: any) => {
         this.alert(feed.estilo, feed.msg)
+        this.alerta = feed.msg
       })
   }
 
