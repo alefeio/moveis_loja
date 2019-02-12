@@ -2,6 +2,7 @@ import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Usuario } from '../../shared/usuario.model'
 import { Autenticacao } from 'src/app/autenticacao.service';
+declare var $:any
 
 @Component({
   selector: 'app-cadastro',
@@ -45,6 +46,8 @@ export class CadastroComponent implements OnInit {
     this.autenticacao.cadastrarUsuario(usuario)
       .then(() => {
         this.autenticacao.autenticar(this.formCadastro.value.email, this.formCadastro.value.senha)
+      $('#modal-login').modal('hide');
+
       })
       .catch((erro: Error) => console.log(erro))
   }

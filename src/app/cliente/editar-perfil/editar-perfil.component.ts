@@ -61,13 +61,11 @@ export class EditarPerfilComponent implements OnInit {
   ngOnInit() {
     backend.auth().onAuthStateChanged((user) => {
       this.email = user.email
-
       this.consultarPerfilUsuario()
     })
   }
 
   public preencherForm(): void {
-
     this.formPerfil.patchValue({
       nome: this.perfilUsuario.nome,
       email: this.perfilUsuario.email,
@@ -86,7 +84,6 @@ export class EditarPerfilComponent implements OnInit {
         uf: this.perfilUsuario.endereco.uf
       }
     })
-
   }
 
   public consultarPerfilUsuario(): void {
@@ -101,14 +98,16 @@ export class EditarPerfilComponent implements OnInit {
         if (usuario.telefone) this.perfilUsuario.telefone = usuario.telefone
         if (usuario.celular) this.perfilUsuario.celular = usuario.celular
 
-        if (usuario.endereco.rua) this.perfilUsuario.endereco.rua = usuario.endereco.rua
-        if (usuario.endereco.numero) this.perfilUsuario.endereco.numero = usuario.endereco.numero
-        if (usuario.endereco.complemento) this.perfilUsuario.endereco.complemento = usuario.endereco.complemento
-        if (usuario.endereco.bairro) this.perfilUsuario.endereco.bairro = usuario.endereco.bairro
-        if (usuario.endereco.cep) this.perfilUsuario.endereco.cep = usuario.endereco.cep
-        if (usuario.endereco.cidade) this.perfilUsuario.endereco.cidade = usuario.endereco.cidade
-        if (usuario.endereco.uf) this.perfilUsuario.endereco.uf = usuario.endereco.uf
-        // console.log('Usuário: ', this.usuario)
+          if(usuario.endereco) {
+            this.perfilUsuario.endereco.rua = usuario.endereco.rua
+            this.perfilUsuario.endereco.numero = usuario.endereco.numero
+            this.perfilUsuario.endereco.complemento = usuario.endereco.complemento
+            this.perfilUsuario.endereco.bairro = usuario.endereco.bairro
+            this.perfilUsuario.endereco.cep = usuario.endereco.cep
+            this.perfilUsuario.endereco.cidade = usuario.endereco.cidade
+            this.perfilUsuario.endereco.uf = usuario.endereco.uf
+          }
+        // console.log('Usuário: ', usuario)
       })
       .then(() => {
         this.preencherForm()

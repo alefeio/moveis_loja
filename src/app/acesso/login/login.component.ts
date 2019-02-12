@@ -1,7 +1,7 @@
 import { Autenticacao } from './../../autenticacao.service';
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-
+declare var $:any
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -32,6 +32,7 @@ export class LoginComponent implements OnInit {
   // autenticacao de usuario com email e senha
   public autenticar(): void {
     this.autenticacao.autenticar(this.form.value.email, this.form.value.senha)
+    $('#modal-login').modal('hide');
   }
 
 }

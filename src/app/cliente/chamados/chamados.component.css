@@ -1,0 +1,10 @@
+
+.titulo {
+    color: black;
+}
+
+@media only screen and (max-width: 640px) {
+.titulo {
+    font-size: 20px
+}
+}

@@ -353,7 +353,7 @@ a {
 }
 
  @media only screen and (max-width: 992px) {
-  #cor {background-color: rgba(243, 156, 18, .8)}
+  #cor {background-color: rgba(250, 250, 250, .9)}
 }
 
 .menu{

@@ -1,6 +1,7 @@
 import { Bd } from './../bd.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
-import * as backend from 'firebase'
+import * as backend from 'firebase';
+declare var $:any
 
 @Component({
   selector: 'app-cliente',
@@ -14,8 +15,20 @@ export class ClienteComponent implements OnInit {
   public email: any
   public usuario: any = ''
   public link: string = 'inicio'
+  fixarMenuCliente: number = 0
 
-  constructor(private bd: Bd) { }
+  constructor(private bd: Bd) {
+    let _this = this;
+    window.onscroll= function(){
+      _this.fixarMenuCliente = window.pageYOffset || document.documentElement.scrollTop
+    }
+    $(document).ready(function() {
+      $("#sidebarCollapse").on("click", function() {
+        $("#sidebar").toggleClass("active");
+        $(this).toggleClass("active");
+      });
+    });
+   }
 
   ngOnInit() {
     backend.auth().onAuthStateChanged((user) => {
