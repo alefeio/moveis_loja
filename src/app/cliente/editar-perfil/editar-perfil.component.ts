@@ -98,15 +98,15 @@ export class EditarPerfilComponent implements OnInit {
         if (usuario.telefone) this.perfilUsuario.telefone = usuario.telefone
         if (usuario.celular) this.perfilUsuario.celular = usuario.celular
 
-          if(usuario.endereco) {
-            this.perfilUsuario.endereco.rua = usuario.endereco.rua
-            this.perfilUsuario.endereco.numero = usuario.endereco.numero
-            this.perfilUsuario.endereco.complemento = usuario.endereco.complemento
-            this.perfilUsuario.endereco.bairro = usuario.endereco.bairro
-            this.perfilUsuario.endereco.cep = usuario.endereco.cep
-            this.perfilUsuario.endereco.cidade = usuario.endereco.cidade
-            this.perfilUsuario.endereco.uf = usuario.endereco.uf
-          }
+        if (usuario.endereco) {
+          this.perfilUsuario.endereco.rua = usuario.endereco.rua
+          this.perfilUsuario.endereco.numero = usuario.endereco.numero
+          this.perfilUsuario.endereco.complemento = usuario.endereco.complemento
+          this.perfilUsuario.endereco.bairro = usuario.endereco.bairro
+          this.perfilUsuario.endereco.cep = usuario.endereco.cep
+          this.perfilUsuario.endereco.cidade = usuario.endereco.cidade
+          this.perfilUsuario.endereco.uf = usuario.endereco.uf
+        }
         // console.log('Usuário: ', usuario)
       })
       .then(() => {
@@ -147,7 +147,7 @@ export class EditarPerfilComponent implements OnInit {
     let cep = this.formPerfil.get('endereco.cep').value
 
     // transforma a variável em apenas dígitos
-    if(cep) cep = cep.replace(/\D/g, '')
+    if (cep) cep = cep.replace(/\D/g, '')
 
     // verifica se o cep possui valor
     if (cep != "")

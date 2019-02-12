@@ -27,7 +27,7 @@
 <!--========================== fim ============================-->
 
 <div class="card-body">
-  <form class="form" [formGroup]="form" (ngSubmit)="recuperar()" role="form" autocomplete="off" novalidate="">
+  <form class="form" [formGroup]="form" (ngSubmit)="recuperarSenha(form.value.email)">
     <div class="form-group">
       <label for="email" style="font-weight: bold">Digite o email para recuperar a sua senha</label>
       <input type="text" formControlName="email" class="form-control rounded-0">

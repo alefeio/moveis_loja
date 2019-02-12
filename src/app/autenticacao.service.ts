@@ -73,6 +73,12 @@ export class Autenticacao implements OnDestroy {
             })
     }
 
+    recupSenha(email: string) {
+        return backend.auth().sendPasswordResetEmail(email)
+        .then(() => console.log("email enviado"))
+        .catch((error) => console.log(error.message))
+    }
+
     ngOnDestroy(){
         this.msgErro = undefined
     }
