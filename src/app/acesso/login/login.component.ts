@@ -32,9 +32,9 @@ export class LoginComponent implements OnInit {
   // autenticacao de usuario com email e senha
   public autenticar(): void {
     this.autenticacao.autenticar(this.form.value.email, this.form.value.senha)
-    if (this.autenticacao.msgErro != undefined) {
-      $('#modal-login').modal('hide');
-    }
+    setTimeout(()=>{
+      this.autenticacao.msgErro = "";
+    }, 5000);
   }
 
 }

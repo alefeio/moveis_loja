@@ -60,7 +60,7 @@
         </small>
       </div>
       <div class="container">
-        <div class="alert alert-danger" role="alert" *ngIf="autenticacao.msgErro != undefined">
+        <div class="alert alert-danger" role="alert" *ngIf="autenticacao.msgErro != undefined && autenticacao.msgErro === 'Email ou Senha Inválido!'">
           <h5 class="large text-danger text-center" style="font-weight:bold">{{autenticacao.msgErro}}</h5>
         </div>
         <div class="row">
@@ -74,7 +74,7 @@
         <button class="btn btn-lg btn-padrao" [disabled]="!form.valid"><span>&nbsp;Entrar&nbsp;</span></button>
       </div>
       <div class="link-btn">
-        <button (click)="exibirPainelCadastro()" class="btn rounded-0 hvr-underline-from-center">Não tem conta?</button>
+        <button (click)="exibirPainelCadastro()" class="btn rounded-0 hvr-underline-from-center">Cadastre-se</button>
         <button (click)="exibirPainelRecupSenha()" class="btn rounded-0 hvr-underline-from-center">Recuperar
           Senha.</button>
       </div>

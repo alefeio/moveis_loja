@@ -25,7 +25,6 @@ export class TopoComponent implements OnInit {
 
   // variaveis de efeito de fixed-top angular sem jquery
   sticky: boolean = false;
-  elementPosition: any;
 
   constructor(
     private ofertasService: OfertasService,

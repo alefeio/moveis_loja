@@ -47,7 +47,7 @@ export class CadastroComponent implements OnInit {
       .then(() => {
         this.autenticacao.autenticar(this.formCadastro.value.email, this.formCadastro.value.senha)
       $('#modal-login').modal('hide');
-
+      this.exibirPainelLogin();
       })
       .catch((erro: Error) => console.log(erro))
   }

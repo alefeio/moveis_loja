@@ -5,7 +5,7 @@
 .form-control:focus {
     -webkit-box-shadow: none;
     box-shadow: none;
-    border-bottom: 1px solid rgba(243, 156, 18, 1);
+    border-bottom: 1px solid rgba(195, 60, 68, 1) !important;
     -webkit-animation-name: teste;
     animation-name: teste;
     -webkit-animation-duration: 300ms;
@@ -17,17 +17,17 @@
 }  
 
 @keyframes teste {
-    0%{border-bottom: 1px solid rgba(243, 156, 18, 0.5); width: 10%}
-    25%{ border-bottom: 1px solid rgba(243, 156, 18, 0.5);width: 25%}
-    50%{border-bottom: 1px solid rgba(243, 156, 18, 0.5); width: 50%}
-    75%{border-bottom: 1px solid rgba(243, 156, 18, 0.5); width: 75%}
-    100%{border-bottom: 1px solid rgba(243, 156, 18, 1); width: 100%}
+    0%{border-bottom: 1px solid rgba(195, 60, 68, 0.5); width: 10%}
+    25%{ border-bottom: 1px solid rgba(195, 60, 68, 0.5);width: 25%}
+    50%{border-bottom: 1px solid rgba(195, 60, 68, 0.5); width: 50%}
+    75%{border-bottom: 1px solid rgba(195, 60, 68, 0.5); width: 75%}
+    100%{border-bottom: 1px solid rgba(195, 60, 68, 1); width: 100%}
 }
 input {
     border-top: 0;
     border-left: 0;
     border-right: 0;  
-    border-bottom: 1px solid rgba(243, 156, 18, 1);
+    border-bottom: 1px solid rgba(195, 60, 68, 1) !important;
 }
 .top-btn-edt {
     padding-top: 1%;

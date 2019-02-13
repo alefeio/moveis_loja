@@ -508,7 +508,7 @@ a {
   transition-timing-function: ease-out;
 }
 .encher:hover, .encher:focus, .encher:active {
-  color: white;
+  color: white !important;
 }
 .encher:hover:before, .encher:focus:before, .encher:active:before {
   -webkit-transform: scaleX(1);

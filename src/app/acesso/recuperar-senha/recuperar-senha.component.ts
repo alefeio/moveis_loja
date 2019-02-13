@@ -11,6 +11,8 @@ export class RecuperarSenhaComponent implements OnInit {
 
   @Output() public exibirPainel: EventEmitter<string> = new EventEmitter<string>()
 
+  msgErro:string
+
   public form: FormGroup = new FormGroup({
     'email': new FormControl(null, [Validators.required])
   })
@@ -35,5 +37,10 @@ export class RecuperarSenhaComponent implements OnInit {
 
   recuperarSenha(email: string) {
     this.autenticacao.recupSenha(email);
+    this.autenticacao.msgErro;
+    setTimeout(()=>{
+      this.autenticacao.msgErro = "";
+      this.autenticacao.class = "";
+    }, 5000);
   }
 }
