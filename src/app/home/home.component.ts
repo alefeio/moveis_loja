@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Router } from '@angular/router';
 import { OfertasService } from '../ofertas.service'
 import { Oferta } from '../shared/oferta.model'
 import { Bd } from 'src/app/bd.service';
@@ -22,7 +23,9 @@ export class HomeComponent implements OnInit {
   public pCozinha: Array<any> = []
   public pDiversos: Array<any> = []
 
-  constructor(private ofertasService: OfertasService, private bd: Bd) { }
+  constructor(private ofertasService: OfertasService, 
+              private bd: Bd,
+              private router:Router) { }
 
   ngOnInit() {
     //this.ofertas = this.ofertasService.getOfertas()
@@ -78,6 +81,10 @@ export class HomeComponent implements OnInit {
         this.ambientes = ambientes.reverse()
         console.log(this.ambientes);
       })
+  }
+
+  ofertaDetalhe(){
+    this.router.navigate(['/oferta'])
   }
 
   @ViewChild('scrollHorizontalSala', { read: ElementRef }) public widgetsContentSala: ElementRef;

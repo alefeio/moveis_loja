@@ -52,6 +52,9 @@ class CarrinhoService {
             if(itemcarrinhoEncotrado.quantidade === 0) this.itens.splice(this.itens.indexOf(itemcarrinhoEncotrado), 1) 
         }
     }
+    excluir(i) {
+        this.itens.splice(i,1);
+    }
 
     public limparCarrinho(): void {
         this.itens = []

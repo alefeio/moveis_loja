@@ -2,7 +2,7 @@ import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Usuario } from '../../shared/usuario.model'
 import { Autenticacao } from 'src/app/autenticacao.service';
-declare var $:any
+declare var $: any
 
 @Component({
   selector: 'app-cadastro',
@@ -12,7 +12,7 @@ declare var $:any
 export class CadastroComponent implements OnInit {
 
   @Output() public exibirPainel: EventEmitter<string> = new EventEmitter<string>()
-
+  cpf: number
   public formCadastro: FormGroup = new FormGroup({
     'nome': new FormControl(null, [Validators.required]),
     'email': new FormControl(null, [Validators.required, Validators.email]),
@@ -22,7 +22,8 @@ export class CadastroComponent implements OnInit {
     'senha': new FormControl(null, [Validators.required, Validators.minLength(6)])
   })
 
-  constructor(private autenticacao: Autenticacao) { }
+  constructor(private autenticacao: Autenticacao) {
+  }
 
   ngOnInit() {
 
@@ -46,8 +47,8 @@ export class CadastroComponent implements OnInit {
     this.autenticacao.cadastrarUsuario(usuario)
       .then(() => {
         this.autenticacao.autenticar(this.formCadastro.value.email, this.formCadastro.value.senha)
-      $('#modal-login').modal('hide');
-      this.exibirPainelLogin();
+        $('#modal-login').modal('hide');
+        this.exibirPainelLogin();
       })
       .catch((erro: Error) => console.log(erro))
   }

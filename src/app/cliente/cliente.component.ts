@@ -18,11 +18,18 @@ export class ClienteComponent implements OnInit {
   fixarMenuCliente: number = 0
 
   constructor(private bd: Bd) {
-    let _this = this;
-    window.onscroll= function(){
-      _this.fixarMenuCliente = window.pageYOffset || document.documentElement.scrollTop
-    }
     $(document).ready(function() {
+      var menuCliente = $('#v-pills-tab');
+      var btnCollapse = $('#btn-collapse');
+      $(window).scroll(function(){
+        if($(this).scrollTop() > 180) {
+          menuCliente.addClass('menu-cliente');
+          btnCollapse.addClass('menu-collapse');
+        }else{
+          menuCliente.removeClass('menu-cliente');
+          btnCollapse.removeClass('menu-collapse');
+        }
+      })
       $("#sidebarCollapse").on("click", function() {
         $("#sidebar").toggleClass("active");
         $(this).toggleClass("active");
@@ -33,7 +40,6 @@ export class ClienteComponent implements OnInit {
   ngOnInit() {
     backend.auth().onAuthStateChanged((user) => {
       this.email = user.email
-
       this.consultarUsuario()
     })
   }

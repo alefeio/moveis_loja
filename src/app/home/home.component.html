@@ -61,11 +61,11 @@
           <h5 class="card-title">{{oferta.titulo}}</h5>
           <div class="row">
             <div class="col">
-              <p class="card-text pb-3">Por: {{ oferta.valor | currency: 'BRL' }}</p>
+              <p class="card-text pb-3">Por: {{ oferta.valorAVista | currency: 'BRL' }}</p>
             </div>
           </div>
           <div class="text-center">
-            <button class="btn btn-padrao" [routerLink]="['/oferta', oferta.key]">Ver Oferta</button>
+            <a class="btn btn-padrao" [routerLink]="['/oferta', oferta.key]" style="text-decoration: no">Ver Oferta</a>
           </div>
         </div>
       </a>
@@ -102,21 +102,21 @@
   <div class="col-md-12">
     <div #scrollHorizontalQuarto class="middle">
       <a class="prev" (click)="scrollEsquerda('Quarto')">&#10094;</a>
-      <div *ngFor="let oferta of pQuarto" style="padding: 3%" class="card info-widget flutuar"
+      <a [routerLink]="['/oferta', oferta.key]" *ngFor="let oferta of pQuarto" style="padding: 3%" class="card info-widget flutuar"
         style="width: 18rem; margin: 1em">
         <img [src]="oferta.url_imagem || ''" class="card-img-top">
         <div class="card-body">
           <h5 class="card-title">{{oferta.titulo}}</h5>
           <div class="row">
             <div class="col">
-              <p class="card-text pb-3">Por: {{ oferta.valor | currency: 'BRL' }}</p>
+              <p class="card-text pb-3">Por: {{ oferta.valorAVista | currency: 'BRL' }}</p>
             </div>
           </div>
           <div class="text-center">
-            <button class="btn btn-padrao" [routerLink]="['/oferta', oferta.key]">Ver Oferta</button>
+            <button class="btn btn-padrao" routerLink="['/oferta', oferta.key]">Ver Oferta</button>
           </div>
         </div>
-      </div>
+      </a>
       <a class="next" (click)="scrollDireita('Quarto')" style="margin-right: 1em">&#10095;</a>
     </div>
   </div>

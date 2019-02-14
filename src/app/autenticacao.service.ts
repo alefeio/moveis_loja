@@ -67,8 +67,6 @@ export class Autenticacao implements OnDestroy {
         return this.token_id !== undefined
     }
 
-
-
     public sair(): void {
         backend.auth().signOut()
             .then(() => {

@@ -99,7 +99,6 @@ select.ng-valid.ng-touched{
     background-color: #f5f7fa;
     border: 1px solid #C33C44;
     position: relative;
-    z-index: 1;
     padding: 30px 20px;
   }
   li {
@@ -145,4 +144,8 @@ select.ng-valid.ng-touched{
 
 .vazio > span {
     font-size: 40px;
+}
+
+.img-animate {
+    padding-left: 40%;
 }

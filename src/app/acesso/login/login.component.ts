@@ -1,6 +1,7 @@
 import { Autenticacao } from './../../autenticacao.service';
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+
 declare var $: any
 @Component({
   selector: 'app-login',

@@ -10,6 +10,7 @@ import { UsuarioPedido } from '../shared/usuario-pedido.model';
 import { Progresso } from 'src/app/progresso.service';
 import { Observable, interval, observable, Subject, pipe } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
+declare var $: any;
 
 @Component({
   selector: 'app-ordem-compra',
@@ -21,7 +22,7 @@ export class OrdemCompraComponent implements OnInit {
 
   public idPedidoCompra: number
   public itensCarrinho: ItemCarrinho[] = []
-  mostrar:number
+  mostrar: number
 
   public alerta: string
   public estiloAlerta: string
@@ -66,10 +67,8 @@ export class OrdemCompraComponent implements OnInit {
     this.itensCarrinho = this.carrinhoService.exibirItens()
     if (this.itensCarrinho.length == 0) {
       this.mostrar = 0
-      console.log("eu sou verdadeiro 0");
     } else {
       this.mostrar = 1
-      console.log("eu sou verdadeiro 1");
     }
     console.log(this.itensCarrinho);
     backend.auth().onAuthStateChanged((user) => {
@@ -95,13 +94,13 @@ export class OrdemCompraComponent implements OnInit {
     if (this.form.status === 'INVALID') {
       this.form.get('formaPagamento').markAsTouched()
     } else {
-
       if (this.carrinhoService.exibirItens().length === 0) {
+
         this.alert('danger', 'Não há produtos no seu carrinho.')
       } else if (this.email === '') {
+        
         this.alert('danger', 'Você precisa estar logado para finalizar a compra.')
       } else {
-
         let pedido: Pedido = new Pedido(
           this.usuarioPedido.nome,
           this.usuarioPedido.email,
@@ -115,6 +114,8 @@ export class OrdemCompraComponent implements OnInit {
 
         this.bd.efetivarCompra(pedido)
           .then(idPedido => {
+            this.itensCarrinho = [];
+            $('#exampleModal').modal('show')
             this.idPedidoCompra = idPedido.key
           })
           .catch(error => {
@@ -127,7 +128,7 @@ export class OrdemCompraComponent implements OnInit {
 
   public diminuir(item: ItemCarrinho) {
     this.carrinhoService.diminuirQuantidade(item)
-    if(this.itensCarrinho.length === 0) {
+    if (this.itensCarrinho.length === 0) {
       this.mostrar = 0;
     }
   }
@@ -136,13 +137,24 @@ export class OrdemCompraComponent implements OnInit {
     this.carrinhoService.adicionarQuantidade(item)
   }
 
+  excluirItemCarrinho(i){
+    this.carrinhoService.excluir(i);
+    if (this.itensCarrinho.length == 0) {
+      this.mostrar = 0
+    } else {
+      this.mostrar = 1
+    }
+  }
+
   public alert(estilo: string, mensagem: string): void {
+    $('#exampleModal').modal('show');
     this.alerta = mensagem
     this.estiloAlerta = estilo
     setTimeout(() => {
+      $('#exampleModal').modal('hide');
       this.alerta = ''
       this.estiloAlerta = ''
-    }, 3000)
+    }, 5000)
   }
 
   public acompanhaUpload(): void {

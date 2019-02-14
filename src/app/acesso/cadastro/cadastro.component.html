@@ -62,6 +62,14 @@
       </small>
     </div>
     <div class="form-group">
+      <label for="cpf">CPF</label>
+      <input type="text" mascara="999.999.999-99" formControlName="cpf" class="form-control rounded-0" required>
+      <small *ngIf="formCadastro.controls['cpf'].errors && !formCadastro.controls.cpf.untouched"
+        class="form-text error">
+        <span *ngIf="formCadastro.controls['cpf'].errors.required" style="color: red"> Obrigatório!</span>
+      </small>
+    </div>
+    <div class="form-group">
       <label for="email">Email</label>
       <input type="email" formControlName="email" class="form-control rounded-0" required>
       <small *ngIf="formCadastro.controls['email'].errors && !formCadastro.controls.email.untouched"
@@ -70,16 +78,8 @@
       </small>
     </div>
     <div class="form-group">
-      <label for="cpf">CPF</label>
-      <input type="text" formControlName="cpf" class="form-control rounded-0" required>
-      <small *ngIf="formCadastro.controls['cpf'].errors && !formCadastro.controls.cpf.untouched"
-        class="form-text error">
-        <span *ngIf="formCadastro.controls['cpf'].errors.required" style="color: red"> Obrigatório!</span>
-      </small>
-    </div>
-    <div class="form-group">
       <label for="dataNascimento">Data de Nascimento</label>
-      <input type="date" formControlName="nascimento" class="form-control rounded-0" required>
+      <input type="text" mascara="99/99/9999" formControlName="nascimento" class="form-control rounded-0" required>
       <small *ngIf="formCadastro.controls['nascimento'].errors && !formCadastro.controls.nascimento.untouched"
         class="form-text error">
         <span *ngIf="formCadastro.controls['nascimento'].errors.required" style="color: red"> Obrigatório!</span>
@@ -121,6 +121,8 @@
   <br>
   <p class="small text-danger text-center" *ngIf="autenticacao.msgErro != undefined">{{autenticacao.msgErro}}</p>
   <p class="small text-center">Fique tranquilo, nosso site é seguro!</p>
-  <hr/>
-  <p class="small text-center">Ao cadastrar-se, você concorda com nossos <b>Termos</b> e <b>Política de Privacidade</b>.</p>
+  <hr />
+  <p class="small text-center">Ao cadastrar-se, você concorda com nossos <b>Termos</b> e <b>Política de Privacidade</b>.
+  </p>
 </div>
+

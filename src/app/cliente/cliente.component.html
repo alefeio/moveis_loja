@@ -90,12 +90,12 @@
 </div> -->
 
 <div class="wrapper">
-  <nav id="sidebar" style="border: 1px solid rgba(195, 60, 68, 1) !important;">
+  <nav id="sidebar" style="border-right: 1px solid rgba(195, 60, 68, 1) !important;">
     <div class="sidebar-header">
       <h3 style="color: black">Area do Cliente</h3>
     </div>
     <ul class="list-unstyled components">
-      <div [ngClass]="{'menu-cliente': fixarMenuCliente > 250}" class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+      <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
         <a class="nav-link active btn-padrao" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab"
           aria-controls="v-pills-home" aria-selected="true" (click)="alterarLink('inicio')"><i class="fas fa-home"></i>
           Início</a>
@@ -115,7 +115,7 @@
     </ul>
   </nav>
   <div class="cont">
-    <nav [ngClass]="{'menu-collapse': fixarMenuCliente > 250}" class="navbar navbar-default">
+    <nav class="navbar navbar-default" id="btn-collapse">
       <div class="container-fluid">
         <div class="navbar-header">
           <button type="button" id="sidebarCollapse" class="btn btn-padrao">

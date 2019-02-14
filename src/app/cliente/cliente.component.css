@@ -172,13 +172,13 @@ a.article:hover {
 
 .menu-cliente {
   position: fixed;
-  top: 0;
+  top: 25% !important;
   min-width: 250px;
   max-width: 250px;
 }
 
 .menu-collapse {
   position: fixed;
-  top: 50px !important;
+  top: 25% !important;
   z-index: 99;
 }
