@@ -119,8 +119,8 @@ export class EditarPerfilComponent implements OnInit {
     let usuario: PerfilUsuario = new PerfilUsuario(
       this.formPerfil.value.nome,
       this.formPerfil.value.email,
-      this.formPerfil.value.cpf,
-      this.formPerfil.value.nascimento,
+      this.formPerfil.value.cpf.replace(/[^\d]/g, ""),
+      this.formPerfil.value.nascimento.replace(/[^\d]/g, ""),
       this.formPerfil.value.sexo,
       this.formPerfil.value.telefone,
       this.formPerfil.value.celular,
@@ -131,6 +131,7 @@ export class EditarPerfilComponent implements OnInit {
       .then((feed: any) => {
         this.alert(feed.estilo, feed.msg)
         this.alerta = feed.msg
+        this.formPerfil.reset();
       })
   }
 

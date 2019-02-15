@@ -43,7 +43,6 @@ import { NgControl } from "@angular/forms";
       return valor;
     }
   
-  
     ngAfterViewInit() {
       this.control.control.setValue(this.mascara());
     }
@@ -51,7 +50,6 @@ import { NgControl } from "@angular/forms";
     @HostListener('blur', ['$event']) 
     onBlur($event: any) {
       this.control.control.setValue(this.mascara());
-      console.log(this.control.control.value);
       if (this.control.control.value.length === this.mask.length) {
         return;
       }

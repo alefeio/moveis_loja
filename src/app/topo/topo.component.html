@@ -110,7 +110,7 @@
           </a>
         </li>
         <li class="nav-item text-center" *ngIf="!autenticacao.token_id">
-          <a class="nav-link" routerLinkActive="active" data-toggle="modal" data-target="#modal-login">
+          <a class="nav-link" (click)="painelLogin()" routerLinkActive="active" data-toggle="modal" data-target="#modal-login">
             <img src="/src/assets/login.png" class="img-fluid" style="width: 30px" />
             <br>Login
           </a>

@@ -63,7 +63,9 @@
     </div>
     <div class="form-group">
       <label for="cpf">CPF</label>
-      <input type="text" mascara="999.999.999-99" formControlName="cpf" class="form-control rounded-0" required>
+      <p class="text-danger" *ngIf="msg === 'Este CPF ja existe!'">{{msg}}</p>
+      <p class="text-success" *ngIf="msg === 'CPF valido!'">{{msg}}</p>
+      <input type="text" mascara="999.999.999-99" (blur)="verificarCPF($event.target.value)" formControlName="cpf" class="form-control rounded-0" required>
       <small *ngIf="formCadastro.controls['cpf'].errors && !formCadastro.controls.cpf.untouched"
         class="form-text error">
         <span *ngIf="formCadastro.controls['cpf'].errors.required" style="color: red"> Obrigatório!</span>
@@ -71,7 +73,9 @@
     </div>
     <div class="form-group">
       <label for="email">Email</label>
-      <input type="email" formControlName="email" class="form-control rounded-0" required>
+      <p class="text-danger" *ngIf="msg === 'Este E-mail ja existe!'">{{msg}}</p>
+      <p class="text-success" *ngIf="msg === 'E-mail valido!'">{{msg}}</p>
+      <input type="email" formControlName="email" (blur)="validarEmail($event.target.value)" class="form-control rounded-0" required>
       <small *ngIf="formCadastro.controls['email'].errors && !formCadastro.controls.email.untouched"
         class="form-text error">
         <span *ngIf="formCadastro.controls['email'].errors.required" style="color: red"> Obrigatório!</span>
@@ -102,6 +106,7 @@
         </div>
       </div>
     </div>
+    <p class="text-danger">Senha Válida com no minimo 6 digitos!</p>
     <div class="form-group">
       <label for="senha">Senha</label>
       <input type="password" formControlName="senha" class="form-control rounded-0" required>
@@ -110,6 +115,7 @@
         <span *ngIf="formCadastro.controls['senha'].errors.required" style="color: red"> Obrigatório!</span>
       </small>
     </div>
+    <p class="text-danger text-center" *ngIf="autenticacao.msgErro != undefined">{{autenticacao.msgErro}}</p>
     <div class="text-center">
       <button type="submit" class="btn btn-lg btn-padrao" [disabled]="!formCadastro.valid"><span>Criar
           conta</span></button>
@@ -119,7 +125,6 @@
     </div>
   </form>
   <br>
-  <p class="small text-danger text-center" *ngIf="autenticacao.msgErro != undefined">{{autenticacao.msgErro}}</p>
   <p class="small text-center">Fique tranquilo, nosso site é seguro!</p>
   <hr />
   <p class="small text-center">Ao cadastrar-se, você concorda com nossos <b>Termos</b> e <b>Política de Privacidade</b>.

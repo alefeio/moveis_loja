@@ -1,6 +1,6 @@
 import { Bd } from './../bd.service';
 import { Autenticacao } from './../autenticacao.service';
-import { Component, OnInit, AfterViewInit, ViewChild, ElementRef, HostListener } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output, AfterViewInit, ViewChild, ElementRef, HostListener } from '@angular/core';
 import { OfertasService } from './../ofertas.service';
 import { Observable, Subject, of } from 'rxjs';
 import { switchMap, debounceTime, distinctUntilChanged } from 'rxjs/operators';
@@ -14,6 +14,8 @@ declare var $: any
   providers: [OfertasService]
 })
 export class TopoComponent implements OnInit {
+
+  @Output() public exibirPainel: EventEmitter<string> = new EventEmitter<string>()
 
   public ofertas: Observable<Oferta[]>
   private subjectPesquisa: Subject<string> = new Subject<string>()
@@ -41,6 +43,10 @@ export class TopoComponent implements OnInit {
         $(this).toggleClass('open');
       });
     });
+  }
+
+ public painelLogin(): void {
+    this.exibirPainel.emit('login')
   }
 
   ngOnInit() {

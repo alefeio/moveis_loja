@@ -2,7 +2,7 @@ import { Usuario } from "./shared/usuario.model";
 import * as backend from 'firebase'
 import { Injectable, OnDestroy } from "@angular/core";
 import { Router } from "@angular/router";
-declare var $:any
+declare var $: any
 
 @Injectable()
 export class Autenticacao implements OnDestroy {
@@ -27,10 +27,9 @@ export class Autenticacao implements OnDestroy {
                 // registrando dados complementares do usuario no path email na base64
                 backend.database().ref(`usuario_detalhe/${btoa(usuario.email)}`)
                     .set(usuario)
-
             })
             .catch((erro: Error) => {
-                this.msgErro = erro.message
+                this.msgErro = "Este usuario ja existe!"
             })
     }
 
@@ -42,8 +41,9 @@ export class Autenticacao implements OnDestroy {
                 backend.auth().currentUser.getIdToken()
                     .then((idToken: string) => {
                         this.token_id = idToken
+                        console.log(this.token_id);
                         localStorage.setItem('idToken', this.token_id)
-                        $('#modal-login').modal('hide');
+                        // $('#modal-login').modal('hide');
                         this.router.navigate(['/cliente'])
                     })
             })
@@ -88,6 +88,12 @@ export class Autenticacao implements OnDestroy {
                 this.class = "alert-danger"
             });
     }
+
+    virificarUsuario(){
+      return backend.database().ref('usuario_detalhe').once('value')
+    }
+
+    
 
     ngOnDestroy() {
         this.msgErro = undefined
