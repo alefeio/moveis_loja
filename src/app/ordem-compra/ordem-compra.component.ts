@@ -10,6 +10,7 @@ import { UsuarioPedido } from '../shared/usuario-pedido.model';
 import { Progresso } from 'src/app/progresso.service';
 import { Observable, interval, observable, Subject, pipe } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
+import * as uid from 'uuid/v4';
 declare var $: any;
 
 @Component({
@@ -21,6 +22,7 @@ declare var $: any;
 export class OrdemCompraComponent implements OnInit {
 
   public idPedidoCompra: number
+  uidCompra: string
   public itensCarrinho: ItemCarrinho[] = []
   mostrar: number
 
@@ -29,6 +31,8 @@ export class OrdemCompraComponent implements OnInit {
 
   public progressoPublicacao: string = 'pendente'
   public porcentegemUpload: number
+
+
 
   public email: string = ''
   public usuarioPedido: UsuarioPedido = {
@@ -61,7 +65,9 @@ export class OrdemCompraComponent implements OnInit {
     private carrinhoService: CarrinhoService,
     private bd: Bd,
     private progresso: Progresso
-  ) { }
+  ) {
+    $('html,body').scrollTop(0);
+  }
 
   ngOnInit() {
     this.itensCarrinho = this.carrinhoService.exibirItens()
@@ -70,12 +76,14 @@ export class OrdemCompraComponent implements OnInit {
     } else {
       this.mostrar = 1
     }
-    console.log(this.itensCarrinho);
+    // console.log(this.itensCarrinho); 
     backend.auth().onAuthStateChanged((user) => {
       this.email = user.email
-
       this.consultarUsuario()
     })
+  }
+  gerarCodigo() {
+    return uid()
   }
 
   public consultarUsuario(): void {
@@ -98,7 +106,7 @@ export class OrdemCompraComponent implements OnInit {
 
         this.alert('danger', 'Não há produtos no seu carrinho.')
       } else if (this.email === '') {
-        
+
         this.alert('danger', 'Você precisa estar logado para finalizar a compra.')
       } else {
         let pedido: Pedido = new Pedido(
@@ -111,17 +119,22 @@ export class OrdemCompraComponent implements OnInit {
           this.form.value.formaPagamento,
           this.carrinhoService.exibirItens()
         )
-
+      
         this.bd.efetivarCompra(pedido)
-          .then(idPedido => {
-            this.itensCarrinho = [];
-            $('#exampleModal').modal('show')
-            this.idPedidoCompra = idPedido.key
-          })
-          .catch(error => {
-            console.log(error)
-          })
-
+        .then(idPedido => {
+          this.itensCarrinho = [];
+          $('#exampleModal').modal('show')
+          this.idPedidoCompra = idPedido.key
+          console.log(`este é o id do pedido ${idPedido}`);
+          if (this.itensCarrinho.length == 0) {
+            this.mostrar = 0
+          } else {
+            this.mostrar = 1
+          }
+        })
+        .catch(error => {
+          console.log(error)
+        })
       }
     }
   }
@@ -137,7 +150,7 @@ export class OrdemCompraComponent implements OnInit {
     this.carrinhoService.adicionarQuantidade(item)
   }
 
-  excluirItemCarrinho(i){
+  excluirItemCarrinho(i) {
     this.carrinhoService.excluir(i);
     if (this.itensCarrinho.length == 0) {
       this.mostrar = 0

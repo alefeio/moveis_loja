@@ -96,14 +96,14 @@
 
 @media(max-width: 500px){
     .navbar-collapse{
-        background: #efefef;
-        padding: 10px;
-        border-radius: 0 5px 5px 5px;
-        z-index: 1100;
-        opacity:1;
+      background: #efefef;
+      padding: 10px;
+      border-radius: 0 5px 5px 5px;
+      z-index: 1100;
+      opacity:1;
     }
     .largura-amb {
-      width: 60% !important;
+      width: 22% !important;
     }
 }
 

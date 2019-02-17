@@ -4,7 +4,7 @@ import { Oferta } from './shared/oferta.model';
 class CarrinhoService {
     public itens: ItemCarrinho[] = []
 
-    public exibirItens(): ItemCarrinho[] {
+    public  exibirItens(): ItemCarrinho[] {
         return this.itens
     }
 
@@ -18,12 +18,18 @@ class CarrinhoService {
             1
         )
 
+        console.log(itemCarrinho);
+
         let itemCarrinhoEncontrado = this.itens.find((item: ItemCarrinho) => item.key === itemCarrinho.key)
 
         if(itemCarrinhoEncontrado){
             itemCarrinhoEncontrado.quantidade += 1
+        console.log("executei item carrinho incontrado");
+
         } else{
             this.itens.push(itemCarrinho)
+        console.log("executei");
+
         }
     }
 

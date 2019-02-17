@@ -21,13 +21,16 @@ export class ClienteComponent implements OnInit {
     $(document).ready(function() {
       var menuCliente = $('#v-pills-tab');
       var btnCollapse = $('#btn-collapse');
+      var areaCliente = $('#area-cliente');
       $(window).scroll(function(){
         if($(this).scrollTop() > 180) {
           menuCliente.addClass('menu-cliente');
           btnCollapse.addClass('menu-collapse');
+          areaCliente.addClass('area-cliente');
         }else{
           menuCliente.removeClass('menu-cliente');
           btnCollapse.removeClass('menu-collapse');
+          areaCliente.removeClass('area-cliente');
         }
       })
       $("#sidebarCollapse").on("click", function() {

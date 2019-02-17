@@ -34,13 +34,13 @@ select.ng-valid.ng-touched{
    border-radius: 20px;
 }
 .preco {
-    padding-top: 10%;
+    padding-top: 5%;
     font-size: 25px;
     font-weight: bold
 }
 
 .esp-qtd {
-    padding-top: 10%
+    padding-top: 5%
 }
 
 .esp-num {
@@ -101,6 +101,7 @@ select.ng-valid.ng-touched{
     position: relative;
     padding: 30px 20px;
   }
+  
   li {
     display: -webkit-box;
     display: -ms-flexbox;

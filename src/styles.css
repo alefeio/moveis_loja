@@ -97,3 +97,12 @@ h3 {
     -webkit-box-shadow: none;
       box-shadow: none;
    }
+
+   @media(max-width: 500px){
+    .banner{
+        border-bottom: 1px solid #bbb;
+        background: url("/assets/banners/sofa_inicio.svg") center top no-repeat !important;
+        background-size: cover !important;
+        height: 170px;
+    }
+}
