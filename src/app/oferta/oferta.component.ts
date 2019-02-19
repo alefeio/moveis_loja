@@ -14,6 +14,12 @@ export class OfertaComponent implements OnInit, OnDestroy {
   public oferta: any = ''
   public key: string
 
+  cores:any = [
+    '#fff',
+    '#000',
+    '#0000ff'
+  ]
+
   constructor(
     private bd: Bd,
     private route: ActivatedRoute,
@@ -35,6 +41,7 @@ export class OfertaComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    console.log(this.cores);
 
     this.route.params.subscribe((parametros: Params) => {
 

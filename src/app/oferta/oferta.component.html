@@ -121,8 +121,9 @@
         </div>
         <!-- fim do modal -->
         <div class="row">
-          <div class="col text-center">
-            <p><span>Cor: </span> {{oferta.cor}}</p>
+          <div class="col text-center" *ngFor="let cor of cores">
+            <p><span>Disponível nas cores: </span> </p>
+            <div></div>
           </div>
         </div>
         <div class="row">

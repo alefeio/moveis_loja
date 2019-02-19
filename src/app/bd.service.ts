@@ -658,6 +658,22 @@ export class Bd {
         })
     }
 
+    incluirDadosPerfil(dados:any): Promise<any>{
+        return new Promise((resolve, reject)=>{
+            backend.database().ref(`usuario_detalhe/${btoa(dados.email)}`).update({
+                telefone: dados.telefone,
+                celular: dados.celular,
+                endereco: dados.endereco
+            }).then(() => {
+                let feed: any = {
+                    estilo: 'success',
+                    msg: 'Perfil atualizado com sucesso!'
+                }
+                resolve(feed)
+            })
+        })
+    }
+
     public editarProduto(produto: any): void {
 
         let urlProduto = this.util.removeAcentoEspaco(produto.titulo)
