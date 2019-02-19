@@ -1,6 +1,7 @@
 import { Autenticacao } from './../../autenticacao.service';
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+declare var $:any
 
 @Component({
   selector: 'app-recuperar-senha',
@@ -41,6 +42,7 @@ export class RecuperarSenhaComponent implements OnInit {
     setTimeout(()=>{
       this.autenticacao.msgErro = "";
       this.autenticacao.class = "";
+      $('#modal-login').modal('hide');
     }, 5000);
   }
 }

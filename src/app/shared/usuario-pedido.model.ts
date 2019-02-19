@@ -1,6 +1,7 @@
 export class UsuarioPedido {
     constructor(
         public nome: string,
+        public codigo: string,
         public email: string,
         public cpf: string,
         public telefone: string,

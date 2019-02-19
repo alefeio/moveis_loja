@@ -24,7 +24,7 @@ declare var $: any;
 })
 export class OrdemCompraComponent implements OnInit {
 
-  public idPedidoCompra: number
+  public idPedidoCompra: string
   uidCompra: string
   public itensCarrinho: ItemCarrinho[] = []
   mostrar: number
@@ -37,6 +37,7 @@ export class OrdemCompraComponent implements OnInit {
   mostrarFormulario: number = 0
   public usuarioPedido: UsuarioPedido = {
     nome: '',
+    codigo: '',
     email: '',
     cpf: '',
     telefone: '',
@@ -139,7 +140,6 @@ export class OrdemCompraComponent implements OnInit {
     )
     this.consultarUsuario();
     this.mostrarFormulario = 0
-
     this.bd.incluirDadosPerfil(dadosAdicionais)
       .then((feed: any) => {
         this.alert(feed.estilo, feed.msg)
@@ -175,9 +175,9 @@ export class OrdemCompraComponent implements OnInit {
       this.usuarioPedido.endereco.numero != null &&
       this.usuarioPedido.endereco.rua != "" &&
       this.usuarioPedido.endereco.uf != "") {
-        console.log("todas as anteriores nao sao verdadeiras");
         let pedido: Pedido = new Pedido(
           this.usuarioPedido.nome,
+          this.usuarioPedido.codigo,
           this.usuarioPedido.email,
           this.usuarioPedido.cpf,
           this.usuarioPedido.telefone,
@@ -191,7 +191,10 @@ export class OrdemCompraComponent implements OnInit {
           .then(idPedido => {
             this.mostrarAlert = 1;
             $('#exampleModal').modal('show')
-            this.idPedidoCompra = idPedido.key
+            // this.idPedidoCompra = idPedido.key
+            pedido.codigo = this.gerarCodigo();
+            this.idPedidoCompra = pedido.codigo;
+            console.log(pedido);
             if(this.email != '' || this.idPedidoCompra != undefined){
               this.itensCarrinho = [];
             }

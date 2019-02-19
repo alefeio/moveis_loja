@@ -155,3 +155,9 @@ input {
     -webkit-transform: rotate(45deg);
     transform: rotate(45deg);
   }
+
+  @media(max-width: 500px){
+    #tam-font {
+      font-size: 25px;
+    }
+}
