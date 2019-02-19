@@ -345,12 +345,12 @@
         </button>
       </div>
       <div class="modal-body" style="height: 20%">
-        <div class="ordem-compra" *ngIf="idPedidoCompra != undefined">
+        <div class="ordem-compra" *ngIf="idPedidoCompra != undefined && mostrarAlert != 0">
           <app-ordem-compra-sucesso [idPedidoCompra]="idPedidoCompra"></app-ordem-compra-sucesso>
         </div>
         <div class="alert alert-{{estiloAlerta}} text-center" role="alert" *ngIf="alerta != undefined && alerta != 'Perfil atualizado com sucesso!'">
-          <div class="row img-animate">
-            <img src="/src/assets/error.svg" height="100" width="100" *ngIf="alerta != undefined && alerta != 'Perfil atualizado com sucesso!'">
+          <div class="row img-animate" *ngIf="mostrarAlert === 0">
+            <img src="/src/assets/error.svg" height="100" width="100">
           </div>
           <strong>{{alerta}}</strong>
         </div>

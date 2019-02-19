@@ -45,20 +45,20 @@ export class TopoComponent implements OnInit {
     });
   }
 
- public painelLogin(): void {
+  public painelLogin(): void {
     this.exibirPainel.emit('login')
   }
 
   ngOnInit() {
-
+    if (localStorage.getItem('idToken')) {
+      this.autenticacao.token_id = localStorage.getItem('idToken');
+    }
     this.consultarAmbientes()
-
     this.ofertas = this.subjectPesquisa
       .pipe(
         debounceTime(1000),
         distinctUntilChanged(),
         switchMap((termo: string) => {
-
           if (termo.trim() === '') {
             return of<Oferta[]>([])
           }
@@ -69,7 +69,7 @@ export class TopoComponent implements OnInit {
 
   public pesquisa(termoDaBusca: string): void {
     this.subjectPesquisa.next(termoDaBusca)
-    console.log('Termo da busca: ', termoDaBusca)
+    // console.log('Termo da busca: ', termoDaBusca)
   }
 
   public limpaPesquisa(): void {

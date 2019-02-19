@@ -28,6 +28,7 @@ export class OrdemCompraComponent implements OnInit {
   uidCompra: string
   public itensCarrinho: ItemCarrinho[] = []
   mostrar: number
+  mostrarAlert:number = 0
   public alerta: string
   public estiloAlerta: string
   public progressoPublicacao: string = 'pendente'
@@ -155,7 +156,6 @@ export class OrdemCompraComponent implements OnInit {
         this.alert('danger', 'Não há produtos no seu carrinho.')
       } else if (this.email === '') {
         this.alert('danger', 'Você precisa estar logado para finalizar a compra.')
-        console.log("nao logado verdadeiro")
       }
       if (
         this.email != "" &&
@@ -167,7 +167,6 @@ export class OrdemCompraComponent implements OnInit {
         this.usuarioPedido.endereco.rua === "" &&
         this.usuarioPedido.endereco.uf === "") {
         this.mostrarFormulario = 1
-        console.log("sem dados de endereco verdadeiro");
       }
       if(this.email != "" && this.usuarioPedido.endereco.bairro != "" &&
       this.usuarioPedido.endereco.cep != "" &&
@@ -190,6 +189,7 @@ export class OrdemCompraComponent implements OnInit {
 
         this.bd.efetivarCompra(pedido)
           .then(idPedido => {
+            this.mostrarAlert = 1;
             $('#exampleModal').modal('show')
             this.idPedidoCompra = idPedido.key
             if(this.email != '' || this.idPedidoCompra != undefined){

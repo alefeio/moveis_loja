@@ -139,6 +139,7 @@ export class EditarPerfilComponent implements OnInit {
     setTimeout(() => {
       this.alerta = ''
       this.estiloAlerta = ''
+      this.consultarPerfilUsuario()
     }, 3000)
   }
 

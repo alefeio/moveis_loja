@@ -41,10 +41,9 @@ export class Autenticacao implements OnDestroy {
                 backend.auth().currentUser.getIdToken()
                     .then((idToken: string) => {
                         this.token_id = idToken
-                        console.log(this.token_id);
                         localStorage.setItem('idToken', this.token_id)
                         $('#modal-login').modal('hide');
-                        this.router.navigate(['/cliente'])
+                        // this.router.navigate(['/cliente'])
                     })
             })
             .catch((erro: Error) => {
