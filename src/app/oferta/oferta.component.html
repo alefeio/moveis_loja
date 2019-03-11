@@ -1,26 +1,12 @@
 <div class="oferta">
-  <!-- <div class="row">
-      <div class="col">
-        <a [routerLink]="['/oferta', 1]">Oferta 1</a>
-        <a [routerLink]="['/oferta', 2]">Oferta 2</a>
-        <a [routerLink]="['/oferta', 3]">Oferta 3</a>
-      </div>
-    </div> -->
-
   <div class="row" style="margin: 4%;">
     <div class="col-md-7" style="overflow: hidden;">
       <div class="zoom">
-        <img [src]="oferta.url_imagem || ''" class="img-zoom img-fluid" alt="">
+        <img [src]="imagem.url || ''" class="img-zoom img-fluid" alt="">
       </div>
-      <!-- <div class="row">
-        <div class="col">
-          <h5 style="color: black">Descrição: </h5>
-          <pre>{{oferta.descricao_oferta}}</pre>
-        </div>
-      </div> -->
-      <!-- <div class="thumbnails">
-          <img *ngFor="let imagem of oferta.imagens" [src]="imagem.url" />
-        </div> -->
+      <div class="thumbnails">
+        <img *ngFor="let imagem of imgs; let i = index" (mouseenter)="imgHover(i)" [src]="imagem.url" />
+      </div>
     </div>
 
     <!-- <div class="col-md-6">
@@ -75,11 +61,11 @@
     <div class="col-md-5">
       <div style="background: #f5f7fa; border: 1px solid #C33C44; padding: 5%;">
         <div class="text-center">
-          <h2>{{oferta.titulo}}</h2>
+          <h2>{{oferta.nome}}</h2>
         </div>
         <!-- modal -->
-        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
-          aria-hidden="true">
+        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+          aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
           <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
               <div class="modal-header" style="background-color: rgba(243, 156, 18, 1);">
@@ -92,19 +78,19 @@
               <div class="modal-body">
                 <div class="row">
                   <div class="col text-center">
-                    <span style="font-size: 20px">{{oferta.titulo}}</span>
+                    <span style="font-size: 20px">{{oferta.nome}}</span>
                   </div>
                 </div>
                 <div class="row">
                   <div class="col">
-                    <img [src]="oferta.url_imagem || ''" class="img-fluid">
+                    <img [src]="oferta.cores[0].imagem[0].url || ''" class="img-fluid">
                   </div>
                   <div class="col">
-                    <span>Cor: </span>
-                    <p>{{oferta.cor}}</p>
+                    <!-- <span>Cor: </span>
+                    <p>{{oferta.cor}}</p> -->
                     <span>Marca</span>
                     <p>{{oferta.marca}}</p>
-                    <span style="font-size: 25px">Valor: </span><span style="font-size: 25px">{{oferta.valorAVista |
+                    <span style="font-size: 25px">Valor: </span><span style="font-size: 25px">{{oferta.cores[0].valor |
                       currency:
                       'BRL'}}</span>
                   </div>
@@ -139,7 +125,7 @@
             <span style="font-size: 25px">RECEBA EM CASA</span>
           </div>
           <div class="col text-right">
-            <p><span style="font-size: 25px">{{oferta.valorAVista | currency: 'BRL'}}</span></p>
+            <p><span style="font-size: 25px">{{oferta.cores[0].valor | currency: 'BRL'}}</span></p>
           </div>
         </div>
         <div class="row">
@@ -169,38 +155,37 @@
               <span (click)="quantidadePorItem(movel, 1)" class="esp-num"><i class="fa fa-plus" aria-hidden="true"></i></span>
             </div>
           </div> -->
-        <div class="row">
-          <div class="col text-center">
-            <span>Disponível nas cores:</span>
-            <div></div>
-          </div>
-          <div class="col text-center">
-            <span class="m-1">Avalie este Produto</span>
-            <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-            <div class="estrelas">
-              <input type="radio" id="cm_star-empty" name="fb" value="" checked />
-              <label for="cm_star-1"><i class="fa"></i></label>
-              <input type="radio" id="cm_star-1" name="fb" value="1" />
-              <label for="cm_star-2"><i class="fa"></i></label>
-              <input type="radio" id="cm_star-2" name="fb" value="2" />
-              <label for="cm_star-3"><i class="fa"></i></label>
-              <input type="radio" id="cm_star-3" name="fb" value="3" />
-              <label for="cm_star-4"><i class="fa"></i></label>
-              <input type="radio" id="cm_star-4" name="fb" value="4" />
-              <label for="cm_star-5"><i class="fa"></i></label>
-              <input type="radio" id="cm_star-5" name="fb" value="5" />
-            </div>
+        <span>Disponível nas cores:</span>
+        <div id="numCores" class="row pl-3 mr-2" style="margin-left: 0.4%">
+        </div>
+        <div class="row text-center">
+          <span class="m-1">Avalie este Produto</span>
+          <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+          <div class="estrelas">
+            <input type="radio" id="cm_star-empty" name="fb" value="" checked />
+            <label for="cm_star-1"><i class="fa"></i></label>
+            <input type="radio" id="cm_star-1" name="fb" value="1" />
+            <label for="cm_star-2"><i class="fa"></i></label>
+            <input type="radio" id="cm_star-2" name="fb" value="2" />
+            <label for="cm_star-3"><i class="fa"></i></label>
+            <input type="radio" id="cm_star-3" name="fb" value="3" />
+            <label for="cm_star-4"><i class="fa"></i></label>
+            <input type="radio" id="cm_star-4" name="fb" value="4" />
+            <label for="cm_star-5"><i class="fa"></i></label>
+            <input type="radio" id="cm_star-5" name="fb" value="5" />
           </div>
         </div>
         <div class="row">
           <div class="col text-center" style="padding: 3%">
-            <button (click)="adicionarItemCarrinho()" class="btn-finalizar btn-padrao" data-toggle="modal" data-target="#exampleModalCenter">Adicionar
+            <button (click)="adicionarItemCarrinho()" class="btn-finalizar btn-padrao" data-toggle="modal"
+              data-target="#exampleModalCenter">Adicionar
               ao Carrinho</button>
           </div>
         </div>
       </div>
       <div class="row">
-        <div style="background: #f5f7fa; border: 1px solid #C33C44; padding: 5%; margin-top: 5%; margin-left: 3%;margin-right: 3%; width: 100%">
+        <div
+          style="background: #f5f7fa; border: 1px solid #C33C44; padding: 5%; margin-top: 5%; margin-left: 3%;margin-right: 3%; width: 100%">
           <div class="col text-center">
             <h4><span>Frete e prazo de entrega</span></h4>
           </div>
@@ -229,36 +214,16 @@
         </div>
       </div>
     </div>
-    <h5>Detalhes do Produto</h5>
-    <table class="table">
-      <thead class="thead-default">
-        <tr>
-          <!-- <th>#</th> -->
-          <th>{{oferta.complementos.titulo}}</th>
-          <th>{{oferta.complementos.descricao}}</th>
-          <th>Username</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <th scope="row">1</th>
-          <td>Mark</td>
-          <td>Otto</td>
-          <td>@mdo</td>
-        </tr>
-        <tr>
-          <th scope="row">2</th>
-          <td>Jacob</td>
-          <td>Thornton</td>
-          <td>@fat</td>
-        </tr>
-        <tr>
-          <th scope="row">3</th>
-          <td>Larry</td>
-          <td>the Bird</td>
-          <td>@twitter</td>
-        </tr>
-      </tbody>
-    </table>
+    <div class="col-7">
+      <h5>Ficha Técnica</h5>
+      <table class="table" *ngFor="let comp of oferta.complementos">
+        <tbody>
+          <tr>
+            <td style="width: 50%">{{comp.complemento}}</td>
+            <td>{{comp.informacao}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 </div>

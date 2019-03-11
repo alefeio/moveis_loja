@@ -107,8 +107,6 @@ export class OrdemCompraComponent implements OnInit {
     } else {
       this.mostrar = 1
     }
-    console.log(this.email);
-    // console.log(this.itensCarrinho); 
     backend.auth().onAuthStateChanged((user) => {
       this.email = user.email
       this.consultarUsuario()
@@ -136,7 +134,7 @@ export class OrdemCompraComponent implements OnInit {
       this.usuarioPedido.email,
       this.formDadoAdicionais.value.telefone.replace(/[^\d]/g, ""),
       this.formDadoAdicionais.value.celular.replace(/[^\d]/g, ""),
-      this.formDadoAdicionais.value.endereco
+      this.formDadoAdicionais.value.endereco.replace(/[^\d]/g, "")
     )
     this.consultarUsuario();
     this.mostrarFormulario = 0
@@ -194,7 +192,6 @@ export class OrdemCompraComponent implements OnInit {
             // this.idPedidoCompra = idPedido.key
             pedido.codigo = this.gerarCodigo();
             this.idPedidoCompra = pedido.codigo;
-            console.log(pedido);
             if(this.email != '' || this.idPedidoCompra != undefined){
               this.itensCarrinho = [];
             }

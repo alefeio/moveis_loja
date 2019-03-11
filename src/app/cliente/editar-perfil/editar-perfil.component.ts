@@ -107,7 +107,6 @@ export class EditarPerfilComponent implements OnInit {
           this.perfilUsuario.endereco.cidade = usuario.endereco.cidade
           this.perfilUsuario.endereco.uf = usuario.endereco.uf
         }
-        // console.log('Usuário: ', usuario)
       })
       .then(() => {
         this.preencherForm()

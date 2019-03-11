@@ -51,6 +51,7 @@ import { CarrouselComponent } from './carrousel/carrousel.component';
 import { RecuperarSenhaComponent } from './acesso/recuperar-senha/recuperar-senha.component';
 import { RodaPeComponent } from './roda-pe/roda-pe.component';
 import { Mascara } from './diretivas/mascara';
+import { CorComponent } from './oferta/cor/cor.component';
 
 @NgModule({
   declarations: [
@@ -86,7 +87,8 @@ import { Mascara } from './diretivas/mascara';
     CarrouselComponent,
     RecuperarSenhaComponent,
     RodaPeComponent,
-    Mascara
+    Mascara,
+    CorComponent
   ],
   imports: [
     BrowserModule,

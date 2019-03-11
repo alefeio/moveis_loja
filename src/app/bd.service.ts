@@ -422,6 +422,30 @@ export class Bd {
         })
     }
 
+    //ray listar produtos
+    buscarProdutosEcommerce():Promise<any>{
+        return new Promise((resolve, reject)=>{
+            backend.database().ref('produtos').once('value').then((resp:any)=>{
+                let produtosE:Array<any> = []
+                resp.forEach(produto => {
+                    let produtoValor = produto.val()
+                    produtoValor.chave = produto.key
+                    produtosE.push(produtoValor);
+                });
+                resolve(produtosE);
+            })
+        })
+    }
+
+    // ray busca por id
+    buscarProdutoID(chave:string):Promise<any>{
+        return new Promise((resolve, reject)=>{
+            backend.database().ref(`produtos/${chave}`).once('value').then(resp=>{
+                resolve(resp.val())
+            })
+        })
+    }
+
     // public pesquisaOfertas(termo: string): Observable<Oferta[]> {
     //     return this.http.get(`${URL_API}/ofertas?titulo_like=${termo}`)
     //         .pipe(retry(10))

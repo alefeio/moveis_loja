@@ -41,9 +41,9 @@ export class AmbienteComponent implements OnInit {
   public consultarLinhasPorAmbiente() {
     this.bd.consultarLinhasPorAmbiente(this.ambiente)
       .then((linhas: any) => {
-        console.log(linhas)
+        // console.log("linha recebida",linhas)
         this.linhas = linhas
-        console.log(this.linhas)
+        // console.log("linha adicionada em array",this.linhas)
       })
   }
 
