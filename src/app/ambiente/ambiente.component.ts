@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router'
+import { ActivatedRoute, Params, Router } from '@angular/router'
 import { Bd } from 'src/app/bd.service';
+
 
 @Component({
   selector: 'app-ambiente',
@@ -11,10 +12,12 @@ export class AmbienteComponent implements OnInit {
 
   public produtos: any
   public ambiente: string
+  public linhas: Array<any> = []
 
   constructor(
     private bd: Bd,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -23,12 +26,30 @@ export class AmbienteComponent implements OnInit {
 
       this.ambiente = parametros.param
 
-      this.bd.consultarProdutosPorFiltro('ambiente', this.ambiente)
-        .then((produtos: any) => {
-          this.produtos = produtos
-        })
+      this.consultarProdutosPorFiltro()
+      this.consultarLinhasPorAmbiente()
+
     })
-    
+
   }
 
+  public consultarProdutosPorFiltro() {
+    this.bd.consultarProdutosPorFiltro('ambiente', this.ambiente)
+      .then((produtos: any) => {
+        this.produtos = produtos
+      })
+  }
+
+  public consultarLinhasPorAmbiente() {
+    this.bd.consultarLinhasPorAmbiente(this.ambiente)
+      .then((linhas: any) => {
+        // console.log("linha recebida",linhas)
+        this.linhas = linhas
+        // console.log("linha adicionada em array",this.linhas)
+      })
+  }
+
+  ofertaDetalhe(chaveProduto) {
+    this.router.navigate(['/oferta', chaveProduto]);
+  }
 }

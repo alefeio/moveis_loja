@@ -1,99 +1,78 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" routerLink="/"><img src="/assets/logo.png" class="img-fluid" /></a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#conteudoNavbarSuportado"
-    aria-controls="conteudoNavbarSuportado" aria-expanded="false" aria-label="Alterna navegação">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-
-  <div class="collapse navbar-collapse" id="conteudoNavbarSuportado">
-    <ul class="navbar-nav mr-auto">
-      <!-- <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Dropdown
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">Ação</a>
-          <a class="dropdown-item" href="#">Outra ação</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Algo mais aqui</a>
-        </div>
-      </li> -->
-      <!-- <li class="nav-item" *ngFor="let ambiente of ambientes">
-        <a class="nav-link text-center" routerLinkActive="active" [routerLink]="['/ambiente', ambiente.nome]">
-          <img [src]="ambiente.url_imagem || ''" alt="" style="width: 50px">
-          <br>{{ambiente.nome}}
-        </a>
-      </li> -->
-      <li class="nav-link text-center">
-        <input class="form-control mr-sm-2" type="search" placeholder="Pesquisar oferta" #termoDaPesquisa
-          (keyup)="pesquisa(termoDaPesquisa.value)" aria-label="Pesquisar">
-        <ul class="list-group" style="position: absolute; background: #fff; z-index: 1000">
-          <li class="list-group-item d-flex justify-content-between align-items-center" *ngFor="let oferta of ofertas | async">
-            <a [routerLink]="['/oferta', oferta.id]" (click)="limpaPesquisa()">
-              {{oferta.titulo | descricaoReduzida:20:0 }}
-              <!-- <span class="badge badge-primary badge-pill">7</span> -->
-            </a>
-          </li>
-        </ul>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link text-center" routerLinkActive="active" routerLink="/home">
-          <img src="/assets/home.png" class="img-fluid" style="width: 30px" />
-          <br>Home
-        </a>
-      </li>
-      <li class="nav-item text-center">
-        <a class="nav-link" routerLinkActive="active" routerLink="ordem-compra">
-          <img src="/assets/carrinho.png" class="img-fluid" style="width: 30px" />
-          <br>Carrinho
-        </a>
-      </li>
-      <li class="nav-item text-center" *ngIf="!autenticacao.token_id">
-        <a class="nav-link" routerLinkActive="active" routerLink="acesso">
-          <img src="/assets/login.png" class="img-fluid" style="width: 30px" />
-          <br>Login
-        </a>
-      </li>
-      <li class="nav-item text-center" *ngIf="autenticacao.token_id">
-        <a class="nav-link" routerLinkActive="active" routerLink="cliente">
-          <img src="/assets/user.png" class="img-fluid" style="width: 30px" />
-          <br>Minha Conta
-        </a>
-      </li>
-      <li class="nav-item text-center" *ngIf="autenticacao.token_id">
-        <button class="nav-link" (click)="sair()" style="background: transparent; border: none; cursor: pointer;">
-          <img src="/assets/sair.png" class="img-fluid" style="width: 30px" />
-          <br>Sair
-        </button>
-      </li>
-    </ul>
-  </div>
-</nav>
 <div class="banner">
-    &nbsp;
-  </div>
-  <div class="row tam-row">
-    <div class="img"></div>
-    <div class="col-1" id="esconder"></div>
-    <div *ngFor="let ambiente of ambientes" class="col cor-dropdown esp-icone text-center dropdown icones">
-      <a routerLinkActive="active" [routerLink]="['/ambiente', ambiente.nome]" style="color: black">
-        <div style="height: 100%" class="sacodida-horizontal">
-          <img [src]="ambiente.url_imagem || ''" height="100" width="100">
-          <h1>{{ambiente.nome}}</h1>
-        </div>
-      </a>
-      <div class="dropbtn">
-        <div class="dropdown-content">
-          <a class="encher">Mesa 4 Cadeiras</a>
-          <a class="encher">Mesa 6 cadeiras Buffet</a>
-          <a class="encher">Aparador</a>
-          <a class="encher">Mesa de Centro</a>
-          <a class="encher">Mesa Lateral</a>
-          <a class="encher">Cadeira Decorativa</a>
-          <a class="encher">Sofá</a>
-          <a class="encher">Sofá-Cama</a>
+  <nav [ngClass]="{'menu-fixo': scrolNumber > 180}" id="stickyMenu" [class.sticky]="sticky"
+    class="navbar navbar-expand-lg borda-top">
+    <a class="fundo-img radius logo"><img src="/src/assets/logo.png" routerLink="/home"></a>
+    <a><img src="/src/assets/logo_mobile.png" routerLink="/home" class="fundo-img radius logo-mobile"></a>
+    <button id="nav-icon1" class="navbar-toggler" type="button" data-toggle="collapse"
+      data-target="#conteudoNavbarSuportado" aria-controls="conteudoNavbarSuportado" aria-expanded="false"
+      aria-label="Alterna navegação">
+      <span> </span>
+      <span> </span>
+      <span> </span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="conteudoNavbarSuportado">
+      <ul id="cor" class="navbar-nav mr-auto" style="width: 100% !important">
+        <li class="nav-link text-center form-buscar">
+          <span class="form-inline my-2 my-lg-0 pl-5 pr-5 pt-2">
+            <input class="form-control mr-sm-2" type="search" placeholder="Buscar Produto" aria-label="Search">
+            <button class="btn btn-padrao my-2 my-sm-0" type="submit">Buscar</button>
+          </span>
+        </li>
+        <li class="nav-item" id="espaco">
+          <a class="nav-link text-center" routerLinkActive="active" routerLink="/home">
+            <img src="/src/assets/home.png" class="img-fluid" style="width: 30px" />
+            <br>Home
+          </a>
+        </li>
+        <li class="nav-item text-center">
+          <a class="nav-link" routerLinkActive="active" routerLink="ordem-compra">
+            <img src="/src/assets/carrinho.png" class="img-fluid" style="width: 30px" />
+            <br>Carrinho
+          </a>
+        </li>
+        <li class="nav-item text-center" *ngIf="!autenticacao.token_id">
+          <a class="nav-link" (click)="painelLogin()" routerLinkActive="active" data-toggle="modal" data-target="#modal-login">
+            <img src="/src/assets/login.png" class="img-fluid" style="width: 30px" />
+            <br>Login
+          </a>
+        </li>
+        <li class="nav-item text-center" *ngIf="autenticacao.token_id">
+          <a class="nav-link" routerLinkActive="active" routerLink="cliente">
+            <img src="/src/assets/user.png" class="img-fluid" style="width: 30px" />
+            <br>Minha Conta
+          </a>
+        </li>
+        <li class="nav-item text-center" *ngIf="autenticacao.token_id">
+          <button class="nav-link" (click)="sair()" style="background: transparent; border: none; cursor: pointer;">
+            <img src="/assets/sair.png" class="img-fluid" style="width: 30px" />
+            <br>Sair
+          </button>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <div [ngClass]="{'fixo': scrolNumber > 180}" class="menu-ambiente row text-center">
+    <div class="col-12 p-0 amb-links">
+      <span id="esconder" style="height: 100%; background-color: #C33C44;">&nbsp;</span>
+      <div id="amb" *ngFor="let ambiente of ambientes" class="largura-amb sacodida-horizontal dropdown"
+        routerLinkActive="active" [routerLink]="['/ambiente', ambiente.nome]">
+        <a id="link-amb">
+          <img [src]="ambiente.url_imagem || ''" height="50" width="50">
+          <span style="font-weight: bold;"> &nbsp;{{ambiente.nome}}</span>
+        </a>
+        <div class="dropbtn">
+          <div class="dropdown-content">
+            <ng-container *ngFor="let linha of linhas">
+              <a class="encher" [routerLink]="['/linha', linha.nome]" *ngIf="linha.ambiente == ambiente.nome">
+                {{linha.nome}}
+              </a>
+            </ng-container>
+          </div>
         </div>
       </div>
+      <span id="esconder" style="height: 100%; background-color: #C33C44;">&nbsp;</span>
     </div>
-    <div class="col-1" id="esconder"></div>
   </div>
+</div>

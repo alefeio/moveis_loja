@@ -1,0 +1,44 @@
+.section-padding-100 {
+    padding: 3%;
+}
+
+.form-control:focus {
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    border-bottom: 1px solid rgba(195, 60, 68, 1) !important;
+    -webkit-animation-name: teste;
+    animation-name: teste;
+    -webkit-animation-duration: 300ms;
+    animation-duration: 300ms;
+    -webkit-animation-timing-function: ease-in-out;
+    animation-timing-function: ease-in-out;
+    -webkit-animation-iteration-count: 1;
+    animation-iteration-count: 1;
+}  
+
+@keyframes teste {
+    0%{border-bottom: 1px solid rgba(195, 60, 68, 0.5); width: 10%}
+    25%{ border-bottom: 1px solid rgba(195, 60, 68, 0.5);width: 25%}
+    50%{border-bottom: 1px solid rgba(195, 60, 68, 0.5); width: 50%}
+    75%{border-bottom: 1px solid rgba(195, 60, 68, 0.5); width: 75%}
+    100%{border-bottom: 1px solid rgba(195, 60, 68, 1); width: 100%}
+}
+input {
+    border-top: 0;
+    border-left: 0;
+    border-right: 0;  
+    border-bottom: 1px solid rgba(195, 60, 68, 1) !important;
+}
+.top-btn-edt {
+    padding-top: 1%;
+}
+.btn-finalizar {
+    display: inline-block;
+    min-width: 160px;
+    height: 55px;
+    border: none;
+    padding: 0 7px;
+    font-size: 18px;
+    line-height: 56px;
+    font-weight: 400;
+  }

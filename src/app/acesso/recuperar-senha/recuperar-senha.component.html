@@ -1,0 +1,48 @@
+<!--================ recuperar a senha alexandre  ============-->
+<!-- <h6 class="card-text text-center">Digite seu E-mail</h6>
+<div class="card" style="width: 20rem;">
+  <div class="card-body text-center"> -->
+<!-- <div class="card-title"></div> -->
+
+<!-- <form [formGroup]="form" (ngSubmit)="recuperar()">
+      <div class="form-group">
+        <input type="email" class="form-control" placeholder="E-mail" formControlName="email">
+      </div>
+      <button type="submit" class="btn btn-warning btn-sm btn-block" [disabled]="!form.valid">Entrar</button>
+    </form>
+    <hr />
+
+    <p class="small text-danger text-center" *ngIf="autenticacao.msgErro != undefined">{{autenticacao.msgErro}}</p>
+
+  </div>
+</div>
+<br />
+<div class="card text-center" style="width: 20rem;">
+  <div class="card-body">
+    <p class="card-text">
+      Não tem uma conta? <button (click)="exibirPainelCadastro()" class="btn btn-sm btn-warning">Cadastre-se</button>
+    </p>
+  </div>
+</div> -->
+<!--========================== fim ============================-->
+
+<div class="card-body">
+  <form class="form" [formGroup]="form" (ngSubmit)="recuperarSenha(form.value.email)">
+    <div class="form-group">
+      <label for="email" style="font-weight: bold">Digite o email para recuperar a sua senha</label>
+      <input type="text" formControlName="email" class="form-control rounded-0">
+      <small *ngIf="form.controls['email'].errors && !form.controls.email.untouched" class="form-text error">
+        <span *ngIf="form.controls['email'].errors.required" style="color: red"> Obrigatório!</span>
+      </small>
+    </div>
+    <div class="alert {{autenticacao.class}}" role="alert" *ngIf="autenticacao.class === 'alert-success' || autenticacao.class === 'alert-danger'">
+      {{autenticacao.msgErro}}
+    </div>
+    <div class="text-center">
+      <button type="submit" class="btn btn-lg btn-padrao" [disabled]="!form.valid"><span>Enviar</span></button>
+    </div>
+    <div>
+      <button type="submit" (click)="exibirPainelLogin()" class="btn rounded-0 hvr-underline-from-center">Login</button>
+    </div>
+  </form>
+</div>

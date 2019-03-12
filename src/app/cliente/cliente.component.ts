@@ -1,6 +1,7 @@
 import { Bd } from './../bd.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
-import * as backend from 'firebase'
+import * as backend from 'firebase';
+declare var $:any
 
 @Component({
   selector: 'app-cliente',
@@ -14,13 +15,34 @@ export class ClienteComponent implements OnInit {
   public email: any
   public usuario: any = ''
   public link: string = 'inicio'
+  fixarMenuCliente: number = 0
 
-  constructor(private bd: Bd) { }
+  constructor(private bd: Bd) {
+    $(document).ready(function() {
+      var menuCliente = $('#v-pills-tab');
+      var btnCollapse = $('#btn-collapse');
+      var areaCliente = $('#area-cliente');
+      $(window).scroll(function(){
+        if($(this).scrollTop() > 180) {
+          menuCliente.addClass('menu-cliente');
+          btnCollapse.addClass('menu-collapse');
+          areaCliente.addClass('area-cliente');
+        }else{
+          menuCliente.removeClass('menu-cliente');
+          btnCollapse.removeClass('menu-collapse');
+          areaCliente.removeClass('area-cliente');
+        }
+      })
+      $("#sidebarCollapse").on("click", function() {
+        $("#sidebar").toggleClass("active");
+        $(this).toggleClass("active");
+      });
+    });
+   }
 
   ngOnInit() {
     backend.auth().onAuthStateChanged((user) => {
       this.email = user.email
-
       this.consultarUsuario()
     })
   }

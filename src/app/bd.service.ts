@@ -2,9 +2,15 @@ import { Util } from './util.service';
 import * as backend from 'firebase'
 import { Injectable } from '@angular/core';
 import { Progresso } from './progresso.service';
+import { Observable } from 'rxjs';
+import { map, retry } from 'rxjs/operators';
 
 @Injectable()
 export class Bd {
+
+    testeCorProd:Array<any> = [{
+        
+    }]
 
     constructor(private progresso: Progresso, private util: Util) { }
 
@@ -69,6 +75,33 @@ export class Bd {
 
                     resolve(publicacoes)
 
+                })
+        })
+    }
+
+    public consultarPedidos(email: string): Promise<any> {
+
+        return new Promise((resolve, reject) => {
+
+            // consultar chamados
+            backend.database().ref(`pedidos/${btoa(email)}`)
+                .orderByKey()
+                .once('value')
+                .then((snapshot: any) => {
+                    // console.log(snapshot.val())
+
+                    let publicacoes: Array<any> = []
+
+                    snapshot.forEach((childSnapshot: any) => {
+
+                        let publicacao = childSnapshot.val()
+                        publicacao.key = childSnapshot.key
+
+                        publicacoes.push(publicacao)
+                    })
+
+                    // resolve(publicacoes)
+                    resolve(publicacoes.reverse())
                 })
         })
     }
@@ -168,7 +201,7 @@ export class Bd {
 
             // consultar chamados
             backend.database().ref('ambientes')
-                .orderByChild('nome')
+                .orderByChild('ordem')
                 .once('value')
                 .then((snapshot: any) => {
                     // console.log(snapshot.val())
@@ -200,7 +233,7 @@ export class Bd {
                             })
                     })
 
-                    resolve(ambientes)
+                    resolve(ambientes.reverse())
 
                 })
         })
@@ -213,6 +246,36 @@ export class Bd {
             // consultar chamados
             backend.database().ref('linhas')
                 .orderByChild('nome')
+                .once('value')
+                .then((snapshot: any) => {
+                    // console.log(snapshot.val())
+
+                    let linhas: Array<any> = []
+
+                    snapshot.forEach((childSnapshot: any) => {
+
+                        let linha = childSnapshot.val()
+                        linha.key = childSnapshot.key
+
+                        linhas.push(linha)
+                    })
+
+                    // resolve(publicacoes)
+                    resolve(linhas)
+                })
+        })
+    }
+
+    public consultarLinhasPorAmbiente(ambiente: string): Promise<any> {
+
+        console.log('ambiente recebido no bd: ', ambiente)
+
+        return new Promise((resolve, reject) => {
+
+            // consultar chamados
+            backend.database().ref('linhas')
+                .orderByChild('ambiente')
+                .equalTo(ambiente)
                 .once('value')
                 .then((snapshot: any) => {
                     // console.log(snapshot.val())
@@ -286,7 +349,7 @@ export class Bd {
             backend.database().ref('produtos')
                 .orderByChild(filtro)
                 .equalTo(valor)
-                .limitToFirst(3)
+                .limitToFirst(4)
                 .once('value')
                 .then((snapshot: any) => {
                     // console.log(snapshot.val())
@@ -359,6 +422,105 @@ export class Bd {
         })
     }
 
+    //ray listar produtos
+    buscarProdutosEcommerce():Promise<any>{
+        return new Promise((resolve, reject)=>{
+            backend.database().ref('produtos').once('value').then((resp:any)=>{
+                let produtosE:Array<any> = []
+                resp.forEach(produto => {
+                    let produtoValor = produto.val()
+                    produtoValor.chave = produto.key
+                    produtosE.push(produtoValor);
+                });
+                resolve(produtosE);
+            })
+        })
+    }
+
+    // ray busca por id
+    buscarProdutoID(chave:string):Promise<any>{
+        return new Promise((resolve, reject)=>{
+            backend.database().ref(`produtos/${chave}`).once('value').then(resp=>{
+                resolve(resp.val())
+            })
+        })
+    }
+
+    // public pesquisaOfertas(termo: string): Observable<Oferta[]> {
+    //     return this.http.get(`${URL_API}/ofertas?titulo_like=${termo}`)
+    //         .pipe(retry(10))
+    //         .pipe(map((resposta: Response) => resposta.json()))
+    // }
+
+    public pesquisarOfertas(pesquisa: string): Promise<any> {
+
+        return new Promise((resolve, reject) => {
+
+            // consultar chamados
+            backend.database().ref('produtos')
+                .orderByChild("titulo")
+                .startAt(pesquisa.toUpperCase())
+                .endAt(`${pesquisa}\uf8ff`)
+                .once("value")
+                .then((snapshot: any) => {
+                    // console.log('Valor do snapshot: ', snapshot.val())
+
+                    let produtos: Array<any> = []
+
+                    snapshot.forEach((childSnapshot: any) => {
+
+                        let produto = childSnapshot.val()
+                        produto.key = childSnapshot.key
+
+                        produtos.push(produto)
+                    })
+
+                    // resolve(publicacoes)
+                    return produtos.reverse()
+                })
+                .then((produtos: any) => {
+
+                    produtos.forEach(produto => {
+
+                        // consultar a url da imagem
+                        backend.storage().ref()
+                            .child(`produtos/${produto.key}`)
+                            .getDownloadURL()
+                            .then((url: string) => {
+
+                                produto.url_imagem = url
+                            })
+                    })
+
+                    resolve(produtos)
+
+                })
+        })
+    }
+
+    public efetivarCompra(pedido: any): Promise<any> {
+
+        return new Promise((resolve, reject) => {
+            
+            backend.database().ref(`pedidos/${btoa(pedido.email)}`)
+            .push({
+                nome: pedido.nome,
+                email: pedido.email,
+                cpf: pedido.cpf,
+                telefone: pedido.telefone,
+                celular: pedido.celular,
+                endereco: pedido.endereco,
+                formaPagamento: pedido.formaPagamento,
+                itens: pedido.itens,
+                statusPedido: 'Pendente'
+            })
+            .then((idPedido) => {
+                resolve(idPedido)
+            })
+        })
+
+    }
+
     public adicionarChamado(chamado: any): void {
 
         backend.database().ref(`chamados/${btoa(chamado.email)}`)
@@ -408,7 +570,8 @@ export class Bd {
             url: urlProduto,
             descricao_oferta: produto.descricao_oferta,
             marca: produto.marca,
-            valor: produto.valor,
+            valorAVista: produto.valorAVista,
+            valorAPrazo: produto.valorAPrazo,
             cor: produto.cor,
             destaque: destaque
         }
@@ -484,11 +647,12 @@ export class Bd {
     }
     public adicionarLinha(linha: any): void {
 
-        let url: string = this.util.removeAcentoEspaco(linha)
+        let url: string = this.util.removeAcentoEspaco(linha.nome)
 
         backend.database().ref('linhas')
             .push({
-                nome: linha,
+                ambiente: linha.ambiente,
+                nome: linha.nome,
                 url: url
             })
     }
@@ -515,6 +679,22 @@ export class Bd {
                     }
                     resolve(feed)
                 })
+        })
+    }
+
+    incluirDadosPerfil(dados:any): Promise<any>{
+        return new Promise((resolve, reject)=>{
+            backend.database().ref(`usuario_detalhe/${btoa(dados.email)}`).update({
+                telefone: dados.telefone,
+                celular: dados.celular,
+                endereco: dados.endereco
+            }).then(() => {
+                let feed: any = {
+                    estilo: 'success',
+                    msg: 'Perfil atualizado com sucesso!'
+                }
+                resolve(feed)
+            })
         })
     }
 

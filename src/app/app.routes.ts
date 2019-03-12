@@ -1,3 +1,4 @@
+import { LinhaComponent } from './linha/linha.component';
 import { AmbienteComponent } from './ambiente/ambiente.component';
 import { AdminComponent } from './admin/admin.component';
 import { AutenticacaoGuard } from './autenticacao-guard.service';
@@ -24,6 +25,7 @@ export const ROUTES: Routes = [
     { path: 'cozinha', component: CozinhaComponent },
     { path: 'diversos', component: DiversosComponent },
     { path: 'ambiente/:param', component: AmbienteComponent },
+    { path: 'linha/:param', component: LinhaComponent },
     { path: 'oferta', component: HomeComponent },
     { path: 'oferta/:id', component: OfertaComponent },
     { path: 'contato', component: ContatoComponent },

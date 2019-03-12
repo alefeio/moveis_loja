@@ -1,6 +1,5 @@
 <!-- Modal -->
-<div class="modal fade" id="incluirLinha" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-  aria-hidden="true">
+<div class="modal fade" id="incluirLinha" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-body">
       <div class="modal-content" *ngIf="progressoPublicacao === 'pendente'">
@@ -13,6 +12,12 @@
             </button>
           </div>
           <div class="modal-body">
+            <div class="form-group">
+              <label for="recipient-name" class="col-form-label">A qual ambiente a Linha pertence?</label>
+              <select class="form-control" formControlName="ambiente">
+                <option [value]="ambiente.nome" *ngFor="let ambiente of ambientes">{{ambiente.nome}}</option>
+              </select>
+            </div>
             <div class="form-group">
               <input type="text" class="form-control" formControlName="nome" placeholder="Nome da Linha" autofocus>
             </div>

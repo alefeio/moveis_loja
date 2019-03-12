@@ -1,14 +1,24 @@
-h1 {
-    color: #555
+.cor-titulo {
+  color: black
 }
 
-.oferta {
+span {
+  font-weight: bold;
+}
+
+/* #manipula{
+  border-radius: 50%
+} */
+/* .oferta {
     margin-top: 25px
+} */
+
+.img-zoom {
+  cursor: zoom-in;
 }
 
-.oferta img {
-    width: 372px;
-    height: 240px;
+.circle{
+  border-radius: 5px;
 }
 
 .thumbnails {
@@ -22,52 +32,6 @@ h1 {
     margin-bottom: 10px;
 }
 
-/**THE SAME CSS IS USED IN ALL 3 DEMOS**/    
-/**gallery margins**/  
-/* ul.gallery{    
-    margin-left: 3vw;     
-    margin-right:3vw;  
-    }    
-    
-    .zoom {      
-    -webkit-transition: all 0.35s ease-in-out;    
-    -moz-transition: all 0.35s ease-in-out;    
-    transition: all 0.35s ease-in-out;     
-    cursor: -webkit-zoom-in;      
-    cursor: -moz-zoom-in;      
-    cursor: zoom-in;  
-    }     
-    
-    .zoom:hover,  
-    .zoom:active,   
-    .zoom:focus {
-    /**adjust scale to desired size, 
-    add browser prefixes
-    -ms-transform: scale(2);    
-    -moz-transform: scale(2);  
-    -webkit-transform: scale(2);  
-    -o-transform: scale(2);  
-    transform: scale(2);    
-    position:relative;      
-    z-index:100;  
-    }
-    
-    /**To keep upscaled images visible on mobile, 
-    increase left & right margins a bit
-    @media only screen and (max-width: 768px) {   
-    ul.gallery {      
-    margin-left: 15vw;       
-    margin-right: 15vw;
-    }
-    
-    /**TIP: Easy escape for touch screens,
-    give gallery's parent container a cursor: pointer.
-    .DivName {cursor: pointer}
-    }
-
-    span {
-    font-weight: bold;
-} */
 
 /* Underline From Center */
 .hvr-underline-from-center {
@@ -87,7 +51,7 @@ h1 {
     left: 51%;
     right: 51%;
     bottom: 0;
-    background: rgba(243, 156, 18, 1);
+    background: rgba(195, 60, 68, .9) !important;
     height: 4px;
     -webkit-transition-property: left, right;
     transition-property: left, right;
@@ -255,4 +219,20 @@ animation:fa-beat 5s ease infinite;
 }
 .estrelas > label > i {
 font-size: 25px
+}
+
+.zoom{
+  /* height: 300px; */
+  overflow: hidden;
+}
+
+button:focus {
+  outline: thin dotted;
+  outline: 0px auto -webkit-focus-ring-color;
+  outline-offset: 0px;
+}
+
+.img-carrinho {
+  height: 5em;
+  width: 5em
 }

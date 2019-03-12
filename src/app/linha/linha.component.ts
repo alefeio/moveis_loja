@@ -31,4 +31,11 @@ export class LinhaComponent implements OnInit {
     
   }
 
+  public consultarProdutosPorFiltro() {
+    this.bd.consultarProdutosPorFiltro('linha', this.linha)
+      .then((produtos: any) => {
+        this.produtos = produtos
+      })
+  }
+
 }

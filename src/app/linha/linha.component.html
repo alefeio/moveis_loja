@@ -1,50 +1,36 @@
-<div class="banner">
-    <!-- <p>&nbsp;</p> -->
-    <!-- <img src="/assets/banners/img_1.jpg" /> -->
-  </div>
+<div class="container">
+
   <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
       <li class="breadcrumb-item"><a routerLink="/home">HOME</a></li>
-      <li class="breadcrumb-item active">AMBIENTE</li>
-      <li class="breadcrumb-item active" aria-current="page">{{ambiente | uppercase}}</li>
+      <li class="breadcrumb-item active text-warning">LINHA: {{linha | uppercase}}</li>
     </ol>
+    <hr class="text-dark">
   </nav>
-  <div class="container">
-    <div class="secao">
-      <h3 class="text-center">Conforto, qualidade e muito mais!</h3>
-      <h5 class="text-center">Conheça as melhores ofertas para você relaxar e descansar.</h5>
-    </div>
-  
-    <hr />
-  
-    <div *ngFor="let produto of produtos" style="margin-bottom: 50px;">
-  
-      <div class="row">
-        <div class="col-md-4">
-          <img [src]="produto.url_imagem || ''" class="img-fluid" alt="">
-        </div>
-  
-        <div class="col-md-8">
-          <div class="row">
-            <h4>{{produto.titulo}}</h4>
-          </div>
-  
-          <!-- <div class="row">
-              <h5>{{produto.descricao_oferta}}</h5>
-            </div> -->
-  
-          <div class="row">
-            <p>{{produto.valor | currency: 'BRL' }}</p>
-          </div>
-  
-          <div class="row">
-            <button class="btn btn-outline-success" [routerLink]="['/oferta', produto.key]">Ver oferta</button>
-          </div>
+  <div style="margin-left: 10%">
+    <h2 style="margin: 0">{{linha | uppercase}}</h2>
+    <span style="background-color: rgba(243, 156, 18, 1);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+  </div>
+  <!-- <div class="secao">
+          <h3>Conforto, qualidade e muito mais!</h3>
+          <h5>Conheça as melhores ofertas para você relaxar e descansar.</h5>
+        </div> -->
+  <br>
+  <div class="row">
+    <div class="col-sm-4 card info-widget flutuar" *ngFor="let produto of produtos">
+      <div class="text-center">
+        <img class="img-fluid" [src]="produto.url_imagem || ''">
+      </div>
+      <div class="card-block padding">
+        <h5 style="padding: 1%">{{produto.titulo}}</h5>
+        <!-- <pre>{{ oferta.descricao_oferta | descricaoReduzida:100:0 }}</pre> -->
+        <p style="padding: 1%">Por: {{ produto.valorAVista | currency: 'BRL' }}</p>
+        <div class="text-center">
+          <button class="btn btn-padrao" [routerLink]="['/oferta', produto.key]">Ver Oferta</button>
         </div>
       </div>
-  
-      <hr />
-  
     </div>
-  
   </div>
+  <br>
+
+</div>

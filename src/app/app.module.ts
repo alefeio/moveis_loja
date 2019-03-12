@@ -8,11 +8,9 @@ import { RouterModule } from '@angular/router'
 import { ReactiveFormsModule } from '@angular/forms'
 
 import { ROUTES } from './app.routes'
-
 import { AppComponent } from './app.component';
 import { TopoComponent } from './topo/topo.component';
 import { HomeComponent } from './home/home.component';
-import { RodapeComponent } from './rodape/rodape.component';
 import { QuartoComponent } from './quarto/quarto.component';
 import { SalaComponent } from './sala/sala.component';
 import { OfertaComponent } from './oferta/oferta.component';
@@ -47,6 +45,12 @@ import { AmbientesComponent } from './admin/ambientes/ambientes.component';
 import { LinhasComponent } from './admin/linhas/linhas.component';
 import { AdicionarAmbienteComponent } from './admin/adicionar-ambiente/adicionar-ambiente.component';
 import { AdicionarLinhaComponent } from './admin/adicionar-linha/adicionar-linha.component';
+import { PedidosComponent } from './cliente/pedidos/pedidos.component';
+import { CarrouselComponent } from './carrousel/carrousel.component';
+import { RecuperarSenhaComponent } from './acesso/recuperar-senha/recuperar-senha.component';
+import { RodaPeComponent } from './roda-pe/roda-pe.component';
+import { Mascara } from './diretivas/mascara';
+import { CorComponent } from './oferta/cor/cor.component';
 import { NgxImageZoomModule } from 'ngx-image-zoom';
 
 @NgModule({
@@ -54,7 +58,6 @@ import { NgxImageZoomModule } from 'ngx-image-zoom';
     AppComponent,
     TopoComponent,
     HomeComponent,
-    RodapeComponent,
     QuartoComponent,
     SalaComponent,
     OfertaComponent,
@@ -79,7 +82,13 @@ import { NgxImageZoomModule } from 'ngx-image-zoom';
     AmbientesComponent,
     LinhasComponent,
     AdicionarAmbienteComponent,
-    AdicionarLinhaComponent
+    AdicionarLinhaComponent,
+    PedidosComponent,
+    CarrouselComponent,
+    RecuperarSenhaComponent,
+    RodaPeComponent,
+    Mascara,
+    CorComponent
   ],
   imports: [
     BrowserModule,

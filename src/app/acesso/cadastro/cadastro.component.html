@@ -1,4 +1,5 @@
-<h6 class="card-text text-center">Cadastre-se e aproveite as nossas ofertas. <small>Ou <button (click)="exibirPainelLogin()" class="btn btn-sm btn-primary">Faça login</button></small></h6>
+<!--======================= cadastro alexandre =====================-->
+<!-- <h6 class="card-text text-center">Cadastre-se e aproveite as nossas ofertas. <small>Ou <button (click)="exibirPainelLogin()" class="btn btn-sm btn-warning">Faça login</button></small></h6>
 <div class="card">
   <div class="card-body">
     <form [formGroup]="formCadastro" (ngSubmit)="cadastrarUsuario()">
@@ -33,7 +34,7 @@
       <div class="form-group">
         <input type="password" class="form-control" placeholder="Senha (mín. 6 caracteres)" formControlName="senha">
       </div>
-      <button type="submit" class="btn btn-primary btn-sm btn-block" [disabled]="!formCadastro.valid">Cadastre-se</button>
+      <button type="submit" class="btn btn-warning btn-sm btn-block" [disabled]="!formCadastro.valid">Cadastre-se</button>
     </form>
     <br>
     <p class="small text-danger text-center" *ngIf="autenticacao.msgErro != undefined">{{autenticacao.msgErro}}</p>
@@ -43,4 +44,90 @@
     <p class="small text-center">Ao cadastrar-se, você concorda com nossos <b>Termos</b> e <b>Política de Privacidade</b>.</p>
 
   </div>
+</div> -->
+
+<!--================================== fim =========================-->
+
+<div class="card-body">
+  <form class="form" [formGroup]="formCadastro" (ngSubmit)="cadastrarUsuario()">
+    <div class="col text-center header-login">
+      <h2>Não tem conta? cadastre-se e seja bem vindo!</h2>
+    </div>
+    <div class="form-group">
+      <label for="nome">Nome</label>
+      <input type="text" formControlName="nome" class="form-control rounded-0" required>
+      <small *ngIf="formCadastro.controls['nome'].errors && !formCadastro.controls.nome.untouched"
+        class="form-text error">
+        <span *ngIf="formCadastro.controls['nome'].errors.required" style="color: red"> Obrigatório!</span>
+      </small>
+    </div>
+    <div class="form-group">
+      <label for="cpf">CPF</label>
+      <p class="text-danger" *ngIf="msg === 'Este CPF ja existe!' || cpfValidoReceita === false">{{msg}}</p>
+      <p class="text-success" *ngIf="msg === 'CPF valido!' && msg != 'CPF Inválido!'">{{msg}}</p>
+      <input type="text" mascara="999.999.999-99" (blur)="verificarCPF($event.target.value)" formControlName="cpf" class="form-control rounded-0" required>
+      <small *ngIf="formCadastro.controls['cpf'].errors && !formCadastro.controls.cpf.untouched"
+        class="form-text error">
+        <span *ngIf="formCadastro.controls['cpf'].errors.required" style="color: red"> Obrigatório!</span>
+      </small>
+    </div>
+    <div class="form-group">
+      <label for="email">Email</label>
+      <p class="text-danger" *ngIf="msg === 'Este E-mail ja existe!' || msg === 'E-mail inválido!'">{{msg}}</p> 
+      <p class="text-success" *ngIf="msg === 'E-mail valido!'">{{msg}}"</p>
+      <input type="email" formControlName="email" (blur)="validarEmail($event.target.value)" class="form-control rounded-0" required>
+      <small *ngIf="formCadastro.controls['email'].errors && !formCadastro.controls.email.untouched"
+        class="form-text error">
+        <span *ngIf="formCadastro.controls['email'].errors.required" style="color: red"> Obrigatório!</span>
+      </small>
+    </div>
+    <div class="form-group">
+      <label for="dataNascimento">Data de Nascimento</label>
+      <input type="text" mascara="99/99/9999" formControlName="nascimento" class="form-control rounded-0" required>
+      <small *ngIf="formCadastro.controls['nascimento'].errors && !formCadastro.controls.nascimento.untouched"
+        class="form-text error">
+        <span *ngIf="formCadastro.controls['nascimento'].errors.required" style="color: red"> Obrigatório!</span>
+      </small>
+    </div>
+    <div class="form-group">
+      <label for="">Sexo</label>
+      <div class="row" style="padding-left: 10%">
+        <div class="form-check col-6">
+          <input class="form-check-input" type="radio" value="M" formControlName="sexo">
+          <label class="form-check-label" for="masculino">
+            Masculino
+          </label>
+        </div>
+        <div class="form-check col-6">
+          <input class="form-check-input" type="radio" value="F" formControlName="sexo">
+          <label class="form-check-label" for="feminino">
+            Feminino
+          </label>
+        </div>
+      </div>
+    </div>
+    <p class="text-danger">Senha Válida com no minimo 6 digitos!</p>
+    <div class="form-group">
+      <label for="senha">Senha</label>
+      <input type="password" formControlName="senha" class="form-control rounded-0" required>
+      <small *ngIf="formCadastro.controls['senha'].errors && !formCadastro.controls.senha.untouched"
+        class="form-text error">
+        <span *ngIf="formCadastro.controls['senha'].errors.required" style="color: red"> Obrigatório!</span>
+      </small>
+    </div>
+    <p class="text-danger text-center" *ngIf="autenticacao.msgErro != undefined">{{autenticacao.msgErro}}</p>
+    <div class="text-center">
+      <button type="submit" class="btn btn-lg btn-padrao" [disabled]="!formCadastro.valid"><span>Criar
+          conta</span></button>
+    </div>
+    <div class="link-btn">
+      <button (click)="exibirPainelLogin()" class="btn rounded-0 hvr-underline-from-center">Já tenho conta!</button>
+    </div>
+  </form>
+  <br>
+  <p class="small text-center">Fique tranquilo, nosso site é seguro!</p>
+  <hr />
+  <p class="small text-center">Ao cadastrar-se, você concorda com nossos <b>Termos</b> e <b>Política de Privacidade</b>.
+  </p>
 </div>
+
