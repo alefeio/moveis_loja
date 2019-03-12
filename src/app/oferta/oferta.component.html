@@ -13,11 +13,10 @@
       </div>
     </div>
 
-    <div class="row">
+    <div class="row" (mouseover)="agoraVai()">
       <div class="col-md-6" style="overflow: hidden">
         <div class="zoom">
-          <img [src]="oferta.url_imagem || ''" class="img-zoom" alt="">
-          
+          <img [src]="oferta.url_imagem || ''" class="img-zoom">
         </div>
 
         <!-- <div class="thumbnails">

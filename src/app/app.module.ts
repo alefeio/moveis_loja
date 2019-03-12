@@ -47,6 +47,7 @@ import { AmbientesComponent } from './admin/ambientes/ambientes.component';
 import { LinhasComponent } from './admin/linhas/linhas.component';
 import { AdicionarAmbienteComponent } from './admin/adicionar-ambiente/adicionar-ambiente.component';
 import { AdicionarLinhaComponent } from './admin/adicionar-linha/adicionar-linha.component';
+import { NgxImageZoomModule } from 'ngx-image-zoom';
 
 @NgModule({
   declarations: [
@@ -83,6 +84,7 @@ import { AdicionarLinhaComponent } from './admin/adicionar-linha/adicionar-linha
   imports: [
     BrowserModule,
     HttpModule,
+    NgxImageZoomModule.forRoot(),
     // FormsModule,
     ReactiveFormsModule,
     RouterModule.forRoot(ROUTES)

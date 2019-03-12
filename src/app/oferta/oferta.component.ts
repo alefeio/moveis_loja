@@ -2,7 +2,7 @@ import { Bd } from './../bd.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router'
 import { CarrinhoService } from '../carrinho.service'
-// declare var $: any
+declare var $: any;
 
 @Component({
   selector: 'app-oferta',
@@ -34,9 +34,7 @@ export class OfertaComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-
     this.route.params.subscribe((parametros: Params) => {
-
       this.key = parametros.id
       console.log('Essa é a Key: ', this.key)
 
@@ -46,6 +44,10 @@ export class OfertaComponent implements OnInit, OnDestroy {
           console.log('Essa é a oferta: ', this.oferta)
         })
     })
+  }
+
+  agoraVai() {
+    $('.zoom').zoom()
   }
 
   ngOnDestroy() {
