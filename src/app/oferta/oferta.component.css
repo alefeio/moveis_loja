@@ -17,6 +17,10 @@ span {
   cursor: zoom-in;
 }
 
+.circle{
+  border-radius: 5px;
+}
+
 .thumbnails {
     margin-top: 10px;
 }

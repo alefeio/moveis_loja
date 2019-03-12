@@ -58,7 +58,7 @@
       </div>
     </div> -->
 
-    <div class="col-md-5">
+    <div class="col-md-5" *ngIf="oferta != ''">
       <div style="background: #f5f7fa; border: 1px solid #C33C44; padding: 5%;">
         <div class="text-center">
           <h2>{{oferta.nome}}</h2>
@@ -155,9 +155,22 @@
               <span (click)="quantidadePorItem(movel, 1)" class="esp-num"><i class="fa fa-plus" aria-hidden="true"></i></span>
             </div>
           </div> -->
+
         <span>Disponível nas cores:</span>
         <div id="numCores" class="row pl-3 mr-2" style="margin-left: 0.4%">
         </div>
+        <!-- <div class="row"> -->
+        <div class="row" style="width: 100%;">
+          <div (mouseenter)="mostrarImg(i)" style="border-radius: 30px; overflow: hidden; margin: 5px;" class="row" *ngFor="let a of codigos; let i = index">
+            <div  *ngFor="let b of a">
+              <div [ngStyle]="{'background-color': b.hexa.hexa,
+                                  'height':'30px',
+                                   'width':'30px'}"></div>
+
+            </div>
+          </div>
+        </div>
+        <!-- </div> -->
         <div class="row text-center">
           <span class="m-1">Avalie este Produto</span>
           <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">

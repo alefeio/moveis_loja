@@ -1,16 +1,16 @@
-<div class="row" style="margin: 4%;">
+<div class="row" style="margin-right: 4%; margin-left: .2%; margin-top: 4%">
   <div class="col-md-3">
     <div class="bg-mega">
       <h6 class="text-danger">Linhas deste Ambiente:</h6>
       <ul class="nav flex-column">
         <li class="nav-item" *ngFor="let linha of linhas">
-          <a class="btn rounded-0 hvr-underline-from-center text-dark" style="font-weight: bold" routerLinkActive="active"
-            [routerLink]="['/linha', linha.nome]">{{linha.nome}}</a>
+          <a class="btn rounded-0 hvr-underline-from-center text-dark" style="font-weight: bold"
+            routerLinkActive="active" [routerLink]="['/linha', linha.nome]">{{linha.nome}}</a>
         </li>
       </ul>
     </div>
   </div>
-  <div class="col-md-9">
+  <div class="col-md-9 pl-0">
     <nav aria-label="breadcrumb">
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><a routerLink="/home">HOME</a></li>
@@ -18,46 +18,66 @@
       </ol>
       <hr class="text-dark">
     </nav>
-    <div style="margin-left: 10%">
+    <div>
       <h2 style="margin: 0" *ngIf="ambiente === 'Quarto'">Produtos para seu Quarto</h2>
       <h2 style="margin: 0" *ngIf="ambiente === 'Sala'">Produtos para sua Sala</h2>
       <h2 style="margin: 0" *ngIf="ambiente === 'Cozinha'">Produtos para sua Cozinha</h2>
       <h2 style="margin: 0" *ngIf="ambiente === 'Diversos'">Produtos Diversos</h2>
-      <span
-        style="background-color: rgba(243, 156, 18, 1);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+      <span style="background-color: rgba(243, 156, 18, 1);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
     </div>
     <!-- <div class="secao">
         <h3>Conforto, qualidade e muito mais!</h3>
         <h5>Conheça as melhores ofertas para você relaxar e descansar.</h5>
       </div> -->
     <br>
-    <div class="row">
-      <!-- <div class="col-12"> -->
-          <div *ngFor="let produto of produtos" style="padding: 3%" class="card info-widget flutuar"
+    <!-- <div class="row"> -->
+    <!-- <div class="col-12"> -->
+    <!-- <div *ngFor="let produto of produtos" style="padding: 3%" class="card info-widget flutuar"
           style="width: 18rem; margin: 1em">
-          <img [src]="produto.url_imagem || ''" class="card-img-top">
+          <img [src]="produto.cores[0].imagem[0].url || ''" class="card-img-top">
           <div class="card-body">
-            <h5 class="card-title">{{produto.titulo}}</h5>
+            <h5 class="card-title">{{produto.nome}}</h5>
             <div class="row">
               <div class="col">
-                <p class="card-text pb-3">Por: {{ produto.valorAVista | currency: 'BRL' }}</p>
+                <p class="card-text pb-3">Por: {{ produto.cores[0].valor | currency: 'BRL' }}</p>
               </div>
             </div>
             <div class="text-center">
               <button class="btn btn-padrao" [routerLink]="['/oferta', produto.key]">Ver Oferta</button>
             </div>
           </div>
-        </div>
-      <!-- </div> -->
+        </div> -->
+    <!-- </div> -->
 
-      <!-- <div class="col-sm-6 card info-widget flutuar" *ngFor="let produto of produtos">
+    <div class="row">
+      <div class="col-md-12">
+        <a [routerLink]="['/oferta', produto.key]" *ngFor="let produto of produtos" style="padding: 3%"
+          class="card info-widget flutuar" style="width: 18rem; margin: 1em">
+          <img [src]="produto.cores[0].imagem[0].url || ''" class="card-img-top">
+          <div class="card-body">
+            <h5 class="card-title">{{produto.nome}}</h5>
+            <div class="row">
+              <div class="col">
+                <p class="card-text pb-3">Por: {{ produto.cores[0].valor | currency: 'BRL' }}</p>
+              </div>
+            </div>
+            <div class="text-center">
+              <button class="btn btn-padrao" (click)="ofertaDetalhe(produto.key)" style="text-decoration: no">Ver
+                Oferta</button>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <!-- <div class="col-sm-6 card info-widget flutuar" *ngFor="let produto of produtos">
         <div class="text-center">
           <img class="img-fluid card-img-top" [src]="produto.url_imagem || ''">
         </div>
         <div class="card-block padding">
           <h5 style="padding: 1%">{{produto.titulo}}</h5> -->
-          <!-- <pre>{{ oferta.descricao_oferta | descricaoReduzida:100:0 }}</pre> -->
-          <!-- <p style="padding: 1%">Por: {{ produto.valorAVista | currency: 'BRL' }}</p>
+    <!-- <pre>{{ oferta.descricao_oferta | descricaoReduzida:100:0 }}</pre> -->
+    <!-- <p style="padding: 1%">Por: {{ produto.valorAVista | currency: 'BRL' }}</p>
           <div class="text-center">
             <button class="btn btn-padrao" [routerLink]="['/oferta', produto.key]">Ver Oferta</button>
           </div>

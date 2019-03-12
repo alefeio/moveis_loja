@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router'
+import { ActivatedRoute, Params, Router } from '@angular/router'
 import { Bd } from 'src/app/bd.service';
+
 
 @Component({
   selector: 'app-ambiente',
@@ -15,7 +16,8 @@ export class AmbienteComponent implements OnInit {
 
   constructor(
     private bd: Bd,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -47,4 +49,7 @@ export class AmbienteComponent implements OnInit {
       })
   }
 
+  ofertaDetalhe(chaveProduto) {
+    this.router.navigate(['/oferta', chaveProduto]);
+  }
 }

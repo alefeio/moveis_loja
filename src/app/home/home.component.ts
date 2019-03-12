@@ -107,8 +107,8 @@ export class HomeComponent implements OnInit {
       })
   }
 
-  ofertaDetalhe() {
-    this.router.navigate(['/oferta'])
+  ofertaDetalhe(chaveProduto) {
+    this.router.navigate(['/oferta', chaveProduto]);
   }
 
   @ViewChild('scrollHorizontalSala', { read: ElementRef }) public widgetsContentSala: ElementRef;

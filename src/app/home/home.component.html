@@ -23,7 +23,7 @@
             </div>
           </div>
           <div class="text-center">
-            <button class="btn btn-padrao" [routerLink]="['/oferta', oferta.chave]" style="text-decoration: no">Ver Oferta</button>
+            <button class="btn btn-padrao" (click)="ofertaDetalhe(produto.chave)" style="text-decoration: no">Ver Oferta</button>
           </div>
         </div>
       </a>
@@ -53,7 +53,7 @@
             </div>
           </div>
           <div class="text-center">
-            <button class="btn btn-padrao" routerLink="['/oferta', oferta.chave]">Ver Oferta</button>
+            <button class="btn btn-padrao" (click)="ofertaDetalhe(produto.chave)">Ver Oferta</button>
           </div>
         </div>
       </a>
@@ -85,7 +85,7 @@
             </div>
           </div>
           <div class="text-center">
-            <button class="btn btn-padrao" routerLink="['/oferta', oferta.chave]">Ver Oferta</button>
+            <button class="btn btn-padrao" (click)="ofertaDetalhe(produto.chave)">Ver Oferta</button>
           </div>
         </div>
       </a>
@@ -117,7 +117,7 @@
             </div>
           </div>
           <div class="text-center">
-            <button class="btn btn-padrao" routerLink="['/oferta', oferta.chave]">Ver Oferta</button>
+            <button class="btn btn-padrao" (click)="ofertaDetalhe(produto.chave)">Ver Oferta</button>
           </div>
         </div>
       </a>
@@ -149,7 +149,7 @@
             </div>
           </div>
           <div class="text-center">
-            <button class="btn btn-padrao" routerLink="['/oferta', oferta.chave]">Ver Oferta</button>
+            <button class="btn btn-padrao" (click)="ofertaDetalhe(produto.chave)">Ver Oferta</button>
           </div>
         </div>
       </a>

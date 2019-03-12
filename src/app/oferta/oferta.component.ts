@@ -15,6 +15,10 @@ export class OfertaComponent implements OnInit, OnDestroy {
   public key: string
   imgs: any = []
   imagem: any = ''
+  cores: any;
+  codigos: any = [];
+  hexadecimal: any = []
+  hexa: any = []
 
   constructor(
     private bd: Bd,
@@ -54,6 +58,7 @@ export class OfertaComponent implements OnInit, OnDestroy {
       this.bd.buscarProdutoID(this.key).then(resp => {
         this.oferta = resp
         let cores = resp.cores
+        this.cores = cores;
         let arrayCores: Array<any> = []
         for (let i of cores) {
           let imagens = i.imagem
@@ -63,7 +68,8 @@ export class OfertaComponent implements OnInit, OnDestroy {
           }
         }
         this.imagem = this.imgs[0];
-        this.coresFunc(arrayCores)
+        // this.coresFunc(arrayCores)
+        this.coresNew(arrayCores)
       });
     })
   }
@@ -80,6 +86,20 @@ export class OfertaComponent implements OnInit, OnDestroy {
     }
   }
 
+  mostrarImg(i){
+    console.log(i)
+  }
+
+  coresNew(arrayCores) {
+    let cod: Array<any> = []
+    let r:Array<any> = []
+    for (let a of arrayCores) {
+      cod.push(a)
+    }
+    this.codigos = cod
+    console.log(this.codigos); 
+  }
+
   coresFunc(arrayCores) {
     let cont = 0;
     let cor: Array<any>
@@ -90,7 +110,7 @@ export class OfertaComponent implements OnInit, OnDestroy {
       switch (cont) {
         case 0: {
           cor = arrayCores[cont]
-          switch(cor.length){
+          switch (cor.length) {
             case 1: {
               tamanho = '100%'
               break;
@@ -100,7 +120,7 @@ export class OfertaComponent implements OnInit, OnDestroy {
               break
             }
             case 3: {
-              tamanho = '25%' 
+              tamanho = '25%'
               break
             }
             case 4: {
@@ -109,13 +129,10 @@ export class OfertaComponent implements OnInit, OnDestroy {
             }
           }
           var divPrinc = document.getElementById('numCores')
-          let mouse = 'mouseenter'
           for (let q = 0; q < 1; q++) {
             var div = document.createElement('div');
             div.setAttribute('id', 'jCores1')
             div.setAttribute('class', 'row')
-            // div.setAttribute('onmouseover', 'idxImg(1)')
-            // div.setAttribute('onmouseout', 'idxImg2(2)')
             div.setAttribute('style', 'border-radius: 50% !important; overflow: hidden !important; border: solid 1px black !important; height: 10% !important; width: 10% !important;')
             divPrinc.appendChild(document.createTextNode(' '))
             divPrinc.appendChild(div);
@@ -133,7 +150,7 @@ export class OfertaComponent implements OnInit, OnDestroy {
                 var divSub = document.getElementById('jCores1');
                 for (let r = 0; r < hexa.length; r++) {
                   var subDiv = document.createElement('div');
-                  subDiv.setAttribute('style', 'height: 30px; width: '+tamanho+'; background: ' + cor1[0]);
+                  subDiv.setAttribute('style', 'height: 30px; width: ' + tamanho + '; background: ' + cor1[0]);
                   divSub.appendChild(subDiv);
                 }
                 break;
@@ -142,21 +159,21 @@ export class OfertaComponent implements OnInit, OnDestroy {
                 var divSub = document.getElementById('jCores1');
                 for (let r = 1; r < hexa.length; r++) {
                   var subDiv = document.createElement('div');
-                  subDiv.setAttribute('style', ' height: 30px; width: '+tamanho+'; background: ' + cor1[1]);
+                  subDiv.setAttribute('style', ' height: 30px; width: ' + tamanho + '; background: ' + cor1[1]);
                   divSub.appendChild(subDiv);
                 }
                 break;
               }
               case 3: {
-                console.log("Fair");
+                console.log("outra cor");
                 break;
               }
               case 4: {
-                console.log("Poor");
+                console.log("outra  cor");
                 break;
               }
               default: {
-                console.log("Invalid choice");
+                console.log("outra cor");
                 break;
               }
             }
@@ -165,7 +182,7 @@ export class OfertaComponent implements OnInit, OnDestroy {
         }
         case 1: {
           cor2 = arrayCores[cont]
-          switch(cor2.length){
+          switch (cor2.length) {
             case 1: {
               tamanho = '100%'
               break;
@@ -175,7 +192,7 @@ export class OfertaComponent implements OnInit, OnDestroy {
               break
             }
             case 3: {
-              tamanho = '25%' 
+              tamanho = '25%'
               break
             }
             case 4: {
@@ -205,7 +222,7 @@ export class OfertaComponent implements OnInit, OnDestroy {
                 var divSub = document.getElementById('jCores2');
                 for (let r = 0; r < hexa.length; r++) {
                   var subDiv = document.createElement('div');
-                  subDiv.setAttribute('style', 'height: 30px; width: '+tamanho+'!important; background: ' + cor1[0]);
+                  subDiv.setAttribute('style', 'height: 30px; width: ' + tamanho + '!important; background: ' + cor1[0]);
                   divSub.appendChild(subDiv);
                 }
                 break;
@@ -214,21 +231,21 @@ export class OfertaComponent implements OnInit, OnDestroy {
                 var divSub = document.getElementById('jCores2');
                 for (let r = 1; r < hexa.length; r++) {
                   var subDiv = document.createElement('div');
-                  subDiv.setAttribute('style', ' height: 30px; width: '+tamanho+'; background: ' + cor1[1]);
+                  subDiv.setAttribute('style', ' height: 30px; width: ' + tamanho + '; background: ' + cor1[1]);
                   divSub.appendChild(subDiv);
                 }
                 break;
               }
               case 3: {
-                console.log("Fair");
+                console.log("outra cor");
                 break;
               }
               case 4: {
-                console.log("Poor");
+                console.log("outra cor");
                 break;
               }
               default: {
-                console.log("Invalid choice");
+                console.log("outra cor");
                 break;
               }
             }
@@ -240,7 +257,6 @@ export class OfertaComponent implements OnInit, OnDestroy {
         }
       }
     };
-    //     $("#cor-3").attr("style", "background: " + this.corteste[i].hexa);
   }
 
   public adicionarItemCarrinho(): void {
