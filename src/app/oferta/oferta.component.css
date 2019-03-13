@@ -6,6 +6,43 @@ span {
   font-weight: bold;
 }
 
+.diagonal {
+  overflow: hidden;
+  border: 3px solid #565656;
+  margin: 5px;
+  border-radius: 30px;
+  -ms-transform: rotate(40deg);
+  -webkit-transform: rotate(40deg); 
+  transform: rotate(40deg);
+}
+
+.diagonal:hover{
+  border: 3px solid #C33C44;
+  animation-name: piscar;
+  animation-duration: 5s;
+}
+
+#img:hover {
+  border: 3px solid #C33C44;
+  animation-name: piscar;
+  animation-duration: 4s;
+}
+
+@keyframes piscar {
+  0%   {border-color: #C33C44;}
+  10%  {border-color: #565656;}
+  20%   {border-color: #C33C44;}
+  30%  {border-color: #565656;}
+  40%  {border-color: #C33C44;}
+  50%  {border-color: #565656;}
+  60% {border-color: #C33C44;}
+  70%  {border-color: #565656;}
+  80%   {border-color: #C33C44;}
+  90%  {border-color: #565656;}
+  100%  {border-color: #C33C44;}
+}
+
+
 /* #manipula{
   border-radius: 50%
 } */

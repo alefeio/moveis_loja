@@ -5,7 +5,7 @@
         <img [src]="imagem.url || ''" class="img-zoom img-fluid" alt="">
       </div>
       <div class="thumbnails">
-        <img *ngFor="let imagem of imgs; let i = index" (mouseenter)="imgHover(i)" [src]="imagem.url" />
+        <img id="img" *ngFor="let imagem of imgs; let i = index" (click)="imgHover(i)" [src]="imagem.url" />
       </div>
     </div>
 
@@ -155,8 +155,7 @@
         </div>
         <div (mouseleave)="sair()">
           <div class="row" style="width: 100%; margin-left: 1%">
-            <div (mouseover)="mostrarImg(i)"
-              style="border: 2px solid #565656 ;border-radius: 30px; overflow: hidden; margin: 5px;" class="row"
+            <div (mouseover)="mostrarImg(i)" class="row diagonal"
               *ngFor="let a of codigos; let i = index">
               <div *ngFor="let b of a">
                 <div [ngStyle]="{'background-color': b.hexa.hexa,'height':'30px','width': a.style}"></div>
@@ -165,7 +164,7 @@
           </div>
           <div class="thumbnails">
             <div *ngIf="imagemCor != undefined">
-              <img *ngFor="let img of imagemCor; let i = index" (mouseenter)="imgCor(i)"
+              <img id="img" *ngFor="let img of imagemCor; let i = index" (mouseenter)="imgCor(i)"
                 [src]="img.url" />
             </div>
           </div>
