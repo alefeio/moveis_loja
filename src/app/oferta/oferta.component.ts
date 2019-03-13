@@ -17,8 +17,8 @@ export class OfertaComponent implements OnInit, OnDestroy {
   imagem: any = ''
   cores: any;
   codigos: any = [];
-  hexadecimal: any = []
-  hexa: any = []
+  imagemCor: any;
+  larguraCor: string
 
   constructor(
     private bd: Bd,
@@ -68,7 +68,6 @@ export class OfertaComponent implements OnInit, OnDestroy {
           }
         }
         this.imagem = this.imgs[0];
-        // this.coresFunc(arrayCores)
         this.coresNew(arrayCores)
       });
     })
@@ -86,177 +85,71 @@ export class OfertaComponent implements OnInit, OnDestroy {
     }
   }
 
-  mostrarImg(i){
-    console.log(i)
+  mostrarImg(i) {
+    let indice = i.toString()
+    let imagens: any = []
+    for (let index in this.cores) {
+      if (index === indice) {
+        imagens.push(this.cores[index])
+      }
+    }
+    for (let a of imagens) {
+      let arrayImagem = a.imagem
+      this.imagemCor = arrayImagem
+    }
+    this.imagem = this.imagemCor[0]
+  }
+
+  imgCor(i) {
+    let ind = i.toString()
+    let corTumb: any
+    for (let r in this.imagemCor) {
+      if (ind === r) {
+        corTumb = this.imagemCor[r]
+      }
+    }
+    this.imagem = corTumb
+  }
+
+  sair() {
+    this.imagemCor = undefined;
+    this.imagem = this.imgs[0]
   }
 
   coresNew(arrayCores) {
     let cod: Array<any> = []
-    let r:Array<any> = []
+    let item: Array<any> = []
+    
     for (let a of arrayCores) {
+      item.push(a)
+      for (let i of item) {
+        let qtdCor: Array<any> = i
+        switch(qtdCor.length){
+          case 1:{
+            a.style = '30px'
+            break
+          }
+          case 2:{
+            a.style = '15px'
+            break
+          }
+          case 3:{
+            a.style = '10px'
+            break
+          }
+          case 4:{
+            a.style = '7.5px'
+            break
+          }
+          case 5:{
+            a.style = '6px'
+            break
+          }
+        }
+      }
       cod.push(a)
     }
     this.codigos = cod
-    console.log(this.codigos); 
-  }
-
-  coresFunc(arrayCores) {
-    let cont = 0;
-    let cor: Array<any>
-    let cor2: Array<any>
-    let tamanho: string
-    for (let i = 0; i < arrayCores.length; i++) {
-      cont += i
-      switch (cont) {
-        case 0: {
-          cor = arrayCores[cont]
-          switch (cor.length) {
-            case 1: {
-              tamanho = '100%'
-              break;
-            }
-            case 2: {
-              tamanho = '50%'
-              break
-            }
-            case 3: {
-              tamanho = '25%'
-              break
-            }
-            case 4: {
-              tamanho = '12.5%'
-              break
-            }
-          }
-          var divPrinc = document.getElementById('numCores')
-          for (let q = 0; q < 1; q++) {
-            var div = document.createElement('div');
-            div.setAttribute('id', 'jCores1')
-            div.setAttribute('class', 'row')
-            div.setAttribute('style', 'border-radius: 50% !important; overflow: hidden !important; border: solid 1px black !important; height: 10% !important; width: 10% !important;')
-            divPrinc.appendChild(document.createTextNode(' '))
-            divPrinc.appendChild(div);
-            div.innerText = ' '
-          }
-          let hexa: Array<any> = []
-          for (let i of cor) {
-            hexa.push(i.hexa);
-            let cor1: Array<any> = []
-            for (let corHexa of hexa) {
-              cor1.push(corHexa.hexa)
-            }
-            switch (cor1.length) {
-              case 1: {
-                var divSub = document.getElementById('jCores1');
-                for (let r = 0; r < hexa.length; r++) {
-                  var subDiv = document.createElement('div');
-                  subDiv.setAttribute('style', 'height: 30px; width: ' + tamanho + '; background: ' + cor1[0]);
-                  divSub.appendChild(subDiv);
-                }
-                break;
-              }
-              case 2: {
-                var divSub = document.getElementById('jCores1');
-                for (let r = 1; r < hexa.length; r++) {
-                  var subDiv = document.createElement('div');
-                  subDiv.setAttribute('style', ' height: 30px; width: ' + tamanho + '; background: ' + cor1[1]);
-                  divSub.appendChild(subDiv);
-                }
-                break;
-              }
-              case 3: {
-                console.log("outra cor");
-                break;
-              }
-              case 4: {
-                console.log("outra  cor");
-                break;
-              }
-              default: {
-                console.log("outra cor");
-                break;
-              }
-            }
-          }
-          break;
-        }
-        case 1: {
-          cor2 = arrayCores[cont]
-          switch (cor2.length) {
-            case 1: {
-              tamanho = '100%'
-              break;
-            }
-            case 2: {
-              tamanho = '50%'
-              break
-            }
-            case 3: {
-              tamanho = '25%'
-              break
-            }
-            case 4: {
-              tamanho = '12.5%'
-              break
-            }
-          }
-          var divFilho = document.getElementById('numCores')
-          for (let q = 0; q < 1; q++) {
-            var div = document.createElement('div');
-            div.setAttribute('id', 'jCores2')
-            div.setAttribute('class', 'row')
-            div.setAttribute('style', 'border-radius: 50% !important; overflow: hidden !important; margin-left: 20px; border: solid 1px black !important; height: 10% !important; width: 10% !important;')
-            divFilho.appendChild(document.createTextNode(' '))
-            divFilho.appendChild(div);
-            div.innerText = ' '
-          }
-          let hexa: Array<any> = []
-          for (let i of cor2) {
-            hexa.push(i.hexa);
-            let cor1: Array<any> = []
-            for (let corHexa of hexa) {
-              cor1.push(corHexa.hexa)
-            }
-            switch (cor1.length) {
-              case 1: {
-                var divSub = document.getElementById('jCores2');
-                for (let r = 0; r < hexa.length; r++) {
-                  var subDiv = document.createElement('div');
-                  subDiv.setAttribute('style', 'height: 30px; width: ' + tamanho + '!important; background: ' + cor1[0]);
-                  divSub.appendChild(subDiv);
-                }
-                break;
-              }
-              case 2: {
-                var divSub = document.getElementById('jCores2');
-                for (let r = 1; r < hexa.length; r++) {
-                  var subDiv = document.createElement('div');
-                  subDiv.setAttribute('style', ' height: 30px; width: ' + tamanho + '; background: ' + cor1[1]);
-                  divSub.appendChild(subDiv);
-                }
-                break;
-              }
-              case 3: {
-                console.log("outra cor");
-                break;
-              }
-              case 4: {
-                console.log("outra cor");
-                break;
-              }
-              default: {
-                console.log("outra cor");
-                break;
-              }
-            }
-          }
-          break;
-        }
-        default: {
-          break;
-        }
-      }
-    };
   }
 
   public adicionarItemCarrinho(): void {
