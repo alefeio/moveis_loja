@@ -73,6 +73,10 @@ export class OfertaComponent implements OnInit, OnDestroy {
     })
   }
 
+  agoraVai() {
+    $('.zoom').zoom()
+  }
+
   ngOnDestroy() {
   }
 

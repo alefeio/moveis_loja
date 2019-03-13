@@ -8,7 +8,6 @@ import { RouterModule } from '@angular/router'
 import { ReactiveFormsModule } from '@angular/forms'
 
 import { ROUTES } from './app.routes'
-
 import { AppComponent } from './app.component';
 import { TopoComponent } from './topo/topo.component';
 import { HomeComponent } from './home/home.component';
@@ -52,6 +51,7 @@ import { RecuperarSenhaComponent } from './acesso/recuperar-senha/recuperar-senh
 import { RodaPeComponent } from './roda-pe/roda-pe.component';
 import { Mascara } from './diretivas/mascara';
 import { CorComponent } from './oferta/cor/cor.component';
+import { NgxImageZoomModule } from 'ngx-image-zoom';
 
 @NgModule({
   declarations: [
@@ -93,6 +93,7 @@ import { CorComponent } from './oferta/cor/cor.component';
   imports: [
     BrowserModule,
     HttpModule,
+    NgxImageZoomModule.forRoot(),
     // FormsModule,
     ReactiveFormsModule,
     RouterModule.forRoot(ROUTES)
