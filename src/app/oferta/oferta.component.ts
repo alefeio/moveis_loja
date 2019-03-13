@@ -118,8 +118,7 @@ export class OfertaComponent implements OnInit, OnDestroy {
 
   coresNew(arrayCores) {
     let cod: Array<any> = []
-    let item: Array<any> = []
-    
+    let item: Array<any> = [] 
     for (let a of arrayCores) {
       item.push(a)
       for (let i of item) {
