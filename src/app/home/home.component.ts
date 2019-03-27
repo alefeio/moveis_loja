@@ -3,7 +3,6 @@ import { Router } from '@angular/router';
 import { OfertasService } from '../ofertas.service'
 import { Oferta } from '../shared/oferta.model'
 import { Bd } from 'src/app/bd.service';
-
 declare var $: any
 
 @Component({
@@ -17,12 +16,11 @@ export class HomeComponent implements OnInit {
   // public ofertas: Oferta[]
   public destaques: any
   public ambientes: Array<any> = []
-
   public pQuarto: Array<any> = []
   public pSala: Array<any> = []
   public pCozinha: Array<any> = []
   public pDiversos: Array<any> = []
-  produtosGestao:Array<any> = [];
+  produtosGestao: Array<any> = [];
 
   constructor(private ofertasService: OfertasService,
     private bd: Bd,
@@ -73,18 +71,66 @@ export class HomeComponent implements OnInit {
   produtosEcommerce() {
     this.bd.buscarProdutosEcommerce().then((resposta: any) => {
       this.produtosGestao = resposta;
-      for(let prodPorAmb of resposta){
-        if(prodPorAmb.ambiente === "Sala"){
-          this.pSala.push(prodPorAmb);
+      let salaDestaque
+      let quartoDestaque
+      let cozinhaDestaque
+      let diversosDestaque
+      for (let prodPorAmb of resposta) {
+        if (prodPorAmb.ambiente === "Sala") {
+          salaDestaque = prodPorAmb
+          for (let cores of prodPorAmb.cores) {
+            if (cores.destaque === true) {
+              salaDestaque.cores = cores
+              for (let imagem of cores.imagem) {
+                if (imagem.destaque === true) {
+                  salaDestaque.cores.imagem = imagem
+                }
+              }
+            }
+          }
+          this.pSala.push(salaDestaque);
         }
         if(prodPorAmb.ambiente === "Quarto"){
-          this.pQuarto.push(prodPorAmb);
+          quartoDestaque = prodPorAmb
+          for (let cores of prodPorAmb.cores) {
+            if (cores.destaque === true) {
+              quartoDestaque.cores = cores
+              for (let imagem of cores.imagem) {
+                if (imagem.destaque === true) {
+                  quartoDestaque.cores.imagem = imagem
+                }
+              }
+            }
+          }
+          this.pQuarto.push(quartoDestaque);
         }
-        if(prodPorAmb.ambiente === "Cozinha"){
-          this.pCozinha.push(prodPorAmb);
+        if (prodPorAmb.ambiente === "Cozinha") {
+          cozinhaDestaque = prodPorAmb
+          for (let cores of prodPorAmb.cores) {
+            if (cores.destaque === true) {
+              cozinhaDestaque.cores = cores
+              for (let imagem of cores.imagem) {
+                if (imagem.destaque === true) {
+                  cozinhaDestaque.cores.imagem = imagem
+                }
+              }
+            }
+          }
+          this.pCozinha.push(cozinhaDestaque);
         }
         if(prodPorAmb.ambiente === "Diversos"){
-          this.pDiversos.push(prodPorAmb);
+          diversosDestaque = prodPorAmb
+          for (let cores of prodPorAmb.cores) {
+            if (cores.destaque === true) {
+              diversosDestaque.cores = cores
+              for (let imagem of cores.imagem) {
+                if (imagem.destaque === true) {
+                  diversosDestaque.cores.imagem = imagem
+                }
+              }
+            }
+          }
+          this.pDiversos.push(diversosDestaque);
         }
       }
     })
@@ -104,6 +150,7 @@ export class HomeComponent implements OnInit {
     this.bd.consultarAmbientes()
       .then((ambientes: any) => {
         this.ambientes = ambientes.reverse()
+        console.log(this.ambientes);
       })
   }
 
@@ -159,20 +206,4 @@ export class HomeComponent implements OnInit {
 
     if (ambiente === 'Destaques') this.widgetsContentDestaques.nativeElement.scrollTo({ left: (this.widgetsContentDestaques.nativeElement.scrollLeft - 320), behavior: 'smooth' });
   }
-
-  // public scroll(direcao, ambiente){
-  //   let direc = direcao
-  //   let amb = ambiente
-  // }
-
-  // @ViewChild('scrollHorizontalDiversos', { read: ElementRef }) public widgetsContentDiversos: ElementRef;
-
-  // public scrollDireita(): void {
-  //   this.widgetsContentDiversos.nativeElement.scrollTo({ left: (this.widgetsContentDiversos.nativeElement.scrollLeft + 320), behavior: 'smooth' });
-  // }
-
-  // public scrollEsquerdaDiversos(): void {
-  //   this.widgetsContentDiversos.nativeElement.scrollTo({ left: (this.widgetsContentDiversos.nativeElement.scrollLeft - 320), behavior: 'smooth' });
-  // }
-
 }

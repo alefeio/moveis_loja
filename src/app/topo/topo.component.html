@@ -59,14 +59,14 @@
       <div id="amb" *ngFor="let ambiente of ambientes" class="largura-amb sacodida-horizontal dropdown"
         routerLinkActive="active" [routerLink]="['/ambiente', ambiente.nome]">
         <a id="link-amb">
-          <img [src]="ambiente.url_imagem || ''" height="50" width="50">
-          <span style="font-weight: bold;"> &nbsp;{{ambiente.nome}}</span>
+          <!-- <img [src]="ambiente.url_imagem || ''" height="50" width="50"> -->
+          <span style="font-weight: bold;">&nbsp;{{ambiente.nome}}</span>
         </a>
         <div class="dropbtn">
           <div class="dropdown-content">
             <ng-container *ngFor="let linha of linhas">
-              <a class="encher" [routerLink]="['/linha', linha.nome]" *ngIf="linha.ambiente == ambiente.nome">
-                {{linha.nome}}
+              <a class="encher" [routerLink]="['/linha', linha.descricao]" *ngIf="linha.ambiente == ambiente.nome">
+                {{linha.descricao}}
               </a>
             </ng-container>
           </div>

@@ -41,18 +41,6 @@ export class OfertaComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-
-    // this.route.params.subscribe((parametros: Params) => {
-    //   this.key = parametros.id
-    //   console.log('Essa é a Key: ', this.key)   
-    //   this.bd.consultarProdutosPorId(parametros.id)
-    //     .then((produto: any) => {
-    //       this.oferta = produto
-    //       console.log('Essa é a oferta: ', this.oferta)
-    //       this.complemento = this.oferta.complementos
-    //       console.log(this.complemento);
-    //     })
-    // })
     this.route.params.subscribe((parametros: any) => {
       this.key = parametros.id
       this.bd.buscarProdutoID(this.key).then(resp => {

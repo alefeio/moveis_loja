@@ -1,6 +1,6 @@
 <app-carrousel></app-carrousel>
 
-<div style="margin-left: 10%; margin-top: 2%">
+<!-- <div style="margin-left: 10%; margin-top: 2%">
   <h2 style="margin: 0">Produtos em Destaque</h2>
   <span
     style="background-color: rgba(243, 194, 61, 1);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
@@ -31,7 +31,9 @@
     </div>
   </div>
 </div>
-<br><br>
+<br><br> -->
+
+
 <div style="margin-left: 10%">
   <h2 style="margin: 0">Para sua sala <small><button class="btn btn-sm btn-warning"
         [routerLink]="['/ambiente', 'Sala']">+</button></small></h2>
@@ -44,12 +46,12 @@
       <a class="prev" (click)="scrollEsquerda('Sala')">&#10094;</a>
       <a [routerLink]="['/oferta', oferta.chave]" *ngFor="let oferta of pSala" style="padding: 3%"
         class="card info-widget flutuar" style="width: 18rem; margin: 1em">
-        <img [src]="oferta.cores[0].imagem[0].url || ''" class="card-img-top">
+        <img [src]="oferta.cores.imagem.url" class="card-img-top">
         <div class="card-body">
           <h5 class="card-title">{{oferta.nome}}</h5>
           <div class="row">
             <div class="col">
-              <p class="card-text pb-3">Por: {{ oferta.cores[0].valor | currency: 'BRL' }}</p>
+              <p class="card-text pb-3">Por: {{oferta.cores.valor | currency: 'BRL'}}</p>
             </div>
           </div>
           <div class="text-center">
@@ -76,12 +78,12 @@
       <a class="prev" (click)="scrollEsquerda('Quarto')">&#10094;</a>
       <a [routerLink]="['/oferta', oferta.chave]" *ngFor="let oferta of pQuarto" style="padding: 3%"
         class="card info-widget flutuar" style="width: 18rem; margin: 1em">
-        <img [src]="oferta.cores[0].imagem[0].url || ''" class="card-img-top">
+        <img [src]="oferta.cores.imagem.url || ''" class="card-img-top">
         <div class="card-body">
           <h5 class="card-title">{{oferta.nome}}</h5>
           <div class="row">
             <div class="col">
-              <p class="card-text pb-3">Por: {{ oferta.cores[0].valor | currency: 'BRL' }}</p>
+              <p class="card-text pb-3">Por: {{ oferta.cores.valor | currency: 'BRL' }}</p>
             </div>
           </div>
           <div class="text-center">
@@ -94,7 +96,7 @@
   </div>
 </div>
 
-<br><br>
+<!-- <br><br>
 <div style="margin-left: 10%">
   <h2 style="margin: 0">Para sua cozinha <small><button class="btn btn-sm btn-warning"
         [routerLink]="['/ambiente', 'Cozinha']">+</button></small></h2>
@@ -108,12 +110,12 @@
       <a class="prev" (click)="scrollEsquerda('Cozinha')">&#10094;</a>
       <a [routerLink]="['/oferta', oferta.chave]" *ngFor="let oferta of pCozinha" style="padding: 3%"
         class="card info-widget flutuar" style="width: 18rem; margin: 1em">
-        <img [src]="oferta.cores[0].imagem[0].url || ''" class="card-img-top">
+        <img [src]="oferta.cores.imagem.url || ''" class="card-img-top">
         <div class="card-body">
           <h5 class="card-title">{{oferta.nome}}</h5>
           <div class="row">
             <div class="col">
-              <p class="card-text pb-3">Por: {{ oferta.cores[0].valor | currency: 'BRL' }}</p>
+              <p class="card-text pb-3">Por: {{ oferta.cores.valor | currency: 'BRL' }}</p>
             </div>
           </div>
           <div class="text-center">
@@ -124,9 +126,9 @@
       <a class="next" (click)="scrollDireita('Cozinha')" style="margin-right: 1em">&#10095;</a>
     </div>
   </div>
-</div>
+</div> -->
 
-<br><br>
+<!--<br><br>
 <div style="margin-left: 10%">
   <h2 style="margin: 0">Itens diversos para sua casa <small><button class="btn btn-sm btn-warning"
         [routerLink]="['/ambiente', 'Diversos']">+</button></small></h2>
@@ -156,4 +158,4 @@
       <a class="next" (click)="scrollDireita('Diversos')" style="margin-right: 1em">&#10095;</a>
     </div>
   </div>
-</div>
+</div> -->

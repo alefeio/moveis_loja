@@ -7,6 +7,7 @@ import { map, retry } from 'rxjs/operators';
 
 @Injectable()
 export class Bd {
+    ambienteNome:Array<any> = []
 
     testeCorProd:Array<any> = [{
         
@@ -196,46 +197,39 @@ export class Bd {
     }
 
     public consultarAmbientes(): Promise<any> {
-
         return new Promise((resolve, reject) => {
-
             // consultar chamados
             backend.database().ref('ambientes')
                 .orderByChild('ordem')
                 .once('value')
                 .then((snapshot: any) => {
                     // console.log(snapshot.val())
-
                     let ambientes: Array<any> = []
-
                     snapshot.forEach((childSnapshot: any) => {
-
                         let ambiente = childSnapshot.val()
-                        ambiente.key = childSnapshot.key
-
+                        // ambiente.key = childSnapshot.key
                         ambientes.push(ambiente)
                     })
-
                     // resolve(publicacoes)
-                    return ambientes
-                })
-                .then((ambientes: any) => {
-
-                    ambientes.forEach(ambiente => {
-
-                        // consultar a url da imagem
-                        backend.storage().ref()
-                            .child(`ambientes/${ambiente.key}`)
-                            .getDownloadURL()
-                            .then((url: string) => {
-
-                                ambiente.url_imagem = url
-                            })
-                    })
-
+                    // return ambientes
                     resolve(ambientes.reverse())
-
                 })
+                // .then((ambientes: any) => {
+
+                    // ambientes.forEach(ambiente => {
+
+                    //     // consultar a url da imagem
+                    //     // backend.storage().ref()
+                    //     //     .child(`ambientes/${ambiente.key}`)
+                    //     //     .getDownloadURL()
+                    //     //     .then((url: string) => {
+
+                    //     //         ambiente.url_imagem = url
+                    //     //     })
+                    // })
+
+
+                // })
         })
     }
 
@@ -268,7 +262,7 @@ export class Bd {
 
     public consultarLinhasPorAmbiente(ambiente: string): Promise<any> {
 
-        console.log('ambiente recebido no bd: ', ambiente)
+        // console.log('ambiente recebido no bd: ', ambiente)
 
         return new Promise((resolve, reject) => {
 
@@ -292,6 +286,7 @@ export class Bd {
 
                     // resolve(publicacoes)
                     resolve(linhas)
+                    // console.log(linhas);
                 })
         })
     }

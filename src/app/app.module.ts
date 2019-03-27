@@ -50,7 +50,6 @@ import { CarrouselComponent } from './carrousel/carrousel.component';
 import { RecuperarSenhaComponent } from './acesso/recuperar-senha/recuperar-senha.component';
 import { RodaPeComponent } from './roda-pe/roda-pe.component';
 import { Mascara } from './diretivas/mascara';
-import { CorComponent } from './oferta/cor/cor.component';
 import { NgxImageZoomModule } from 'ngx-image-zoom';
 
 @NgModule({
@@ -88,7 +87,6 @@ import { NgxImageZoomModule } from 'ngx-image-zoom';
     RecuperarSenhaComponent,
     RodaPeComponent,
     Mascara,
-    CorComponent
   ],
   imports: [
     BrowserModule,

@@ -23,7 +23,7 @@ export class TopoComponent implements OnInit {
   public linhas: Array<any> = []
   scrolNumber: number = 0;
 
-  public ambiente: string
+  public ambiente:string
 
   // variaveis de efeito de fixed-top angular sem jquery
   sticky: boolean = false;
@@ -86,13 +86,12 @@ export class TopoComponent implements OnInit {
         this.ambiente = ambientes.nome
         this.ambientes = ambientes.reverse()
 
-        // this.bd.consultarLinhasPorAmbiente(this.ambiente)
-        //   .then((linhas: any) => {
-        //     this.linhas = linhas
-        //   })
-
+        this.bd.consultarLinhasPorAmbiente(this.ambiente)
+          .then((linhas: any) => {
+            this.linhas = linhas
+            // console.log(linhas);
+          })
         this.consultarLinhas()
-
       })
   }
 
@@ -100,6 +99,7 @@ export class TopoComponent implements OnInit {
     this.bd.consultarLinhas()
       .then((linhas: any) => {
         this.linhas = linhas
+        // console.log(linhas);
       })
   }
 
