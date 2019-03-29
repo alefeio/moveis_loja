@@ -10,54 +10,57 @@ class CarrinhoService {
 
     public incluirItem(oferta: any): void {
         let itemCarrinho: ItemCarrinho = new ItemCarrinho(
+            oferta.criado,
+            oferta.descricao,  
             oferta.key,
-            oferta.url_imagem,  
-            oferta.titulo,
-            oferta.valorAVista,
-            oferta.valorAPrazo,
+            oferta.linha,
+            oferta.marca,
+            oferta.nome,
+            oferta.produtoBase,
+            oferta.status,
+            oferta.ambiente,
+            oferta.cor,
             1
         )
+        // let itemCarrinhoEncontrado = this.itens.find((item: ItemCarrinho) => item.key === itemCarrinho.key)
+        // console.log(itemCarrinho);
 
-        console.log(itemCarrinho);
+        // if(itemCarrinhoEncontrado){
+        //     itemCarrinhoEncontrado.quantidade += 1
+        // console.log("executei item carrinho incontrado");
 
-        let itemCarrinhoEncontrado = this.itens.find((item: ItemCarrinho) => item.key === itemCarrinho.key)
+        // } else{
+        // //     this.itens.push(itemCarrinho)
+        // // console.log("executei");
 
-        if(itemCarrinhoEncontrado){
-            itemCarrinhoEncontrado.quantidade += 1
-        console.log("executei item carrinho incontrado");
-
-        } else{
-            this.itens.push(itemCarrinho)
-        console.log("executei");
-
-        }
+        // }
     }
 
-    public totalCarrinhoCompras(): number {
-        let total: number = 0
+    // public totalCarrinhoCompras(): number {
+    //     let total: number = 0
 
-        this.itens.map((item: ItemCarrinho) => {
-            total += (item.valorAVista * item.quantidade)
-        })
+    //     this.itens.map((item: ItemCarrinho) => {
+    //         total += (item.valorAVista * item.quantidade)
+    //     })
 
-        return total
-    }
+    //     return total
+    // }
 
-    public adicionarQuantidade(itemCarrinho: ItemCarrinho): void {
-        let itemCarrinhoEncontrado = this.itens.find((item: ItemCarrinho) => item.key === itemCarrinho.key)
+    // public adicionarQuantidade(itemCarrinho: ItemCarrinho): void {
+    //     let itemCarrinhoEncontrado = this.itens.find((item: ItemCarrinho) => item.key === itemCarrinho.key)
 
-        if(itemCarrinhoEncontrado) itemCarrinhoEncontrado.quantidade += 1
-    }
+    //     if(itemCarrinhoEncontrado) itemCarrinhoEncontrado.quantidade += 1
+    // }
 
-    public diminuirQuantidade(itemCarrinho: ItemCarrinho): void {
-        let itemcarrinhoEncotrado = this.itens.find((item: ItemCarrinho) => item.key === itemCarrinho.key)
+    // public diminuirQuantidade(itemCarrinho: ItemCarrinho): void {
+    //     let itemcarrinhoEncotrado = this.itens.find((item: ItemCarrinho) => item.key === itemCarrinho.key)
 
-        if(itemcarrinhoEncotrado) {
-            itemcarrinhoEncotrado.quantidade -= 1
+    //     if(itemcarrinhoEncotrado) {
+    //         itemcarrinhoEncotrado.quantidade -= 1
 
-            if(itemcarrinhoEncotrado.quantidade === 0) this.itens.splice(this.itens.indexOf(itemcarrinhoEncotrado), 1) 
-        }
-    }
+    //         if(itemcarrinhoEncotrado.quantidade === 0) this.itens.splice(this.itens.indexOf(itemcarrinhoEncotrado), 1) 
+    //     }
+    // }
     excluir(i) {
         this.itens.splice(i,1);
     }

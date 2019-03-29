@@ -1,12 +1,16 @@
 class ItemCarrinho {
     constructor(
-        public key: number,
-        // public img: object,
-        public img: string,
-        public titulo: string,
-        public valorAVista: number,
-        public valorAPrazo: number,
-        public quantidade: number
+        public criado: String,
+        public descricao: String,
+        public key: String,
+        public linha: String,
+        public marca: String,
+        public nome: String,
+        public produtoBase: String,
+        public status: String,
+        public ambiente: String,
+        public cor: Object,
+        public quantidade: Number
     ){}
 }
 

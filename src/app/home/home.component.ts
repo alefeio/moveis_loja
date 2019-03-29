@@ -150,7 +150,6 @@ export class HomeComponent implements OnInit {
     this.bd.consultarAmbientes()
       .then((ambientes: any) => {
         this.ambientes = ambientes.reverse()
-        console.log(this.ambientes);
       })
   }
 

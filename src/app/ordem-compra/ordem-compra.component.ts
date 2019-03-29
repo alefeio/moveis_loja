@@ -208,16 +208,16 @@ export class OrdemCompraComponent implements OnInit {
     }
   }
 
-  public diminuir(item: ItemCarrinho) {
-    this.carrinhoService.diminuirQuantidade(item)
-    if (this.itensCarrinho.length === 0) {
-      this.mostrar = 0;
-    }
-  }
+  // public diminuir(item: ItemCarrinho) {
+  //   this.carrinhoService.diminuirQuantidade(item)
+  //   if (this.itensCarrinho.length === 0) {
+  //     this.mostrar = 0;
+  //   }
+  // }
 
-  public adicionar(item: ItemCarrinho) {
-    this.carrinhoService.adicionarQuantidade(item)
-  }
+  // public adicionar(item: ItemCarrinho) {
+  //   this.carrinhoService.adicionarQuantidade(item)
+  // }
 
   excluirItemCarrinho(i) {
     this.carrinhoService.excluir(i);
