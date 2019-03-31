@@ -1,168 +1,5 @@
-<!-- <div class="ordem-compra" *ngIf="idPedidoCompra === undefined">
-  <form [formGroup]="form" (ngSubmit)="confirmarCompra()" novalidate>
-    <h5>Sua Compra</h5>
-    <hr />
-    <div>
-
-      <div class="form-row" style="background: #FAFAFA; padding: 20px; border-bottom: solid 1px #F0F0F0"
-        *ngFor="let item of itensCarrinho">
-        <div class="form-group col-sm-2">
-          <img [src]="item.img || ''" class="img-fluid" alt="">
-        </div>
-        <div class="form-group col-sm-6">
-          {{item.titulo}}
-        </div>
-
-        <div>
-          <div class="row">
-            <div class="col">
-              <button type="button" class="btn btn-link" (click)="diminuir(item)">-</button>
-              {{item.quantidade}}
-              <button type="button" class="btn btn-link" (click)="adicionar(item)">+</button>
-            </div>
-          </div>
-          <div class="form-row" style="background: #FAFAFA; padding: 20px; border-bottom: solid 1px #F0F0F0"
-            *ngFor="let item of itensCarrinho">
-            <div class="form-group col-sm-2">
-              <img [src]="item.img || ''" class="img-fluid" alt="">
-            </div>
-            <div class="form-group col-sm-6">
-              {{item.titulo}}
-            </div>
-
-            <div>
-              <div class="row">
-                <div class="col">
-                  <button type="button" class="btn btn-link" (click)="diminuir(item)">-</button>
-                  {{item.quantidade}}
-                  <button type="button" class="btn btn-link" (click)="adicionar(item)">+</button>
-                </div>
-              </div>
-            </div>
-
-            <div class="form-group col-sm-2 d-flex justify-content-end">
-              {{item.valorAVista * item.quantidade | currency: 'BRL'}}
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div id="info-carrinho" *ngIf="mostrar != 0">
-            <div class="cart-summary">
-              <h5>Carrinho Total</h5>
-              <li><span>Subtotal:</span> <span>{{ carrinhoService.totalCarrinhoCompras() | currency: 'BRL' }}</span>
-              </li>
-              <li><span>Entrega:</span> <span>Grátis</span></li>
-              <li><span>Total:</span> <span>{{ carrinhoService.totalCarrinhoCompras() | currency: 'BRL' }}</span></li>
-              <div class="form-row">
-                <div class="col" style="padding-top: 4%">
-                  <span>Forma de Pagamento</span>
-                </div>
-                <div class="form-group col-md-3">
-                  <select class="form-control" formControlName="formaPagamento">
-                    <option value="" selected="selected">Selecione uma opção</option>
-                    <option value="dinheiro">Dinheiro</option>
-                    <option value="debito">Débito</option>
-                  </select>
-                  <small class="form-text text-success"
-                    *ngIf="form.get('formaPagamento').valid && form.get('formaPagamento').touched">Ok</small>
-                  <small class="form-text text-danger"
-                    *ngIf="form.get('formaPagamento').invalid && form.get('formaPagamento').touched">Escolha
-                    uma forma de pagamento</small>
-                </div>
-              </div>
-              <div class="row text-center">
-                <div class="col-6">
-                  <input class="form-control rounded-0" placeholder="CEP para Entrega">
-                </div>
-                <button class="btn btn-padrao" type="submit">OK</button>
-              </div>
-              <div class="text-center cep-top">
-                <button type="submit" class="btn-finalizar btn-padrao" [disabled]="!form.valid">Finalizar
-                  Compra</button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="form-row">
-        <div class="form-group col d-flex justify-content-center"
-          *ngIf="carrinhoService.exibirItens().length; else carrinhoVazio">
-          <h4>Total do pedido: {{ carrinhoService.totalCarrinhoCompras() | currency: 'BRL' }}</h4>
-        </div>
-        <ng-template #carrinhoVazio>
-          <div class="form-row col d-flex justify-content-center">
-            <h4>Seu carrinho está vazio | &nbsp;</h4>
-            <small><a class="text-danger" routerLink="">Aproveite as <br>nossas ofertas!</a></small>
-          </div>
-        </ng-template>
-      </div>
-    </div>
-    <br /> -->
-
-<!-- ==============isso ja estava comentado========= -->
-
-<!-- <h5>Dados de entrega</h5>
-      <hr />
-      
-      <div class="form-row">
-        
-        <div class="form-group col-md-6">
-          <input type="text" class="form-control" placeholder="Endereço" autocomplete="off" formControlName="endereco">
-          <small class="form-text text-success" *ngIf="form.get('endereco').valid && form.get('endereco').touched">Ok</small>
-          <small class="form-text text-danger" *ngIf="form.get('endereco').invalid && form.get('endereco').touched">Endereço
-            inválido</small>
-          </div>
-          
-          <div class="form-group col-md-2">
-            <input type="text" class="form-control" placeholder="Número" autocomplete="off" formControlName="numero">
-            <small class="form-text text-success" *ngIf="form.get('numero').valid && form.get('numero').touched">Ok</small>
-            <small class="form-text text-danger" *ngIf="form.get('numero').invalid && form.get('numero').touched">Número
-              inválido</small>
-            </div>
-            
-            <div class="form-group col-md-4">
-              <input type="text" class="form-control" placeholder="Complemento" autocomplete="off" formControlName="complemento">
-            </div>
-            
-          </div>
-          <br /> -->
-<!-- =================================================== -->
-
-<!-- <h5>Dados de pagamento</h5>
-    <hr />
-
-    <div class="form-row">
-
-      <div class="form-group col-md-3">
-        <select class="form-control" formControlName="formaPagamento">
-          <option value="" selected="selected">Selecione uma opção</option>
-          <option value="dinheiro">Dinheiro</option>
-          <option value="debito">Débito</option>
-        </select>
-        <small class="form-text text-success"
-          *ngIf="form.get('formaPagamento').valid && form.get('formaPagamento').touched">Ok</small>
-        <small class="form-text text-danger"
-          *ngIf="form.get('formaPagamento').invalid && form.get('formaPagamento').touched">Escolha
-          uma forma de pagamento</small>
-      </div>
-    </div>
-    <hr />
-    <button type="submit" class="btn btn-primary btn-lg">Finalizar compra</button>
-  </form>
-</div> -->
-
-<!-- <div class="ordem-compra" *ngIf="idPedidoCompra !== undefined">
-  <app-ordem-compra-sucesso [idPedidoCompra]="idPedidoCompra"></app-ordem-compra-sucesso>
-</div>
-
-<div class="alert alert-{{estiloAlerta}} fixed-top text-center" role="alert" *ngIf="alerta != ''">
-  <strong>{{alerta}}</strong>
-</div> -->
-
-
 <!-- carrinho refeito ray -->
-
+<!-- formulario de cadastro de dados adicionais para realizar a compra -->
 <div class="container-fluid section-padding-100" *ngIf="mostrarFormulario === 1">
   <form [formGroup]="formDadoAdicionais" (ngSubmit)="incluirDadosPerfil()">
     <h3>Por Favor!, Preencha estes dados para finalizar a compra.</h3>
@@ -252,6 +89,8 @@
   </form>
 </div>
 
+<!-- fim do formulario para finalizar Compra -->
+
 <div class="container-fluid section-padding-100">
   <form [formGroup]="form" (ngSubmit)="confirmarCompra()" novalidate>
     <div class="row">
@@ -272,10 +111,10 @@
           <tbody>
             <tr>
               <td class="cart_product_img">
-                <img [src]="item.img || ''" class="img-fluid img-carrinho" alt="Product">
+                <img [src]="item.cor.imagem[0].url || ''" class="img-fluid img-carrinho" alt="Product">
               </td>
               <td class="cart_product_desc">
-                <h5>{{item.titulo}}</h5>
+                <h5>{{item.nome}}</h5>
                 <!-- <span>Descrição: </span><span>{{item.descricao_oferta}}</span><br> -->
                 <!-- <span>Largura: </span><span>{{item.altura}}</span><br>
                 <span>Altura: </span><span>{{item.largura}}</span><br>
@@ -283,7 +122,7 @@
                 <span style="font-weight: bold">{{item.montar}}</span> -->
               </td>
               <td class="preco">
-                <span>{{item.valorAVista * item.quantidade | currency: 'BRL'}}</span>
+                <span>{{item.cor.valor * item.quantidade | currency: 'BRL'}}</span>
               </td>
               <td class="esp-qtd">
                 <div class="top-table hvr-sweep-to-right text-center">

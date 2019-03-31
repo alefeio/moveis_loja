@@ -9,8 +9,15 @@ class ItemCarrinho {
         public produtoBase: String,
         public status: String,
         public ambiente: String,
-        public cor: Object,
-        public quantidade: Number
+        public cor = {
+            codigos:Array,
+            destaque:Boolean,
+            imagem:Array,
+            key:String,
+            nome:String,
+            valor:Number
+        },
+        public quantidade: number
     ){}
 }
 

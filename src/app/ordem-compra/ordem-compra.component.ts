@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { OrdemCompraService } from '../ordem-compra.service'
 import { CarrinhoService } from '../carrinho.service'
 import { Pedido } from '../shared/pedido.model'
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { ItemCarrinho } from '../shared/item-carrinho.model';
 import { Bd } from './../bd.service';
 import * as backend from 'firebase'
@@ -28,7 +28,7 @@ export class OrdemCompraComponent implements OnInit {
   uidCompra: string
   public itensCarrinho: ItemCarrinho[] = []
   mostrar: number
-  mostrarAlert:number = 0
+  mostrarAlert: number = 0
   public alerta: string
   public estiloAlerta: string
   public progressoPublicacao: string = 'pendente'
@@ -95,7 +95,8 @@ export class OrdemCompraComponent implements OnInit {
     private carrinhoService: CarrinhoService,
     private bd: Bd,
     private progresso: Progresso,
-    private http: Http
+    private http: Http,
+    private formBuilder: FormBuilder
   ) {
     $('html,body').scrollTop(0);
   }
@@ -134,7 +135,7 @@ export class OrdemCompraComponent implements OnInit {
       this.usuarioPedido.email,
       this.formDadoAdicionais.value.telefone.replace(/[^\d]/g, ""),
       this.formDadoAdicionais.value.celular.replace(/[^\d]/g, ""),
-      this.formDadoAdicionais.value.endereco.replace(/[^\d]/g, "")
+      this.formDadoAdicionais.value.endereco
     )
     this.consultarUsuario();
     this.mostrarFormulario = 0
@@ -143,6 +144,7 @@ export class OrdemCompraComponent implements OnInit {
         this.alert(feed.estilo, feed.msg)
         this.alerta = feed.msg
         this.formDadoAdicionais.reset();
+        this.confirmarCompra()
       })
   }
 
@@ -152,8 +154,11 @@ export class OrdemCompraComponent implements OnInit {
     } else {
       if (this.carrinhoService.exibirItens().length === 0) {
         this.alert('danger', 'Não há produtos no seu carrinho.')
-      } else if (this.email === '') {
+      } else if (this.email === null || this.email === '') {
         this.alert('danger', 'Você precisa estar logado para finalizar a compra.')
+        setTimeout(() => {
+          $('#modal-login').modal('show')
+        }, 4000)
       }
       if (
         this.email != "" &&
@@ -166,13 +171,13 @@ export class OrdemCompraComponent implements OnInit {
         this.usuarioPedido.endereco.uf === "") {
         this.mostrarFormulario = 1
       }
-      if(this.email != "" && this.usuarioPedido.endereco.bairro != "" &&
-      this.usuarioPedido.endereco.cep != "" &&
-      this.usuarioPedido.endereco.cidade != "" &&
-      this.usuarioPedido.endereco.complemento != "" &&
-      this.usuarioPedido.endereco.numero != null &&
-      this.usuarioPedido.endereco.rua != "" &&
-      this.usuarioPedido.endereco.uf != "") {
+      if (this.email != "" && this.usuarioPedido.endereco.bairro != "" &&
+        this.usuarioPedido.endereco.cep != "" &&
+        this.usuarioPedido.endereco.cidade != "" &&
+        this.usuarioPedido.endereco.complemento != "" &&
+        this.usuarioPedido.endereco.numero != null &&
+        this.usuarioPedido.endereco.rua != "" &&
+        this.usuarioPedido.endereco.uf != "") {
         let pedido: Pedido = new Pedido(
           this.usuarioPedido.nome,
           this.usuarioPedido.codigo,
@@ -184,40 +189,39 @@ export class OrdemCompraComponent implements OnInit {
           this.form.value.formaPagamento,
           this.carrinhoService.exibirItens()
         )
-
+        pedido.codigo = this.gerarCodigo();
         this.bd.efetivarCompra(pedido)
-          .then(idPedido => {
-            this.mostrarAlert = 1;
-            $('#exampleModal').modal('show')
-            // this.idPedidoCompra = idPedido.key
-            pedido.codigo = this.gerarCodigo();
-            this.idPedidoCompra = pedido.codigo;
-            if(this.email != '' || this.idPedidoCompra != undefined){
-              this.itensCarrinho = [];
-            }
-            if (this.itensCarrinho.length == 0) {
-              this.mostrar = 0
-            } else {
-              this.mostrar = 1
-            }
-          })
-          .catch(error => {
-            console.log(error)
-          })
+        .then(idPedido => {
+          this.mostrarAlert = 1;
+          $('#exampleModal').modal('show')
+          // // this.idPedidoCompra = idPedido.key
+           this.idPedidoCompra = pedido.codigo;
+          if(this.email != '' || this.idPedidoCompra != undefined){
+            this.itensCarrinho = [];
+          }
+          if (this.itensCarrinho.length == 0) {
+            this.mostrar = 0
+          } else {
+            this.mostrar = 1
+          }
+        })
+        .catch(error => {
+          console.log(error)
+        })
       }
     }
   }
 
-  // public diminuir(item: ItemCarrinho) {
-  //   this.carrinhoService.diminuirQuantidade(item)
-  //   if (this.itensCarrinho.length === 0) {
-  //     this.mostrar = 0;
-  //   }
-  // }
+  public diminuir(item: ItemCarrinho) {
+    this.carrinhoService.diminuirQuantidade(item)
+    if (this.itensCarrinho.length === 0) {
+      this.mostrar = 0;
+    }
+  }
 
-  // public adicionar(item: ItemCarrinho) {
-  //   this.carrinhoService.adicionarQuantidade(item)
-  // }
+  public adicionar(item: ItemCarrinho) {
+    this.carrinhoService.adicionarQuantidade(item)
+  }
 
   excluirItemCarrinho(i) {
     this.carrinhoService.excluir(i);

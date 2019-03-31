@@ -4,14 +4,14 @@ import { Oferta } from './shared/oferta.model';
 class CarrinhoService {
     public itens: ItemCarrinho[] = []
 
-    public  exibirItens(): ItemCarrinho[] {
+    public exibirItens(): ItemCarrinho[] {
         return this.itens
     }
 
     public incluirItem(oferta: any): void {
         let itemCarrinho: ItemCarrinho = new ItemCarrinho(
             oferta.criado,
-            oferta.descricao,  
+            oferta.descricao,
             oferta.key,
             oferta.linha,
             oferta.marca,
@@ -22,47 +22,37 @@ class CarrinhoService {
             oferta.cor,
             1
         )
-        // let itemCarrinhoEncontrado = this.itens.find((item: ItemCarrinho) => item.key === itemCarrinho.key)
-        // console.log(itemCarrinho);
-
-        // if(itemCarrinhoEncontrado){
-        //     itemCarrinhoEncontrado.quantidade += 1
-        // console.log("executei item carrinho incontrado");
-
-        // } else{
-        // //     this.itens.push(itemCarrinho)
-        // // console.log("executei");
-
-        // }
+        let itemCarrinhoEncontrado = this.itens.find((item: ItemCarrinho) => item.key === itemCarrinho.key)
+        if (itemCarrinhoEncontrado) {
+            itemCarrinhoEncontrado.quantidade += 1
+            console.log("executei item carrinho incontrado");
+        } else {
+            this.itens.push(itemCarrinho)
+        }
     }
 
-    // public totalCarrinhoCompras(): number {
-    //     let total: number = 0
+    public totalCarrinhoCompras() {
+        let total: number = 0
+        this.itens.map((item: ItemCarrinho) => {
+            total += (Number(item.cor.valor) * item.quantidade)
+        })
+        return total
+    }
 
-    //     this.itens.map((item: ItemCarrinho) => {
-    //         total += (item.valorAVista * item.quantidade)
-    //     })
+    public adicionarQuantidade(itemCarrinho: ItemCarrinho): void {
+        let itemCarrinhoEncontrado = this.itens.find((item: ItemCarrinho) => item.key === itemCarrinho.key)
+        if (itemCarrinhoEncontrado) itemCarrinhoEncontrado.quantidade += 1;
+    }
 
-    //     return total
-    // }
-
-    // public adicionarQuantidade(itemCarrinho: ItemCarrinho): void {
-    //     let itemCarrinhoEncontrado = this.itens.find((item: ItemCarrinho) => item.key === itemCarrinho.key)
-
-    //     if(itemCarrinhoEncontrado) itemCarrinhoEncontrado.quantidade += 1
-    // }
-
-    // public diminuirQuantidade(itemCarrinho: ItemCarrinho): void {
-    //     let itemcarrinhoEncotrado = this.itens.find((item: ItemCarrinho) => item.key === itemCarrinho.key)
-
-    //     if(itemcarrinhoEncotrado) {
-    //         itemcarrinhoEncotrado.quantidade -= 1
-
-    //         if(itemcarrinhoEncotrado.quantidade === 0) this.itens.splice(this.itens.indexOf(itemcarrinhoEncotrado), 1) 
-    //     }
-    // }
+    public diminuirQuantidade(itemCarrinho: ItemCarrinho): void {
+        let itemcarrinhoEncotrado = this.itens.find((item: ItemCarrinho) => item.key === itemCarrinho.key)
+        if (itemcarrinhoEncotrado) {
+            itemcarrinhoEncotrado.quantidade -= 1
+            if (itemcarrinhoEncotrado.quantidade === 0) this.itens.splice(this.itens.indexOf(itemcarrinhoEncotrado), 1)
+        }
+    }
     excluir(i) {
-        this.itens.splice(i,1);
+        this.itens.splice(i, 1);
     }
 
     public limparCarrinho(): void {
@@ -70,5 +60,4 @@ class CarrinhoService {
     }
 
 }
-
 export { CarrinhoService }

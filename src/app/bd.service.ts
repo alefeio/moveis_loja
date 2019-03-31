@@ -494,12 +494,11 @@ export class Bd {
     }
 
     public efetivarCompra(pedido: any): Promise<any> {
-
-        return new Promise((resolve, reject) => {
-            
+        return new Promise((resolve, reject) => { 
             backend.database().ref(`pedidos/${btoa(pedido.email)}`)
             .push({
                 nome: pedido.nome,
+                codigoPedido: pedido.codigo,
                 email: pedido.email,
                 cpf: pedido.cpf,
                 telefone: pedido.telefone,
@@ -513,7 +512,6 @@ export class Bd {
                 resolve(idPedido)
             })
         })
-
     }
 
     public adicionarChamado(chamado: any): void {
