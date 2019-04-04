@@ -23,7 +23,6 @@ declare var $: any;
   providers: [OrdemCompraService]
 })
 export class OrdemCompraComponent implements OnInit {
-
   public idPedidoCompra: string
   uidCompra: string
   public itensCarrinho: ItemCarrinho[] = []
@@ -34,7 +33,9 @@ export class OrdemCompraComponent implements OnInit {
   public progressoPublicacao: string = 'pendente'
   public porcentegemUpload: number
   public email: string = ''
-  mostrarFormulario: number = 0
+  mostrarFormulario:Boolean = false
+  // formDadoAdicionais: FormGroup
+
   public usuarioPedido: UsuarioPedido = {
     nome: '',
     codigo: '',
@@ -89,7 +90,6 @@ export class OrdemCompraComponent implements OnInit {
     })
   })
 
-
   constructor(
     private ordemCompraService: OrdemCompraService,
     private carrinhoService: CarrinhoService,
@@ -105,13 +105,26 @@ export class OrdemCompraComponent implements OnInit {
     this.itensCarrinho = this.carrinhoService.exibirItens()
     if (this.itensCarrinho.length == 0) {
       this.mostrar = 0
+      this.mostrarFormulario = false
     } else {
       this.mostrar = 1
+      this.mostrarFormulario = true
     }
     backend.auth().onAuthStateChanged((user) => {
       this.email = user.email
       this.consultarUsuario()
-    })
+      if(this.email === '' && this.itensCarrinho.length === 0){
+        this.mostrarFormulario = false
+      }
+      if(this.email === '' && this.itensCarrinho.length > 0){
+        this.mostrarFormulario = false
+      }
+      if(this.email != '' && this.itensCarrinho.length === 0){
+        this.mostrarFormulario = false
+      }else {
+        this.mostrarFormulario = true
+      }
+    }) 
   }
 
   gerarCodigo() {
@@ -131,14 +144,15 @@ export class OrdemCompraComponent implements OnInit {
   }
 
   incluirDadosPerfil() {
+    let endereco = this.formDadoAdicionais.get('endereco').value
+    endereco.cep = endereco.cep.replace(/[^\d]/g, "")
     let dadosAdicionais: DadosAdicionais = new DadosAdicionais(
       this.usuarioPedido.email,
       this.formDadoAdicionais.value.telefone.replace(/[^\d]/g, ""),
       this.formDadoAdicionais.value.celular.replace(/[^\d]/g, ""),
-      this.formDadoAdicionais.value.endereco
+      endereco
     )
     this.consultarUsuario();
-    this.mostrarFormulario = 0
     this.bd.incluirDadosPerfil(dadosAdicionais)
       .then((feed: any) => {
         this.alert(feed.estilo, feed.msg)
@@ -160,17 +174,17 @@ export class OrdemCompraComponent implements OnInit {
           $('#modal-login').modal('show')
         }, 4000)
       }
-      if (
-        this.email != "" &&
-        this.usuarioPedido.endereco.bairro === "" &&
-        this.usuarioPedido.endereco.cep === "" &&
-        this.usuarioPedido.endereco.cidade === "" &&
-        this.usuarioPedido.endereco.complemento === "" &&
-        this.usuarioPedido.endereco.numero === null &&
-        this.usuarioPedido.endereco.rua === "" &&
-        this.usuarioPedido.endereco.uf === "") {
-        this.mostrarFormulario = 1
-      }
+      // if (
+      //   this.email != "" &&
+      //   this.usuarioPedido.endereco.bairro === "" &&
+      //   this.usuarioPedido.endereco.cep === "" &&
+      //   this.usuarioPedido.endereco.cidade === "" &&
+      //   this.usuarioPedido.endereco.complemento === "" &&
+      //   this.usuarioPedido.endereco.numero === null &&
+      //   this.usuarioPedido.endereco.rua === "" &&
+      //   this.usuarioPedido.endereco.uf === "") {
+      //   this.mostrarFormulario = 1
+      // }
       if (this.email != "" && this.usuarioPedido.endereco.bairro != "" &&
         this.usuarioPedido.endereco.cep != "" &&
         this.usuarioPedido.endereco.cidade != "" &&
@@ -233,22 +247,17 @@ export class OrdemCompraComponent implements OnInit {
   }
 
   public consultaCEP() {
-
     let cep = this.formDadoAdicionais.get('endereco.cep').value
-
+    console.log(cep)
     // transforma a variável em apenas dígitos
     if (cep) cep = cep.replace(/\D/g, '')
-
     // verifica se o cep possui valor
     if (cep != "")
-
       // validação do cep
       var validaCep = /^[0-9]{8}$/
-
     // valida o formato do cep
     if (validaCep.test(cep)) {
       this.resetaEndereco()
-
       this.http.get(`//viacep.com.br/ws/${cep}/json`)
         .pipe(map(dados => dados.json()))
         .subscribe(dados => this.populaEndereco(dados))
@@ -290,24 +299,15 @@ export class OrdemCompraComponent implements OnInit {
 
   public acompanhaUpload(): void {
     let continua = new Subject()
-
     let acompanhamentoUpload = interval(500)
-
     continua.next(true)
-
     acompanhamentoUpload
       .pipe(takeUntil(continua))
       .subscribe(() => {
-        // console.log(this.progresso.estado)
-        // console.log(this.progresso.status)
-
         this.progressoPublicacao = 'andamento'
-
         this.porcentegemUpload = Math.round((this.progresso.estado.bytesTransferred / this.progresso.estado.totalBytes) * 100)
-
         if (this.progresso.status === 'concluido') {
           this.progressoPublicacao = 'concluido'
-
           continua.next(false)
           setTimeout(() => {
             this.progressoPublicacao = 'pendente'

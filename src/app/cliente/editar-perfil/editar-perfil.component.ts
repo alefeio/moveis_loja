@@ -114,6 +114,8 @@ export class EditarPerfilComponent implements OnInit {
   }
 
   public editarPerfil(): void {
+    let endereco = this.formPerfil.get('endereco').value
+    endereco.cep = endereco.cep.replace(/[^\d]/g, "")
     let usuario: PerfilUsuario = new PerfilUsuario(
       this.formPerfil.value.nome,
       this.formPerfil.value.email,
@@ -122,7 +124,7 @@ export class EditarPerfilComponent implements OnInit {
       this.formPerfil.value.sexo,
       this.formPerfil.value.telefone,
       this.formPerfil.value.celular,
-      this.formPerfil.value.endereco
+      endereco
     )
     this.bd.editarPerfil(usuario)
       .then((feed: any) => {
