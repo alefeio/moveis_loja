@@ -1,0 +1,92 @@
+<!-- carrinho refeito ray -->
+<div class="container-fluid section-padding-100">
+  <form [formGroup]="form" (ngSubmit)="fecharPedido()" novalidate>
+    <div class="row">
+      <div class="col-12 col-lg-9">
+        <h2>Meu Carrinho</h2>
+        <span
+          style="background-color: rgba(243, 156, 18, 1);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+        <div class="row text-center container-carrinho" *ngFor="let item of itensCarrinho; let i = index">
+          <div class="col-md-4 p-0">
+            <img [src]="item.cor.imagem[0].url || ''" class="img-fluid" alt="">
+          </div>
+          <div class="col-md-3 info-esp">
+            <h5>{{item.nome}}</h5>
+            <span>{{item.marca}}</span><br>
+          </div>
+          <div class="col-md-2 qtd-esp">
+            <div class="top-table hvr-sweep-to-right text-center">
+              <span class="esp-num" (click)="diminuir(item)"><i class="fa fa-minus"></i></span>
+              <span class="esp-num">{{item.quantidade}}</span>
+              <span class="esp-num" (click)="adicionar(item)"><i class="fa fa-plus" aria-hidden="true"></i></span>
+            </div>
+          </div>
+          <div class="col-md-2 info-esp preco">
+            <span style="padding-top: 10px">{{item.cor.valor * item.quantidade | currency: 'BRL'}}</span>
+          </div>
+          <div class="col-md-1 excluir pt-2">
+            <a (click)="excluirItemCarrinho(i)">
+              <i class="fas fa-trash-alt"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div id="info-carrinho" class="col-12 col-lg-3">
+        <div class="cart-summary">
+          <h5>Carrinho Total</h5>
+          <li><span>Subtotal:</span> <span>{{ carrinhoService.totalCarrinhoCompras() | currency: 'BRL' }}</span></li>
+          <li><span>Entrega:</span> <span>Grátis</span></li>
+          <li><span>Total:</span> <span>{{ carrinhoService.totalCarrinhoCompras() | currency: 'BRL' }}</span></li>
+          <!-- <div class="form-row">
+            <div class="form-group col">
+              <select class="form-control" formControlName="formaPagamento">
+                <option value="" selected="selected" placeholder="">Selecione uma opção</option>
+                <option value="dinheiro">Dinheiro</option>
+                <option value="debito">Débito</option>
+              </select>
+              <small class="form-text text-success"
+                *ngIf="form.get('formaPagamento').valid && form.get('formaPagamento').touched">Ok</small>
+              <small class="form-text text-danger"
+                *ngIf="form.get('formaPagamento').invalid && form.get('formaPagamento').touched">Escolha
+                uma forma de pagamento</small>
+            </div>
+          </div> -->
+          <div class="text-center cep-top">
+            <button type="submit" class="btn-finalizar btn-padrao">Fechar Pedido</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" style="height: 20%">
+        <div class="ordem-compra" *ngIf="idPedidoCompra != undefined && mostrarAlert != 0">
+          <app-ordem-compra-sucesso [idPedidoCompra]="idPedidoCompra"></app-ordem-compra-sucesso>
+        </div>
+        <div class="alert alert-{{estiloAlerta}} text-center" role="alert"
+          *ngIf="alerta != undefined && alerta != 'Perfil atualizado com sucesso!'">
+          <div class="row img-animate" *ngIf="mostrarAlert === 0">
+            <img src="../../../assets/error.svg" height="100" width="100">
+          </div>
+          <strong>{{alerta}}</strong>
+        </div>
+        <div class="alert alert-{{estiloAlerta}} text-center" role="alert"
+          *ngIf="alert != undefined && alerta === 'Perfil atualizado com sucesso!'">
+          <strong>{{alerta}}</strong>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,134 @@
+<div class="container-fluid section-padding-100">
+  <form [formGroup]="formDadoAdicionais" (ngSubmit)="incluirDadosPerfil()">
+    <div class="row">
+      <div class="col-md-6">
+        <h3>2. Por Favor!, Preencha estes dados para finalizar a compra.</h3>
+        <h5>Dados de contato</h5>
+        <div class="row">
+          <div class="col-md-6 mt-3">
+            <label for="telefone">Telefone</label>
+            <input type="text" mascara="(99) 9999-9999" class="form-control form-control-lg rounded-0"
+              formControlName="telefone">
+          </div>
+          <div class="col-md-6 mt-3">
+            <label for="celular">Celular</label>
+            <input type="text" mascara="(99) 99999-9999" class="form-control form-control-lg rounded-0"
+              formControlName="celular">
+          </div>
+        </div>
+        <h5 class="mt-3">Dados de Endereço</h5>
+        <div formGroupName="endereco">
+          <div class="row">
+            <div class="col mt-3">
+              <label for="cep">CEP</label>
+              <input type="text" (blur)="consultaCEP()" mascara="99999-999"
+                class="form-control form-control-lg rounded-0" formControlName="cep">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col mt-3">
+              <label for="rua">Rua</label>
+              <input type="text" class="form-control form-control-lg rounded-0" formControlName="rua">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col mt-3">
+              <label for="num">Numero</label>
+              <input type="text" class="form-control form-control-lg rounded-0" formControlName="numero">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col mt-3">
+              <label for="comp">Complemento </label>
+              <input type="text" class="form-control form-control-lg rounded-0" formControlName="complemento">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col mt-3">
+              <label for="bairro">Bairro</label>
+              <input type="text" class="form-control form-control-lg rounded-0" formControlName="bairro">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col mt-3">
+              <label for="cidade">Cidade</label>
+              <input type="text" class="form-control form-control-lg rounded-0" formControlName="cidade">
+            </div>
+          </div>
+          <div class="row">
+            <label for="estado">Estado</label>
+            <select formControlName="uf" class="form-control">
+              <option value="" selected="selected">UF</option>
+              <option value="AC">Acre</option>
+              <option value="AL">Alagoas</option>
+              <option value="AP">Amapá</option>
+              <option value="AM">Amazonas</option>
+              <option value="BA">Bahia</option>
+              <option value="CE">Ceará</option>
+              <option value="DF">Distrito Federal</option>
+              <option value="ES">Espírito Santo</option>
+              <option value="GO">Goiás</option>
+              <option value="MA">Maranhão</option>
+              <option value="MT">Mato Grosso</option>
+              <option value="MS">Mato Grosso do Sul</option>
+              <option value="MG">Minas Gerais</option>
+              <option value="PA">Pará</option>
+              <option value="PB">Paraíba</option>
+              <option value="PR">Paraná</option>
+              <option value="PE">Pernambuco</option>
+              <option value="PI">Piauí</option>
+              <option value="RJ">Rio de Janeiro</option>
+              <option value="RN">Rio Grande do Norte</option>
+              <option value="RS">Rio Grande do Sul</option>
+              <option value="RO">Rondônia</option>
+              <option value="RR">Roraima</option>
+              <option value="SC">Santa Catarina</option>
+              <option value="SP">São Paulo</option>
+              <option value="SE">Sergipe</option>
+              <option value="TO">Tocantins</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div id="info-carrinho" class="col-md-6">
+        <div class="cart-summary">
+          <h5>Resumo do Pedido</h5>
+          <div class="row text-center container-carrinho" *ngFor="let item of resumoPedido">
+            <div class="col-md-4 p-0">
+              <img [src]="item.cor.imagem[0].url || ''" class="img-fluid" alt="">
+            </div>
+            <div class="col-md-3 info-esp">
+              <h5>{{item.nome}}</h5>
+              <span>{{item.marca}}</span><br>
+            </div>
+            <div class="col-md-2 qtd-esp">
+              <p>QTD</p>
+              <div class="top-table hvr-sweep-to-right text-center">
+                <span class="esp-num">{{item.quantidade}}</span>
+              </div>
+            </div>
+            <div class="col-md-2 info-esp preco">
+              <span style="padding-top: 10px">{{item.cor.valor * item.quantidade | currency: 'BRL'}}</span>
+            </div>
+          </div>
+        </div>
+        <div class="cart-summary" style="margin-top: 20px">
+          <div class="row link-voltar-carrinho">
+            <a class="hvr-underline-from-center" (click)="voltarCarrinho()">Voltar Para o carrinho</a>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <li><span>Subtotal:</span> <span>{{ carrinhoService.totalCarrinhoCompras() | currency: 'BRL' }}</span>
+              </li>
+              <li><span>Entrega:</span> <span>Retirada na loja</span></li>
+              <li><span class="total">Total:</span> <span class="total">{{ carrinhoService.totalCarrinhoCompras() | currency: 'BRL' }}</span></li>
+            </div>
+          </div>
+          <div class="text-center top-btn-edt">
+            <button type="submit" class="btn-finalizar btn-padrao" [disabled]="!formDadoAdicionais.valid">Continuar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

@@ -14,6 +14,7 @@ import * as uid from 'uuid/v4';
 import { Http } from '@angular/http';
 import { map } from 'rxjs/operators'
 import { DadosAdicionais } from '../shared/dadosAdicionais.model';
+import { Router } from '@angular/router';
 declare var $: any;
 
 @Component({
@@ -33,7 +34,7 @@ export class OrdemCompraComponent implements OnInit {
   public progressoPublicacao: string = 'pendente'
   public porcentegemUpload: number
   public email: string = ''
-  mostrarFormulario:Boolean = false
+  mostrarFormulario: Boolean = false
   // formDadoAdicionais: FormGroup
 
   public usuarioPedido: UsuarioPedido = {
@@ -96,7 +97,8 @@ export class OrdemCompraComponent implements OnInit {
     private bd: Bd,
     private progresso: Progresso,
     private http: Http,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private rota: Router
   ) {
     $('html,body').scrollTop(0);
   }
@@ -113,18 +115,18 @@ export class OrdemCompraComponent implements OnInit {
     backend.auth().onAuthStateChanged((user) => {
       this.email = user.email
       this.consultarUsuario()
-      if(this.email === '' && this.itensCarrinho.length === 0){
+      if (this.email === '' && this.itensCarrinho.length === 0) {
         this.mostrarFormulario = false
       }
-      if(this.email === '' && this.itensCarrinho.length > 0){
+      if (this.email === '' && this.itensCarrinho.length > 0) {
         this.mostrarFormulario = false
       }
-      if(this.email != '' && this.itensCarrinho.length === 0){
+      if (this.email != '' && this.itensCarrinho.length === 0) {
         this.mostrarFormulario = false
-      }else {
+      } else {
         this.mostrarFormulario = true
       }
-    }) 
+    })
   }
 
   gerarCodigo() {
@@ -143,24 +145,24 @@ export class OrdemCompraComponent implements OnInit {
       })
   }
 
-  incluirDadosPerfil() {
-    let endereco = this.formDadoAdicionais.get('endereco').value
-    endereco.cep = endereco.cep.replace(/[^\d]/g, "")
-    let dadosAdicionais: DadosAdicionais = new DadosAdicionais(
-      this.usuarioPedido.email,
-      this.formDadoAdicionais.value.telefone.replace(/[^\d]/g, ""),
-      this.formDadoAdicionais.value.celular.replace(/[^\d]/g, ""),
-      endereco
-    )
-    this.consultarUsuario();
-    this.bd.incluirDadosPerfil(dadosAdicionais)
-      .then((feed: any) => {
-        this.alert(feed.estilo, feed.msg)
-        this.alerta = feed.msg
-        this.formDadoAdicionais.reset();
-        this.confirmarCompra()
-      })
-  }
+  // incluirDadosPerfil() {
+  //   let endereco = this.formDadoAdicionais.get('endereco').value
+  //   endereco.cep = endereco.cep.replace(/[^\d]/g, "")
+  //   let dadosAdicionais: DadosAdicionais = new DadosAdicionais(
+  //     this.usuarioPedido.email,
+  //     this.formDadoAdicionais.value.telefone.replace(/[^\d]/g, ""),
+  //     this.formDadoAdicionais.value.celular.replace(/[^\d]/g, ""),
+  //     endereco
+  //   )
+  //   this.consultarUsuario();
+  //   this.bd.incluirDadosPerfil(dadosAdicionais)
+  //     .then((feed: any) => {
+  //       this.alert(feed.estilo, feed.msg)
+  //       this.alerta = feed.msg
+  //       this.formDadoAdicionais.reset();
+  //       this.confirmarCompra()
+  //     })
+  // }
 
   public confirmarCompra(): void {
     if (this.form.status === 'INVALID') {
@@ -174,17 +176,6 @@ export class OrdemCompraComponent implements OnInit {
           $('#modal-login').modal('show')
         }, 4000)
       }
-      // if (
-      //   this.email != "" &&
-      //   this.usuarioPedido.endereco.bairro === "" &&
-      //   this.usuarioPedido.endereco.cep === "" &&
-      //   this.usuarioPedido.endereco.cidade === "" &&
-      //   this.usuarioPedido.endereco.complemento === "" &&
-      //   this.usuarioPedido.endereco.numero === null &&
-      //   this.usuarioPedido.endereco.rua === "" &&
-      //   this.usuarioPedido.endereco.uf === "") {
-      //   this.mostrarFormulario = 1
-      // }
       if (this.email != "" && this.usuarioPedido.endereco.bairro != "" &&
         this.usuarioPedido.endereco.cep != "" &&
         this.usuarioPedido.endereco.cidade != "" &&
@@ -200,28 +191,28 @@ export class OrdemCompraComponent implements OnInit {
           this.usuarioPedido.telefone,
           this.usuarioPedido.celular,
           this.usuarioPedido.endereco,
-          this.form.value.formaPagamento,
+          // this.form.value.formaPagamento,
           this.carrinhoService.exibirItens()
         )
         pedido.codigo = this.gerarCodigo();
         this.bd.efetivarCompra(pedido)
-        .then(idPedido => {
-          this.mostrarAlert = 1;
-          $('#exampleModal').modal('show')
-          // // this.idPedidoCompra = idPedido.key
-           this.idPedidoCompra = pedido.codigo;
-          if(this.email != '' || this.idPedidoCompra != undefined){
-            this.itensCarrinho = [];
-          }
-          if (this.itensCarrinho.length == 0) {
-            this.mostrar = 0
-          } else {
-            this.mostrar = 1
-          }
-        })
-        .catch(error => {
-          console.log(error)
-        })
+          .then(idPedido => {
+            this.mostrarAlert = 1;
+            $('#exampleModal').modal('show')
+            this.idPedidoCompra = pedido.codigo;
+            if (this.email != '' || this.idPedidoCompra != undefined) {
+              this.itensCarrinho = [];
+              console.log('carrinho vazio', this.itensCarrinho)
+            }
+            if (this.itensCarrinho.length == 0) {
+              this.mostrar = 0
+            } else {
+              this.mostrar = 1
+            }
+          })
+          .catch(error => {
+            console.log(error)
+          })
       }
     }
   }
