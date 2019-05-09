@@ -1,8 +1,8 @@
 <div class="banner">
   <nav [ngClass]="{'menu-fixo': scrolNumber > 180}" id="stickyMenu" [class.sticky]="sticky"
     class="navbar navbar-expand-lg borda-top">
-    <a class="fundo-img radius logo"><img src="/src/assets/logo.png" routerLink="/home"></a>
-    <a><img src="/src/assets/logo_mobile.png" routerLink="/home" class="fundo-img radius logo-mobile"></a>
+    <a class="fundo-img radius logo"><img src="../../assets/logo.png" routerLink="/home"></a>
+    <a><img src="../../assets/logo_mobile.png" routerLink="/home" class="fundo-img radius logo-mobile"></a>
     <button id="nav-icon1" class="navbar-toggler" type="button" data-toggle="collapse"
       data-target="#conteudoNavbarSuportado" aria-controls="conteudoNavbarSuportado" aria-expanded="false"
       aria-label="Alterna navegação">
@@ -21,31 +21,31 @@
         </li>
         <li class="nav-item" id="espaco">
           <a class="nav-link text-center" routerLinkActive="active" routerLink="/home">
-            <img src="/src/assets/home.png" class="img-fluid" style="width: 30px" />
+            <img src="../../assets/home.png" class="img-fluid" style="width: 30px" />
             <br>Home
           </a>
         </li>
         <li class="nav-item text-center">
           <a class="nav-link" routerLinkActive="active" routerLink="ordem-compra">
-            <img src="/src/assets/carrinho.png" class="img-fluid" style="width: 30px" />
+            <img src="../../assets/carrinho.png" class="img-fluid" style="width: 30px" />
             <br>Carrinho
           </a>
         </li>
         <li class="nav-item text-center" *ngIf="!autenticacao.token_id">
           <a class="nav-link" (click)="painelLogin()" routerLinkActive="active" data-toggle="modal" data-target="#modal-login">
-            <img src="/src/assets/login.png" class="img-fluid" style="width: 30px" />
+            <img src="../../assets/login.png" class="img-fluid" style="width: 30px" />
             <br>Login
           </a>
         </li>
         <li class="nav-item text-center" *ngIf="autenticacao.token_id">
           <a class="nav-link" routerLinkActive="active" routerLink="cliente">
-            <img src="/src/assets/user.png" class="img-fluid" style="width: 30px" />
+            <img src="../../assets/user.png" class="img-fluid" style="width: 30px" />
             <br>Minha Conta
           </a>
         </li>
         <li class="nav-item text-center" *ngIf="autenticacao.token_id">
           <button class="nav-link" (click)="sair()" style="background: transparent; border: none; cursor: pointer;">
-            <img src="/assets/sair.png" class="img-fluid" style="width: 30px" />
+            <img src="../../assets/sair.png" class="img-fluid" style="width: 30px" />
             <br>Sair
           </button>
         </li>

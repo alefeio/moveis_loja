@@ -20,7 +20,7 @@ export class OfertaComponent implements OnInit, OnDestroy {
   imagemCor: any;
   corEscolhida: Number;
   valor: Number;
-  ofertaCarrinho:any
+  ofertaCarrinho: any
 
   constructor(
     private bd: Bd,
@@ -52,12 +52,12 @@ export class OfertaComponent implements OnInit, OnDestroy {
         this.cores = cores;
         let arrayCores: Array<any> = []
         for (let i of cores) {
-          if(i.destaque === true){
+          if (i.destaque === true) {
             this.imagemCor = i.imagem
             this.corEscolhida = i
             this.valor = i.valor
-            for(let img of i.imagem){
-              if(img.destaque === true){
+            for (let img of i.imagem) {
+              if (img.destaque === true) {
                 this.imagem = img
               }
             }
@@ -160,8 +160,11 @@ export class OfertaComponent implements OnInit, OnDestroy {
       ambiente: this.oferta.ambiente,
       cor: this.corEscolhida
     }
+
     this.ofertaCarrinho = ofertaCarrinho;
-    this.carrinhoService.incluirItem(ofertaCarrinho);
+    // var sugestao = Math.ceil(Math.random());
+    console.log();
+    // this.carrinhoService.incluirItem(ofertaCarrinho);
   }
 
   @ViewChild('scrollHorizontal', { read: ElementRef }) public widgetsThumbnails: ElementRef;

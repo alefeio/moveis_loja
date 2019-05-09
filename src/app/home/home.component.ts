@@ -27,6 +27,7 @@ export class HomeComponent implements OnInit {
     private router: Router) { }
 
   ngOnInit() {
+    $('html,body').scrollTop(0);
     //this.ofertas = this.ofertasService.getOfertas()
     //console.log(this.ofertas)
 

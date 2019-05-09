@@ -51,6 +51,9 @@ import { RecuperarSenhaComponent } from './acesso/recuperar-senha/recuperar-senh
 import { RodaPeComponent } from './roda-pe/roda-pe.component';
 import { Mascara } from './diretivas/mascara';
 import { NgxImageZoomModule } from 'ngx-image-zoom';
+import { CarrinhoCompraComponent } from './ordem-compra/carrinho-compra/carrinho-compra.component';
+import { DadosAdicionaisComponent } from './ordem-compra/dados-adicionais/dados-adicionais.component';
+import { PagamentoComponent } from './ordem-compra/pagamento/pagamento.component';
 
 @NgModule({
   declarations: [
@@ -87,6 +90,9 @@ import { NgxImageZoomModule } from 'ngx-image-zoom';
     RecuperarSenhaComponent,
     RodaPeComponent,
     Mascara,
+    CarrinhoCompraComponent,
+    DadosAdicionaisComponent,
+    PagamentoComponent
   ],
   imports: [
     BrowserModule,

@@ -9,26 +9,27 @@ class CarrinhoService {
     }
 
     public incluirItem(oferta: any): void {
-        let itemCarrinho: ItemCarrinho = new ItemCarrinho(
-            oferta.criado,
-            oferta.descricao,
-            oferta.key,
-            oferta.linha,
-            oferta.marca,
-            oferta.nome,
-            oferta.produtoBase,
-            oferta.status,
-            oferta.ambiente,
-            oferta.cor,
-            1
-        )
-        let itemCarrinhoEncontrado = this.itens.find((item: ItemCarrinho) => item.key === itemCarrinho.key)
-        if (itemCarrinhoEncontrado) {
-            itemCarrinhoEncontrado.quantidade += 1
-            console.log("executei item carrinho incontrado");
-        } else {
-            this.itens.push(itemCarrinho)
-        }
+        console.log(oferta);
+        // let itemCarrinho: ItemCarrinho = new ItemCarrinho(
+        //     oferta.criado,
+        //     oferta.descricao,
+        //     oferta.key,
+        //     oferta.linha,
+        //     oferta.marca,
+        //     oferta.nome,
+        //     oferta.produtoBase,
+        //     oferta.status,
+        //     oferta.ambiente,
+        //     oferta.cor,
+        //     1
+        // )
+        // let itemCarrinhoEncontrado = this.itens.find((item: ItemCarrinho) => item.key === itemCarrinho.key)
+        // if (itemCarrinhoEncontrado) {
+        //     itemCarrinhoEncontrado.quantidade += 1
+        //     console.log("executei item carrinho incontrado");
+        // } else {
+        //     this.itens.push(itemCarrinho)
+        // }
     }
 
     public totalCarrinhoCompras() {

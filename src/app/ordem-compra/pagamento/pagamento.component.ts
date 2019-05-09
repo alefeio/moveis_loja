@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { CarrinhoService } from '../../carrinho.service'
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Router } from '@angular/router'
+import { Bd } from '../../bd.service'
+
 declare var $: any
 
 @Component({
@@ -9,11 +14,30 @@ declare var $: any
 export class PagamentoComponent implements OnInit {
 
   pedido: any
-  email:string
-  nome:string
-  contato:string
+  formaPagamentoLet: number = 0
+  valorParcela: number = 0
+  pagamento: string = "Cartão de Crédito";
+  qtdParcelas: number = null
+  msg: number = 0
+  alerta
+  estiloAlerta
+  mostrarAlert
+  idPedidoCompra
 
-  constructor() {
+  dadosFinalizarCompra: FormGroup = new FormGroup({
+    numCartao: new FormControl(null, [Validators.required]),
+    nomeTitular: new FormControl(null, [Validators.required]),
+    dataValidade: new FormControl(null, [Validators.required]),
+    cvv: new FormControl(null, [Validators.required])
+  })
+
+  formaPagamentoDados: FormGroup = new FormGroup({
+    parcela: new FormControl(null, [Validators.required])
+  })
+
+  constructor(private carrinhoService: CarrinhoService,
+    private rota: Router,
+    private bd: Bd) {
     $(function () {
       var cards = [{
         nome: "mastercard",
@@ -123,6 +147,7 @@ export class PagamentoComponent implements OnInit {
         .focusout(function () {
           $(".card").css("transform", "rotatey(0deg)");
           $(".seccode").css("color", "var(--text-color)");
+          $(".back").css({ "display": "none" })
         });
       $(".expire").keypress(function (event) {
         if (event.charCode >= 48 && event.charCode <= 57) {
@@ -158,8 +183,62 @@ export class PagamentoComponent implements OnInit {
   }
 
   ngOnInit() {
+    if (this.carrinhoService.itens.length === 0) {
+      this.rota.navigate(['']);
+    }
     this.pedido = JSON.parse(localStorage.getItem('pedidoAddEnd'))
-    console.log(this.pedido)
   }
 
+  formaPagamento(p) {
+    if (p === 0) {
+      this.formaPagamentoLet = p
+      this.pagamento = "Cartão de Crédito"
+    } else {
+      this.formaPagamentoLet = p
+      this.pagamento = "Boleto"
+    }
+  }
+
+  dadosFormaPagamento(qtdParcelas) {
+    let parcela = qtdParcelas.parcela
+    this.qtdParcelas = Number(parcela);
+    this.valorParcela = this.carrinhoService.totalCarrinhoCompras() / Number(parcela)
+  }
+
+  dadosCartao(dadosCartao) {
+    if (this.qtdParcelas === null) {
+      this.msg = 1;
+    } else {
+      if (this.formaPagamentoLet === 0) {
+        this.pedido.dadosCartao = dadosCartao;
+        this.pedido.pagamento = {
+          formaPagamento: this.pagamento,
+          qtdParcelas: this.qtdParcelas,
+          valorParcela: this.valorParcela
+        }
+        this.bd.efetivarCompra(this.pedido).then((key: any) => {
+          this.idPedidoCompra = this.pedido.codigo;
+          localStorage.removeItem('pedidoAddEnd');
+          $('#exampleModal').modal('show')
+          if (this.idPedidoCompra != undefined) {
+            this.carrinhoService.itens = [];
+            console.log('carrinho vazio', this.carrinhoService.itens)
+          }
+        })
+      } else {
+        console.log("boleto")
+      }
+    }
+  }
+
+  alert(estilo: string, mensagem: string): void {
+    $('#exampleModal').modal('show');
+    this.alerta = mensagem
+    this.estiloAlerta = estilo
+    setTimeout(() => {
+      $('#exampleModal').modal('hide');
+      this.alerta = ''
+      this.estiloAlerta = ''
+    }, 4000)
+  }
 }

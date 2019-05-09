@@ -495,6 +495,7 @@ export class Bd {
 
     public efetivarCompra(pedido: any): Promise<any> {
         return new Promise((resolve, reject) => { 
+            console.log(pedido);
             backend.database().ref(`pedidos/${btoa(pedido.email)}`)
             .push({
                 nome: pedido.nome,
@@ -504,9 +505,9 @@ export class Bd {
                 telefone: pedido.telefone,
                 celular: pedido.celular,
                 endereco: pedido.endereco,
-                formaPagamento: pedido.formaPagamento,
+                pagamento: pedido.pagamento,
                 itens: pedido.itens,
-                statusPedido: 'Pendente'
+                statusPedido: 0
             })
             .then((idPedido) => {
                 resolve(idPedido)

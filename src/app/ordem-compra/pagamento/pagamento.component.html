@@ -1,51 +1,167 @@
 <div class="section-padding-100">
   <div class="row">
-    <div class="col-md-4">
-        <div class="cart-summary">
-          <h4>Dados Pessoais</h4>
-          <span></span>
-          <span></span>
-          <span></span>
-        </div>
+    <div class="col-md-4 pb-4">
+      <div class="cart-summary">
+        <h4>Dados Pessoais</h4>
+        <span>Email: {{pedido.email}}</span><br>
+        <span>Nome: {{pedido.nome}}</span><br>
+        <span>Contato: {{pedido.celular}}</span>
+      </div>
     </div>
-  </div>
-  <div class="row">
-    <div class="col-md-6">
-      <div class="container-cartao">
-        <div class="col1">
-          <div class="card">
-            <div class="front">
-              <div class="type">
-                <img class="bankid" />
+    <div class="col-md-4 pb-4">
+      <div class="cart-summary">
+        <h4>Entrega</h4>
+        <span>{{pedido.endereco.rua}}</span> - <span>{{pedido.endereco.numero}}</span><br>
+        <span>{{pedido.endereco.bairro}}</span> - <span>{{pedido.endereco.cidade}}</span> -
+        <span>{{pedido.endereco.uf}}</span><br>
+        <span>{{pedido.endereco.cep}}</span>
+      </div>
+    </div>
+    <div class="col-md-4 pb-4">
+      <form [formGroup]="formaPagamentoDados">
+        <div class="cart-summary">
+          <h4>Forma de Pagamento</h4>
+          <div class="row">
+            <div class="col-12">
+              <div class="ld-radio ld-radio-inline">
+                <input value="cartão" id="1" type="radio" name="g" checked (change)="formaPagamento(0)">
+                <label for="1">Cartão de Crédito</label>
+                <input id="2" type="radio" name="g" (change)="formaPagamento(1)">
+                <label value="boleto" for="2">Boleto</label>
               </div>
-              <span class="chip"></span>
-              <span class="card_number">&#x25CF;&#x25CF;&#x25CF;&#x25CF; &#x25CF;&#x25CF;&#x25CF;&#x25CF;
-                &#x25CF;&#x25CF;&#x25CF;&#x25CF; &#x25CF;&#x25CF;&#x25CF;&#x25CF; </span>
-              <div class="date"><span class="date_value">MM / YYYY</span></div>
-              <span class="fullname">Nome Completo</span>
-            </div>
-            <div class="back">
-              <div class="magnetic"></div>
-              <div class="bar"></div>
-              <span class="seccode">&#x25CF;&#x25CF;&#x25CF;</span>
-              <span class="chip"></span><span class="disclaimer">This card is property of Random Bank of Random
-                corporation.
-                <br> If found please return to Random Bank of Random corporation - 21968 Paris, Verdi Street, 34 </span>
+              <div *ngIf="formaPagamentoLet === 0">
+                <label for="estado">Parcela sem juros</label>
+                <select formControlName="parcela" class="form-control"
+                  (change)="dadosFormaPagamento(formaPagamentoDados.value)">
+                  <option value="" selected="selected">Selecione</option>
+                  <option value="1">1X</option>
+                  <option value="2">2X</option>
+                  <option value="3">3X</option>
+                  <option value="4">4X</option>
+                  <option value="5">5X</option>
+                  <option value="6">6X</option>
+                  <option value="7">7X</option>
+                  <option value="8">8X</option>
+                  <option value="9">9X</option>
+                  <option value="10">10X</option>
+                </select>
+                <small *ngIf="msg != 0" class="form-text error">
+                  <span *ngIf="msg != 0" style="color: red"> Obrigatório!</span>
+                </small>
+              </div>
             </div>
           </div>
         </div>
-        <div class="col2">
-          <label>Número do Cartão</label>
-          <input class="number" type="text" ng-model="ncard" maxlength="19"
-            onkeypress='return event.charCode >= 48 && event.charCode <= 57' />
-          <label>Nome do Titular</label>
-          <input class="inputname" type="text" placeholder="" />
+      </form>
+    </div>
+  </div>
+  <form class="row mt-4" [formGroup]="dadosFinalizarCompra" (ngSubmit)="dadosCartao(dadosFinalizarCompra.value)">
+    <div class="col-md-8 pb-4" *ngIf="formaPagamentoLet != 0">
+      <h4>Boleto</h4>
+      <p>O Boleto bancário será exibido após a confirmação da compra e poderá ser impresso e pago em qualquer agência
+        bancária ou o pagamento pode ser feito através da internet, ultilizando o código de barras do boleto. O prazo
+        de
+        validade do boleto é de 3(três) dias, se o pagamento não for efetuado até a data do vencimento seu pedido será
+        cancelado automaticamente. Caso o boleto não seja pago na data do pedido, o prazo de entrega pode sofrer
+        alterações.</p>
+      <span>Valor Total:{{ carrinhoService.totalCarrinhoCompras() | currency: 'BRL' }}</span>
+    </div>
+    <div class="col-md-5 m-0 pb-4" *ngIf="formaPagamentoLet === 0">
+      <h4>Cartão de Crédito</h4>
+      <div class="card col1">
+        <div class="front">
+          <div class="type">
+            <img class="bankid" />
+          </div>
+          <span class="chip"></span>
+          <span class="card_number">&#x25CF;&#x25CF;&#x25CF;&#x25CF; &#x25CF;&#x25CF;&#x25CF;&#x25CF;
+            &#x25CF;&#x25CF;&#x25CF;&#x25CF; &#x25CF;&#x25CF;&#x25CF;&#x25CF; </span>
+          <div class="date"><span class="date_value">MM / YYYY</span></div>
+          <span class="fullname">Nome Completo</span>
+        </div>
+        <div class="back">
+          <div class="magnetic"></div>
+          <div class="bar"></div>
+          <span class="seccode">&#x25CF;&#x25CF;&#x25CF;</span>
+          <span class="chip"></span><span class="disclaimer">This card is property of Random Bank of Random
+            corporation.
+            <br> If found please return to Random Bank of Random corporation - 21968 Paris, Verdi Street, 34
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-3 pb-4" *ngIf="formaPagamentoLet === 0">
+      <h4>Informe dados do cartão</h4>
+      <div class="col">
+        <div class="form-group">
+          <label>Numero Cartão</label>
+          <input type="text" formControlName="numCartao" class="number rounded-0" type="text" ng-model="ncard"
+            maxlength="19" onkeypress='return event.charCode >= 48 && event.charCode <= 57' />
+        </div>
+        <div class="form-group">
+          <label>Nome do titular</label>
+          <input formControlName="nomeTitular" class="inputname rounded-0" type="text" placeholder="" />
+        </div>
+        <div class="form-group">
           <label>Data de Validade</label>
-          <input class="expire" type="text" placeholder="MM / YYYY" />
-          <label>CVV</label>
-          <input class="ccv" type="text" placeholder="CVC" maxlength="3"
+          <input formControlName="dataValidade" class="expire rounded-0" type="text" placeholder="MM / YYYY" />
+        </div>
+        <div class="form-group">
+          <input formControlName="cvv" class="ccv rounded-0" type="text" placeholder="CVV" maxlength="3"
             onkeypress='return event.charCode >= 48 && event.charCode <= 57' />
-          <button class="btn btn-padrao"><i class="material-icons"></i>Pagar</button>
+        </div>
+      </div>
+
+      <!-- <label>Número do Cartão</label>
+        <input class="number" type="text" ng-model="ncard" maxlength="19"
+          onkeypress='return event.charCode >= 48 && event.charCode <= 57' />
+        <label>Nome do Titular</label>
+        <input class="inputname" type="text" placeholder="" />
+        <label>Data de Validade</label>
+        <input class="expire" type="text" placeholder="MM / YYYY" />
+        <label>CVV</label>
+        <input class="ccv" type="text" placeholder="CVV" maxlength="3"
+          onkeypress='return event.charCode >= 48 && event.charCode <= 57' /> -->
+    </div>
+    <div class="col-md-4 pb-4" style="top: 0 !important">
+      <div class="cart-summary">
+        <h4>Detalhe da Compra</h4>
+        <li><span>Subtotal:</span> <span>{{ carrinhoService.totalCarrinhoCompras() | currency: 'BRL' }}</span></li>
+        <li><span>Entrega:</span> <span>Grátis</span></li>
+        <li><span>Valor da Parcela:</span> <span>{{valorParcela | currency: 'BRL' }}</span></li>
+        <li><span>Total:</span> <span>{{ carrinhoService.totalCarrinhoCompras() | currency: 'BRL' }}</span></li>
+        <div class="text-center cep-top">
+          <button type="submit" class="btn-finalizar btn-padrao">Finalizar Compra</button>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" style="height: 20%">
+        <div class="ordem-compra" *ngIf="idPedidoCompra != undefined && mostrarAlert != 0">
+          <app-ordem-compra-sucesso [idPedidoCompra]="idPedidoCompra"></app-ordem-compra-sucesso>
+        </div>
+        <div class="alert alert-{{estiloAlerta}} text-center" role="alert"
+          *ngIf="alerta != undefined && alerta != 'Perfil atualizado com sucesso!'">
+          <div class="row img-animate" *ngIf="mostrarAlert === 0">
+            <img src="../../../assets/error.svg" height="100" width="100">
+          </div>
+          <strong>{{alerta}}</strong>
+        </div>
+        <div class="alert alert-{{estiloAlerta}} text-center" role="alert"
+          *ngIf="alert != undefined && alerta === 'Perfil atualizado com sucesso!'">
+          <strong>{{alerta}}</strong>
         </div>
       </div>
     </div>

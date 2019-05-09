@@ -107,58 +107,35 @@ export class CarrinhoCompraComponent implements OnInit {
       this.usuarioPedido.telefone,
       this.usuarioPedido.celular,
       this.usuarioPedido.endereco,
-      // this.form.value.formaPagamento,
       this.carrinhoService.exibirItens()
     )
-    if (this.form.status === 'INVALID') {
-      console.log("forma de pagamento nao selecionada")
-      this.form.get('formaPagamento').markAsTouched()
-    } else {
-      if (this.carrinhoService.exibirItens().length === 0) {
-        this.alert('danger', 'Não há produtos no seu carrinho.')
-      } else if (this.email === null || this.email === '') {
-        this.alert('danger', 'Você precisa estar logado para finalizar a compra.')
-        setTimeout(() => {
-          $('#modal-login').modal('show')
-        }, 4000)
-      }
-    }
-    if (this.email != "" &&
-      this.usuarioPedido.endereco.rua === '' &&
-      this.usuarioPedido.endereco.bairro === '' &&
-      this.usuarioPedido.endereco.cep === '' &&
-      this.usuarioPedido.endereco.cidade === '' &&
-      this.usuarioPedido.endereco.complemento === '' &&
-      this.usuarioPedido.endereco.numero === null &&
-      this.usuarioPedido.endereco.uf === '') {
-      pedido.codigo = this.gerarCodigo();
-      localStorage.setItem('pedido', JSON.stringify(pedido));
-      this.alert('danger', 'Você precisa informar os seus dados de endereço!');
+    if (this.carrinhoService.exibirItens().length === 0) {
+      this.alert('danger', 'Não há produtos no seu carrinho.')
+    } else if (this.email === null || this.email === '') {
+      this.alert('danger', 'Você precisa estar logado para finalizar a compra.')
       setTimeout(() => {
-        this.rota.navigate(['ordem-compra/dados-adicionais']);
-        $('#exampleModal').modal('hide')
-      }, 3000);
+        $('#modal-login').modal('show')
+      }, 4000)
     } else {
-      this.rota.navigate(['ordem-compra/pagamento']);
-      // pedido.codigo = this.gerarCodigo();
-      // this.bd.efetivarCompra(pedido)
-      //   .then(idPedido => {
-      //     this.mostrarAlert = 1;
-      //     $('#exampleModal').modal('show')
-      //     this.idPedidoCompra = pedido.codigo;
-      //     if (this.email != '' || this.idPedidoCompra != undefined) {
-      //       this.itensCarrinho = [];
-      //       console.log('carrinho vazio', this.itensCarrinho)
-      //     }
-      //     // if (this.itensCarrinho.length == 0) {
-      //     //   this.mostrar = 0
-      //     // } else {
-      //     //   this.mostrar = 1
-      //     // }
-      //   })
-      //   .catch(error => {
-      //     console.log(error)
-      //   })
+      if (this.email != "" &&
+        this.usuarioPedido.endereco.rua === '' &&
+        this.usuarioPedido.endereco.bairro === '' &&
+        this.usuarioPedido.endereco.cep === '' &&
+        this.usuarioPedido.endereco.cidade === '' &&
+        this.usuarioPedido.endereco.complemento === '' &&
+        this.usuarioPedido.endereco.numero === null &&
+        this.usuarioPedido.endereco.uf === '') {
+        pedido.codigo = this.gerarCodigo();
+        localStorage.setItem('pedido', JSON.stringify(pedido));
+        this.alert('danger', 'Você precisa informar os seus dados de endereço!');
+        setTimeout(() => {
+          this.rota.navigate(['ordem-compra/dados-adicionais']);
+          $('#exampleModal').modal('hide')
+        }, 3000);
+      } else {
+        console.log("estou logado e com dados de endereço!");
+        this.rota.navigate(['ordem-compra/pagamento']);
+      }
     }
   }
 

@@ -17,7 +17,7 @@ export class Pedido {
             cidade: string,
             uf: string
         },
-        public formaPagamento: string,
+        // public formaPagamento: string,
         public itens: Array<ItemCarrinho>
     ) {}
 }
