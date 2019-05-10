@@ -17,7 +17,6 @@ export class PedidosComponent implements OnInit {
   ngOnInit() {
     backend.auth().onAuthStateChanged((user) => {
       this.email = user.email
-
       this.consultarPedidos()
     })
   }
@@ -26,7 +25,7 @@ export class PedidosComponent implements OnInit {
     this.bd.consultarPedidos(this.email)
       .then((pedidos: any) => {
         this.pedidos = pedidos
-        // console.log(this.chamados)
+        console.log(this.pedidos)
       })
   }
 

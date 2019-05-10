@@ -37,15 +37,14 @@ export class AmbienteComponent implements OnInit {
     this.bd.consultarProdutosPorFiltro('ambiente', this.ambiente)
       .then((produtos: any) => {
         this.produtos = produtos
+        console.log(this.produtos);
       })
   }
 
   public consultarLinhasPorAmbiente() {
     this.bd.consultarLinhasPorAmbiente(this.ambiente)
       .then((linhas: any) => {
-        // console.log("linha recebida",linhas)
         this.linhas = linhas
-        // console.log("linha adicionada em array",this.linhas)
       })
   }
 
