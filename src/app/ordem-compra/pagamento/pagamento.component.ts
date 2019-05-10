@@ -184,7 +184,9 @@ export class PagamentoComponent implements OnInit {
 
   ngOnInit() {
     this.pedido = JSON.parse(localStorage.getItem('pedido'))
-    console.log(this.pedido);
+    if(this.carrinhoService.itens.length === 0){
+      this.rota.navigate(['']);
+    }
   }
 
   formaPagamento(p) {
@@ -204,6 +206,7 @@ export class PagamentoComponent implements OnInit {
   }
 
   dadosCartao(dadosCartao) {
+    let dataPedido = new Date().getTime();
     if (this.qtdParcelas === null) {
       this.msg = 1;
     } else {
@@ -214,6 +217,7 @@ export class PagamentoComponent implements OnInit {
           qtdParcelas: this.qtdParcelas,
           valorParcela: this.valorParcela
         }
+        this.pedido.dataPedido = dataPedido
         this.bd.efetivarCompra(this.pedido).then((key: any) => {
           this.idPedidoCompra = this.pedido.codigo;
           localStorage.removeItem('pedido');
