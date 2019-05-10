@@ -160,11 +160,8 @@ export class OfertaComponent implements OnInit, OnDestroy {
       ambiente: this.oferta.ambiente,
       cor: this.corEscolhida
     }
-
     this.ofertaCarrinho = ofertaCarrinho;
-    // var sugestao = Math.ceil(Math.random());
-    console.log();
-    // this.carrinhoService.incluirItem(ofertaCarrinho);
+    this.carrinhoService.incluirItem(ofertaCarrinho);
   }
 
   @ViewChild('scrollHorizontal', { read: ElementRef }) public widgetsThumbnails: ElementRef;
