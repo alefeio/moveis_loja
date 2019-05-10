@@ -22,8 +22,7 @@ export class DadosAdicionaisComponent implements OnInit {
   email: string
   alerta: string
   estiloAlerta: string
-  pedido: Array<any> = []
-  resumoPedido: Array<any> = []
+  pedido:any
   formDadoAdicionais: FormGroup = new FormGroup({
     telefone: new FormControl(null),
     celular: new FormControl(null, [Validators.required]),
@@ -77,19 +76,11 @@ export class DadosAdicionaisComponent implements OnInit {
     private carrinhoService: CarrinhoService) { }
 
   ngOnInit() {
-    let pedidoConverter = JSON.parse(localStorage.getItem('pedido'))
-    this.pedido.push(pedidoConverter);
-    for (let p of this.pedido) {
-      let itensPedido = p.itens;
-      for (let i of itensPedido) {
-        this.resumoPedido.push(i);
-      }
-    }
+    this.pedido = JSON.parse(localStorage.getItem('pedido'))
     backend.auth().onAuthStateChanged((user) => {
       this.email = user.email
       this.consultarUsuario()
     })
-
   }
 
   incluirDadosPerfil() {
@@ -111,21 +102,16 @@ export class DadosAdicionaisComponent implements OnInit {
   }
 
   pedidoAddDados(dadosAdicionais) {
-    let pedidoAdd:any
-    for (let p of this.pedido) {
-      pedidoAdd = p
-      pedidoAdd.celular = dadosAdicionais.celular
-      pedidoAdd.telefone = dadosAdicionais.telefone
-      pedidoAdd.endereco.bairro = dadosAdicionais.endereco.bairro 
-      pedidoAdd.endereco.cep = dadosAdicionais.endereco.cep
-      pedidoAdd.endereco.cidade = dadosAdicionais.endereco.cidade 
-      pedidoAdd.endereco.complemento = dadosAdicionais.endereco.complemento 
-      pedidoAdd.endereco.numero = dadosAdicionais.endereco.numero 
-      pedidoAdd.endereco.rua = dadosAdicionais.endereco.rua 
-      pedidoAdd.endereco.uf = dadosAdicionais.endereco.uf 
-    }
-    localStorage.removeItem('pedido');
-    localStorage.setItem('pedidoAddEnd', JSON.stringify(pedidoAdd));
+    this.pedido.celular = dadosAdicionais.celular
+    this.pedido.telefone = dadosAdicionais.telefone
+    this.pedido.endereco.bairro = dadosAdicionais.endereco.bairro
+    this.pedido.endereco.cep = dadosAdicionais.endereco.cep
+    this.pedido.endereco.cidade = dadosAdicionais.endereco.cidade
+    this.pedido.endereco.complemento = dadosAdicionais.endereco.complemento
+    this.pedido.endereco.numero = dadosAdicionais.endereco.numero
+    this.pedido.endereco.rua = dadosAdicionais.endereco.rua
+    this.pedido.endereco.uf = dadosAdicionais.endereco.uf
+    localStorage.setItem('pedido', JSON.stringify(this.pedido));
     this.rota.navigate(['ordem-compra/pagamento']);
   }
 
@@ -159,7 +145,6 @@ export class DadosAdicionaisComponent implements OnInit {
   }
 
   populaEndereco(dados) {
-    console.log(dados);
     this.formDadoAdicionais.patchValue({
       endereco: {
         rua: dados.logradouro,

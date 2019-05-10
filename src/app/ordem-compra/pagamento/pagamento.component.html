@@ -3,18 +3,18 @@
     <div class="col-md-4 pb-4">
       <div class="cart-summary">
         <h4>Dados Pessoais</h4>
-        <span>Email: {{pedido.email}}</span><br>
-        <span>Nome: {{pedido.nome}}</span><br>
-        <span>Contato: {{pedido.celular}}</span>
+        <span>Email: {{pedido.email ? pedido.email : ""}}</span><br>
+        <span>Nome: {{pedido.nome ? pedido.nome : ""}}</span><br>
+        <span>Contato: {{pedido.celular ? pedido.celular : ""}}</span>
       </div>
     </div>
     <div class="col-md-4 pb-4">
       <div class="cart-summary">
         <h4>Entrega</h4>
-        <span>{{pedido.endereco.rua}}</span> - <span>{{pedido.endereco.numero}}</span><br>
-        <span>{{pedido.endereco.bairro}}</span> - <span>{{pedido.endereco.cidade}}</span> -
-        <span>{{pedido.endereco.uf}}</span><br>
-        <span>{{pedido.endereco.cep}}</span>
+        <span>{{pedido.endereco.rua ? pedido.endereco.rua : ""}}</span> - <span>{{pedido.endereco.numero ? pedido.endereco.numero : ""}}</span><br>
+        <span>{{pedido.endereco.bairro ? pedido.endereco.bairro: ""}}</span> - <span>{{pedido.endereco.cidade ? pedido.endereco.cidade : ""}}</span> -
+        <span>{{pedido.endereco.uf ? pedido.endereco.uf : ""}}</span><br>
+        <span>{{pedido.endereco.cep ? pedido.endereco.cep : ""}}</span>
       </div>
     </div>
     <div class="col-md-4 pb-4">
@@ -30,20 +30,20 @@
                 <label value="boleto" for="2">Boleto</label>
               </div>
               <div *ngIf="formaPagamentoLet === 0">
-                <label for="estado">Parcela sem juros</label>
+                <label for="estado">Quantidade de Parcelas</label>
                 <select formControlName="parcela" class="form-control"
                   (change)="dadosFormaPagamento(formaPagamentoDados.value)">
                   <option value="" selected="selected">Selecione</option>
-                  <option value="1">1X</option>
-                  <option value="2">2X</option>
-                  <option value="3">3X</option>
-                  <option value="4">4X</option>
-                  <option value="5">5X</option>
-                  <option value="6">6X</option>
-                  <option value="7">7X</option>
-                  <option value="8">8X</option>
-                  <option value="9">9X</option>
-                  <option value="10">10X</option>
+                  <option value="1">1X Sem Juros</option>
+                  <option value="2">2X Sem Juros</option>
+                  <option value="3">3X Sem Juros</option>
+                  <option value="4">4X Sem Juros</option>
+                  <option value="5">5X Sem Juros</option>
+                  <option value="6">6X Sem Juros</option>
+                  <option value="7">7X Sem Juros</option>
+                  <option value="8">8X Sem Juros</option>
+                  <option value="9">9X Sem Juros</option>
+                  <option value="10">10X Sem Juros</option>
                 </select>
                 <small *ngIf="msg != 0" class="form-text error">
                   <span *ngIf="msg != 0" style="color: red"> Obrigatório!</span>

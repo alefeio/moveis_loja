@@ -39,7 +39,7 @@ export const ROUTES: Routes = [
             { path: '', redirectTo: 'carrinho', pathMatch: 'full' },
             { path: 'carrinho', component: CarrinhoCompraComponent },
             { path: 'dados-adicionais', component: DadosAdicionaisComponent},
-            { path: 'pagamento', component: PagamentoComponent, canActivate: [AutenticacaoGuard] }
+            { path: 'pagamento', component: PagamentoComponent}
         ]
     },
     {

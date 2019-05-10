@@ -133,7 +133,8 @@ export class CarrinhoCompraComponent implements OnInit {
           $('#exampleModal').modal('hide')
         }, 3000);
       } else {
-        console.log("estou logado e com dados de endereço!");
+        pedido.codigo = this.gerarCodigo();
+        localStorage.setItem('pedido', JSON.stringify(pedido));
         this.rota.navigate(['ordem-compra/pagamento']);
       }
     }

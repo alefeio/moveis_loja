@@ -503,6 +503,7 @@ export class Bd {
                 email: pedido.email,
                 cpf: pedido.cpf,
                 telefone: pedido.telefone,
+                dadosCartao: pedido.dadosCartao,
                 celular: pedido.celular,
                 endereco: pedido.endereco,
                 pagamento: pedido.pagamento,

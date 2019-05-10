@@ -26,10 +26,8 @@ class CarrinhoService {
         let itemCarrinhoEncontrado = this.itens.find((item: ItemCarrinho) => item.cor.nome === itemCarrinho.cor.nome)
         if (itemCarrinhoEncontrado) {
             itemCarrinhoEncontrado.quantidade += 1
-            console.log(itemCarrinhoEncontrado);
         } else {
             this.itens.push(itemCarrinho)
-            console.log(itemCarrinho);
         }
     }
 

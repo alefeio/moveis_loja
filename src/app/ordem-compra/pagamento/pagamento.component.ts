@@ -183,10 +183,8 @@ export class PagamentoComponent implements OnInit {
   }
 
   ngOnInit() {
-    if (this.carrinhoService.itens.length === 0) {
-      this.rota.navigate(['']);
-    }
-    this.pedido = JSON.parse(localStorage.getItem('pedidoAddEnd'))
+    this.pedido = JSON.parse(localStorage.getItem('pedido'))
+    console.log(this.pedido);
   }
 
   formaPagamento(p) {
@@ -218,12 +216,15 @@ export class PagamentoComponent implements OnInit {
         }
         this.bd.efetivarCompra(this.pedido).then((key: any) => {
           this.idPedidoCompra = this.pedido.codigo;
-          localStorage.removeItem('pedidoAddEnd');
+          localStorage.removeItem('pedido');
           $('#exampleModal').modal('show')
           if (this.idPedidoCompra != undefined) {
             this.carrinhoService.itens = [];
-            console.log('carrinho vazio', this.carrinhoService.itens)
           }
+          setTimeout(() => {
+            $('#exampleModal').modal('hide')
+            this.rota.navigate(['']);
+          }, 3000)
         })
       } else {
         console.log("boleto")
