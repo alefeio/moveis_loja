@@ -24,8 +24,6 @@ export class TopoComponent implements OnInit {
   scrolNumber: number = 0;
 
   public ambiente:string
-
-  // variaveis de efeito de fixed-top angular sem jquery
   sticky: boolean = false;
 
   constructor(
@@ -80,31 +78,36 @@ export class TopoComponent implements OnInit {
     this.autenticacao.sair()
   }
 
-  public consultarAmbientes(): void {
-    this.bd.consultarAmbientes()
-      .then((ambientes: any) => {
-        this.ambiente = ambientes.nome
-        this.ambientes = ambientes.reverse()
+  consultarAmbientes(){
+    this.bd.buscarAmbientes().then((resp:any)=>{
+      this.ambientes = resp;
+    });
+    // this.bd.consultarAmbientes()
+    //   .then((ambientes: any) => {
+    //     this.ambiente = ambientes.nome
+    //     this.ambientes = ambientes.reverse()
 
-        this.bd.consultarLinhasPorAmbiente(this.ambiente)
-          .then((linhas: any) => {
-            this.linhas = linhas
-            // console.log(linhas);
-          })
-        this.consultarLinhas()
-      })
+    //     this.bd.consultarLinhasPorAmbiente(this.ambiente)
+    //       .then((linhas: any) => {
+    //         this.linhas = linhas
+    //         // console.log(linhas);
+    //       })
+    this.consultarLinhas();
+    //   })
   }
 
-  public consultarLinhas(): void {
-    this.bd.consultarLinhas()
-      .then((linhas: any) => {
-        this.linhas = linhas
-        // console.log(linhas);
-      })
+  consultarLinhas(){
+    this.bd.buscarLinhas().then((resp:any)=>{
+      this.linhas = resp;
+    })
+    // this.bd.consultarLinhas()
+    //   .then((linhas: any) => {
+    //     this.linhas = linhas
+    //     // console.log(linhas);
+    //   })
   }
 
   mostrarLogin() {
     $('#modal-login').modal('show');
   }
-
 }

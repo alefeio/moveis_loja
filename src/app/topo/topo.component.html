@@ -60,12 +60,12 @@
         routerLinkActive="active" [routerLink]="['/ambiente', ambiente.nome]">
         <a id="link-amb">
           <!-- <img [src]="ambiente.url_imagem || ''" height="50" width="50"> -->
-          <span style="font-weight: bold;">&nbsp;{{ambiente.nome}}</span>
+          <span style="font-weight: bold;">&nbsp;{{ambiente.descricao}}</span>
         </a>
         <div class="dropbtn">
           <div class="dropdown-content">
             <ng-container *ngFor="let linha of linhas">
-              <a class="encher" [routerLink]="['/linha', linha.descricao]" *ngIf="linha.ambiente == ambiente.nome">
+              <a class="encher" [routerLink]="['/linha', linha.descricao]" *ngIf="linha.ambiente_id == ambiente._id">
                 {{linha.descricao}}
               </a>
             </ng-container>

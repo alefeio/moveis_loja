@@ -6,7 +6,7 @@ import { HttpModule } from '@angular/http'
 import { RouterModule } from '@angular/router'
 // import { FormsModule } from '@angular/forms'
 import { ReactiveFormsModule } from '@angular/forms'
-
+import { HttpClientModule } from '@angular/common/http';
 import { ROUTES } from './app.routes'
 import { AppComponent } from './app.component';
 import { TopoComponent } from './topo/topo.component';
@@ -97,6 +97,7 @@ import { PagamentoComponent } from './ordem-compra/pagamento/pagamento.component
   imports: [
     BrowserModule,
     HttpModule,
+    HttpClientModule,
     NgxImageZoomModule.forRoot(),
     // FormsModule,
     ReactiveFormsModule,

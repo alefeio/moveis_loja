@@ -31,7 +31,7 @@ export class HomeComponent implements OnInit {
     //this.ofertas = this.ofertasService.getOfertas()
     //console.log(this.ofertas)
 
-    this.consultarAmbientes()
+    // this.consultarAmbientes()
 
     // this.consultarProdutos()
 
@@ -70,71 +70,94 @@ export class HomeComponent implements OnInit {
   }
 
   produtosEcommerce() {
-    this.bd.buscarProdutosEcommerce().then((resposta: any) => {
-      this.produtosGestao = resposta;
+    this.bd.buscarProdutosEcommerce().then((resp: any) => {
+      // this.produtosGestao = resp
       let salaDestaque
       let quartoDestaque
       let cozinhaDestaque
       let diversosDestaque
-      for (let prodPorAmb of resposta) {
-        if (prodPorAmb.ambiente === "Sala") {
-          salaDestaque = prodPorAmb
-          for (let cores of prodPorAmb.cores) {
-            if (cores.destaque === true) {
-              salaDestaque.cores = cores
-              for (let imagem of cores.imagem) {
-                if (imagem.destaque === true) {
-                  salaDestaque.cores.imagem = imagem
+      for(let prod of resp){
+        if(prod.ambienteDescricao === "Sala"){
+          salaDestaque = prod
+          for(let cores of prod.cores){
+            if(cores.destaque === true){
+              salaDestaque.cores = cores;
+              for(let imagem of cores.imagem){
+                if(imagem.destaque === true){
+                  salaDestaque.cores.imagem = imagem;
                 }
               }
             }
           }
           this.pSala.push(salaDestaque);
         }
-        if(prodPorAmb.ambiente === "Quarto"){
-          quartoDestaque = prodPorAmb
-          for (let cores of prodPorAmb.cores) {
-            if (cores.destaque === true) {
-              quartoDestaque.cores = cores
-              for (let imagem of cores.imagem) {
-                if (imagem.destaque === true) {
-                  quartoDestaque.cores.imagem = imagem
-                }
-              }
-            }
-          }
-          this.pQuarto.push(quartoDestaque);
-        }
-        if (prodPorAmb.ambiente === "Cozinha") {
-          cozinhaDestaque = prodPorAmb
-          for (let cores of prodPorAmb.cores) {
-            if (cores.destaque === true) {
-              cozinhaDestaque.cores = cores
-              for (let imagem of cores.imagem) {
-                if (imagem.destaque === true) {
-                  cozinhaDestaque.cores.imagem = imagem
-                }
-              }
-            }
-          }
-          this.pCozinha.push(cozinhaDestaque);
-        }
-        if(prodPorAmb.ambiente === "Diversos"){
-          diversosDestaque = prodPorAmb
-          for (let cores of prodPorAmb.cores) {
-            if (cores.destaque === true) {
-              diversosDestaque.cores = cores
-              for (let imagem of cores.imagem) {
-                if (imagem.destaque === true) {
-                  diversosDestaque.cores.imagem = imagem
-                }
-              }
-            }
-          }
-          this.pDiversos.push(diversosDestaque);
-        }
       }
     })
+    // this.bd.buscarProdutosEcommerce().then((resposta: any) => {
+    //   this.produtosGestao = resposta;
+    //   let salaDestaque
+    //   let quartoDestaque
+    //   let cozinhaDestaque
+    //   let diversosDestaque
+    //   for (let prodPorAmb of resposta) {
+    //     if (prodPorAmb.ambiente === "Sala") {
+    //       salaDestaque = prodPorAmb
+    //       for (let cores of prodPorAmb.cores) {
+    //         if (cores.destaque === true) {
+    //           salaDestaque.cores = cores
+    //           for (let imagem of cores.imagem) {
+    //             if (imagem.destaque === true) {
+    //               salaDestaque.cores.imagem = imagem
+    //             }
+    //           }
+    //         }
+    //       }
+    //       this.pSala.push(salaDestaque);
+    //     }
+    //     if(prodPorAmb.ambiente === "Quarto"){
+    //       quartoDestaque = prodPorAmb
+    //       for (let cores of prodPorAmb.cores) {
+    //         if (cores.destaque === true) {
+    //           quartoDestaque.cores = cores
+    //           for (let imagem of cores.imagem) {
+    //             if (imagem.destaque === true) {
+    //               quartoDestaque.cores.imagem = imagem
+    //             }
+    //           }
+    //         }
+    //       }
+    //       this.pQuarto.push(quartoDestaque);
+    //     }
+    //     if (prodPorAmb.ambiente === "Cozinha") {
+    //       cozinhaDestaque = prodPorAmb
+    //       for (let cores of prodPorAmb.cores) {
+    //         if (cores.destaque === true) {
+    //           cozinhaDestaque.cores = cores
+    //           for (let imagem of cores.imagem) {
+    //             if (imagem.destaque === true) {
+    //               cozinhaDestaque.cores.imagem = imagem
+    //             }
+    //           }
+    //         }
+    //       }
+    //       this.pCozinha.push(cozinhaDestaque);
+    //     }
+    //     if(prodPorAmb.ambiente === "Diversos"){
+    //       diversosDestaque = prodPorAmb
+    //       for (let cores of prodPorAmb.cores) {
+    //         if (cores.destaque === true) {
+    //           diversosDestaque.cores = cores
+    //           for (let imagem of cores.imagem) {
+    //             if (imagem.destaque === true) {
+    //               diversosDestaque.cores.imagem = imagem
+    //             }
+    //           }
+    //         }
+    //       }
+    //       this.pDiversos.push(diversosDestaque);
+    //     }
+    //   }
+    // })
   }
 
 
@@ -147,12 +170,12 @@ export class HomeComponent implements OnInit {
   //     })
   // }
 
-  public consultarAmbientes(): void {
-    this.bd.consultarAmbientes()
-      .then((ambientes: any) => {
-        this.ambientes = ambientes.reverse()
-      })
-  }
+  // public consultarAmbientes(): void {
+  //   this.bd.consultarAmbientes()
+  //     .then((ambientes: any) => {
+  //       this.ambientes = ambientes.reverse()
+  //     })
+  // }
 
   ofertaDetalhe(chaveProduto) {
     this.router.navigate(['/oferta', chaveProduto]);

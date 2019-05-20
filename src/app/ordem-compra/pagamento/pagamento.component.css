@@ -26,6 +26,12 @@
     transform-style: preserve-3d;
 }
 
+@media(max-width: 1039px) {
+    .card {
+        width: 50% !important;
+    }
+}
+
 .card .front {
     background: var(--card-color);
     border-radius: 17px;

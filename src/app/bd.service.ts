@@ -4,6 +4,7 @@ import { Injectable } from '@angular/core';
 import { Progresso } from './progresso.service';
 import { Observable } from 'rxjs';
 import { map, retry } from 'rxjs/operators';
+import { MongoDBService } from './mongo-db.service';
 
 @Injectable()
 export class Bd {
@@ -13,7 +14,9 @@ export class Bd {
         
     }]
 
-    constructor(private progresso: Progresso, private util: Util) { }
+    constructor(private progresso: Progresso, 
+                private util: Util,
+                private mongodb:MongoDBService) { }
 
     public consultarUsuario(email: string): Promise<any> {
 
@@ -196,100 +199,112 @@ export class Bd {
         })
     }
 
-    public consultarAmbientes(): Promise<any> {
-        return new Promise((resolve, reject) => {
-            // consultar chamados
-            backend.database().ref('ambientes')
-                .orderByChild('ordem')
-                .once('value')
-                .then((snapshot: any) => {
-                    // console.log(snapshot.val())
-                    let ambientes: Array<any> = []
-                    snapshot.forEach((childSnapshot: any) => {
-                        let ambiente = childSnapshot.val()
-                        // ambiente.key = childSnapshot.key
-                        ambientes.push(ambiente)
-                    })
-                    // resolve(publicacoes)
-                    // return ambientes
-                    resolve(ambientes.reverse())
-                })
-                // .then((ambientes: any) => {
-
-                    // ambientes.forEach(ambiente => {
-
-                    //     // consultar a url da imagem
-                    //     // backend.storage().ref()
-                    //     //     .child(`ambientes/${ambiente.key}`)
-                    //     //     .getDownloadURL()
-                    //     //     .then((url: string) => {
-
-                    //     //         ambiente.url_imagem = url
-                    //     //     })
-                    // })
-
-
-                // })
-        })
+    buscarAmbientes(){
+        return this.mongodb.get('/v2/ecommerce/ambientes/')
     }
 
-    public consultarLinhas(): Promise<any> {
+    // public consultarAmbientes(): Promise<any> {
+    //     return new Promise((resolve, reject) => {
+    //         // consultar chamados
+    //         backend.database().ref('ambientes')
+    //             .orderByChild('ordem')
+    //             .once('value')
+    //             .then((snapshot: any) => {
+    //                 // console.log(snapshot.val())
+    //                 let ambientes: Array<any> = []
+    //                 snapshot.forEach((childSnapshot: any) => {
+    //                     let ambiente = childSnapshot.val()
+    //                     // ambiente.key = childSnapshot.key
+    //                     ambientes.push(ambiente)
+    //                 })
+    //                 // resolve(publicacoes)
+    //                 // return ambientes
+    //                 resolve(ambientes.reverse())
+    //             })
+    //             // .then((ambientes: any) => {
 
-        return new Promise((resolve, reject) => {
+    //                 // ambientes.forEach(ambiente => {
 
-            // consultar chamados
-            backend.database().ref('linhas')
-                .orderByChild('nome')
-                .once('value')
-                .then((snapshot: any) => {
-                    // console.log(snapshot.val())
+    //                 //     // consultar a url da imagem
+    //                 //     // backend.storage().ref()
+    //                 //     //     .child(`ambientes/${ambiente.key}`)
+    //                 //     //     .getDownloadURL()
+    //                 //     //     .then((url: string) => {
 
-                    let linhas: Array<any> = []
+    //                 //     //         ambiente.url_imagem = url
+    //                 //     //     })
+    //                 // })
 
-                    snapshot.forEach((childSnapshot: any) => {
 
-                        let linha = childSnapshot.val()
-                        linha.key = childSnapshot.key
+    //             // })
+    //     })
+    // }
 
-                        linhas.push(linha)
-                    })
-
-                    // resolve(publicacoes)
-                    resolve(linhas)
-                })
-        })
+    buscarLinhas(){
+        return this.mongodb.get('/v2/ecommerce/categorias')
     }
 
-    public consultarLinhasPorAmbiente(ambiente: string): Promise<any> {
-
-        // console.log('ambiente recebido no bd: ', ambiente)
-
-        return new Promise((resolve, reject) => {
-
-            // consultar chamados
-            backend.database().ref('linhas')
-                .orderByChild('ambiente')
-                .equalTo(ambiente)
-                .once('value')
-                .then((snapshot: any) => {
-                    // console.log(snapshot.val())
-
-                    let linhas: Array<any> = []
-
-                    snapshot.forEach((childSnapshot: any) => {
-
-                        let linha = childSnapshot.val()
-                        linha.key = childSnapshot.key
-
-                        linhas.push(linha)
-                    })
-
-                    // resolve(publicacoes)
-                    resolve(linhas)
-                    // console.log(linhas);
-                })
-        })
+    buscarLinhasPorAmbiente(_idAmbiente){
+        return this.mongodb.get(`/v2/ecommerce/categorias/${_idAmbiente}`)
     }
+
+    // public consultarLinhas(): Promise<any> {
+
+    //     return new Promise((resolve, reject) => {
+
+    //         // consultar chamados
+    //         backend.database().ref('linhas')
+    //             .orderByChild('nome')
+    //             .once('value')
+    //             .then((snapshot: any) => {
+    //                 // console.log(snapshot.val())
+
+    //                 let linhas: Array<any> = []
+
+    //                 snapshot.forEach((childSnapshot: any) => {
+
+    //                     let linha = childSnapshot.val()
+    //                     linha.key = childSnapshot.key
+
+    //                     linhas.push(linha)
+    //                 })
+
+    //                 // resolve(publicacoes)
+    //                 resolve(linhas)
+    //             })
+    //     })
+    // }
+
+    // public consultarLinhasPorAmbiente(ambiente: string): Promise<any> {
+
+    //     // console.log('ambiente recebido no bd: ', ambiente)
+
+    //     return new Promise((resolve, reject) => {
+
+    //         // consultar chamados
+    //         backend.database().ref('linhas')
+    //             .orderByChild('ambiente')
+    //             .equalTo(ambiente)
+    //             .once('value')
+    //             .then((snapshot: any) => {
+    //                 // console.log(snapshot.val())
+
+    //                 let linhas: Array<any> = []
+
+    //                 snapshot.forEach((childSnapshot: any) => {
+
+    //                     let linha = childSnapshot.val()
+    //                     linha.key = childSnapshot.key
+
+    //                     linhas.push(linha)
+    //                 })
+
+    //                 // resolve(publicacoes)
+    //                 resolve(linhas)
+    //                 // console.log(linhas);
+    //             })
+    //     })
+    // }
 
     public consultarProdutosPorFiltro(filtro: string, valor: string): Promise<any> {
 
@@ -418,18 +433,22 @@ export class Bd {
     }
 
     //ray listar produtos
-    buscarProdutosEcommerce():Promise<any>{
-        return new Promise((resolve, reject)=>{
-            backend.database().ref('produtos').once('value').then((resp:any)=>{
-                let produtosE:Array<any> = []
-                resp.forEach(produto => {
-                    let produtoValor = produto.val()
-                    produtoValor.chave = produto.key
-                    produtosE.push(produtoValor);
-                });
-                resolve(produtosE);
-            })
-        })
+    // buscarProdutosEcommerce():Promise<any>{
+    //     return new Promise((resolve, reject)=>{
+    //         backend.database().ref('produtos').once('value').then((resp:any)=>{
+    //             let produtosE:Array<any> = []
+    //             resp.forEach(produto => {
+    //                 let produtoValor = produto.val()
+    //                 produtoValor.chave = produto.key
+    //                 produtosE.push(produtoValor);
+    //             });
+    //             resolve(produtosE);
+    //         })
+    //     })
+    // }
+
+    buscarProdutosEcommerce(){
+        return this.mongodb.get('/v2/ecommerce/produtos/');
     }
 
     // ray busca por id
