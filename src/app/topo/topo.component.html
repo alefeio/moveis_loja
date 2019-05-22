@@ -31,19 +31,19 @@
             <br>Carrinho
           </a>
         </li>
-        <li class="nav-item text-center" *ngIf="!autenticacao.token_id">
+        <li class="nav-item text-center" *ngIf="sessao.logado === false">
           <a class="nav-link" (click)="painelLogin()" routerLinkActive="active" data-toggle="modal" data-target="#modal-login">
             <img src="../../assets/login.png" class="img-fluid" style="width: 30px" />
             <br>Login
           </a>
         </li>
-        <li class="nav-item text-center" *ngIf="autenticacao.token_id">
+        <li class="nav-item text-center" *ngIf="sessao.logado === true">
           <a class="nav-link" routerLinkActive="active" routerLink="cliente">
             <img src="../../assets/user.png" class="img-fluid" style="width: 30px" />
             <br>Minha Conta
           </a>
         </li>
-        <li class="nav-item text-center" *ngIf="autenticacao.token_id">
+        <li class="nav-item text-center" *ngIf="sessao.logado === true">
           <button class="nav-link" (click)="sair()" style="background: transparent; border: none; cursor: pointer;">
             <img src="../../assets/sair.png" class="img-fluid" style="width: 30px" />
             <br>Sair

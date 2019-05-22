@@ -18,10 +18,10 @@ export class LoginComponent implements OnInit {
     'senha': new FormControl(null, [Validators.required])
   })
 
-  msgErro:string = undefined
+  msgErro: string = undefined
 
   constructor(private autenticacao: Autenticacao,
-              private sessao: SessionService) { }
+    private sessao: SessionService) { }
 
   ngOnInit() {
   }
@@ -36,13 +36,14 @@ export class LoginComponent implements OnInit {
 
   // autenticacao de usuario com email e senha
   autenticar() {
-    this.autenticacao.autenticarUsuario(this.form.value).then(resp =>{
-      console.log(resp.json())
-    }).catch(error=>{
-    this.msgErro = error._body;
-    setTimeout(()=>{
-      this.autenticacao.msgErro = "";
-    }, 5000);
+    this.autenticacao.autenticarUsuario(this.form.value).then(resp => {
+      this.sessao.salvar(resp.json());
+      $('#modal-login').modal('hide');
+    }).catch(error => {
+      this.msgErro = error._body;
+      setTimeout(() => {
+        this.msgErro = undefined;
+      }, 5000);
     })
     // this.autenticacao.autenticar(this.form.value.email, this.form.value.senha)
     // setTimeout(()=>{

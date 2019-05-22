@@ -42,7 +42,7 @@ export class MongoDBService {
         return JSON.parse(data._body);
       }
     } catch (error) {
-      error.data = { msg: JSON.parse(error._body), status: error.status };
+      error.data = { msg: error._body, status: error.status };
       throw error;
     }
   }

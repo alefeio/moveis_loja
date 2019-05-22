@@ -77,15 +77,15 @@ export class Autenticacao implements OnDestroy {
         return this.token_id !== undefined
     }
 
-    public sair(): void {
-        backend.auth().signOut()
-            .then(() => {
-                localStorage.removeItem('idToken')
-                this.token_id = undefined
-                this.msgErro = undefined
-                this.router.navigate(['/'])
-            })
-    }
+    // public sair(): void {
+    //     backend.auth().signOut()
+    //         .then(() => {
+    //             localStorage.removeItem('idToken')
+    //             this.token_id = undefined
+    //             this.msgErro = undefined
+    //             this.router.navigate(['/'])
+    //         })
+    // }
 
     public recupSenha(email: string) {
         return backend.auth().sendPasswordResetEmail(email)

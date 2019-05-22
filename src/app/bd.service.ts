@@ -18,17 +18,21 @@ export class Bd {
                 private util: Util,
                 private mongodb:MongoDBService) { }
 
-    public consultarUsuario(email: string): Promise<any> {
+    // public consultarUsuario(email: string): Promise<any> {
 
-        return new Promise((resolve, reject) => {
+    //     return new Promise((resolve, reject) => {
 
-            // consultar usuário
-            backend.database().ref(`usuario_detalhe/${btoa(email)}`)
-                .once('value')
-                .then((snapshot: any) => {
-                    resolve(snapshot.val())
-                })
-        })
+    //         // consultar usuário
+    //         backend.database().ref(`usuario_detalhe/${btoa(email)}`)
+    //             .once('value')
+    //             .then((snapshot: any) => {
+    //                 resolve(snapshot.val())
+    //             })
+    //     })
+    // }
+
+    buscarUsuarioID(_idUsuario){
+        return this.mongodb.get(`/v2/usuarios/${_idUsuario}`);
     }
 
     public consultarChamados(email: string): Promise<any> {
@@ -708,21 +712,25 @@ export class Bd {
         })
     }
 
-    incluirDadosPerfil(dados:any): Promise<any>{
-        return new Promise((resolve, reject)=>{
-            backend.database().ref(`usuario_detalhe/${btoa(dados.email)}`).update({
-                telefone: dados.telefone,
-                celular: dados.celular,
-                endereco: dados.endereco
-            }).then(() => {
-                let feed: any = {
-                    estilo: 'success',
-                    msg: 'Perfil atualizado com sucesso!'
-                }
-                resolve(feed)
-            })
-        })
+    incluirDadosPerfil(dadosAdicionais){
+        return this.mongodb.put('/v2/usuarios', dadosAdicionais);
     }
+
+    // incluirDadosPerfil(dados:any): Promise<any>{
+    //     return new Promise((resolve, reject)=>{
+    //         backend.database().ref(`usuario_detalhe/${btoa(dados.email)}`).update({
+    //             telefone: dados.telefone,
+    //             celular: dados.celular,
+    //             endereco: dados.endereco
+    //         }).then(() => {
+    //             let feed: any = {
+    //                 estilo: 'success',
+    //                 msg: 'Perfil atualizado com sucesso!'
+    //             }
+    //             resolve(feed)
+    //         })
+    //     })
+    // }
 
     public editarProduto(produto: any): void {
 

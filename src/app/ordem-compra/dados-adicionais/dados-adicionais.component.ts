@@ -31,6 +31,7 @@ export class DadosAdicionaisComponent implements OnInit {
       numero: new FormControl(null, [Validators.required]),
       complemento: new FormControl(null),
       bairro: new FormControl(null, [Validators.required]),
+      pontoReferencia: new FormControl(null, [Validators.required]),
       cep: new FormControl(null, [Validators.required]),
       cidade: new FormControl(null, [Validators.required]),
       uf: new FormControl(null, [Validators.required])
@@ -45,6 +46,7 @@ export class DadosAdicionaisComponent implements OnInit {
       rua: '',
       numero: null,
       complemento: '',
+      pontoReferencia: '',
       bairro: '',
       cep: '',
       cidade: '',
@@ -63,6 +65,7 @@ export class DadosAdicionaisComponent implements OnInit {
       rua: '',
       numero: null,
       complemento: '',
+      pontoReferencia: '',
       bairro: '',
       cep: '',
       cidade: '',
@@ -77,10 +80,10 @@ export class DadosAdicionaisComponent implements OnInit {
 
   ngOnInit() {
     this.pedido = JSON.parse(localStorage.getItem('pedido'))
-    backend.auth().onAuthStateChanged((user) => {
-      this.email = user.email
-      this.consultarUsuario()
-    })
+    // backend.auth().onAuthStateChanged((user) => {
+    //   this.email = user.email
+    //   this.consultarUsuario()
+    // })
   }
 
   incluirDadosPerfil() {
@@ -92,13 +95,13 @@ export class DadosAdicionaisComponent implements OnInit {
       this.formDadoAdicionais.value.celular.replace(/[^\d]/g, ""),
       endereco
     )
-    this.bd.incluirDadosPerfil(dadosAdicionais)
-      .then((feed: any) => {
-        this.alert(feed.estilo, feed.msg)
-        this.alerta = feed.msg
-        this.pedidoAddDados(dadosAdicionais)
-        this.formDadoAdicionais.reset();
-      })
+    // this.bd.incluirDadosPerfil(dadosAdicionais)
+    //   .then((feed: any) => {
+    //     this.alert(feed.estilo, feed.msg)
+    //     this.alerta = feed.msg
+    //     this.pedidoAddDados(dadosAdicionais)
+    //     this.formDadoAdicionais.reset();
+    //   })
   }
 
   pedidoAddDados(dadosAdicionais) {
@@ -116,15 +119,15 @@ export class DadosAdicionaisComponent implements OnInit {
   }
 
   consultarUsuario(): void {
-    this.bd.consultarUsuario(this.email)
-      .then((usuario: any) => {
-        if (usuario.nome) this.usuarioPedido.nome = usuario.nome
-        if (usuario.email) this.usuarioPedido.email = usuario.email
-        if (usuario.cpf) this.usuarioPedido.cpf = usuario.cpf
-        if (usuario.telefone) this.usuarioPedido.telefone = usuario.telefone
-        if (usuario.celular) this.usuarioPedido.celular = usuario.celular
-        if (usuario.endereco) this.usuarioPedido.endereco = usuario.endereco
-      })
+    // this.bd.consultarUsuario(this.email)
+    //   .then((usuario: any) => {
+    //     if (usuario.nome) this.usuarioPedido.nome = usuario.nome
+    //     if (usuario.email) this.usuarioPedido.email = usuario.email
+    //     if (usuario.cpf) this.usuarioPedido.cpf = usuario.cpf
+    //     if (usuario.telefone) this.usuarioPedido.telefone = usuario.telefone
+    //     if (usuario.celular) this.usuarioPedido.celular = usuario.celular
+    //     if (usuario.endereco) this.usuarioPedido.endereco = usuario.endereco
+    //   })
   }
 
   consultaCEP() {

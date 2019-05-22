@@ -5,6 +5,7 @@ import { OfertasService } from './../ofertas.service';
 import { Observable, Subject, of } from 'rxjs';
 import { switchMap, debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { Oferta } from '../shared/oferta.model';
+import { SessionService } from '../sessao.service';
 declare var $: any
 
 @Component({
@@ -29,7 +30,8 @@ export class TopoComponent implements OnInit {
   constructor(
     private ofertasService: OfertasService,
     private autenticacao: Autenticacao,
-    private bd: Bd
+    private bd: Bd,
+    private sessao: SessionService
   ) {
     let that = this;
     window.onscroll = function () {
@@ -48,9 +50,9 @@ export class TopoComponent implements OnInit {
   }
 
   ngOnInit() {
-    if (localStorage.getItem('idToken')) {
-      this.autenticacao.token_id = localStorage.getItem('idToken');
-    }
+    // if (localStorage.getItem('sessao')) {
+    //   this.autenticacao.token_id = localStorage.getItem('sessao');
+    // }
     this.consultarAmbientes()
     this.ofertas = this.subjectPesquisa
       .pipe(
@@ -74,8 +76,9 @@ export class TopoComponent implements OnInit {
     this.subjectPesquisa.next('')
   }
 
-  public sair(): void {
-    this.autenticacao.sair()
+  sair() {
+    // this.autenticacao.sair()
+    this.sessao.logoff();
   }
 
   consultarAmbientes(){

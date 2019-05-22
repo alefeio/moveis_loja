@@ -9,12 +9,13 @@ import * as backend from 'firebase'
 import { UsuarioPedido } from '../../shared/usuario-pedido.model';
 import { Progresso } from 'src/app/progresso.service';
 import { Observable, interval, observable, Subject, pipe } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
+import { takeUntil, concatAll } from 'rxjs/operators';
 import * as uid from 'uuid/v4';
 import { Http } from '@angular/http';
 import { map } from 'rxjs/operators'
 import { DadosAdicionais } from '../../shared/dadosAdicionais.model';
 import { Router, ActivatedRoute } from '@angular/router';
+import { SessionService } from '../../sessao.service';
 declare var $: any;
 
 @Component({
@@ -37,7 +38,7 @@ export class CarrinhoCompraComponent implements OnInit {
     'formaPagamento': new FormControl(null, [Validators.required])
   })
 
-  public usuarioPedido: UsuarioPedido = {
+  usuarioPedido: UsuarioPedido = {
     nome: '',
     codigo: '',
     email: '',
@@ -48,6 +49,7 @@ export class CarrinhoCompraComponent implements OnInit {
       rua: '',
       numero: null,
       complemento: '',
+      pontoReferencia: '',
       bairro: '',
       cep: '',
       cidade: '',
@@ -59,31 +61,53 @@ export class CarrinhoCompraComponent implements OnInit {
     private carrinhoService: CarrinhoService,
     private bd: Bd,
     private rota: Router,
-    private rotaAtiva: ActivatedRoute
+    private rotaAtiva: ActivatedRoute,
+    private sessao: SessionService
   ) { }
 
   ngOnInit() {
     this.itensCarrinho = this.carrinhoService.exibirItens()
-    backend.auth().onAuthStateChanged((user) => {
-      this.email = user.email
-      this.consultarUsuario()
-    })
+    // backend.auth().onAuthStateChanged((user) => {
+    //   this.email = user.email
+    this.consultarUsuario()
+    // })
   }
 
   gerarCodigo() {
     return uid()
   }
 
-  consultarUsuario(): void {
-    this.bd.consultarUsuario(this.email)
-      .then((usuario: any) => {
-        if (usuario.nome) this.usuarioPedido.nome = usuario.nome
-        if (usuario.email) this.usuarioPedido.email = usuario.email
-        if (usuario.cpf) this.usuarioPedido.cpf = usuario.cpf
-        if (usuario.telefone) this.usuarioPedido.telefone = usuario.telefone
-        if (usuario.celular) this.usuarioPedido.celular = usuario.celular
-        if (usuario.endereco) this.usuarioPedido.endereco = usuario.endereco
-      })
+  async consultarUsuario() {
+    let usuarioID = this.sessao.getSessao();
+    let usuarioInfo = await this.bd.buscarUsuarioID(usuarioID._id)
+    let usuario = usuarioInfo[0]
+    if(usuario.nome){
+      this.usuarioPedido.nome = usuario.nome
+    }
+    if(usuario.email){
+      this.usuarioPedido.email = usuario.email
+    }
+    if(usuario.cpf){
+      this.usuarioPedido.cpf = usuario.cpf
+    }
+    if (usuario.telefone){
+      this.usuarioPedido.telefone = usuario.telefone
+    }
+    if (usuario.celular) {
+      this.usuarioPedido.celular = usuario.celular
+    }
+    if (usuario.endereco){
+      this.usuarioPedido.endereco = usuarioInfo.endereco
+    }
+    // this.bd.consultarUsuario(this.email)
+    //   .then((usuario: any) => {
+    //     if (usuario.nome) this.usuarioPedido.nome = usuario.nome
+    //     if (usuario.email) this.usuarioPedido.email = usuario.email
+    //     if (usuario.cpf) this.usuarioPedido.cpf = usuario.cpf
+    //     if (usuario.telefone) this.usuarioPedido.telefone = usuario.telefone
+    //     if (usuario.celular) this.usuarioPedido.celular = usuario.celular
+    //     if (usuario.endereco) this.usuarioPedido.endereco = usuario.endereco
+    //   })
   }
 
   diminuir(item: ItemCarrinho) {
@@ -111,20 +135,13 @@ export class CarrinhoCompraComponent implements OnInit {
     )
     if (this.carrinhoService.exibirItens().length === 0) {
       this.alert('danger', 'Não há produtos no seu carrinho.')
-    } else if (this.email === null || this.email === '') {
+    } else if (this.sessao.logado === false) {
       this.alert('danger', 'Você precisa estar logado para finalizar a compra.')
       setTimeout(() => {
         $('#modal-login').modal('show')
       }, 4000)
     } else {
-      if (this.email != "" &&
-        this.usuarioPedido.endereco.rua === '' &&
-        this.usuarioPedido.endereco.bairro === '' &&
-        this.usuarioPedido.endereco.cep === '' &&
-        this.usuarioPedido.endereco.cidade === '' &&
-        this.usuarioPedido.endereco.complemento === '' &&
-        this.usuarioPedido.endereco.numero === null &&
-        this.usuarioPedido.endereco.uf === '') {
+      if (this.sessao.logado === true && this.usuarioPedido.endereco === undefined) {
         pedido.codigo = this.gerarCodigo();
         localStorage.setItem('pedido', JSON.stringify(pedido));
         this.alert('danger', 'Você precisa informar os seus dados de endereço!');
@@ -132,7 +149,8 @@ export class CarrinhoCompraComponent implements OnInit {
           this.rota.navigate(['ordem-compra/dados-adicionais']);
           $('#exampleModal').modal('hide')
         }, 3000);
-      } else {
+      } 
+      else {
         pedido.codigo = this.gerarCodigo();
         localStorage.setItem('pedido', JSON.stringify(pedido));
         this.rota.navigate(['ordem-compra/pagamento']);

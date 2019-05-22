@@ -11,6 +11,7 @@ export class UsuarioPedido {
             numero: number,
             complemento: string,
             bairro: string,
+            pontoReferencia:string,
             cep: string,
             cidade: string,
             uf: string

@@ -30,11 +30,11 @@ export class AdminComponent implements OnInit {
   }
 
   public consultarUsuario(): void {
-    this.bd.consultarUsuario(this.email)
-      .then((usuario: any) => {
-        this.usuario = usuario
-        // console.log('Usuário: ', this.usuario)
-      })
+    // this.bd.consultarUsuario(this.email)
+    //   .then((usuario: any) => {
+    //     this.usuario = usuario
+    //     // console.log('Usuário: ', this.usuario)
+    //   })
   }
 
   public consultarProdutos(): void { 

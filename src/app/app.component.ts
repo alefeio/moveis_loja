@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import * as backend from 'firebase'
+import { SessionService } from './sessao.service'
 
 @Component({
   selector: 'app-root',
@@ -9,7 +10,10 @@ import * as backend from 'firebase'
 export class AppComponent implements OnInit {
   title = 'app';
 
-  ngOnInit(): void {
+  constructor(private sessao:SessionService){}
+
+  ngOnInit(){
+    this.sessao.carrega();
     // config alexandre
     // var config = {
     //   apiKey: "AIzaSyDn61plbeCHPLLICG_L7Oou-0-DePPlM2A",

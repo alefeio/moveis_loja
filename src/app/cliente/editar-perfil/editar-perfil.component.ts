@@ -88,29 +88,29 @@ export class EditarPerfilComponent implements OnInit {
 
   public consultarPerfilUsuario(): void {
 
-    this.bd.consultarUsuario(this.email)
-      .then((usuario: any) => {
-        if (usuario.nome) this.perfilUsuario.nome = usuario.nome
-        if (usuario.email) this.perfilUsuario.email = usuario.email
-        if (usuario.cpf) this.perfilUsuario.cpf = usuario.cpf
-        if (usuario.nascimento) this.perfilUsuario.nascimento = usuario.nascimento
-        if (usuario.sexo) this.perfilUsuario.sexo = usuario.sexo
-        if (usuario.telefone) this.perfilUsuario.telefone = usuario.telefone
-        if (usuario.celular) this.perfilUsuario.celular = usuario.celular
+    // this.bd.consultarUsuario(this.email)
+    //   .then((usuario: any) => {
+    //     if (usuario.nome) this.perfilUsuario.nome = usuario.nome
+    //     if (usuario.email) this.perfilUsuario.email = usuario.email
+    //     if (usuario.cpf) this.perfilUsuario.cpf = usuario.cpf
+    //     if (usuario.nascimento) this.perfilUsuario.nascimento = usuario.nascimento
+    //     if (usuario.sexo) this.perfilUsuario.sexo = usuario.sexo
+    //     if (usuario.telefone) this.perfilUsuario.telefone = usuario.telefone
+    //     if (usuario.celular) this.perfilUsuario.celular = usuario.celular
 
-        if (usuario.endereco) {
-          this.perfilUsuario.endereco.rua = usuario.endereco.rua
-          this.perfilUsuario.endereco.numero = usuario.endereco.numero
-          this.perfilUsuario.endereco.complemento = usuario.endereco.complemento
-          this.perfilUsuario.endereco.bairro = usuario.endereco.bairro
-          this.perfilUsuario.endereco.cep = usuario.endereco.cep
-          this.perfilUsuario.endereco.cidade = usuario.endereco.cidade
-          this.perfilUsuario.endereco.uf = usuario.endereco.uf
-        }
-      })
-      .then(() => {
-        this.preencherForm()
-      })
+    //     if (usuario.endereco) {
+    //       this.perfilUsuario.endereco.rua = usuario.endereco.rua
+    //       this.perfilUsuario.endereco.numero = usuario.endereco.numero
+    //       this.perfilUsuario.endereco.complemento = usuario.endereco.complemento
+    //       this.perfilUsuario.endereco.bairro = usuario.endereco.bairro
+    //       this.perfilUsuario.endereco.cep = usuario.endereco.cep
+    //       this.perfilUsuario.endereco.cidade = usuario.endereco.cidade
+    //       this.perfilUsuario.endereco.uf = usuario.endereco.uf
+    //     }
+    //   })
+    //   .then(() => {
+    //     this.preencherForm()
+    //   })
   }
 
   public editarPerfil(): void {

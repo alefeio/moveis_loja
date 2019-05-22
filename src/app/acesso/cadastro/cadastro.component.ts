@@ -2,6 +2,7 @@ import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Usuario } from '../../shared/usuario.model'
 import { Autenticacao } from 'src/app/autenticacao.service';
+import { SessionService } from '../../sessao.service';
 declare var $: any
 
 @Component({
@@ -25,7 +26,8 @@ export class CadastroComponent implements OnInit {
   cpfValidoReceita: boolean;
   emailValido: boolean;
 
-  constructor(private autenticacao: Autenticacao) {
+  constructor(private autenticacao: Autenticacao,
+    private sessao: SessionService) {
   }
 
   ngOnInit() {
@@ -146,15 +148,16 @@ export class CadastroComponent implements OnInit {
       this.formCadastro.value.senha
     )
     await this.autenticacao.cadastrarUsuario(usuario);
-    // let usuarioEmailSenha = {
-    //   email: this.formCadastro.value.email,
-    //   senha: this.formCadastro.value.senha
-    // }
-    // await this.autenticacao.autenticarUsuario(usuarioEmailSenha);
-    $('#modal-login').modal('hide');
-    this.formCadastro.reset();
-    this.exibirPainelLogin();
-
+    let usuarioEmailSenha = {
+      email: this.formCadastro.value.email,
+      senha: this.formCadastro.value.senha
+    }
+    this.autenticacao.autenticarUsuario(usuarioEmailSenha).then(resp => {
+      this.sessao.salvar(resp.json())
+      $('#modal-login').modal('hide');
+      this.formCadastro.reset();
+      this.exibirPainelLogin();
+    });
     // this.autenticacao.cadastrarUsuario(usuario)
     //   .then(() => {
     //     if (this.autenticacao.msgErro === undefined) {

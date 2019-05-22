@@ -8,6 +8,7 @@ export class DadosAdicionais {
             numero: string,
             complemento: string,
             bairro: string,
+            pontoReferencia: string,
             cep: string,
             cidade: string,
             uf: string

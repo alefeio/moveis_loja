@@ -31,7 +31,7 @@ export class SessionService {
         this.logado = false;
         this.usuario = null;
         localStorage.removeItem('sessao');
-        this.router.navigate(['/login']);
+        this.router.navigate(['/home']);
     }
 
     forceLogin() {
