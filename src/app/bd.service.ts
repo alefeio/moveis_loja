@@ -244,8 +244,8 @@ export class Bd {
         return this.mongodb.get('/v2/ecommerce/categorias')
     }
 
-    buscarLinhasPorAmbiente(_idAmbiente){
-        return this.mongodb.get(`/v2/ecommerce/categorias/${_idAmbiente}`)
+    buscarLinhasPorAmbiente(descricaoAmbiente){
+        return this.mongodb.get(`/v2/ecommerce/categorias/porAmbiente/${descricaoAmbiente}`);
     }
 
     // public consultarLinhas(): Promise<any> {
@@ -306,50 +306,58 @@ export class Bd {
     //     })
     // }
 
-    public consultarProdutosPorFiltro(filtro: string, valor: string): Promise<any> {
-
-        return new Promise((resolve, reject) => {
-
-            // consultar chamados
-            backend.database().ref('produtos')
-                .orderByChild(filtro)
-                .equalTo(valor)
-                .once('value')
-                .then((snapshot: any) => {
-                    // console.log(snapshot.val())
-
-                    let produtos: Array<any> = []
-
-                    snapshot.forEach((childSnapshot: any) => {
-
-                        let produto = childSnapshot.val()
-                        produto.key = childSnapshot.key
-
-                        produtos.push(produto)
-                    })
-
-                    // resolve(publicacoes)
-                    return produtos
-                })
-                .then((produtos: any) => {
-
-                    produtos.forEach(produto => {
-
-                        // consultar a url da imagem
-                        backend.storage().ref()
-                            .child(`produtos/${produto.key}`)
-                            .getDownloadURL()
-                            .then((url: string) => {
-
-                                produto.url_imagem = url
-                            })
-                    })
-
-                    resolve(produtos)
-
-                })
-        })
+    buscarProdutoPorAmbiente(_id){
+        return this.mongodb.get(`/v2/ecommerce/produtos/porAmbiente/${_id}`);
     }
+
+    buscarProdutoPorID(_idProduto){
+        return this.mongodb.get(`/v2/ecommerce/produtos/porID/${_idProduto}`);
+    }
+
+    // public consultarProdutosPorFiltro(filtro: string, valor: string): Promise<any> {
+
+    //     return new Promise((resolve, reject) => {
+
+    //         // consultar chamados
+    //         backend.database().ref('produtos')
+    //             .orderByChild(filtro)
+    //             .equalTo(valor)
+    //             .once('value')
+    //             .then((snapshot: any) => {
+    //                 // console.log(snapshot.val())
+
+    //                 let produtos: Array<any> = []
+
+    //                 snapshot.forEach((childSnapshot: any) => {
+
+    //                     let produto = childSnapshot.val()
+    //                     produto.key = childSnapshot.key
+
+    //                     produtos.push(produto)
+    //                 })
+
+    //                 // resolve(publicacoes)
+    //                 return produtos
+    //             })
+    //             .then((produtos: any) => {
+
+    //                 produtos.forEach(produto => {
+
+    //                     // consultar a url da imagem
+    //                     backend.storage().ref()
+    //                         .child(`produtos/${produto.key}`)
+    //                         .getDownloadURL()
+    //                         .then((url: string) => {
+
+    //                             produto.url_imagem = url
+    //                         })
+    //                 })
+
+    //                 resolve(produtos)
+
+    //             })
+    //     })
+    // }
 
     public consultarProdutosPorFiltroComLimite(filtro: string, valor: string, limite: number): Promise<any> {
 
@@ -448,16 +456,20 @@ export class Bd {
     // }
 
     buscarProdutosEcommerce(){
-        return this.mongodb.get('/v2/ecommerce/produtos/');
+        return this.mongodb.get('/v2/ecommerce/produtos');
     }
 
     // ray busca por id
-    buscarProdutoID(chave:string):Promise<any>{
-        return new Promise((resolve, reject)=>{
-            backend.database().ref(`produtos/${chave}`).once('value').then(resp=>{
-                resolve(resp.val())
-            })
-        })
+    // buscarProdutoID(chave:string):Promise<any>{
+    //     return new Promise((resolve, reject)=>{
+    //         backend.database().ref(`produtos/${chave}`).once('value').then(resp=>{
+    //             resolve(resp.val())
+    //         })
+    //     })
+    // }
+
+    buscarProdutoID(_id){
+        return this.mongodb.get(`/v2/ecommerce/produtos/${_id}`)
     }
 
     // public pesquisaOfertas(termo: string): Observable<Oferta[]> {

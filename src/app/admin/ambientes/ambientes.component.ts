@@ -17,10 +17,10 @@ export class AmbientesComponent implements OnInit {
   }
 
   public consultarAmbientes(): void {
-    this.bd.consultarAmbientes()
-      .then((ambientes: any) => {
-        this.ambientes = ambientes
-      })
+    // this.bd.consultarAmbientes()
+    //   .then((ambientes: any) => {
+    //     this.ambientes = ambientes
+    //   })
   }
 
 }

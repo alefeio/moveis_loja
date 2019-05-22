@@ -1,6 +1,7 @@
 import { Autenticacao } from './../../autenticacao.service';
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { SessionService } from '../../sessao.service';
 
 declare var $: any
 @Component({
@@ -17,7 +18,10 @@ export class LoginComponent implements OnInit {
     'senha': new FormControl(null, [Validators.required])
   })
 
-  constructor(private autenticacao: Autenticacao) { }
+  msgErro:string = undefined
+
+  constructor(private autenticacao: Autenticacao,
+              private sessao: SessionService) { }
 
   ngOnInit() {
   }
@@ -31,11 +35,19 @@ export class LoginComponent implements OnInit {
   }
 
   // autenticacao de usuario com email e senha
-  public autenticar(): void {
-    this.autenticacao.autenticar(this.form.value.email, this.form.value.senha)
+  autenticar() {
+    this.autenticacao.autenticarUsuario(this.form.value).then(resp =>{
+      console.log(resp.json())
+    }).catch(error=>{
+    this.msgErro = error._body;
     setTimeout(()=>{
       this.autenticacao.msgErro = "";
     }, 5000);
+    })
+    // this.autenticacao.autenticar(this.form.value.email, this.form.value.senha)
+    // setTimeout(()=>{
+    //   this.autenticacao.msgErro = "";
+    // }, 5000);
   }
 
 }

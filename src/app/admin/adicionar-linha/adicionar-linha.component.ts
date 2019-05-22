@@ -49,10 +49,10 @@ export class AdicionarLinhaComponent implements OnInit {
   }
 
   public consultarAmbientes(): void {
-    this.bd.consultarAmbientes()
-      .then((ambientes: any) => {
-        this.ambientes = ambientes.reverse()
-      })
+    // this.bd.consultarAmbientes()
+    //   .then((ambientes: any) => {
+    //     this.ambientes = ambientes.reverse()
+    //   })
   }
 
 }

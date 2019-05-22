@@ -26,8 +26,8 @@
         </small>
       </div>
       <div class="container">
-        <div class="alert alert-danger" role="alert" *ngIf="autenticacao.msgErro != undefined && autenticacao.msgErro === 'Email ou Senha Inválido!'">
-          <h5 class="large text-danger text-center" style="font-weight:bold">{{autenticacao.msgErro}}</h5>
+        <div class="alert alert-danger" role="alert" *ngIf="msgErro != undefined">
+          <h5 class="large text-danger text-center" style="font-weight:bold">{{msgErro}}</h5>
         </div>
         <div class="row">
           <div class="boxes">

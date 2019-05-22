@@ -49,7 +49,7 @@ export class CadastroComponent implements OnInit {
     this.validarCPF(cpfCadastro);
     if (cpfCadastro === cpfJaCadastrado) {
       this.msg = "Este CPF ja existe!";
-    } 
+    }
     if (cpfCadastro != cpfJaCadastrado && cpfCadastro != "" && this.cpfValidoReceita === true) {
       this.msg = "CPF valido!"
     }
@@ -116,7 +116,7 @@ export class CadastroComponent implements OnInit {
     if (email != emailJaExiste && email != "") {
       this.msg = "E-mail valido!"
     }
-    if(this.emailValido === false) {
+    if (this.emailValido === false) {
       this.msg = "E-mail inválido!"
     }
   }
@@ -136,8 +136,7 @@ export class CadastroComponent implements OnInit {
     this.exibirPainel.emit('login')
   }
 
-  public cadastrarUsuario(): void {
-
+  async cadastrarUsuario() {
     let usuario: Usuario = new Usuario(
       this.formCadastro.value.nome,
       this.formCadastro.value.email,
@@ -146,15 +145,25 @@ export class CadastroComponent implements OnInit {
       this.formCadastro.value.sexo,
       this.formCadastro.value.senha
     )
-    this.autenticacao.cadastrarUsuario(usuario)
-      .then(() => {
-        if (this.autenticacao.msgErro === undefined) {
-          this.autenticacao.autenticar(this.formCadastro.value.email, this.formCadastro.value.senha)
-          $('#modal-login').modal('hide');
-          this.formCadastro.reset();
-          this.exibirPainelLogin();
-        }
-      })
-      .catch((erro: Error) => console.log(this.autenticacao.msgErro))
+    await this.autenticacao.cadastrarUsuario(usuario);
+    // let usuarioEmailSenha = {
+    //   email: this.formCadastro.value.email,
+    //   senha: this.formCadastro.value.senha
+    // }
+    // await this.autenticacao.autenticarUsuario(usuarioEmailSenha);
+    $('#modal-login').modal('hide');
+    this.formCadastro.reset();
+    this.exibirPainelLogin();
+
+    // this.autenticacao.cadastrarUsuario(usuario)
+    //   .then(() => {
+    //     if (this.autenticacao.msgErro === undefined) {
+    //       this.autenticacao.autenticar(this.formCadastro.value.email, this.formCadastro.value.senha)
+    //       $('#modal-login').modal('hide');
+    //       this.formCadastro.reset();
+    //       this.exibirPainelLogin();
+    //     }
+    //   })
+    //   .catch((erro: Error) => console.log(this.autenticacao.msgErro))
   }
 }

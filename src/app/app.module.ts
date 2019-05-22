@@ -54,6 +54,7 @@ import { NgxImageZoomModule } from 'ngx-image-zoom';
 import { CarrinhoCompraComponent } from './ordem-compra/carrinho-compra/carrinho-compra.component';
 import { DadosAdicionaisComponent } from './ordem-compra/dados-adicionais/dados-adicionais.component';
 import { PagamentoComponent } from './ordem-compra/pagamento/pagamento.component';
+import { SessionService } from './sessao.service';
 
 @NgModule({
   declarations: [
@@ -106,6 +107,7 @@ import { PagamentoComponent } from './ordem-compra/pagamento/pagamento.component
   providers: [
     { provide: LOCALE_ID, useValue: 'pt-Br' }, 
     CarrinhoService, 
+    SessionService,
     Autenticacao,
     AutenticacaoGuard,
     Bd,

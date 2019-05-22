@@ -76,20 +76,62 @@ export class HomeComponent implements OnInit {
       let quartoDestaque
       let cozinhaDestaque
       let diversosDestaque
-      for(let prod of resp){
-        if(prod.ambienteDescricao === "Sala"){
+      for (let prod of resp) {
+        if (prod.ambienteDescricao === "Sala") {
           salaDestaque = prod
-          for(let cores of prod.cores){
-            if(cores.destaque === true){
+          for (let cores of prod.cores) {
+            if (cores.destaque === true) {
               salaDestaque.cores = cores;
-              for(let imagem of cores.imagem){
-                if(imagem.destaque === true){
+              for (let imagem of cores.imagem) {
+                if (imagem.destaque === true) {
                   salaDestaque.cores.imagem = imagem;
                 }
               }
             }
           }
           this.pSala.push(salaDestaque);
+        }
+        if (prod.ambienteDescricao === "Quarto") {
+          quartoDestaque = prod
+          for (let cores of prod.cores) {
+            if (cores.destaque === true) {
+              quartoDestaque.cores = cores;
+              for (let imagem of cores.imagem) {
+                if (imagem.destaque === true) {
+                  quartoDestaque.cores.imagem = imagem;
+                }
+              }
+            }
+          }
+          this.pQuarto.push(quartoDestaque);
+        }
+        if (prod.ambienteDescricao === "Cozinha") {
+          cozinhaDestaque = prod
+          for (let cores of prod.cores) {
+            if (cores.destaque === true) {
+              cozinhaDestaque.cores = cores;
+              for (let imagem of cores.imagem) {
+                if (imagem.destaque === true) {
+                  cozinhaDestaque.cores.imagem = imagem;
+                }
+              }
+            }
+          }
+          this.pCozinha.push(cozinhaDestaque);
+        }
+        if (prod.ambienteDescricao === "Diversos") {
+          diversosDestaque = prod
+          for (let cores of prod.cores) {
+            if (cores.destaque === true) {
+              diversosDestaque.cores = cores;
+              for (let imagem of cores.imagem) {
+                if (imagem.destaque === true) {
+                  diversosDestaque.cores.imagem = imagem;
+                }
+              }
+            }
+          }
+          this.pDiversos.push(diversosDestaque);
         }
       }
     })

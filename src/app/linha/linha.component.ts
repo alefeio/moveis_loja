@@ -23,19 +23,19 @@ export class LinhaComponent implements OnInit {
 
       this.linha = parametros.param
 
-      this.bd.consultarProdutosPorFiltro('linha', this.linha)
-        .then((produtos: any) => {
-          this.produtos = produtos
-        })
+      // this.bd.consultarProdutosPorFiltro('linha', this.linha)
+      //   .then((produtos: any) => {
+      //     this.produtos = produtos
+      //   })
     })
     
   }
 
   public consultarProdutosPorFiltro() {
-    this.bd.consultarProdutosPorFiltro('linha', this.linha)
-      .then((produtos: any) => {
-        this.produtos = produtos
-      })
+    // this.bd.consultarProdutosPorFiltro('linha', this.linha)
+    //   .then((produtos: any) => {
+    //     this.produtos = produtos
+    //   })
   }
 
 }

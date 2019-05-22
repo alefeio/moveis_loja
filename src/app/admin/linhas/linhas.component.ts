@@ -17,10 +17,10 @@ export class LinhasComponent implements OnInit {
   }
 
   public consultarLinhas(): void {
-    this.bd.consultarLinhas()
-      .then((linhas: any) => {
-        this.linhas = linhas
-      })
+    // this.bd.consultarLinhas()
+    //   .then((linhas: any) => {
+    //     this.linhas = linhas
+    //   })
   }
 
 }

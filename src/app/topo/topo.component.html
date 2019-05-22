@@ -57,7 +57,7 @@
     <div class="col-12 p-0 amb-links">
       <span id="esconder" style="height: 100%; background-color: #C33C44;">&nbsp;</span>
       <div id="amb" *ngFor="let ambiente of ambientes" class="largura-amb sacodida-horizontal dropdown"
-        routerLinkActive="active" [routerLink]="['/ambiente', ambiente.nome]">
+        routerLinkActive="active" [routerLink]="['/ambiente', ambiente.descricao]">
         <a id="link-amb">
           <!-- <img [src]="ambiente.url_imagem || ''" height="50" width="50"> -->
           <span style="font-weight: bold;">&nbsp;{{ambiente.descricao}}</span>

@@ -114,17 +114,17 @@ export class AdicionarProdutoComponent implements OnInit {
   }
 
   public consultarAmbientes(): void {
-    this.bd.consultarAmbientes()
-      .then((ambientes: any) => {
-        this.ambientes = ambientes
-      })
+    // this.bd.consultarAmbientes()
+    //   .then((ambientes: any) => {
+    //     this.ambientes = ambientes
+    //   })
   }
 
   public consultarLinhas(): void {
-    this.bd.consultarLinhas()
-      .then((linhas: any) => {
-        this.linhas = linhas
-      })
+    // this.bd.consultarLinhas()
+    //   .then((linhas: any) => {
+    //     this.linhas = linhas
+    //   })
   }
 
 }

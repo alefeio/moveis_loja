@@ -23,29 +23,32 @@ export class AmbienteComponent implements OnInit {
   ngOnInit() {
     window.scrollTo(0, 0)
     this.route.params.subscribe((parametros: Params) => {
-
       this.ambiente = parametros.param
-
       this.consultarProdutosPorFiltro()
       this.consultarLinhasPorAmbiente()
-
     })
-
   }
 
-  public consultarProdutosPorFiltro() {
-    this.bd.consultarProdutosPorFiltro('ambiente', this.ambiente)
-      .then((produtos: any) => {
-        this.produtos = produtos
-        console.log(this.produtos);
-      })
+  consultarProdutosPorFiltro() {
+    this.bd.buscarProdutoPorAmbiente(this.ambiente).then((resp:any)=>{
+      this.produtos = resp;
+    });
+    // this.bd.buscarProdutoProAmbiente()
+    // this.bd.consultarProdutosPorFiltro('ambiente', this.ambiente)
+    //   .then((produtos: any) => {
+    //     this.produtos = produtos
+    //     console.log(this.produtos);
+    //   })
   }
 
-  public consultarLinhasPorAmbiente() {
-    this.bd.consultarLinhasPorAmbiente(this.ambiente)
-      .then((linhas: any) => {
-        this.linhas = linhas
-      })
+  consultarLinhasPorAmbiente() {
+    this.bd.buscarLinhasPorAmbiente(this.ambiente).then((resp:any)=>{
+      this.linhas = resp;
+    });
+    // this.bd.consultarLinhasPorAmbiente(this.ambiente)
+    //   .then((linhas: any) => {
+    //     this.linhas = linhas
+    //   })
   }
 
   ofertaDetalhe(chaveProduto) {

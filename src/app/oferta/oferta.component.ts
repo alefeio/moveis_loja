@@ -12,7 +12,7 @@ declare var $: any
 export class OfertaComponent implements OnInit, OnDestroy {
 
   public oferta: any = ''
-  public key: string
+  _id: string
   imgs: any = []
   imagem: any = ''
   cores: any;
@@ -44,11 +44,10 @@ export class OfertaComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.route.params.subscribe((parametros: any) => {
-      this.key = parametros.id
-      this.bd.buscarProdutoID(this.key).then(resp => {
-        this.oferta = resp
-        this.oferta.key = this.key;
-        let cores = resp.cores
+      this._id = parametros.id
+      this.bd.buscarProdutoPorID(this._id).then((resp: any) => {
+        this.oferta = resp[0];
+        let cores = resp[0].cores
         this.cores = cores;
         let arrayCores: Array<any> = []
         for (let i of cores) {
@@ -66,6 +65,27 @@ export class OfertaComponent implements OnInit, OnDestroy {
         }
         this.coresNew(arrayCores)
       });
+      // this.bd.buscarProdutoID(this._id).then(resp => {
+      //   this.oferta = resp
+      //   this.oferta.key = this.key;
+      //   let cores = resp.cores
+      //   this.cores = cores;
+      //   let arrayCores: Array<any> = []
+      //   for (let i of cores) {
+      //     if (i.destaque === true) {
+      //       this.imagemCor = i.imagem
+      //       this.corEscolhida = i
+      //       this.valor = i.valor
+      //       for (let img of i.imagem) {
+      //         if (img.destaque === true) {
+      //           this.imagem = img
+      //         }
+      //       }
+      //     }
+      //     arrayCores.push(i.codigos);
+      //   }
+      //   this.coresNew(arrayCores)
+      // });
     })
   }
 
