@@ -712,8 +712,8 @@ export class Bd {
         })
     }
 
-    incluirDadosPerfil(dadosAdicionais){
-        return this.mongodb.put('/v2/usuarios', dadosAdicionais);
+    incluirDadosPerfil(_id, dadosAdicionais){
+        return this.mongodb.put(`/v2/usuarios/${_id}`, dadosAdicionais);
     }
 
     // incluirDadosPerfil(dados:any): Promise<any>{

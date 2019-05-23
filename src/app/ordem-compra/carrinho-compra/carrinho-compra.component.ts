@@ -39,6 +39,7 @@ export class CarrinhoCompraComponent implements OnInit {
   })
 
   usuarioPedido: UsuarioPedido = {
+    _id: '',
     nome: '',
     codigo: '',
     email: '',
@@ -66,6 +67,7 @@ export class CarrinhoCompraComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    localStorage.removeItem('pedido');
     this.itensCarrinho = this.carrinhoService.exibirItens()
     // backend.auth().onAuthStateChanged((user) => {
     //   this.email = user.email
@@ -81,6 +83,9 @@ export class CarrinhoCompraComponent implements OnInit {
     let usuarioID = this.sessao.getSessao();
     let usuarioInfo = await this.bd.buscarUsuarioID(usuarioID._id)
     let usuario = usuarioInfo[0]
+    if(usuario._id){
+      this.usuarioPedido._id = usuario._id
+    }
     if(usuario.nome){
       this.usuarioPedido.nome = usuario.nome
     }
@@ -141,7 +146,16 @@ export class CarrinhoCompraComponent implements OnInit {
         $('#modal-login').modal('show')
       }, 4000)
     } else {
-      if (this.sessao.logado === true && this.usuarioPedido.endereco === undefined) {
+      if (this.sessao.logado === true && 
+          this.usuarioPedido.endereco === undefined || 
+          this.usuarioPedido.endereco.bairro === "" &&
+          this.usuarioPedido.endereco.cep === "" &&
+          this.usuarioPedido.endereco.cidade === "" &&
+          this.usuarioPedido.endereco.complemento === "" &&
+          this.usuarioPedido.endereco.numero === null && 
+          this.usuarioPedido.endereco.pontoReferencia === "" &&
+          this.usuarioPedido.endereco.rua === "" && 
+          this.usuarioPedido.endereco.uf === "") {
         pedido.codigo = this.gerarCodigo();
         localStorage.setItem('pedido', JSON.stringify(pedido));
         this.alert('danger', 'Você precisa informar os seus dados de endereço!');

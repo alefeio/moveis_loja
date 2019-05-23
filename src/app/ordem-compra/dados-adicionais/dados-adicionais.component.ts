@@ -8,6 +8,7 @@ import * as backend from 'firebase';
 import { UsuarioPedido } from '../../shared/usuario-pedido.model';
 import { Router } from '@angular/router';
 import { CarrinhoService } from '../../carrinho.service';
+import { SessionService } from '../../sessao.service';
 
 declare var $: any
 
@@ -19,10 +20,10 @@ declare var $: any
 })
 export class DadosAdicionaisComponent implements OnInit {
 
-  email: string
+  email: any
   alerta: string
   estiloAlerta: string
-  pedido:any
+  pedido: any
   formDadoAdicionais: FormGroup = new FormGroup({
     telefone: new FormControl(null),
     celular: new FormControl(null, [Validators.required]),
@@ -55,6 +56,7 @@ export class DadosAdicionaisComponent implements OnInit {
   }
 
   usuarioPedido: UsuarioPedido = {
+    _id: '',
     nome: '',
     codigo: '',
     email: '',
@@ -76,25 +78,33 @@ export class DadosAdicionaisComponent implements OnInit {
   constructor(private http: Http,
     private bd: Bd,
     private rota: Router,
-    private carrinhoService: CarrinhoService) { }
+    private carrinhoService: CarrinhoService,
+    private sessao: SessionService) { }
 
   ngOnInit() {
     this.pedido = JSON.parse(localStorage.getItem('pedido'))
+    this.email = this.sessao.getSessao();
     // backend.auth().onAuthStateChanged((user) => {
     //   this.email = user.email
     //   this.consultarUsuario()
     // })
   }
 
-  incluirDadosPerfil() {
+  async incluirDadosPerfil() {
     let endereco = this.formDadoAdicionais.get('endereco').value
     endereco.cep = endereco.cep.replace(/[^\d]/g, "")
     let dadosAdicionais: DadosAdicionais = new DadosAdicionais(
-      this.usuarioPedido.email,
+      this.usuarioPedido.email = this.email.email,
       this.formDadoAdicionais.value.telefone.replace(/[^\d]/g, ""),
       this.formDadoAdicionais.value.celular.replace(/[^\d]/g, ""),
       endereco
     )
+    let resp =  await this.bd.incluirDadosPerfil(this.email._id, dadosAdicionais);
+    console.log(resp);
+    // this.alert(feed.estilo, feed.msg)
+    // this.alerta = feed.msg
+    this.pedidoAddDados(dadosAdicionais)
+    this.formDadoAdicionais.reset();
     // this.bd.incluirDadosPerfil(dadosAdicionais)
     //   .then((feed: any) => {
     //     this.alert(feed.estilo, feed.msg)
@@ -111,6 +121,7 @@ export class DadosAdicionaisComponent implements OnInit {
     this.pedido.endereco.cep = dadosAdicionais.endereco.cep
     this.pedido.endereco.cidade = dadosAdicionais.endereco.cidade
     this.pedido.endereco.complemento = dadosAdicionais.endereco.complemento
+    this.pedido.endereco.pontoReferencia = dadosAdicionais.endereco.pontoReferencia
     this.pedido.endereco.numero = dadosAdicionais.endereco.numero
     this.pedido.endereco.rua = dadosAdicionais.endereco.rua
     this.pedido.endereco.uf = dadosAdicionais.endereco.uf
