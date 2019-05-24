@@ -54,6 +54,10 @@ export class MongoDBService {
     return this.http.put(`${this.servidor}${url}`, body, this.headers()).toPromise()
   }
 
+  path(url, body){
+    return this.http.patch(`${this.servidor}${url}`, body, this.headers()).toPromise();
+  }
+
   delete(url) {
     return this.http.delete(`${this.servidor}${url}`).toPromise()
   }

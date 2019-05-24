@@ -65,6 +65,7 @@ export class EditarPerfilComponent implements OnInit {
   ngOnInit() {
     let id = this.sessao.getSessao()
     this.id = id._id;
+    console.log(this.id);
     this.consultarPerfilUsuario()
   }
 

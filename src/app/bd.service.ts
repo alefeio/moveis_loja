@@ -571,7 +571,7 @@ export class Bd {
     }
 
     incluirDadosPerfil(_id, dadosAdicionais){
-        return this.mongodb.put(`/v2/usuarios/${_id}`, dadosAdicionais);
+        return this.mongodb.path(`/v2/usuarios/${_id}`, dadosAdicionais);
     }
 
     public editarProduto(produto: any): void {
