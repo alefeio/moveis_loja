@@ -84,7 +84,6 @@ export class DadosAdicionaisComponent implements OnInit {
   ngOnInit() {
     this.pedido = JSON.parse(localStorage.getItem('pedido'))
     this.email = this.sessao.getSessao();
-    console.log(this.pedido);
     // backend.auth().onAuthStateChanged((user) => {
     //   this.email = user.email
     //   this.consultarUsuario()
@@ -101,7 +100,7 @@ export class DadosAdicionaisComponent implements OnInit {
       endereco
     )
     this.pedidoAddDados(dadosAdicionais)
-    let resp =  await this.bd.incluirDadosPerfil(this.email._id, dadosAdicionais);
+    await this.bd.incluirDadosPerfil(this.email._id, dadosAdicionais);
     this.formDadoAdicionais.reset();
     // let alertaResp = resp.json();
     // this.alert(alertaResp.style, alertaResp.msg);
