@@ -20,8 +20,8 @@ export class LinhaComponent implements OnInit {
   ngOnInit() {
     this.route.params.subscribe((parametros: Params) => {
       this.linha = parametros.param
+      this.consultarProdutosPorFiltro()
     })
-    this.consultarProdutosPorFiltro()
   }
 
   consultarProdutosPorFiltro() {
