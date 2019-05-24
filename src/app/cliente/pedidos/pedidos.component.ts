@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Bd } from 'src/app/bd.service';
-import * as backend from 'firebase'
+import { SessionService } from '../../sessao.service';
 
 @Component({
   selector: 'app-pedidos',
@@ -9,23 +9,19 @@ import * as backend from 'firebase'
 })
 export class PedidosComponent implements OnInit {
 
-  public email: string
+  public _idUsuario: string
   public pedidos: any
 
-  constructor(private bd: Bd) { }
+  constructor(private bd: Bd,
+              private sessao:SessionService) { }
 
   ngOnInit() {
-    // backend.auth().onAuthStateChanged((user) => {
-      // this.email = user.email
-      this.consultarPedidos()
-    // })
+    let usuario = this.sessao.getSessao();
+    this._idUsuario = usuario._id;
+    this.consultarPedidos()
   }
 
-  consultarPedidos() {
-    // this.bd.consultarPedidos(this.email)
-    //   .then((pedidos: any) => {
-    //     this.pedidos = pedidos
-    //     console.log(this.pedidos)
-    //   })
+  async consultarPedidos() {
+    this.pedidos = await this.bd.buscarPedidos(this._idUsuario);
   }
 }

@@ -74,8 +74,8 @@ export class Bd {
         })
     }
 
-    buscarPedidos(){
-        
+    buscarPedidos(_idUsuario){
+        return this.mongodb.get(`/v2/ecommerce/pedido/${_idUsuario}`)
     }
 
     // public consultarPedidos(email: string): Promise<any> {

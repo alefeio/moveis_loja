@@ -6,6 +6,7 @@ import * as backend from 'firebase'
 import { Progresso } from 'src/app/progresso.service';
 import { Observable, interval, observable, Subject, pipe } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
+import { SessionService } from '../../sessao.service';
 
 @Component({
   selector: 'app-adicionar-chamado',
@@ -15,10 +16,12 @@ import { takeUntil } from 'rxjs/operators';
 export class AdicionarChamadoComponent implements OnInit {
 
   @Output() public consultarChamados: EventEmitter<any> = new EventEmitter<any>()
-  public email: string
+  public _id: string
   private imagem: any
   
-  constructor(private bd: Bd, private progresso: Progresso) { }
+  constructor(private bd: Bd, 
+              private progresso: Progresso,
+              private sessao: SessionService) { }
 
 
   public progressoPublicacao: string = 'pendente'
@@ -34,12 +37,14 @@ export class AdicionarChamadoComponent implements OnInit {
     // backend.auth().onAuthStateChanged((user) => {
     //   this.email = user.email
     // })
+    let usuario = this.sessao.getSessao()
+    this._id = usuario._id
   }
 
   public adicionarChamado(): void {
 
     let chamado: Chamado = {
-      email: this.email,
+      _idUsuario: this._id,
       titulo: this.formChamado.value.titulo,
       destinatario: this.formChamado.value.destinatario,
       mensagem: this.formChamado.value.mensagem,

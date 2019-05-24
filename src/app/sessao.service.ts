@@ -18,9 +18,9 @@ export class SessionService {
 
     alteraEmpresa(empresa) {
 
-        let sessao = JSON.parse(localStorage.getItem('sessao'));
+        let sessao = JSON.parse(localStorage.getItem('sessaoLoja'));
         //sessao.empresa = empresa;
-        localStorage.setItem('sessao', JSON.stringify(sessao));
+        localStorage.setItem('sessaoLoja', JSON.stringify(sessao));
         this.usuario.empresa = empresa;
         window.location.reload();
         this.router.navigate(['/inicio']);
@@ -28,14 +28,14 @@ export class SessionService {
 
     salvar(sessao) {
         console.log(sessao)
-        localStorage.setItem('sessao', JSON.stringify(sessao));
+        localStorage.setItem('sessaoLoja', JSON.stringify(sessao));
         this.carrega();
     }
 
     logoff() {
         this.logado = false;
         this.usuario = null;
-        localStorage.removeItem('sessao');
+        localStorage.removeItem('sessaoLoja');
         this.router.navigate(['/home']);
     }
 
@@ -45,7 +45,7 @@ export class SessionService {
     }
 
     carrega() {
-        let sessao = localStorage.getItem('sessao');
+        let sessao = localStorage.getItem('sessaoLoja');
         if (sessao) {
             this.logado = true;
             this.usuario = JSON.parse(sessao);
@@ -55,7 +55,7 @@ export class SessionService {
     }
 
     getSessao() {
-        return JSON.parse(localStorage.getItem('sessao'));
+        return JSON.parse(localStorage.getItem('sessaoLoja'));
     }
 
 }

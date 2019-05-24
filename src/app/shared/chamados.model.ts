@@ -1,6 +1,6 @@
 export class Chamado {
     constructor(
-        public email: string,
+        public _idUsuario: string,
         public titulo: string,
         public destinatario: string,
         public mensagem: string,
