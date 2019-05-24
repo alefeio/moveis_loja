@@ -31,9 +31,9 @@ export class AdicionarChamadoComponent implements OnInit {
   })
 
   ngOnInit() {
-    backend.auth().onAuthStateChanged((user) => {
-      this.email = user.email
-    })
+    // backend.auth().onAuthStateChanged((user) => {
+    //   this.email = user.email
+    // })
   }
 
   public adicionarChamado(): void {

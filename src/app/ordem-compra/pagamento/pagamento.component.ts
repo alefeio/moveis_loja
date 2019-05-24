@@ -23,6 +23,7 @@ export class PagamentoComponent implements OnInit {
   estiloAlerta
   mostrarAlert
   idPedidoCompra
+  msgCartao: string = undefined
 
   dadosFinalizarCompra: FormGroup = new FormGroup({
     numCartao: new FormControl(null, [Validators.required]),
@@ -211,39 +212,35 @@ export class PagamentoComponent implements OnInit {
       this.msg = 1;
     } else {
       if (this.formaPagamentoLet === 0) {
-        let numCartao = dadosCartao.numCartao.replace(/\s/g, '')
-        dadosCartao.numCartao = numCartao
         this.pedido.dadosCartao = dadosCartao;
         this.pedido.pagamento = {
           formaPagamento: this.pagamento,
           qtdParcelas: this.qtdParcelas,
           valorParcela: this.valorParcela
         }
-        this.pedido.dataPedido = dataPedido
-        this.pedido.statusPedido = 1
-        await this.bd.gerarPedido(this.pedido);
-        this.idPedidoCompra = this.pedido.codigo;
-        localStorage.removeItem('pedido');
-        $('#exampleModal').modal('show')
-        if (this.idPedidoCompra != undefined) {
-          this.carrinhoService.itens = [];
+        if (dadosCartao.cvv != null &&
+          dadosCartao.dataValidade != null &&
+          dadosCartao.nomeTitular != null &&
+          dadosCartao.numCartao != null) {
+          let numCartao = dadosCartao.numCartao.replace(/\s/g, '')
+          dadosCartao.numCartao = numCartao
+          this.pedido.dataPedido = dataPedido
+          this.pedido.statusPedido = 1
+          await this.bd.gerarPedido(this.pedido);
+          this.idPedidoCompra = this.pedido.codigo;
+          localStorage.removeItem('pedido');
+          this.msgCartao = undefined
+          $('#exampleModal').modal('show')
+          if (this.idPedidoCompra != undefined) {
+            this.carrinhoService.itens = [];
+          }
+          setTimeout(() => {
+            $('#exampleModal').modal('hide')
+            this.rota.navigate(['']);
+          }, 3000)
+        } else {
+          this.msgCartao = 'Por Favor! Preencha todas as informaçoes do cartão.';
         }
-        setTimeout(() => {
-          $('#exampleModal').modal('hide')
-          this.rota.navigate(['']);
-        }, 3000)
-        // this.bd.efetivarCompra(this.pedido).then((key: any) => {
-        //   this.idPedidoCompra = this.pedido.codigo;
-        //   localStorage.removeItem('pedido');
-        //   $('#exampleModal').modal('show')
-        //   if (this.idPedidoCompra != undefined) {
-        //     this.carrinhoService.itens = [];
-        //   }
-        //   setTimeout(() => {
-        //     $('#exampleModal').modal('hide')
-        //     this.rota.navigate(['']);
-        //   }, 3000)
-        // })
       } else {
         console.log("boleto")
       }

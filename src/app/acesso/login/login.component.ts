@@ -45,10 +45,6 @@ export class LoginComponent implements OnInit {
         this.msgErro = undefined;
       }, 5000);
     })
-    // this.autenticacao.autenticar(this.form.value.email, this.form.value.senha)
-    // setTimeout(()=>{
-    //   this.autenticacao.msgErro = "";
-    // }, 5000);
   }
 
 }

@@ -1,19 +1,10 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { OrdemCompraService } from '../../ordem-compra.service'
 import { CarrinhoService } from '../../carrinho.service'
 import { Pedido } from '../../shared/pedido.model'
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { ItemCarrinho } from '../../shared/item-carrinho.model';
 import { Bd } from '../../bd.service';
-import * as backend from 'firebase'
-import { UsuarioPedido } from '../../shared/usuario-pedido.model';
-import { Progresso } from 'src/app/progresso.service';
-import { Observable, interval, observable, Subject, pipe } from 'rxjs';
-import { takeUntil, concatAll } from 'rxjs/operators';
 import * as uid from 'uuid/v4';
-import { Http } from '@angular/http';
-import { map } from 'rxjs/operators'
-import { DadosAdicionais } from '../../shared/dadosAdicionais.model';
 import { Router, ActivatedRoute } from '@angular/router';
 import { SessionService } from '../../sessao.service';
 declare var $: any;
@@ -70,10 +61,7 @@ export class CarrinhoCompraComponent implements OnInit {
   ngOnInit() {
     localStorage.removeItem('pedido');
     this.itensCarrinho = this.carrinhoService.exibirItens()
-    // backend.auth().onAuthStateChanged((user) => {
-    //   this.email = user.email
     this.consultarUsuario()
-    // })
   }
 
   gerarCodigo() {
@@ -112,15 +100,6 @@ export class CarrinhoCompraComponent implements OnInit {
       } else {
         this.usuarioPedido.endereco = usuario.endereco
       }
-      // this.bd.consultarUsuario(this.email)
-      //   .then((usuario: any) => {
-      //     if (usuario.nome) this.usuarioPedido.nome = usuario.nome
-      //     if (usuario.email) this.usuarioPedido.email = usuario.email
-      //     if (usuario.cpf) this.usuarioPedido.cpf = usuario.cpf
-      //     if (usuario.telefone) this.usuarioPedido.telefone = usuario.telefone
-      //     if (usuario.celular) this.usuarioPedido.celular = usuario.celular
-      //     if (usuario.endereco) this.usuarioPedido.endereco = usuario.endereco
-      //   })
     }
   }
 
@@ -141,6 +120,7 @@ export class CarrinhoCompraComponent implements OnInit {
     let pedido
     if (this.usuarioPedido != undefined) {
       pedido = new Pedido(
+        this.usuarioPedido._id,
         this.usuarioPedido.nome,
         this.usuarioPedido.codigo,
         this.usuarioPedido.email,

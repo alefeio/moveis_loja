@@ -65,27 +65,6 @@ export class OfertaComponent implements OnInit, OnDestroy {
         }
         this.coresNew(arrayCores)
       });
-      // this.bd.buscarProdutoID(this._id).then(resp => {
-      //   this.oferta = resp
-      //   this.oferta.key = this.key;
-      //   let cores = resp.cores
-      //   this.cores = cores;
-      //   let arrayCores: Array<any> = []
-      //   for (let i of cores) {
-      //     if (i.destaque === true) {
-      //       this.imagemCor = i.imagem
-      //       this.corEscolhida = i
-      //       this.valor = i.valor
-      //       for (let img of i.imagem) {
-      //         if (img.destaque === true) {
-      //           this.imagem = img
-      //         }
-      //       }
-      //     }
-      //     arrayCores.push(i.codigos);
-      //   }
-      //   this.coresNew(arrayCores)
-      // });
     })
   }
 
@@ -167,18 +146,20 @@ export class OfertaComponent implements OnInit, OnDestroy {
     this.codigos = cod
   }
 
-  public adicionarItemCarrinho(): void {
+  adicionarItemCarrinho() {
     let ofertaCarrinho = {
       criado: this.oferta.criado,
       descricao: this.oferta.descricao,
-      key: this.oferta.key,
+      _id: this.oferta._id,
       linha: this.oferta.linha,
       marca: this.oferta.marca,
       nome: this.oferta.nome,
       produtoBase: this.oferta.produtoBase,
       status: this.oferta.status,
-      ambiente: this.oferta.ambiente,
-      cor: this.corEscolhida
+      ambienteDescricao: this.oferta.ambienteDescricao,
+      ambiente_id: this.oferta.ambiente_id,
+      cor: this.corEscolhida,
+      createdAt: this.oferta.createdAt
     }
     this.ofertaCarrinho = ofertaCarrinho;
     this.carrinhoService.incluirItem(ofertaCarrinho);

@@ -2,13 +2,15 @@ class ItemCarrinho {
     constructor(
         public criado: String,
         public descricao: String,
-        public key: String,
+        public _id: String,
         public linha: String,
         public marca: String,
         public nome: String,
         public produtoBase: String,
         public status: String,
-        public ambiente: String,
+        public ambienteDescricao: String,
+        public ambiente_id: String,
+        public createdAt: String,
         public cor = {
             codigos:Array,
             destaque:Boolean,

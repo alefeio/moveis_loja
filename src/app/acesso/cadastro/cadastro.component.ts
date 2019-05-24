@@ -27,7 +27,7 @@ export class CadastroComponent implements OnInit {
   emailValido: boolean;
 
   constructor(private autenticacao: Autenticacao,
-    private sessao: SessionService) {
+              private sessao: SessionService) {
   }
 
   ngOnInit() {
@@ -158,15 +158,5 @@ export class CadastroComponent implements OnInit {
       this.formCadastro.reset();
       this.exibirPainelLogin();
     });
-    // this.autenticacao.cadastrarUsuario(usuario)
-    //   .then(() => {
-    //     if (this.autenticacao.msgErro === undefined) {
-    //       this.autenticacao.autenticar(this.formCadastro.value.email, this.formCadastro.value.senha)
-    //       $('#modal-login').modal('hide');
-    //       this.formCadastro.reset();
-    //       this.exibirPainelLogin();
-    //     }
-    //   })
-    //   .catch((erro: Error) => console.log(this.autenticacao.msgErro))
   }
 }

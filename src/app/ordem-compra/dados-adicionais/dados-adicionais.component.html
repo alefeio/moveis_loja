@@ -99,7 +99,7 @@
       <div id="info-carrinho" class="col-md-6">
         <div class="cart-summary">
           <h5>Resumo do Pedido</h5>
-          <div class="row text-center container-carrinho" *ngFor="let item of pedido.itens">
+          <div class="row text-center container-carrinho" *ngFor="let item of pedido.produtos">
             <div class="col-md-4 p-0">
               <img [src]="item.cor.imagem[0].url || ''" class="img-fluid" alt="">
             </div>

@@ -100,8 +100,8 @@ export class DadosAdicionaisComponent implements OnInit {
       this.formDadoAdicionais.value.celular.replace(/[^\d]/g, ""),
       endereco
     )
-    let resp =  await this.bd.incluirDadosPerfil(this.email._id, dadosAdicionais);
     this.pedidoAddDados(dadosAdicionais)
+    let resp =  await this.bd.incluirDadosPerfil(this.email._id, dadosAdicionais);
     this.formDadoAdicionais.reset();
     // let alertaResp = resp.json();
     // this.alert(alertaResp.style, alertaResp.msg);

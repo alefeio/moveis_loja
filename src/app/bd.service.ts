@@ -74,32 +74,36 @@ export class Bd {
         })
     }
 
-    public consultarPedidos(email: string): Promise<any> {
-
-        return new Promise((resolve, reject) => {
-
-            // consultar chamados
-            backend.database().ref(`pedidos/${btoa(email)}`)
-                .orderByKey()
-                .once('value')
-                .then((snapshot: any) => {
-                    // console.log(snapshot.val())
-
-                    let publicacoes: Array<any> = []
-
-                    snapshot.forEach((childSnapshot: any) => {
-
-                        let publicacao = childSnapshot.val()
-                        publicacao.key = childSnapshot.key
-
-                        publicacoes.push(publicacao)
-                    })
-
-                    // resolve(publicacoes)
-                    resolve(publicacoes.reverse())
-                })
-        })
+    buscarPedidos(){
+        
     }
+
+    // public consultarPedidos(email: string): Promise<any> {
+
+    //     return new Promise((resolve, reject) => {
+
+    //         // consultar chamados
+    //         backend.database().ref(`pedidos/${btoa(email)}`)
+    //             .orderByKey()
+    //             .once('value')
+    //             .then((snapshot: any) => {
+    //                 // console.log(snapshot.val())
+
+    //                 let publicacoes: Array<any> = []
+
+    //                 snapshot.forEach((childSnapshot: any) => {
+
+    //                     let publicacao = childSnapshot.val()
+    //                     publicacao.key = childSnapshot.key
+
+    //                     publicacoes.push(publicacao)
+    //                 })
+
+    //                 // resolve(publicacoes)
+    //                 resolve(publicacoes.reverse())
+    //             })
+    //     })
+    // }
 
     public consultarProdutos(): Promise<any> {
 

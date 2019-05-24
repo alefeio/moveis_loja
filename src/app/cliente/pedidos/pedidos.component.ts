@@ -15,18 +15,17 @@ export class PedidosComponent implements OnInit {
   constructor(private bd: Bd) { }
 
   ngOnInit() {
-    backend.auth().onAuthStateChanged((user) => {
-      this.email = user.email
+    // backend.auth().onAuthStateChanged((user) => {
+      // this.email = user.email
       this.consultarPedidos()
-    })
+    // })
   }
 
-  public consultarPedidos(): void {
-    this.bd.consultarPedidos(this.email)
-      .then((pedidos: any) => {
-        this.pedidos = pedidos
-        console.log(this.pedidos)
-      })
+  consultarPedidos() {
+    // this.bd.consultarPedidos(this.email)
+    //   .then((pedidos: any) => {
+    //     this.pedidos = pedidos
+    //     console.log(this.pedidos)
+    //   })
   }
-
 }

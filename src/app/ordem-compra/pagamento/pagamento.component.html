@@ -11,8 +11,10 @@
     <div class="col-md-4 pb-4">
       <div class="cart-summary">
         <h4>Entrega</h4>
-        <span>{{pedido.endereco.rua ? pedido.endereco.rua : ""}}</span> - <span>{{pedido.endereco.numero ? pedido.endereco.numero : ""}}</span><br>
-        <span>{{pedido.endereco.bairro ? pedido.endereco.bairro: ""}}</span> - <span>{{pedido.endereco.cidade ? pedido.endereco.cidade : ""}}</span> -
+        <span>{{pedido.endereco.rua ? pedido.endereco.rua : ""}}</span> -
+        <span>{{pedido.endereco.numero ? pedido.endereco.numero : ""}}</span><br>
+        <span>{{pedido.endereco.bairro ? pedido.endereco.bairro: ""}}</span> -
+        <span>{{pedido.endereco.cidade ? pedido.endereco.cidade : ""}}</span> -
         <span>{{pedido.endereco.uf ? pedido.endereco.uf : ""}}</span><br>
         <span>{{pedido.endereco.cep ? pedido.endereco.cep : ""}}</span>
       </div>
@@ -93,6 +95,9 @@
 
     <div class="col-md-4 pb-4" *ngIf="formaPagamentoLet === 0">
       <h4>Informe dados do cartão</h4>
+      <div class="alert alert-danger" role="alert" *ngIf="msgCartao != undefined">
+        {{msgCartao}}
+      </div>
       <div class="col">
         <div class="form-group">
           <label>Numero Cartão</label>
@@ -132,7 +137,7 @@
         <li><span>Valor da Parcela:</span> <span>{{valorParcela | currency: 'BRL' }}</span></li>
         <li><span>Total:</span> <span>{{ carrinhoService.totalCarrinhoCompras() | currency: 'BRL' }}</span></li>
         <div class="text-center cep-top">
-          <button type="submit" class="btn-finalizar btn-padrao">Finalizar Compra</button>
+          <button type="submit" [disabled]="!formaPagamentoDados.valid" class="btn-finalizar btn-padrao">Finalizar Compra</button>
         </div>
       </div>
     </div>
