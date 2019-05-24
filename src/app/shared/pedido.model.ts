@@ -18,6 +18,6 @@ export class Pedido {
             uf: string
         },
         // public formaPagamento: string,
-        public itens: Array<ItemCarrinho>
+        public produtos: Array<ItemCarrinho>
     ) {}
 }

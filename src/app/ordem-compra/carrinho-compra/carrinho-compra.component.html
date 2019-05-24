@@ -1,6 +1,5 @@
 <!-- carrinho refeito ray -->
 <div class="container-fluid section-padding-100">
-  <form [formGroup]="form" (ngSubmit)="fecharPedido()" novalidate>
     <div class="row">
       <div class="col-12 col-lg-9">
         <h2>Meu Carrinho</h2>
@@ -52,12 +51,11 @@
             </div>
           </div> -->
           <div class="text-center cep-top">
-            <button type="submit" class="btn-finalizar btn-padrao">Fechar Pedido</button>
+            <button type="submit" (click)="fecharPedido()" class="btn-finalizar btn-padrao">Fechar Pedido</button>
           </div>
         </div>
       </div>
     </div>
-  </form>
 </div>
 
 

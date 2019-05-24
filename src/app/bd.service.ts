@@ -18,19 +18,6 @@ export class Bd {
                 private util: Util,
                 private mongodb:MongoDBService) { }
 
-    // public consultarUsuario(email: string): Promise<any> {
-
-    //     return new Promise((resolve, reject) => {
-
-    //         // consultar usuário
-    //         backend.database().ref(`usuario_detalhe/${btoa(email)}`)
-    //             .once('value')
-    //             .then((snapshot: any) => {
-    //                 resolve(snapshot.val())
-    //             })
-    //     })
-    // }
-
     buscarUsuarioID(_idUsuario){
         return this.mongodb.get(`/v2/usuarios/${_idUsuario}`);
     }
@@ -207,43 +194,6 @@ export class Bd {
         return this.mongodb.get('/v2/ecommerce/ambientes/')
     }
 
-    // public consultarAmbientes(): Promise<any> {
-    //     return new Promise((resolve, reject) => {
-    //         // consultar chamados
-    //         backend.database().ref('ambientes')
-    //             .orderByChild('ordem')
-    //             .once('value')
-    //             .then((snapshot: any) => {
-    //                 // console.log(snapshot.val())
-    //                 let ambientes: Array<any> = []
-    //                 snapshot.forEach((childSnapshot: any) => {
-    //                     let ambiente = childSnapshot.val()
-    //                     // ambiente.key = childSnapshot.key
-    //                     ambientes.push(ambiente)
-    //                 })
-    //                 // resolve(publicacoes)
-    //                 // return ambientes
-    //                 resolve(ambientes.reverse())
-    //             })
-    //             // .then((ambientes: any) => {
-
-    //                 // ambientes.forEach(ambiente => {
-
-    //                 //     // consultar a url da imagem
-    //                 //     // backend.storage().ref()
-    //                 //     //     .child(`ambientes/${ambiente.key}`)
-    //                 //     //     .getDownloadURL()
-    //                 //     //     .then((url: string) => {
-
-    //                 //     //         ambiente.url_imagem = url
-    //                 //     //     })
-    //                 // })
-
-
-    //             // })
-    //     })
-    // }
-
     buscarLinhas(){
         return this.mongodb.get('/v2/ecommerce/categorias')
     }
@@ -251,34 +201,6 @@ export class Bd {
     buscarLinhasPorAmbiente(descricaoAmbiente){
         return this.mongodb.get(`/v2/ecommerce/categorias/porAmbiente/${descricaoAmbiente}`);
     }
-
-    // public consultarLinhas(): Promise<any> {
-
-    //     return new Promise((resolve, reject) => {
-
-    //         // consultar chamados
-    //         backend.database().ref('linhas')
-    //             .orderByChild('nome')
-    //             .once('value')
-    //             .then((snapshot: any) => {
-    //                 // console.log(snapshot.val())
-
-    //                 let linhas: Array<any> = []
-
-    //                 snapshot.forEach((childSnapshot: any) => {
-
-    //                     let linha = childSnapshot.val()
-    //                     linha.key = childSnapshot.key
-
-    //                     linhas.push(linha)
-    //                 })
-
-    //                 // resolve(publicacoes)
-    //                 resolve(linhas)
-    //             })
-    //     })
-    // }
-
     // public consultarLinhasPorAmbiente(ambiente: string): Promise<any> {
 
     //     // console.log('ambiente recebido no bd: ', ambiente)
@@ -444,33 +366,9 @@ export class Bd {
         })
     }
 
-    //ray listar produtos
-    // buscarProdutosEcommerce():Promise<any>{
-    //     return new Promise((resolve, reject)=>{
-    //         backend.database().ref('produtos').once('value').then((resp:any)=>{
-    //             let produtosE:Array<any> = []
-    //             resp.forEach(produto => {
-    //                 let produtoValor = produto.val()
-    //                 produtoValor.chave = produto.key
-    //                 produtosE.push(produtoValor);
-    //             });
-    //             resolve(produtosE);
-    //         })
-    //     })
-    // }
-
     buscarProdutosEcommerce(){
         return this.mongodb.get('/v2/ecommerce/produtos');
     }
-
-    // ray busca por id
-    // buscarProdutoID(chave:string):Promise<any>{
-    //     return new Promise((resolve, reject)=>{
-    //         backend.database().ref(`produtos/${chave}`).once('value').then(resp=>{
-    //             resolve(resp.val())
-    //         })
-    //     })
-    // }
 
     buscarProdutoID(_id){
         return this.mongodb.get(`/v2/ecommerce/produtos/${_id}`)
@@ -528,27 +426,8 @@ export class Bd {
         })
     }
 
-    public efetivarCompra(pedido: any): Promise<any> {
-        return new Promise((resolve, reject) => { 
-            backend.database().ref(`pedidos/${btoa(pedido.email)}`)
-            .push({
-                nome: pedido.nome,
-                codigoPedido: pedido.codigo,
-                email: pedido.email,
-                cpf: pedido.cpf,
-                telefone: pedido.telefone,
-                dataPedido: pedido.dataPedido,
-                dadosCartao: pedido.dadosCartao,
-                celular: pedido.celular,
-                endereco: pedido.endereco,
-                pagamento: pedido.pagamento,
-                itens: pedido.itens,
-                statusPedido: 0
-            })
-            .then((idPedido) => {
-                resolve(idPedido)
-            })
-        })
+    gerarPedido(pedido){
+        return this.mongodb.post('/v2/ecommerce/pedido', pedido);
     }
 
     public adicionarChamado(chamado: any): void {
@@ -687,50 +566,9 @@ export class Bd {
             })
     }
 
-    public editarPerfil(perfil: any): Promise<any> {
-
-        return new Promise((resolve, reject) => {
-            backend.database().ref(`usuario_detalhe/${btoa(perfil.email)}`)
-                .update({
-                    nome: perfil.nome,
-                    email: perfil.email,
-                    cpf: perfil.cpf,
-                    nascimento: perfil.nascimento,
-                    sexo: perfil.sexo,
-                    telefone: perfil.telefone,
-                    celular: perfil.celular,
-                    endereco: perfil.endereco
-
-                })
-                .then(() => {
-                    let feed: any = {
-                        estilo: 'success',
-                        msg: 'Perfil atualizado com sucesso!'
-                    }
-                    resolve(feed)
-                })
-        })
-    }
-
     incluirDadosPerfil(_id, dadosAdicionais){
         return this.mongodb.put(`/v2/usuarios/${_id}`, dadosAdicionais);
     }
-
-    // incluirDadosPerfil(dados:any): Promise<any>{
-    //     return new Promise((resolve, reject)=>{
-    //         backend.database().ref(`usuario_detalhe/${btoa(dados.email)}`).update({
-    //             telefone: dados.telefone,
-    //             celular: dados.celular,
-    //             endereco: dados.endereco
-    //         }).then(() => {
-    //             let feed: any = {
-    //                 estilo: 'success',
-    //                 msg: 'Perfil atualizado com sucesso!'
-    //             }
-    //             resolve(feed)
-    //         })
-    //     })
-    // }
 
     public editarProduto(produto: any): void {
 

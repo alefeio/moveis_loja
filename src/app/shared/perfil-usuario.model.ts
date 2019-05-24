@@ -11,6 +11,7 @@ export class PerfilUsuario {
             rua: string,
             numero: number,
             complemento: string,
+            pontReferencia: string,
             bairro: string,
             cep: string,
             cidade: string,

@@ -20,6 +20,7 @@ import { DiversosComponent } from './diversos/diversos.component';
 import { CarrinhoCompraComponent } from './ordem-compra/carrinho-compra/carrinho-compra.component';
 import { DadosAdicionaisComponent } from './ordem-compra/dados-adicionais/dados-adicionais.component';
 import { PagamentoComponent } from './ordem-compra/pagamento/pagamento.component'
+import { SessionService } from './sessao.service';
 
 export const ROUTES: Routes = [
     { path: '', component: HomeComponent },
@@ -50,7 +51,7 @@ export const ROUTES: Routes = [
             { path: 'cadastro', component: CadastroComponent }
         ]
     },
-    { path: 'cliente', component: ClienteComponent, canActivate: [AutenticacaoGuard] },
-    { path: 'cliente/editar-perfil', component: EditarPerfilComponent, canActivate: [AutenticacaoGuard] },
-    { path: 'admin', component: AdminComponent, canActivate: [AutenticacaoGuard] }
+    { path: 'cliente', component: ClienteComponent, canActivate: [SessionService] },
+    { path: 'cliente/editar-perfil', component: EditarPerfilComponent, canActivate: [SessionService] },
+    { path: 'admin', component: AdminComponent, canActivate: [SessionService] }
 ]

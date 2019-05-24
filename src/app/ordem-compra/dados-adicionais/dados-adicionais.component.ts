@@ -84,6 +84,7 @@ export class DadosAdicionaisComponent implements OnInit {
   ngOnInit() {
     this.pedido = JSON.parse(localStorage.getItem('pedido'))
     this.email = this.sessao.getSessao();
+    console.log(this.pedido);
     // backend.auth().onAuthStateChanged((user) => {
     //   this.email = user.email
     //   this.consultarUsuario()
@@ -100,11 +101,11 @@ export class DadosAdicionaisComponent implements OnInit {
       endereco
     )
     let resp =  await this.bd.incluirDadosPerfil(this.email._id, dadosAdicionais);
-    console.log(resp);
-    // this.alert(feed.estilo, feed.msg)
-    // this.alerta = feed.msg
     this.pedidoAddDados(dadosAdicionais)
     this.formDadoAdicionais.reset();
+    // let alertaResp = resp.json();
+    // this.alert(alertaResp.style, alertaResp.msg);
+    // this.alerta = alertaResp.msg
     // this.bd.incluirDadosPerfil(dadosAdicionais)
     //   .then((feed: any) => {
     //     this.alert(feed.estilo, feed.msg)
@@ -115,16 +116,15 @@ export class DadosAdicionaisComponent implements OnInit {
   }
 
   pedidoAddDados(dadosAdicionais) {
-    this.pedido.celular = dadosAdicionais.celular
-    this.pedido.telefone = dadosAdicionais.telefone
-    this.pedido.endereco.bairro = dadosAdicionais.endereco.bairro
-    this.pedido.endereco.cep = dadosAdicionais.endereco.cep
-    this.pedido.endereco.cidade = dadosAdicionais.endereco.cidade
-    this.pedido.endereco.complemento = dadosAdicionais.endereco.complemento
-    this.pedido.endereco.pontoReferencia = dadosAdicionais.endereco.pontoReferencia
-    this.pedido.endereco.numero = dadosAdicionais.endereco.numero
-    this.pedido.endereco.rua = dadosAdicionais.endereco.rua
-    this.pedido.endereco.uf = dadosAdicionais.endereco.uf
+    if(dadosAdicionais.celular){
+      this.pedido.celular = dadosAdicionais.celular
+    }
+    if(dadosAdicionais.telefone){
+      this.pedido.telefone = dadosAdicionais.telefone
+    }
+    if(dadosAdicionais.endereco){
+      this.pedido.endereco = dadosAdicionais.endereco
+    }
     localStorage.setItem('pedido', JSON.stringify(this.pedido));
     this.rota.navigate(['ordem-compra/pagamento']);
   }

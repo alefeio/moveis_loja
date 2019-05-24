@@ -64,10 +64,9 @@ export class MongoDBService {
     if (sessao) {
       let token = JSON.parse(sessao).token;
       if (token) {
-        this.http.post(`${this.servidor}/v1/public/token`, { token }, this.headers())
+        this.http.post(`${this.servidor}/v2/usuarios/login`, { token }, this.headers())
           .toPromise()
           .then(response => {
-
             console.log(response.json().valid)
             if (response.json().valid == true) {
               this.session.carrega();

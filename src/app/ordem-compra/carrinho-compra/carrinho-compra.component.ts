@@ -38,25 +38,26 @@ export class CarrinhoCompraComponent implements OnInit {
     'formaPagamento': new FormControl(null, [Validators.required])
   })
 
-  usuarioPedido: UsuarioPedido = {
-    _id: '',
-    nome: '',
-    codigo: '',
-    email: '',
-    cpf: '',
-    telefone: '',
-    celular: '',
-    endereco: {
-      rua: '',
-      numero: null,
-      complemento: '',
-      pontoReferencia: '',
-      bairro: '',
-      cep: '',
-      cidade: '',
-      uf: ''
-    }
-  }
+  // usuarioPedido: UsuarioPedido = {
+  //   _id: '',
+  //   nome: '',
+  //   codigo: '',
+  //   email: '',
+  //   cpf: '',
+  //   telefone: '',
+  //   celular: '',
+  //   endereco: {
+  //     rua: '',
+  //     numero: null,
+  //     complemento: '',
+  //     pontoReferencia: '',
+  //     bairro: '',
+  //     cep: '',
+  //     cidade: '',
+  //     uf: ''
+  //   }
+  // }
+  usuarioPedido: any = {}
 
   constructor(
     private carrinhoService: CarrinhoService,
@@ -81,38 +82,46 @@ export class CarrinhoCompraComponent implements OnInit {
 
   async consultarUsuario() {
     let usuarioID = this.sessao.getSessao();
-    let usuarioInfo = await this.bd.buscarUsuarioID(usuarioID._id)
-    let usuario = usuarioInfo[0]
-    if(usuario._id){
-      this.usuarioPedido._id = usuario._id
+    if (usuarioID != null) {
+      let usuarioInfo = await this.bd.buscarUsuarioID(usuarioID._id)
+      let usuario: any = usuarioInfo[0];
+      if (usuario._id) {
+        this.usuarioPedido._id = usuario._id
+      }
+      if (usuario.nome) {
+        this.usuarioPedido.nome = usuario.nome
+      }
+      if (usuario.email) {
+        this.usuarioPedido.email = usuario.email
+      }
+      if (usuario.cpf) {
+        this.usuarioPedido.cpf = usuario.cpf
+      }
+      if (usuario.telefone === undefined) {
+        this.usuarioPedido.telefone = undefined
+      } else {
+        this.usuarioPedido.telefone = usuario.telefone;
+      }
+      if (usuario.celular === undefined) {
+        this.usuarioPedido.celular = undefined
+      } else {
+        this.usuarioPedido.celular = usuario.celular
+      }
+      if (usuario.endereco === undefined) {
+        this.usuarioPedido.endereco = undefined
+      } else {
+        this.usuarioPedido.endereco = usuario.endereco
+      }
+      // this.bd.consultarUsuario(this.email)
+      //   .then((usuario: any) => {
+      //     if (usuario.nome) this.usuarioPedido.nome = usuario.nome
+      //     if (usuario.email) this.usuarioPedido.email = usuario.email
+      //     if (usuario.cpf) this.usuarioPedido.cpf = usuario.cpf
+      //     if (usuario.telefone) this.usuarioPedido.telefone = usuario.telefone
+      //     if (usuario.celular) this.usuarioPedido.celular = usuario.celular
+      //     if (usuario.endereco) this.usuarioPedido.endereco = usuario.endereco
+      //   })
     }
-    if(usuario.nome){
-      this.usuarioPedido.nome = usuario.nome
-    }
-    if(usuario.email){
-      this.usuarioPedido.email = usuario.email
-    }
-    if(usuario.cpf){
-      this.usuarioPedido.cpf = usuario.cpf
-    }
-    if (usuario.telefone){
-      this.usuarioPedido.telefone = usuario.telefone
-    }
-    if (usuario.celular) {
-      this.usuarioPedido.celular = usuario.celular
-    }
-    if (usuario.endereco){
-      this.usuarioPedido.endereco = usuarioInfo.endereco
-    }
-    // this.bd.consultarUsuario(this.email)
-    //   .then((usuario: any) => {
-    //     if (usuario.nome) this.usuarioPedido.nome = usuario.nome
-    //     if (usuario.email) this.usuarioPedido.email = usuario.email
-    //     if (usuario.cpf) this.usuarioPedido.cpf = usuario.cpf
-    //     if (usuario.telefone) this.usuarioPedido.telefone = usuario.telefone
-    //     if (usuario.celular) this.usuarioPedido.celular = usuario.celular
-    //     if (usuario.endereco) this.usuarioPedido.endereco = usuario.endereco
-    //   })
   }
 
   diminuir(item: ItemCarrinho) {
@@ -127,17 +136,21 @@ export class CarrinhoCompraComponent implements OnInit {
     this.carrinhoService.excluir(i);
   }
 
-  fecharPedido() {
-    let pedido: Pedido = new Pedido(
-      this.usuarioPedido.nome,
-      this.usuarioPedido.codigo,
-      this.usuarioPedido.email,
-      this.usuarioPedido.cpf,
-      this.usuarioPedido.telefone,
-      this.usuarioPedido.celular,
-      this.usuarioPedido.endereco,
-      this.carrinhoService.exibirItens()
-    )
+  async fecharPedido() {
+    await this.consultarUsuario();
+    let pedido
+    if (this.usuarioPedido != undefined) {
+      pedido = new Pedido(
+        this.usuarioPedido.nome,
+        this.usuarioPedido.codigo,
+        this.usuarioPedido.email,
+        this.usuarioPedido.cpf,
+        this.usuarioPedido.telefone,
+        this.usuarioPedido.celular,
+        this.usuarioPedido.endereco,
+        this.carrinhoService.exibirItens()
+      )
+    }
     if (this.carrinhoService.exibirItens().length === 0) {
       this.alert('danger', 'Não há produtos no seu carrinho.')
     } else if (this.sessao.logado === false) {
@@ -146,16 +159,8 @@ export class CarrinhoCompraComponent implements OnInit {
         $('#modal-login').modal('show')
       }, 4000)
     } else {
-      if (this.sessao.logado === true && 
-          this.usuarioPedido.endereco === undefined || 
-          this.usuarioPedido.endereco.bairro === "" &&
-          this.usuarioPedido.endereco.cep === "" &&
-          this.usuarioPedido.endereco.cidade === "" &&
-          this.usuarioPedido.endereco.complemento === "" &&
-          this.usuarioPedido.endereco.numero === null && 
-          this.usuarioPedido.endereco.pontoReferencia === "" &&
-          this.usuarioPedido.endereco.rua === "" && 
-          this.usuarioPedido.endereco.uf === "") {
+      if (this.sessao.logado === true && this.usuarioPedido.endereco === undefined) {
+        console.log('logado e sem dados de endereco')
         pedido.codigo = this.gerarCodigo();
         localStorage.setItem('pedido', JSON.stringify(pedido));
         this.alert('danger', 'Você precisa informar os seus dados de endereço!');
@@ -163,8 +168,8 @@ export class CarrinhoCompraComponent implements OnInit {
           this.rota.navigate(['ordem-compra/dados-adicionais']);
           $('#exampleModal').modal('hide')
         }, 3000);
-      } 
-      else {
+      } else {
+        console.log('logado e como dados de endereco')
         pedido.codigo = this.gerarCodigo();
         localStorage.setItem('pedido', JSON.stringify(pedido));
         this.rota.navigate(['ordem-compra/pagamento']);

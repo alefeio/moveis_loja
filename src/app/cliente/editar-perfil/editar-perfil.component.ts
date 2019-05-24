@@ -2,9 +2,9 @@ import { PerfilUsuario } from './../../shared/perfil-usuario.model';
 import { Bd } from 'src/app/bd.service';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import * as backend from 'firebase'
 import { Http } from '@angular/http';
 import { map } from 'rxjs/operators'
+import { SessionService } from '../../sessao.service';
 
 @Component({
   selector: 'app-editar-perfil',
@@ -13,7 +13,7 @@ import { map } from 'rxjs/operators'
 })
 export class EditarPerfilComponent implements OnInit {
 
-  public email: any
+  public id: any
 
   public alerta: string = '';
   public estiloAlerta: string
@@ -30,6 +30,7 @@ export class EditarPerfilComponent implements OnInit {
       rua: '',
       numero: null,
       complemento: '',
+      pontReferencia: '',
       bairro: '',
       cep: '',
       cidade: '',
@@ -49,6 +50,7 @@ export class EditarPerfilComponent implements OnInit {
       'rua': new FormControl(null),
       'numero': new FormControl(null),
       'complemento': new FormControl(null),
+      'pontoReferencia': new FormControl(null),
       'bairro': new FormControl(null),
       'cep': new FormControl(null),
       'cidade': new FormControl(null),
@@ -56,16 +58,17 @@ export class EditarPerfilComponent implements OnInit {
     })
   })
 
-  constructor(private bd: Bd, private http: Http) { }
+  constructor(private bd: Bd,
+    private http: Http,
+    private sessao: SessionService) { }
 
   ngOnInit() {
-    backend.auth().onAuthStateChanged((user) => {
-      this.email = user.email
-      this.consultarPerfilUsuario()
-    })
+    let id = this.sessao.getSessao()
+    this.id = id._id;
+    this.consultarPerfilUsuario()
   }
 
-  public preencherForm(): void {
+  preencherForm() {
     this.formPerfil.patchValue({
       nome: this.perfilUsuario.nome,
       email: this.perfilUsuario.email,
@@ -78,6 +81,7 @@ export class EditarPerfilComponent implements OnInit {
         rua: this.perfilUsuario.endereco.rua,
         numero: this.perfilUsuario.endereco.numero,
         complemento: this.perfilUsuario.endereco.complemento,
+        pontoReferencia: this.perfilUsuario.endereco.pontReferencia,
         bairro: this.perfilUsuario.endereco.bairro,
         cep: this.perfilUsuario.endereco.cep,
         cidade: this.perfilUsuario.endereco.cidade,
@@ -86,34 +90,43 @@ export class EditarPerfilComponent implements OnInit {
     })
   }
 
-  public consultarPerfilUsuario(): void {
-
-    // this.bd.consultarUsuario(this.email)
-    //   .then((usuario: any) => {
-    //     if (usuario.nome) this.perfilUsuario.nome = usuario.nome
-    //     if (usuario.email) this.perfilUsuario.email = usuario.email
-    //     if (usuario.cpf) this.perfilUsuario.cpf = usuario.cpf
-    //     if (usuario.nascimento) this.perfilUsuario.nascimento = usuario.nascimento
-    //     if (usuario.sexo) this.perfilUsuario.sexo = usuario.sexo
-    //     if (usuario.telefone) this.perfilUsuario.telefone = usuario.telefone
-    //     if (usuario.celular) this.perfilUsuario.celular = usuario.celular
-
-    //     if (usuario.endereco) {
-    //       this.perfilUsuario.endereco.rua = usuario.endereco.rua
-    //       this.perfilUsuario.endereco.numero = usuario.endereco.numero
-    //       this.perfilUsuario.endereco.complemento = usuario.endereco.complemento
-    //       this.perfilUsuario.endereco.bairro = usuario.endereco.bairro
-    //       this.perfilUsuario.endereco.cep = usuario.endereco.cep
-    //       this.perfilUsuario.endereco.cidade = usuario.endereco.cidade
-    //       this.perfilUsuario.endereco.uf = usuario.endereco.uf
-    //     }
-    //   })
-    //   .then(() => {
-    //     this.preencherForm()
-    //   })
+  async consultarPerfilUsuario() {
+    let usuario = await this.bd.buscarUsuarioID(this.id);
+    if (usuario[0].nome) {
+      this.perfilUsuario.nome = usuario[0].nome
+    }
+    if (usuario[0].email) {
+      this.perfilUsuario.email = usuario[0].email
+    }
+    if (usuario[0].cpf) {
+      this.perfilUsuario.cpf = usuario[0].cpf
+    }
+    if (usuario[0].nascimento) {
+      this.perfilUsuario.nascimento = usuario[0].nascimento
+    }
+    if (usuario[0].sexo) {
+      this.perfilUsuario.sexo = usuario[0].sexo
+    }
+    if (usuario[0].telefone) {
+      this.perfilUsuario.telefone = usuario[0].telefone
+    }
+    if (usuario[0].celular) {
+      this.perfilUsuario.celular = usuario[0].celular
+    }
+    if (usuario[0].endereco) {
+      this.perfilUsuario.endereco.rua = usuario[0].endereco.rua
+      this.perfilUsuario.endereco.numero = usuario[0].endereco.numero
+      this.perfilUsuario.endereco.complemento = usuario[0].endereco.complemento
+      this.perfilUsuario.endereco.pontReferencia = usuario[0].endereco.pontoReferencia
+      this.perfilUsuario.endereco.bairro = usuario[0].endereco.bairro
+      this.perfilUsuario.endereco.cep = usuario[0].endereco.cep
+      this.perfilUsuario.endereco.cidade = usuario[0].endereco.cidade
+      this.perfilUsuario.endereco.uf = usuario[0].endereco.uf
+    }
+    this.preencherForm();
   }
 
-  public editarPerfil(): void {
+  async editarPerfil() {
     let endereco = this.formPerfil.get('endereco').value
     endereco.cep = endereco.cep.replace(/[^\d]/g, "")
     let usuario: PerfilUsuario = new PerfilUsuario(
@@ -126,12 +139,11 @@ export class EditarPerfilComponent implements OnInit {
       this.formPerfil.value.celular,
       endereco
     )
-    this.bd.editarPerfil(usuario)
-      .then((feed: any) => {
-        this.alert(feed.estilo, feed.msg)
-        this.alerta = feed.msg
-        this.formPerfil.reset();
-      })
+    let resp = await this.bd.incluirDadosPerfil(this.id, usuario);
+    let feedback = resp.json()
+    this.alert(feedback.style, feedback.msg)
+    this.alerta = feedback.msg
+    this.formPerfil.reset();
   }
 
   public alert(estilo: string, mensagem: string): void {
@@ -145,22 +157,16 @@ export class EditarPerfilComponent implements OnInit {
   }
 
   public consultaCEP() {
-
     let cep = this.formPerfil.get('endereco.cep').value
-
     // transforma a variável em apenas dígitos
     if (cep) cep = cep.replace(/\D/g, '')
-
     // verifica se o cep possui valor
     if (cep != "")
-
       // validação do cep
       var validaCep = /^[0-9]{8}$/
-
     // valida o formato do cep
     if (validaCep.test(cep)) {
       this.resetaEndereco()
-
       this.http.get(`//viacep.com.br/ws/${cep}/json`)
         .pipe(map(dados => dados.json()))
         .subscribe(dados => this.populaEndereco(dados))

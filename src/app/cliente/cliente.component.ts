@@ -1,6 +1,7 @@
 import { Bd } from './../bd.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import * as backend from 'firebase';
+import { SessionService } from '../sessao.service';
 declare var $:any
 
 @Component({
@@ -12,12 +13,13 @@ export class ClienteComponent implements OnInit {
 
   @ViewChild('chamados') public chamados: any
 
-  public email: any
-  public usuario: any = ''
+  id:any
+  usuario: any = ''
   public link: string = 'inicio'
   fixarMenuCliente: number = 0
 
-  constructor(private bd: Bd) {
+  constructor(private bd: Bd,
+              private sessao:SessionService) {
     $(document).ready(function() {
       var menuCliente = $('#v-pills-tab');
       var btnCollapse = $('#btn-collapse');
@@ -41,13 +43,16 @@ export class ClienteComponent implements OnInit {
    }
 
   ngOnInit() {
-    backend.auth().onAuthStateChanged((user) => {
-      this.email = user.email
+    // backend.auth().onAuthStateChanged((user) => {
+      // this.email = user.email
+      this.id = this.sessao.getSessao()
       this.consultarUsuario()
-    })
+    // })
   }
 
-  public consultarUsuario(): void {
+  async consultarUsuario() {
+    let usuario = await this.bd.buscarUsuarioID(this.id._id);
+    this.usuario = usuario[0];
     // this.bd.consultarUsuario(this.email)
     //   .then((usuario: any) => {
     //     this.usuario = usuario

@@ -152,15 +152,15 @@ export class PagamentoComponent implements OnInit {
     //   $(".expire").keypress(function (event) {
     //     if (event.charCode >= 48 && event.charCode <= 57) {
     //       if ($(this).val().length === 1) {
-    //         $(this).val($(this).val() + event.key + " / ");
+    //         $(this).val($(this).val() + event.key + "/");
     //       } else if ($(this).val().length === 0) {
     //         if (event.key == 1 || event.key == 0) {
     //           month = event.key;
     //           return event.charCode;
     //         } else {
-    //           $(this).val(0 + event.key + " / ");
+    //           $(this).val(0 + event.key + "/");
     //         }
-    //       } else if ($(this).val().length > 2 && $(this).val().length < 9) {
+    //       } else if ($(this).val().length > 2 && $(this).val().length < 7) {
     //         return event.charCode;
     //       }
     //     }
@@ -172,7 +172,7 @@ export class PagamentoComponent implements OnInit {
     //     }
 
     //     if ($(this).val().length === 0) {
-    //       $(".date_value").text("MM / YYYY");
+    //       $(".date_value").text("MM/YYYY");
     //     }
     //   }).keydown(function () {
     //     $(".date_value").html($(this).val());
@@ -184,7 +184,7 @@ export class PagamentoComponent implements OnInit {
 
   ngOnInit() {
     this.pedido = JSON.parse(localStorage.getItem('pedido'))
-    if(this.carrinhoService.itens.length === 0){
+    if (this.carrinhoService.itens.length === 0) {
       this.rota.navigate(['']);
     }
   }
@@ -205,12 +205,14 @@ export class PagamentoComponent implements OnInit {
     this.valorParcela = this.carrinhoService.totalCarrinhoCompras() / Number(parcela)
   }
 
-  dadosCartao(dadosCartao) {
-    let dataPedido = new Date().getTime();
+  async dadosCartao(dadosCartao) {
+    let dataPedido = new Date().toISOString();
     if (this.qtdParcelas === null) {
       this.msg = 1;
     } else {
       if (this.formaPagamentoLet === 0) {
+        let numCartao = dadosCartao.numCartao.replace(/\s/g, '')
+        dadosCartao.numCartao = numCartao
         this.pedido.dadosCartao = dadosCartao;
         this.pedido.pagamento = {
           formaPagamento: this.pagamento,
@@ -218,18 +220,30 @@ export class PagamentoComponent implements OnInit {
           valorParcela: this.valorParcela
         }
         this.pedido.dataPedido = dataPedido
-        this.bd.efetivarCompra(this.pedido).then((key: any) => {
-          this.idPedidoCompra = this.pedido.codigo;
-          localStorage.removeItem('pedido');
-          $('#exampleModal').modal('show')
-          if (this.idPedidoCompra != undefined) {
-            this.carrinhoService.itens = [];
-          }
-          setTimeout(() => {
-            $('#exampleModal').modal('hide')
-            this.rota.navigate(['']);
-          }, 3000)
-        })
+        this.pedido.statusPedido = 1
+        await this.bd.gerarPedido(this.pedido);
+        this.idPedidoCompra = this.pedido.codigo;
+        localStorage.removeItem('pedido');
+        $('#exampleModal').modal('show')
+        if (this.idPedidoCompra != undefined) {
+          this.carrinhoService.itens = [];
+        }
+        setTimeout(() => {
+          $('#exampleModal').modal('hide')
+          this.rota.navigate(['']);
+        }, 3000)
+        // this.bd.efetivarCompra(this.pedido).then((key: any) => {
+        //   this.idPedidoCompra = this.pedido.codigo;
+        //   localStorage.removeItem('pedido');
+        //   $('#exampleModal').modal('show')
+        //   if (this.idPedidoCompra != undefined) {
+        //     this.carrinhoService.itens = [];
+        //   }
+        //   setTimeout(() => {
+        //     $('#exampleModal').modal('hide')
+        //     this.rota.navigate(['']);
+        //   }, 3000)
+        // })
       } else {
         console.log("boleto")
       }
