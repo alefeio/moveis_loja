@@ -1,6 +1,6 @@
 import { PerfilUsuario } from './../../shared/perfil-usuario.model';
 import { Bd } from 'src/app/bd.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Version } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Http } from '@angular/http';
 import { map } from 'rxjs/operators'
@@ -47,14 +47,14 @@ export class EditarPerfilComponent implements OnInit {
     'telefone': new FormControl(null),
     'celular': new FormControl(null),
     'endereco': new FormGroup({
-      'rua': new FormControl(null),
-      'numero': new FormControl(null),
+      'rua': new FormControl(null, Validators.required),
+      'numero': new FormControl(null, Validators.required),
       'complemento': new FormControl(null),
-      'pontoReferencia': new FormControl(null),
-      'bairro': new FormControl(null),
-      'cep': new FormControl(null),
-      'cidade': new FormControl(null),
-      'uf': new FormControl(null)
+      'pontoReferencia': new FormControl(null, Validators.required),
+      'bairro': new FormControl(null, Validators.required),
+      'cep': new FormControl(null, Validators.required),
+      'cidade': new FormControl(null, Validators.required),
+      'uf': new FormControl(null, Validators.required)
     })
   })
 
