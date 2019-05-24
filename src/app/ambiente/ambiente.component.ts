@@ -10,7 +10,7 @@ import { Bd } from 'src/app/bd.service';
 })
 export class AmbienteComponent implements OnInit {
 
-  public produtos: any
+  public produtos:Array<any> = []
   public ambiente: string
   public linhas: Array<any> = []
 
@@ -30,25 +30,28 @@ export class AmbienteComponent implements OnInit {
   }
 
   consultarProdutosPorFiltro() {
-    this.bd.buscarProdutoPorAmbiente(this.ambiente).then((resp:any)=>{
-      this.produtos = resp;
+    this.bd.buscarProdutoPorAmbiente(this.ambiente).then((resp: any) => {
+      this.produtos = [];
+      for(let p of resp){
+        for(let c of p.cores){
+          if(c.destaque === true){
+            p.cores = c
+            for(let i of c.imagem){
+              if(i.destaque === true){
+                p.cores.imagem = i
+              }
+            }
+          }
+        }
+        this.produtos.push(p)
+      };
     });
-    // this.bd.buscarProdutoProAmbiente()
-    // this.bd.consultarProdutosPorFiltro('ambiente', this.ambiente)
-    //   .then((produtos: any) => {
-    //     this.produtos = produtos
-    //     console.log(this.produtos);
-    //   })
   }
 
   consultarLinhasPorAmbiente() {
-    this.bd.buscarLinhasPorAmbiente(this.ambiente).then((resp:any)=>{
+    this.bd.buscarLinhasPorAmbiente(this.ambiente).then((resp: any) => {
       this.linhas = resp;
     });
-    // this.bd.consultarLinhasPorAmbiente(this.ambiente)
-    //   .then((linhas: any) => {
-    //     this.linhas = linhas
-    //   })
   }
 
   ofertaDetalhe(chaveProduto) {

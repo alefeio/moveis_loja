@@ -11,25 +11,20 @@
     <h2 style="margin: 0">{{linha | uppercase}}</h2>
     <span style="background-color: rgba(243, 156, 18, 1);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
   </div>
-  <!-- <div class="secao">
-          <h3>Conforto, qualidade e muito mais!</h3>
-          <h5>Conheça as melhores ofertas para você relaxar e descansar.</h5>
-        </div> -->
   <br>
   <div class="row">
-    <div class="col-sm-4 card info-widget flutuar" *ngFor="let produto of produtos">
+    <a [routerLink]="['/oferta', produto._id]" class="col-sm-4 card info-widget flutuar" *ngFor="let produto of produtos">
       <div class="text-center">
-        <img class="img-fluid" [src]="produto.cores[0].imagem[0].url || ''">
+        <img class="img-fluid" [src]="produto.cores.imagem.url || ''">
       </div>
       <div class="card-block padding">
         <h5 style="padding: 1%">{{produto.nome}}</h5>
-        <!-- <pre>{{ oferta.descricao_oferta | descricaoReduzida:100:0 }}</pre> -->
-        <p style="padding: 1%">Por: {{ produto.cores[0].valor | currency: 'BRL' }}</p>
+        <p style="padding: 1%">Por: {{ produto.cores.valor | currency: 'BRL' }}</p>
         <div class="text-center">
-          <button class="btn btn-padrao" [routerLink]="['/oferta', produto.key]">Ver Oferta</button>
+          <button class="btn btn-padrao" [routerLink]="['/oferta', produto._id]">Ver Oferta</button>
         </div>
       </div>
-    </div>
+    </a>
   </div>
   <br>
 

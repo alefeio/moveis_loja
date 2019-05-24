@@ -19,11 +19,11 @@ export class ProdutosComponent implements OnInit {
   }
 
   public consultarProdutos(): void {
-    this.bd.consultarProdutos()
-      .then((produtos: any) => {
-        this.produtos = produtos
-        console.log(this.produtos)
-      })
+    // this.bd.consultarProdutos()
+    //   .then((produtos: any) => {
+    //     this.produtos = produtos
+    //     console.log(this.produtos)
+    //   })
   }
 
 }

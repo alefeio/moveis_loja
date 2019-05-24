@@ -18,24 +18,28 @@ export class LinhaComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-
     this.route.params.subscribe((parametros: Params) => {
-
       this.linha = parametros.param
-
-      // this.bd.consultarProdutosPorFiltro('linha', this.linha)
-      //   .then((produtos: any) => {
-      //     this.produtos = produtos
-      //   })
     })
-    
+    this.consultarProdutosPorFiltro()
   }
 
-  public consultarProdutosPorFiltro() {
-    // this.bd.consultarProdutosPorFiltro('linha', this.linha)
-    //   .then((produtos: any) => {
-    //     this.produtos = produtos
-    //   })
+  consultarProdutosPorFiltro() {
+    this.bd.buscarProdutoPorLinha(this.linha).then(resp=>{
+      this.produtos = [];
+      for(let p of resp){
+        for(let c of p.cores){
+          if(c.destaque === true){
+            p.cores = c
+            for(let i of c.imagem){
+              if(i.destaque === true){
+                p.cores.imagem = i
+              }
+            }
+          }
+        }
+        this.produtos.push(p)
+      };
+    });
   }
-
 }

@@ -234,10 +234,6 @@ export class PagamentoComponent implements OnInit {
           if (this.idPedidoCompra != undefined) {
             this.carrinhoService.itens = [];
           }
-          setTimeout(() => {
-            $('#exampleModal').modal('hide')
-            this.rota.navigate(['']);
-          }, 3000)
         } else {
           this.msgCartao = 'Por Favor! Preencha todas as informaçoes do cartão.';
         }

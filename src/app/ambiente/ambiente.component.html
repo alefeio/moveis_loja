@@ -29,18 +29,18 @@
 
     <div class="row">
       <div class="col-md-12">
-        <a [routerLink]="['/oferta', produto.key]" *ngFor="let produto of produtos" style="padding: 3%"
+        <a [routerLink]="['/oferta', produto._id]" *ngFor="let produto of produtos" style="padding: 3%"
           class="card info-widget flutuar" style="width: 18rem; margin: 1em">
-          <img [src]="produto.cores[0].imagem[0].url || ''" class="card-img-top">
+          <img [src]="produto.cores.imagem.url || ''" class="card-img-top">
           <div class="card-body">
             <h5 class="card-title">{{produto.nome}}</h5>
             <div class="row">
               <div class="col">
-                <p class="card-text pb-3">Por: {{ produto.cores[0].valor | currency: 'BRL' }}</p>
+                <p class="card-text pb-3">Por: {{ produto.cores.valor | currency: 'BRL' }}</p>
               </div>
             </div>
             <div class="text-center">
-              <button class="btn btn-padrao" (click)="ofertaDetalhe(produto.key)" style="text-decoration: no">Ver
+              <button class="btn btn-padrao" (click)="ofertaDetalhe(produto._id)" style="text-decoration: no">Ver
                 Oferta</button>
             </div>
           </div>

@@ -105,94 +105,94 @@ export class Bd {
     //     })
     // }
 
-    public consultarProdutos(): Promise<any> {
+    // public consultarProdutos(): Promise<any> {
 
-        return new Promise((resolve, reject) => {
+    //     return new Promise((resolve, reject) => {
 
-            // consultar chamados
-            backend.database().ref('produtos')
-                .orderByKey()
-                .once('value')
-                .then((snapshot: any) => {
-                    // console.log(snapshot.val())
+    //         // consultar chamados
+    //         backend.database().ref('produtos')
+    //             .orderByKey()
+    //             .once('value')
+    //             .then((snapshot: any) => {
+    //                 // console.log(snapshot.val())
 
-                    let produtos: Array<any> = []
+    //                 let produtos: Array<any> = []
 
-                    snapshot.forEach((childSnapshot: any) => {
+    //                 snapshot.forEach((childSnapshot: any) => {
 
-                        let produto = childSnapshot.val()
-                        produto.key = childSnapshot.key
+    //                     let produto = childSnapshot.val()
+    //                     produto.key = childSnapshot.key
 
-                        produtos.push(produto)
-                    })
+    //                     produtos.push(produto)
+    //                 })
 
-                    // resolve(publicacoes)
-                    return produtos.reverse()
-                })
-                .then((produtos: any) => {
+    //                 // resolve(publicacoes)
+    //                 return produtos.reverse()
+    //             })
+    //             .then((produtos: any) => {
 
-                    produtos.forEach(produto => {
+    //                 produtos.forEach(produto => {
 
-                        // consultar a url da imagem
-                        backend.storage().ref()
-                            .child(`produtos/${produto.key}`)
-                            .getDownloadURL()
-                            .then((url: string) => {
+    //                     // consultar a url da imagem
+    //                     backend.storage().ref()
+    //                         .child(`produtos/${produto.key}`)
+    //                         .getDownloadURL()
+    //                         .then((url: string) => {
 
-                                produto.url_imagem = url
-                            })
-                    })
+    //                             produto.url_imagem = url
+    //                         })
+    //                 })
 
-                    resolve(produtos)
+    //                 resolve(produtos)
 
-                })
-        })
-    }
+    //             })
+    //     })
+    // }
 
-    public consultarDestaques(): Promise<any> {
+    // public consultarDestaques(): Promise<any> {
 
-        return new Promise((resolve, reject) => {
+    //     return new Promise((resolve, reject) => {
 
-            // consultar chamados
-            backend.database().ref('produtos')
-                .orderByChild("destaque")
-                .equalTo(true)
-                .once("value")
-                .then((snapshot: any) => {
-                    // console.log('Valor do snapshot: ', snapshot.val())
+    //         // consultar chamados
+    //         backend.database().ref('produtos')
+    //             .orderByChild("destaque")
+    //             .equalTo(true)
+    //             .once("value")
+    //             .then((snapshot: any) => {
+    //                 // console.log('Valor do snapshot: ', snapshot.val())
 
-                    let produtos: Array<any> = []
+    //                 let produtos: Array<any> = []
 
-                    snapshot.forEach((childSnapshot: any) => {
+    //                 snapshot.forEach((childSnapshot: any) => {
 
-                        let produto = childSnapshot.val()
-                        produto.key = childSnapshot.key
+    //                     let produto = childSnapshot.val()
+    //                     produto.key = childSnapshot.key
 
-                        produtos.push(produto)
-                    })
+    //                     produtos.push(produto)
+    //                 })
 
-                    // resolve(publicacoes)
-                    return produtos.reverse()
-                })
-                .then((produtos: any) => {
+    //                 // resolve(publicacoes)
+    //                 return produtos.reverse()
+    //             })
+    //             .then((produtos: any) => {
 
-                    produtos.forEach(produto => {
+    //                 produtos.forEach(produto => {
 
-                        // consultar a url da imagem
-                        backend.storage().ref()
-                            .child(`produtos/${produto.key}`)
-                            .getDownloadURL()
-                            .then((url: string) => {
+    //                     // consultar a url da imagem
+    //                     backend.storage().ref()
+    //                         .child(`produtos/${produto.key}`)
+    //                         .getDownloadURL()
+    //                         .then((url: string) => {
 
-                                produto.url_imagem = url
-                            })
-                    })
+    //                             produto.url_imagem = url
+    //                         })
+    //                 })
 
-                    resolve(produtos)
+    //                 resolve(produtos)
 
-                })
-        })
-    }
+    //             })
+    //     })
+    // }
 
     buscarAmbientes(){
         return this.mongodb.get('/v2/ecommerce/ambientes/')
@@ -238,6 +238,10 @@ export class Bd {
 
     buscarProdutoPorAmbiente(_id){
         return this.mongodb.get(`/v2/ecommerce/produtos/porAmbiente/${_id}`);
+    }
+
+    buscarProdutoPorLinha(linha){
+        return this.mongodb.get(`/v2/ecommerce/produtos/porLinha/${linha}`)
     }
 
     buscarProdutoPorID(_idProduto){
