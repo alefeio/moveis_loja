@@ -5,6 +5,6 @@ export class Usuario {
         public cpf: string,
         public nascimento: Date,
         public sexo: string,
-        public senha: string
+        public senha: string,
     ) {}
 }

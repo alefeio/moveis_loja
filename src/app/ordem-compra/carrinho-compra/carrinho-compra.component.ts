@@ -73,6 +73,7 @@ export class CarrinhoCompraComponent implements OnInit {
     if (usuarioID != null) {
       let usuarioInfo = await this.bd.buscarUsuarioID(usuarioID._id)
       let usuario: any = usuarioInfo[0];
+      console.log(usuario);
       if (usuario._id) {
         this.usuarioPedido._id = usuario._id
       }
@@ -95,7 +96,15 @@ export class CarrinhoCompraComponent implements OnInit {
       } else {
         this.usuarioPedido.celular = usuario.celular
       }
-      if (usuario.endereco === undefined) {
+      if (usuario.endereco === undefined ||
+        usuario.endereco.bairro === "" &&
+          usuario.endereco.cep === "" &&
+          usuario.endereco.cidade === "" &&
+          usuario.endereco.complemento === "" &&
+          usuario.endereco.numero === "" &&
+          usuario.endereco.pontoReferencia === "" &&
+          usuario.endereco.rua === "" &&
+          usuario.endereco.uf === "") {
         this.usuarioPedido.endereco = undefined
       } else {
         this.usuarioPedido.endereco = usuario.endereco
