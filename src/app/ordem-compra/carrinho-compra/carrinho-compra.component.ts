@@ -170,6 +170,7 @@ export class CarrinhoCompraComponent implements OnInit {
     this.alerta = mensagem
     this.estiloAlerta = estilo
     setTimeout(() => {
+      console.log('alerta')
       $('#exampleModal').modal('hide');
       this.alerta = ''
       this.estiloAlerta = ''

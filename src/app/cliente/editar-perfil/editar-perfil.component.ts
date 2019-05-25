@@ -45,7 +45,7 @@ export class EditarPerfilComponent implements OnInit {
     'nascimento': new FormControl(null),
     'sexo': new FormControl(null),
     'telefone': new FormControl(null),
-    'celular': new FormControl(null),
+    'celular': new FormControl(null, Validators.required),
     'endereco': new FormGroup({
       'rua': new FormControl(null, Validators.required),
       'numero': new FormControl(null, Validators.required),

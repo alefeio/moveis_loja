@@ -9,10 +9,16 @@
         <div class="col-md-6">
           <label for="nome">Nome</label>
           <input type="text" class="form-control form-control-lg rounded-0" formControlName="nome">
+          <small class="form-text error">
+            <span style="color: red">* Campo Obrigatório!</span>
+          </small>
         </div>
         <div class="col-md-6">
           <label for="email">Email </label>
           <input type="email" class="form-control form-control-lg rounded-0" formControlName="email">
+          <small class="form-text error">
+            <span style="color: red">* Campo Obrigatório!</span>
+          </small>
         </div>
       </div>
       <div class="row">
@@ -20,6 +26,9 @@
           <label for="cpf">CPF</label>
           <input type="text" mascara="999.999.999-99" class="form-control form-control-lg rounded-0"
             formControlName="cpf">
+          <small class="form-text error">
+            <span style="color: red">* Campo Obrigatório!</span>
+          </small>
         </div>
         <div class="col-md-3 mt-3">
           <label for="dataNascimento">Data de nascimento</label>
@@ -52,6 +61,9 @@
           <label for="celular">Celular</label>
           <input type="text" mascara="(99) 99999-9999" class="form-control form-control-lg rounded-0"
             formControlName="celular">
+          <small class="form-text error">
+            <span style="color: red">* Campo Obrigatório!</span>
+          </small>
         </div>
       </div>
       <h5 class="mt-3">Dados de Endereço</h5>
@@ -61,6 +73,9 @@
             <label for="cep">CEP</label>
             <input type="text" (blur)="consultaCEP()" mascara="99999-999" class="form-control form-control-lg rounded-0"
               formControlName="cep">
+            <small class="form-text error">
+              <span style="color: red">* Campo Obrigatório!</span>
+            </small>
           </div>
           <div class="col-md-7 mt-3">
             <label for="rua">Rua</label>
@@ -69,6 +84,9 @@
           <div class="col-md-2 mt-3">
             <label for="num">Numero</label>
             <input type="text" class="form-control form-control-lg rounded-0" formControlName="numero">
+            <small class="form-text error">
+              <span style="color: red">* Campo Obrigatório!</span>
+            </small>
           </div>
         </div>
         <div class="row">
@@ -79,6 +97,9 @@
           <div class="col-md-6 mt-3">
             <label for="comp">Ponto de Referencia </label>
             <input type="text" class="form-control form-control-lg rounded-0" formControlName="pontoReferencia">
+            <small class="form-text error">
+              <span style="color: red">* Campo Obrigatório!</span>
+            </small>
           </div>
         </div>
         <div class="row">
