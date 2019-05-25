@@ -188,6 +188,7 @@ export class PagamentoComponent implements OnInit {
     if (this.carrinhoService.itens.length === 0) {
       this.rota.navigate(['']);
     }
+    $('.modal').modal('hide')
   }
 
   formaPagamento(p) {

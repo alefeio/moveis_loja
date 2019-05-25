@@ -17,7 +17,6 @@ export class SessionService {
     }
 
     alteraEmpresa(empresa) {
-
         let sessao = JSON.parse(localStorage.getItem('sessaoLoja'));
         //sessao.empresa = empresa;
         localStorage.setItem('sessaoLoja', JSON.stringify(sessao));
@@ -27,7 +26,6 @@ export class SessionService {
     }
 
     salvar(sessao) {
-        console.log(sessao)
         localStorage.setItem('sessaoLoja', JSON.stringify(sessao));
         this.carrega();
     }

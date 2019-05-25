@@ -84,6 +84,7 @@ export class DadosAdicionaisComponent implements OnInit {
   ngOnInit() {
     this.pedido = JSON.parse(localStorage.getItem('pedido'))
     this.email = this.sessao.getSessao();
+    $('#exampleModal').modal('hide')
     // backend.auth().onAuthStateChanged((user) => {
     //   this.email = user.email
     //   this.consultarUsuario()

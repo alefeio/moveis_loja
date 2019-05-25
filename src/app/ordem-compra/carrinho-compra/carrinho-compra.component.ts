@@ -96,7 +96,7 @@ export class CarrinhoCompraComponent implements OnInit {
         this.usuarioPedido.celular = usuario.celular
       }
       if (usuario.endereco === undefined ||
-          (usuario.endereco.bairro === "" ||
+        (usuario.endereco.bairro === "" ||
           usuario.endereco.cep === "" ||
           usuario.endereco.cidade === "" ||
           usuario.endereco.complemento === "" ||
@@ -146,6 +146,7 @@ export class CarrinhoCompraComponent implements OnInit {
       setTimeout(() => {
         $('#modal-login').modal('show')
       }, 4000)
+      this.Temporizador();
     } else {
       if (this.sessao.logado === true && this.usuarioPedido.endereco === undefined) {
         console.log('logado e sem dados de endereco')
@@ -165,12 +166,23 @@ export class CarrinhoCompraComponent implements OnInit {
     }
   }
 
+  Temporizador() {
+    console.log('executar temporizador');
+    setTimeout(()=>{
+      if(this.sessao.logado === false){
+        this.Temporizador();
+        console.log('repetir');
+      } else {
+        this.fecharPedido();
+      }
+    }, 1000);
+  }
+
   alert(estilo: string, mensagem: string): void {
     $('#exampleModal').modal('show');
     this.alerta = mensagem
     this.estiloAlerta = estilo
     setTimeout(() => {
-      console.log('alerta')
       $('#exampleModal').modal('hide');
       this.alerta = ''
       this.estiloAlerta = ''
