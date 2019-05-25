@@ -38,9 +38,6 @@ export class LoginComponent implements OnInit {
     let resp = await this.autenticacao.verificarUsuarioPorEmail(emailDigitado)
     if(resp.length === 0){
       this.msgErro = 'Você Precisa se cadastrar para fazer o login!'
-      setTimeout(()=>{
-        this.exibirPainel.emit('cadastro');
-      }, 3000)
     }
   }
 
