@@ -103,6 +103,12 @@ export class Autenticacao implements OnDestroy {
       return backend.database().ref('usuario_detalhe').once('value')
     }
 
+    verificarUsuarioPorEmail(email){
+        return this.mongodb.get(`/v2/usuarios/porEmail/${email}`);
+    }
+
+
+
     
 
     ngOnDestroy() {

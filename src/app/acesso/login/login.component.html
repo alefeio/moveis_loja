@@ -13,7 +13,7 @@
 
       <div class="form-group" style="padding-top: 5px">
         <label for="email">Email</label>
-        <input type="text" formControlName="email" class="form-control rounded-0">
+        <input type="text" formControlName="email" class="form-control rounded-0" (blur)="existe($event.target.value)">
         <small *ngIf="form.controls['email'].errors && !form.controls.email.untouched" class="form-text error">
           <span *ngIf="form.controls['email'].errors.required" style="color: red"> Obrigatório!</span>
         </small>

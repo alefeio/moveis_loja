@@ -14,7 +14,7 @@ export class AcessoComponent implements OnInit {
   ngOnInit() {
   }
 
-  public exibirPainel(event: string): void {
+  exibirPainel(event: string) {
     if(event === 'cadastro'){
       this.cadastro = 'cadastro'
     } else if (event === 'recupSenha') {

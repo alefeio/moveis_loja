@@ -34,6 +34,16 @@ export class LoginComponent implements OnInit {
     this.exibirPainel.emit('recupSenha')
   }
 
+  async existe(emailDigitado){
+    let resp = await this.autenticacao.verificarUsuarioPorEmail(emailDigitado)
+    if(resp.length === 0){
+      this.msgErro = 'Você Precisa se cadastrar para fazer o login!'
+      setTimeout(()=>{
+        this.exibirPainel.emit('cadastro');
+      }, 3000)
+    }
+  }
+
   // autenticacao de usuario com email e senha
   autenticar() {
     this.autenticacao.autenticarUsuario(this.form.value).then(resp => {
@@ -46,5 +56,4 @@ export class LoginComponent implements OnInit {
       }, 5000);
     })
   }
-
 }
