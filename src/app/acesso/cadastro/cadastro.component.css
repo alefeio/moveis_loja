@@ -154,3 +154,7 @@
       -webkit-transform: rotate(45deg);
       transform: rotate(45deg);
     }
+
+    .card-body {
+      overflow-y: scroll !important;
+    }
