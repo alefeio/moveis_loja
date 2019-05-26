@@ -37,7 +37,7 @@ export class LoginComponent implements OnInit {
   async existe(emailDigitado){
     let resp = await this.autenticacao.verificarUsuarioPorEmail(emailDigitado)
     if(resp.length === 0){
-      this.msgErro = 'Você Precisa se cadastrar para fazer o login!'
+      this.msgErro = 'Email incorreto ou nao cadastrado na base de dados. Se ainda nao for cadastrado Por favor Cadastre-se!'
     }
   }
 
