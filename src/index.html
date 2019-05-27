@@ -8,11 +8,27 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous"> 
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
+    integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
 </head>
 
 <body>
   <app-root></app-root>
+  <script type="text/javascript">
+    function makeSessionId() {
+      var text = "";
+      var possible = "abcdefghijklmnopqrstuvwxyz0123456789";
+
+      for (var i = 0; i < 30; i++) {
+        text += possible.charAt(Math.floor(Math.random() * possible.length));
+      }
+      return text;
+    }
+    var getNetFP = makeSessionId();
+    console.log('GETNET: ', getNetFP)
+  </script>
+  <script src="https://h.online-metrix.net/fp/tags.js?org_id=1snn5n9w&amp;session_id=merchantID&getNetFP;"
+    type="text/javascript"></script>
 </body>
 
 </html>

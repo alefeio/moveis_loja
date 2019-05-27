@@ -5,6 +5,7 @@ import { Router } from '@angular/router'
 import { Bd } from '../../bd.service'
 
 declare var $: any
+declare var getNetFP:any
 
 @Component({
   selector: 'app-pagamento',
@@ -174,7 +175,6 @@ export class PagamentoComponent implements OnInit {
         if (event.keyCode == 5 && $(".expire").val().length == 4) {
           $(this).val(month);
         }
-
         if ($(this).val().length === 0) {
           $(".date_value").text("MM/YY");
         }
@@ -192,6 +192,7 @@ export class PagamentoComponent implements OnInit {
       this.rota.navigate(['']);
     }
     $('.modal').modal('hide')
+    console.log('GetNet =>',getNetFP);
   }
 
   formaPagamento(p) {
