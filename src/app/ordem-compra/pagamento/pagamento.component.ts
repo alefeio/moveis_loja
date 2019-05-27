@@ -3,7 +3,6 @@ import { CarrinhoService } from '../../carrinho.service'
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router'
 import { Bd } from '../../bd.service'
-
 declare var $: any
 declare var getNetFP: any
 
@@ -31,7 +30,7 @@ export class PagamentoComponent implements OnInit {
     numCartao: new FormControl(null, [Validators.required]),
     nomeTitular: new FormControl(null, [Validators.required]),
     dataValidade: new FormControl(null, [Validators.required]),
-    cvv: new FormControl(null, [Validators.required])
+    cvv: new FormControl(null, [Validators.required, Validators.minLength(3)])
   })
 
   formaPagamentoDados: FormGroup = new FormGroup({
@@ -119,11 +118,6 @@ export class PagamentoComponent implements OnInit {
         } else if (img === "Elo") {
           selected_card = 4;
         } 
-       // else if (parseInt(number.substring(0, 4)) == 5019) {
-        //   selected_card = 5;
-        // } else {
-        //   selected_card = -1;
-        // }
         if (selected_card != -1) {
           html.setAttribute("style", "--card-color: " + cards[selected_card].colore);
           $(".bankid").attr("src", cards[selected_card].src).show();
@@ -210,7 +204,6 @@ export class PagamentoComponent implements OnInit {
       this.rota.navigate(['']);
     }
     $('.modal').modal('hide')
-    console.log('GetNet =>', getNetFP);
   }
 
   formaPagamento(p) {
