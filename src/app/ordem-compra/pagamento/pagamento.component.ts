@@ -5,7 +5,7 @@ import { Router } from '@angular/router'
 import { Bd } from '../../bd.service'
 
 declare var $: any
-declare var getNetFP:any
+declare var getNetFP: any
 
 @Component({
   selector: 'app-pagamento',
@@ -42,31 +42,30 @@ export class PagamentoComponent implements OnInit {
     private rota: Router,
     private bd: Bd) {
     $(function () {
-      var that = this;
       var cards = [{
         nome: "mastercard",
         colore: "#0061A8",
         src: "https://upload.wikimedia.org/wikipedia/commons/0/04/Mastercard-logo.png"
-      }, {
+      },
+      {
         nome: "visa",
         colore: "#E2CB38",
         src: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Visa_Inc._logo.svg/2000px-Visa_Inc._logo.svg.png"
-      }, {
-        nome: "dinersclub",
-        colore: "#888",
-        src: "http://www.worldsultimatetravels.com/wp-content/uploads/2016/07/Diners-Club-Logo-1920x512.png"
-      }, {
+      },
+      {
+        nome: "Hipercard",
+        colore: "#c11229",
+        src: "src/assets/cartoes_img/hipercard.png"
+      },
+      {
         nome: "americanExpress",
         colore: "#108168",
         src: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/American_Express_logo.svg/600px-American_Express_logo.svg.png"
-      }, {
-        nome: "discover",
-        colore: "#86B8CF",
-        src: "https://lendedu.com/wp-content/uploads/2016/03/discover-it-for-students-credit-card.jpg"
-      }, {
-        nome: "dankort",
-        colore: "#0061A8",
-        src: "https://upload.wikimedia.org/wikipedia/commons/5/51/Dankort_logo.png"
+      },
+      {
+        nome: "Elo",
+        colore: "#0d5798",
+        src: "src/assets/cartoes_img/elo.png"
       }];
       var month = 0;
       var html = document.getElementsByTagName('html')[0];
@@ -90,22 +89,41 @@ export class PagamentoComponent implements OnInit {
       $(".number").keyup(function (event) {
         $(".card_number").text($(this).val());
         number = $(this).val();
-        console.log('numero Cartao',number);
-        if (parseInt(number.substring(0, 2)) > 50 && parseInt(number.substring(0, 2)) < 56) {
-          selected_card = 0;
-        } else if (parseInt(number.substring(0, 1)) == 4) {
-          selected_card = 1;
-        } else if (parseInt(number.substring(0, 2)) == 36 || parseInt(number.substring(0, 2)) == 38 || parseInt(number.substring(0, 2)) == 39) {
-          selected_card = 2;
-        } else if (parseInt(number.substring(0, 2)) == 34 || parseInt(number.substring(0, 2)) == 37) {
-          selected_card = 3;
-        } else if (parseInt(number.substring(0, 2)) == 65) {
-          selected_card = 4;
-        } else if (parseInt(number.substring(0, 4)) == 5019) {
-          selected_card = 5;
-        } else {
-          selected_card = -1;
+        var numeroCartao = number.replace(/[^0-9]+/g, '');
+        var img
+        var cartoes = {
+          Visa: /^4[0-9]{12}(?:[0-9]{3})/,
+          Mastercard: /^5[1-5][0-9]{14}/,
+          Diners: /^3(?:0[0-5]|[68][0-9])[0-9]{11}/,
+          Amex: /^3[47][0-9]{13}/,
+          Discover: /^6(?:011|5[0-9]{2})[0-9]{12}/,
+          Hipercard: /^(606282\d{10}(\d{3})?)|(3841\d{15})/,
+          Elo: /^((((636368)|(438935)|(504175)|(451416)|(636297))\d{0,10})|((5067)|(4576)|(4011))\d{0,12})/,
+          Jcb: /^(?:2131|1800|35\d{3})\d{11}/,
+          Aura: /^(5078\d{2})(\d{2})(\d{11})$/
+        };
+        for (var bandeira in cartoes) {
+          if (cartoes[bandeira].test(numeroCartao)) {
+            img = bandeira;
+          }
         }
+
+        if (img === "Mastercard") {
+          selected_card = 0;
+        } else if (img === "Visa") {
+          selected_card = 1;
+        } else if (img === "Hipercard") {
+          selected_card = 2;
+        } else if (img === "Amex") {
+          selected_card = 3;
+        } else if (img === "Elo") {
+          selected_card = 4;
+        } 
+       // else if (parseInt(number.substring(0, 4)) == 5019) {
+        //   selected_card = 5;
+        // } else {
+        //   selected_card = -1;
+        // }
         if (selected_card != -1) {
           html.setAttribute("style", "--card-color: " + cards[selected_card].colore);
           $(".bankid").attr("src", cards[selected_card].src).show();
@@ -192,7 +210,7 @@ export class PagamentoComponent implements OnInit {
       this.rota.navigate(['']);
     }
     $('.modal').modal('hide')
-    console.log('GetNet =>',getNetFP);
+    console.log('GetNet =>', getNetFP);
   }
 
   formaPagamento(p) {
@@ -282,4 +300,3 @@ export class PagamentoComponent implements OnInit {
     return false;
   }
 }
- 
