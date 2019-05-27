@@ -24,6 +24,7 @@ export class PagamentoComponent implements OnInit {
   mostrarAlert
   idPedidoCompra
   msgCartao: string = undefined
+  bandeira: string
 
   dadosFinalizarCompra: FormGroup = new FormGroup({
     numCartao: new FormControl(null, [Validators.required]),
@@ -40,6 +41,7 @@ export class PagamentoComponent implements OnInit {
     private rota: Router,
     private bd: Bd) {
     $(function () {
+      var that = this;
       var cards = [{
         nome: "mastercard",
         colore: "#0061A8",
@@ -87,6 +89,7 @@ export class PagamentoComponent implements OnInit {
       $(".number").keyup(function (event) {
         $(".card_number").text($(this).val());
         number = $(this).val();
+        console.log('numero Cartao',number);
         if (parseInt(number.substring(0, 2)) > 50 && parseInt(number.substring(0, 2)) < 56) {
           selected_card = 0;
         } else if (parseInt(number.substring(0, 1)) == 4) {
@@ -161,19 +164,19 @@ export class PagamentoComponent implements OnInit {
             } else {
               $(this).val(0 + event.key + "/");
             }
-          } else if ($(this).val().length > 2 && $(this).val().length < 7) {
+          } else if ($(this).val().length > 2 && $(this).val().length < 5) {
             return event.charCode;
           }
         }
         return false;
       }).keyup(function (event) {
         $(".date_value").html($(this).val());
-        if (event.keyCode == 8 && $(".expire").val().length == 4) {
+        if (event.keyCode == 5 && $(".expire").val().length == 4) {
           $(this).val(month);
         }
 
         if ($(this).val().length === 0) {
-          $(".date_value").text("MM/YYYY");
+          $(".date_value").text("MM/YY");
         }
       }).keydown(function () {
         $(".date_value").html($(this).val());
@@ -217,7 +220,8 @@ export class PagamentoComponent implements OnInit {
         this.pedido.pagamento = {
           formaPagamento: this.pagamento,
           qtdParcelas: this.qtdParcelas,
-          valorParcela: this.valorParcela
+          valorParcela: this.valorParcela,
+          valorTotal: this.carrinhoService.totalCarrinhoCompras()
         }
         if (dadosCartao.cvv != null &&
           dadosCartao.dataValidade != null &&
@@ -225,6 +229,7 @@ export class PagamentoComponent implements OnInit {
           dadosCartao.numCartao != null) {
           let numCartao = dadosCartao.numCartao.replace(/\s/g, '')
           dadosCartao.numCartao = numCartao
+          dadosCartao.bandeira = this.bandeira;
           this.pedido.dataPedido = dataPedido
           this.pedido.statusPedido = 1
           await this.bd.gerarPedido(this.pedido);
@@ -254,4 +259,26 @@ export class PagamentoComponent implements OnInit {
       this.estiloAlerta = ''
     }, 4000)
   }
+
+  pegarBandeira(numeroCartao) {
+    var numeroCartao = numeroCartao.replace(/[^0-9]+/g, '');
+    var cartoes = {
+      Visa: /^4[0-9]{12}(?:[0-9]{3})/,
+      Mastercard: /^5[1-5][0-9]{14}/,
+      Diners: /^3(?:0[0-5]|[68][0-9])[0-9]{11}/,
+      Amex: /^3[47][0-9]{13}/,
+      Discover: /^6(?:011|5[0-9]{2})[0-9]{12}/,
+      Hipercard: /^(606282\d{10}(\d{3})?)|(3841\d{15})/,
+      Elo: /^((((636368)|(438935)|(504175)|(451416)|(636297))\d{0,10})|((5067)|(4576)|(4011))\d{0,12})/,
+      Jcb: /^(?:2131|1800|35\d{3})\d{11}/,
+      Aura: /^(5078\d{2})(\d{2})(\d{11})$/
+    };
+    for (var bandeira in cartoes) {
+      if (cartoes[bandeira].test(numeroCartao)) {
+        this.bandeira = bandeira;
+      }
+    }
+    return false;
+  }
 }
+ 
