@@ -243,7 +243,7 @@ export class PagamentoComponent implements OnInit {
           dadosCartao.numCartao = numCartao
           dadosCartao.bandeira = this.bandeira;
           this.pedido.dataPedido = dataPedido
-          this.pedido.statusPedido = 1
+          this.pedido.statusPedido = 0
           this.pedido.isDevice = getNetFP;
           await this.bd.gerarPedido(this.pedido);
           this.idPedidoCompra = this.pedido.codigo;
