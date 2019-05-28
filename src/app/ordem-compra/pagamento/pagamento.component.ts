@@ -244,6 +244,7 @@ export class PagamentoComponent implements OnInit {
           dadosCartao.bandeira = this.bandeira;
           this.pedido.dataPedido = dataPedido
           this.pedido.statusPedido = 1
+          this.pedido.isDevice = getNetFP;
           await this.bd.gerarPedido(this.pedido);
           this.idPedidoCompra = this.pedido.codigo;
           localStorage.removeItem('pedido');
@@ -291,5 +292,9 @@ export class PagamentoComponent implements OnInit {
       }
     }
     return false;
+  }
+
+  inicio(){
+    this.rota.navigate(['']);
   }
 }
