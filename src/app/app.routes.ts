@@ -23,7 +23,7 @@ import { PagamentoComponent } from './ordem-compra/pagamento/pagamento.component
 import { SessionService } from './sessao.service';
 
 export const ROUTES: Routes = [
-    { path: '', component: HomeComponent },
+    { path: '', redirectTo: 'home', pathMatch: 'full' },
     { path: 'home', component: HomeComponent },
     { path: 'quarto', component: QuartoComponent },
     { path: 'sala', component: SalaComponent },
