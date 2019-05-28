@@ -7,7 +7,7 @@
       <div class="thumbnails">
         <div #scrollHorizontal class="middle">
           <a class="prev" (click)="scrollEsquerda()">&#10094;</a>
-          <img id="img" *ngFor="let imagem of imagemCor; let i = index" (click)="imgHover(i)" [src]="imagem.url" />
+          <img id="img" *ngFor="let imagem of imagemCor; let i = index" (click)="imgHover(i)" [src]="imagem.url"/>
           <a class="next" (click)="scrollDireita()" style="margin-right: 15px">&#10095;</a>
         </div>
       </div>

@@ -21,6 +21,7 @@ import { CarrinhoCompraComponent } from './ordem-compra/carrinho-compra/carrinho
 import { DadosAdicionaisComponent } from './ordem-compra/dados-adicionais/dados-adicionais.component';
 import { PagamentoComponent } from './ordem-compra/pagamento/pagamento.component'
 import { SessionService } from './sessao.service';
+import { DetalhePedidoComponent } from './cliente/pedidos/detalhe-pedido/detalhe-pedido.component';
 
 export const ROUTES: Routes = [
     { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -53,5 +54,6 @@ export const ROUTES: Routes = [
     },
     { path: 'cliente', component: ClienteComponent, canActivate: [SessionService] },
     { path: 'cliente/editar-perfil', component: EditarPerfilComponent, canActivate: [SessionService] },
+    { path: 'cliente/pedidos/pedidoDetalhe/:id', component: DetalhePedidoComponent, canActivate: [SessionService] },
     { path: 'admin', component: AdminComponent, canActivate: [SessionService] }
 ]
