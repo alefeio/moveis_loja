@@ -1,32 +1,56 @@
 <h4><i class="fas fa-address-card"></i> Meus Pedidos</h4>
-
-<div class="row" style="background: #555; color: white; font-weight: bold;">
-  <div class="col-sm-4" style="border:1px solid #bbb">
-    ID Pedido
-  </div>
-  <div class="col-sm-6" style="border:1px solid #bbb">
-    Itens
-  </div>
-  <div class="col-sm-2" style="border:1px solid #bbb">
-    Status
-  </div>
-</div>
-<div *ngFor="let pedido of pedidos" class="row" style="background: #efefef">
-  <div class="col-sm-4" style="border:1px solid #bbb">
-    {{pedido._id}}
-  </div>
-  <div class="col-sm-6" style="border:1px solid #bbb">
-    <div class="row" *ngFor="let item of pedido.produtos" style="margin:5px">
-      <div class="col-md-3">
-        <img [src]="item.cor.imagem[0].url" alt="" class="img-fluid">
-      </div>
-      <div class="col-md-9">
-        Produto: {{item.nome}} <br>
-        Quantidade: {{item.quantidade}}
-      </div>
+<div style="padding-bottom: 15px;">
+  <div class="row" style="background: #555; color: white; font-weight: bold;">
+    <div class="col-sm-4" style="border:1px solid #bbb">
+      # Pedido
+    </div>
+    <div class="col-sm-3" style="border:1px solid #bbb">
+      Data
+    </div>
+    <!-- <div class="col-sm-6" style="border:1px solid #bbb">
+      Itens
+    </div> -->
+    <div class="col-sm-3" style="border:1px solid #bbb">
+      Valor
+    </div>
+    <div class="col-sm-2" style="border:1px solid #bbb">
+      Status
     </div>
   </div>
-  <div class="col-sm-2" style="border:1px solid #bbb">
+  <div *ngFor="let pedido of pedidos" class="row" style="background: #efefef; cursor: pointer;" (click)="selectPedido(pedido._id)">
+    <div class="col-sm-4" style="border:1px solid #bbb">
+      {{pedido._id}}
+    </div>
+    <div class="col-sm-3" style="border:1px solid #bbb">
+      {{pedido.dataPedido | date: 'dd/MM/yyyy'}}
+    </div>
+    <!-- <div class="col-sm-6" style="border:1px solid #bbb">
+        Itens
+      </div> -->
+    <div class="col-sm-3" style="border:1px solid #bbb">
+      {{pedido.pagamento.valorTotal | currency: 'BRL'}}
+    </div>
+    <div class="col-sm-2" style="border:1px solid #bbb">
+      <span *ngIf="pedido.statusPedido == 2">APROVADO</span>
+      <span *ngIf="pedido.statusPedido == 1">PENDENTE</span>
+      <span *ngIf="pedido.statusPedido == 0">CANCELADO</span>
+    </div>
+    <!-- <div class="col-sm-4" style="border:1px solid #bbb">
+      {{pedido._id}}
+    </div>
+    <div class="col-sm-6" style="border:1px solid #bbb">
+      <div class="row" *ngFor="let item of pedido.produtos" style="margin:5px">
+        <div class="col-md-3">
+          <img [src]="item.cor.imagem[0].url" alt="" class="img-fluid">
+        </div>
+        <div class="col-md-9">
+          Produto: {{item.nome}} <br>
+          Quantidade: {{item.quantidade}}
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-2" style="border:1px solid #bbb">
       {{pedido.statusPedido}}
+    </div> -->
   </div>
 </div>

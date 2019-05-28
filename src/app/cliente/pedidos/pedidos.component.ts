@@ -23,5 +23,10 @@ export class PedidosComponent implements OnInit {
 
   async consultarPedidos() {
     this.pedidos = await this.bd.buscarPedidos(this._idUsuario);
+    console.log(this.pedidos)
+  }
+
+  async selectPedido(id){
+    console.log(id);
   }
 }
