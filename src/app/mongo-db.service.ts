@@ -7,7 +7,7 @@ import { SessionService } from './sessao.service';
   providedIn: 'root'
 })
 export class MongoDBService {
-  servidor = "http://localhost:8000"
+  servidor = "http://localhost:8080"
 
   constructor(
     private http: Http,
