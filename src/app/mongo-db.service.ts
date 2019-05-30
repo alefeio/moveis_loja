@@ -37,7 +37,7 @@ export class MongoDBService {
   }
   async get(url) {
     try {
-      let data: any = await this.http.get(`${this.servidor}${url}`).toPromise()
+      let data: any = await this.http.get(`${this.servidor}${url}`,this.headers()).toPromise()
       if (data.status != 400 || data.status != 403) {
         return JSON.parse(data._body);
       }
@@ -55,7 +55,7 @@ export class MongoDBService {
   }
 
   delete(url) {
-    return this.http.delete(`${this.servidor}${url}`).toPromise()
+    return this.http.delete(`${this.servidor}${url}`, this.headers()).toPromise()
   }
 
 
