@@ -8,6 +8,7 @@ import { SessionService } from './sessao.service';
 })
 export class MongoDBService {
   servidor = "http://localhost:8080"
+  // servidor = "http://burnished-stone-242017.appspot.com"
 
   constructor(
     private http: Http,
@@ -26,6 +27,7 @@ export class MongoDBService {
     // headers.append('empresa', this.session.getSessao() ?
     //   this.session.getSessao().empresa._id ?
     //     this.session.getSessao().empresa._id : '' : '');
+    headers.append("Content-type", "application/json")
     headers.append('authorization', this.session.getSessao() ?
       `Bearer ${this.session.getSessao().accessToken}` : '');
 
@@ -37,7 +39,7 @@ export class MongoDBService {
   }
   async get(url) {
     try {
-      let data: any = await this.http.get(`${this.servidor}${url}`,this.headers()).toPromise()
+      let data: any = await this.http.get(`${this.servidor}${url}`, this.headers()).toPromise()
       if (data.status != 400 || data.status != 403) {
         return JSON.parse(data._body);
       }

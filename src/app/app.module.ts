@@ -55,6 +55,7 @@ import { CarrinhoCompraComponent } from './ordem-compra/carrinho-compra/carrinho
 import { DadosAdicionaisComponent } from './ordem-compra/dados-adicionais/dados-adicionais.component';
 import { PagamentoComponent } from './ordem-compra/pagamento/pagamento.component';
 import { SessionService } from './sessao.service';
+import { MaskDirective } from './diretivas/mask.directive';
 import { DetalhePedidoComponent } from './cliente/pedidos/detalhe-pedido/detalhe-pedido.component';
 
 @NgModule({
@@ -92,6 +93,7 @@ import { DetalhePedidoComponent } from './cliente/pedidos/detalhe-pedido/detalhe
     RecuperarSenhaComponent,
     RodaPeComponent,
     Mascara,
+    MaskDirective,
     CarrinhoCompraComponent,
     DadosAdicionaisComponent,
     PagamentoComponent,

@@ -26,7 +26,7 @@ export class CadastroComponent implements OnInit {
   cpfValidoReceita: boolean;
   emailValido: boolean;
 
-  constructor(private autenticacao: Autenticacao,
+  constructor(public autenticacao: Autenticacao,
               private sessao: SessionService) {
   }
 

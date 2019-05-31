@@ -26,7 +26,7 @@ export class HomeComponent implements OnInit {
     private bd: Bd,
     private router: Router) { }
 
-  ngOnInit() {
+  async ngOnInit() {
     $('html,body').scrollTop(0);
     //this.ofertas = this.ofertasService.getOfertas()
     //console.log(this.ofertas)
@@ -71,6 +71,7 @@ export class HomeComponent implements OnInit {
 
   produtosEcommerce() {
     this.bd.buscarProdutosEcommerce().then((resp: any) => {
+      console.log('resp:', resp)
       // this.produtosGestao = resp
       let salaDestaque
       let quartoDestaque

@@ -31,7 +31,7 @@ export class TopoComponent implements OnInit {
     private ofertasService: OfertasService,
     private autenticacao: Autenticacao,
     private bd: Bd,
-    private sessao: SessionService
+    public sessao: SessionService
   ) {
     let that = this;
     window.onscroll = function () {
