@@ -27,6 +27,7 @@ export class DetalhePedidoComponent implements OnInit {
     let resp = await this.bd.buscarPedidoID(this.id); 
     this.pedidoDetalhe = resp[0];
     this.produtosPedido = resp[0].produtos;
+    console.log(this.pedidoDetalhe)
   }
 
 }

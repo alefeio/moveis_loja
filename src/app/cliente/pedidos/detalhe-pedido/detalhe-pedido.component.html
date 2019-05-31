@@ -32,6 +32,12 @@
           <span *ngIf="pedidoDetalhe.statusPedido == 1">PENDENTE</span>
           <span *ngIf="pedidoDetalhe.statusPedido == 0">CANCELADO</span></b>
       </div>
+      <div style="background: #f5f7fa; border: 1px solid #C33C44; padding: 5%; margin-top: 5%">
+        <h3>Dados do Cartão</h3>
+        <span>Nome do Titular: </span><b><span>{{pedidoDetalhe.dadosCartao.nomeTitular}}</span></b><br>
+        <span>Numero do Cartão: </span><b><span>{{pedidoDetalhe.dadosCartao.numCartao}}</span></b><br>
+        <span>Bandeira: </span><b><span>{{pedidoDetalhe.dadosCartao.bandeira}}</span></b>
+      </div>
     </div>
     <div class="col-md-7">
       <div class="row text-center container-carrinho" *ngFor="let produto of produtosPedido">
