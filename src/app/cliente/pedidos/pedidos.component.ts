@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Bd } from 'src/app/bd.service';
 import { SessionService } from '../../sessao.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-pedidos',
@@ -13,7 +14,8 @@ export class PedidosComponent implements OnInit {
   public pedidos: any
 
   constructor(private bd: Bd,
-              private sessao:SessionService) { }
+    private sessao: SessionService,
+    private rota: Router) { }
 
   ngOnInit() {
     let usuario = this.sessao.getSessao();
@@ -23,10 +25,9 @@ export class PedidosComponent implements OnInit {
 
   async consultarPedidos() {
     this.pedidos = await this.bd.buscarPedidos(this._idUsuario);
-    console.log(this.pedidos)
   }
 
-  async selectPedido(id){
-    console.log(id);
+  selectPedido(id) {
+    this.rota.navigate(['cliente/pedidos/pedidoDetalhe', id]);
   }
 }

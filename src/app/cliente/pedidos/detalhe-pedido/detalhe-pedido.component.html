@@ -1,0 +1,64 @@
+<div style="margin-left: 10%; margin-top: 2%">
+  <h2 style="margin: 0">Detalhes Pedido</h2>
+  <span
+    style="background-color: rgba(243, 194, 61, 1);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+</div>
+
+<div class="detalhe">
+  <div class="row" style="margin: 2%">
+    <div class="col-md-5">
+      <div style="background: #f5f7fa; border: 1px solid #C33C44; padding: 5%; margin-bottom: 5%">
+        <h3>Dados do Usuário</h3>
+        <span>Nome: </span><span><b>{{pedidoDetalhe.nome}}</b></span><br>
+        <span>Email: </span><b><span>{{pedidoDetalhe.email}}</span></b><br>
+        <span>Contato: </span><b><span>{{pedidoDetalhe.celular}}</span></b><br>
+        <span>CPF: </span><b><span>{{pedidoDetalhe.cpf}}</span></b><br>
+      </div>
+      <div style="background: #f5f7fa; border: 1px solid #C33C44; padding: 5%; margin-top: 5%">
+        <h3>Dados do Pedido</h3>
+        <span>Código do Pedido: </span><span><b>{{pedidoDetalhe.codigo ? pedidoDetalhe.codigo : ""}}</b></span><br>
+        <span>Data do Pedido: </span><span><b>{{pedidoDetalhe.dataPedido | date: 'dd/MM/yyyy'}}</b></span><br>
+        <span>Forma de Pagamento:
+        </span><span><b>{{pedidoDetalhe.pagamento.formaPagamento ? pedidoDetalhe.pagamento.formaPagamento : ""}}</b></span><br>
+        <span>Quantidade de Parcelas:
+        </span><b><span>{{pedidoDetalhe.pagamento.qtdParcelas ? pedidoDetalhe.pagamento.qtdParcelas : ""}}</span><span>X
+            Sem
+            Juros</span></b><br>
+        <span>Valor da Parcela:
+        </span><span><b>{{pedidoDetalhe.pagamento.valorParcela | currency: 'BRL'}}</b></span><br>
+        <span>Valor Total da Compra:
+        </span><span><b>{{pedidoDetalhe.pagamento.valorTotal | currency: 'BRL'}}</b></span><br>
+        <span>Status do Pedido: </span><b><span *ngIf="pedidoDetalhe.statusPedido == 2">APROVADO</span>
+          <span *ngIf="pedidoDetalhe.statusPedido == 1">PENDENTE</span>
+          <span *ngIf="pedidoDetalhe.statusPedido == 0">CANCELADO</span></b>
+      </div>
+      <div style="background: #f5f7fa; border: 1px solid #C33C44; padding: 5%; margin-top: 5%">
+        <h3>Dados do Cartão</h3>
+        <span>Nome do Titular: </span><b><span>{{pedidoDetalhe.dadosCartao.nomeTitular}}</span></b><br>
+        <span>Numero do Cartão: </span><b><span>{{pedidoDetalhe.dadosCartao.numCartao}}</span></b><br>
+        <span>Bandeira: </span><b><span>{{pedidoDetalhe.dadosCartao.bandeira}}</span></b>
+      </div>
+    </div>
+    <div class="col-md-7">
+      <div class="row text-center container-carrinho" *ngFor="let produto of produtosPedido">
+        <div class="col-md-4 p-0">
+          <img [src]="produto.cor.imagem[0].url" class="img-fluid" alt="">
+        </div>
+        <div class="col-md-4 info-esp">
+          <h5>{{produto.nome}}</h5>
+          <span></span><br>
+        </div>
+        <div class="col-md-2 qtd-esp">
+          <div class="top-table text-center">
+            <span>Quantidade</span><br>
+            <span class="esp-num">{{produto.quantidade}}</span>
+          </div>
+        </div>
+        <div class="col-md-2 preco" style="padding-top: 7%">
+          <span>Valor</span><br>
+          <span style="padding-top: 10px">{{produto.cor.valor | currency: 'BRL'}}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

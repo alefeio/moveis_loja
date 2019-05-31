@@ -2,8 +2,6 @@ import { Util } from './util.service';
 import * as backend from 'firebase'
 import { Injectable } from '@angular/core';
 import { Progresso } from './progresso.service';
-import { Observable } from 'rxjs';
-import { map, retry } from 'rxjs/operators';
 import { MongoDBService } from './mongo-db.service';
 
 @Injectable()
@@ -76,6 +74,10 @@ export class Bd {
 
     buscarPedidos(_idUsuario){
         return this.mongodb.get(`/v2/ecommerce/pedido/${_idUsuario}`)
+    }
+
+    buscarPedidoID(id){
+        return this.mongodb.get(`/v2/ecommerce/pedidoID/${id}`)
     }
 
     // public consultarDestaques(): Promise<any> {

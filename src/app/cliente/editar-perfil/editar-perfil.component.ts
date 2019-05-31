@@ -39,22 +39,22 @@ export class EditarPerfilComponent implements OnInit {
   }
 
   public formPerfil: FormGroup = new FormGroup({
-    'nome': new FormControl(null, Validators.required),
-    'email': new FormControl(null, Validators.required),
-    'cpf': new FormControl(null, Validators.required),
-    'nascimento': new FormControl(null),
-    'sexo': new FormControl(null),
-    'telefone': new FormControl(null),
-    'celular': new FormControl(null, Validators.required),
-    'endereco': new FormGroup({
-      'rua': new FormControl(null, Validators.required),
-      'numero': new FormControl(null, Validators.required),
-      'complemento': new FormControl(null),
-      'pontoReferencia': new FormControl(null, Validators.required),
-      'bairro': new FormControl(null, Validators.required),
-      'cep': new FormControl(null, Validators.required),
-      'cidade': new FormControl(null, Validators.required),
-      'uf': new FormControl(null, Validators.required)
+    nome: new FormControl(null, Validators.required),
+    email: new FormControl(null, Validators.required),
+    cpf: new FormControl(null, Validators.required),
+    nascimento: new FormControl(null),
+    sexo: new FormControl(null),
+    telefone: new FormControl(null),
+    celular: new FormControl(null, Validators.required),
+    endereco: new FormGroup({
+      rua: new FormControl(null, Validators.required),
+      numero: new FormControl(null, Validators.required),
+      complemento: new FormControl(null),
+      pontoReferencia: new FormControl(null, Validators.required),
+      bairro: new FormControl(null, Validators.required),
+      cep: new FormControl(null, Validators.required),
+      cidade: new FormControl(null, Validators.required),
+      uf: new FormControl(null, Validators.required)
     })
   })
 

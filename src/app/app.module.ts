@@ -56,6 +56,7 @@ import { DadosAdicionaisComponent } from './ordem-compra/dados-adicionais/dados-
 import { PagamentoComponent } from './ordem-compra/pagamento/pagamento.component';
 import { SessionService } from './sessao.service';
 import { MaskDirective } from './diretivas/mask.directive';
+import { DetalhePedidoComponent } from './cliente/pedidos/detalhe-pedido/detalhe-pedido.component';
 
 @NgModule({
   declarations: [
@@ -95,7 +96,8 @@ import { MaskDirective } from './diretivas/mask.directive';
     MaskDirective,
     CarrinhoCompraComponent,
     DadosAdicionaisComponent,
-    PagamentoComponent
+    PagamentoComponent,
+    DetalhePedidoComponent
   ],
   imports: [
     BrowserModule,

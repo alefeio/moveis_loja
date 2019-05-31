@@ -85,10 +85,6 @@ export class DadosAdicionaisComponent implements OnInit {
     this.pedido = JSON.parse(localStorage.getItem('pedido'))
     this.email = this.sessao.getSessao();
     $('#exampleModal').modal('hide')
-    // backend.auth().onAuthStateChanged((user) => {
-    //   this.email = user.email
-    //   this.consultarUsuario()
-    // })
   }
 
   async incluirDadosPerfil() {
@@ -103,16 +99,6 @@ export class DadosAdicionaisComponent implements OnInit {
     this.pedidoAddDados(dadosAdicionais)
     await this.bd.incluirDadosPerfil(this.email._id, dadosAdicionais);
     this.formDadoAdicionais.reset();
-    // let alertaResp = resp.json();
-    // this.alert(alertaResp.style, alertaResp.msg);
-    // this.alerta = alertaResp.msg
-    // this.bd.incluirDadosPerfil(dadosAdicionais)
-    //   .then((feed: any) => {
-    //     this.alert(feed.estilo, feed.msg)
-    //     this.alerta = feed.msg
-    //     this.pedidoAddDados(dadosAdicionais)
-    //     this.formDadoAdicionais.reset();
-    //   })
   }
 
   pedidoAddDados(dadosAdicionais) {

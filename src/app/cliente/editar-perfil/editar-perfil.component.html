@@ -9,15 +9,17 @@
         <div class="col-md-6">
           <label for="nome">Nome</label>
           <input type="text" class="form-control form-control-lg rounded-0" formControlName="nome">
-          <small class="form-text error">
-            <span style="color: red">* Campo Obrigatório!</span>
+          <small *ngIf="formPerfil.controls['nome'].errors && !formPerfil.controls.nome.untouched"
+            class="form-text error">
+            <span *ngIf="formPerfil.controls['nome'].errors.required" style="color: red"> Obrigatório!</span>
           </small>
         </div>
         <div class="col-md-6">
           <label for="email">Email </label>
           <input type="email" class="form-control form-control-lg rounded-0" formControlName="email">
-          <small class="form-text error">
-            <span style="color: red">* Campo Obrigatório!</span>
+          <small *ngIf="formPerfil.controls['email'].errors && !formPerfil.controls.email.untouched"
+            class="form-text error">
+            <span *ngIf="formPerfil.controls['email'].errors.required" style="color: red"> Obrigatório!</span>
           </small>
         </div>
       </div>
@@ -26,8 +28,9 @@
           <label for="cpf">CPF</label>
           <input type="text" mascara="999.999.999-99" class="form-control form-control-lg rounded-0"
             formControlName="cpf">
-          <small class="form-text error">
-            <span style="color: red">* Campo Obrigatório!</span>
+          <small *ngIf="formPerfil.controls['cpf'].errors && !formPerfil.controls.cpf.untouched"
+            class="form-text error">
+            <span *ngIf="formPerfil.controls['cpf'].errors.required" style="color: red"> Obrigatório!</span>
           </small>
         </div>
         <div class="col-md-3 mt-3">
@@ -61,8 +64,12 @@
           <label for="celular">Celular</label>
           <input type="text" mascara="(99) 99999-9999" class="form-control form-control-lg rounded-0"
             formControlName="celular">
-          <small class="form-text error">
-            <span style="color: red">* Campo Obrigatório!</span>
+          <small
+            *ngIf="formPerfil.controls['celular'].errors && !formPerfil.controls.celular.untouched"
+            class="form-text error">
+            <span *ngIf="formPerfil.controls['celular'].errors.required"
+              style="color: red">
+              Obrigatório!</span>
           </small>
         </div>
       </div>
@@ -73,19 +80,32 @@
             <label for="cep">CEP</label>
             <input type="text" (blur)="consultaCEP()" mascara="99999-999" class="form-control form-control-lg rounded-0"
               formControlName="cep">
-            <small class="form-text error">
-              <span style="color: red">* Campo Obrigatório!</span>
+            <small
+              *ngIf="formPerfil.controls['endereco'].controls['cep'].errors && !formPerfil.controls.endereco.controls.cep.untouched"
+              class="form-text error">
+              <span *ngIf="formPerfil.controls['endereco'].controls['cep'].errors.required" style="color: red">
+                Obrigatório!</span>
             </small>
           </div>
           <div class="col-md-7 mt-3">
             <label for="rua">Rua</label>
             <input type="text" class="form-control form-control-lg rounded-0" formControlName="rua">
+            <small
+              *ngIf="formPerfil.controls['endereco'].controls['rua'].errors && !formPerfil.controls.endereco.controls.rua.untouched"
+              class="form-text error">
+              <span *ngIf="formPerfil.controls['endereco'].controls['rua'].errors.required" style="color: red">
+                Obrigatório!</span>
+            </small>
           </div>
           <div class="col-md-2 mt-3">
             <label for="num">Numero</label>
             <input type="text" class="form-control form-control-lg rounded-0" formControlName="numero">
-            <small class="form-text error">
-              <span style="color: red">* Campo Obrigatório!</span>
+            <small
+              *ngIf="formPerfil.controls['endereco'].controls['numero'].errors && !formPerfil.controls.endereco.controls.numero.untouched"
+              class="form-text error">
+              <span *ngIf="formPerfil.controls['endereco'].controls['numero'].errors.required"
+                style="color: red">
+                Obrigatório!</span>
             </small>
           </div>
         </div>
@@ -97,8 +117,12 @@
           <div class="col-md-6 mt-3">
             <label for="comp">Ponto de Referencia </label>
             <input type="text" class="form-control form-control-lg rounded-0" formControlName="pontoReferencia">
-            <small class="form-text error">
-              <span style="color: red">* Campo Obrigatório!</span>
+            <small
+              *ngIf="formPerfil.controls['endereco'].controls['pontoReferencia'].errors && !formPerfil.controls.endereco.controls.pontoReferencia.untouched"
+              class="form-text error">
+              <span *ngIf="formPerfil.controls['endereco'].controls['pontoReferencia'].errors.required"
+                style="color: red">
+                Obrigatório!</span>
             </small>
           </div>
         </div>
@@ -106,10 +130,24 @@
           <div class="col-md-3 mt-3">
             <label for="bairro">Bairro</label>
             <input type="text" class="form-control form-control-lg rounded-0" formControlName="bairro">
+            <small
+              *ngIf="formPerfil.controls['endereco'].controls['bairro'].errors && !formPerfil.controls.endereco.controls.bairro.untouched"
+              class="form-text error">
+              <span *ngIf="formPerfil.controls['endereco'].controls['bairro'].errors.required"
+                style="color: red">
+                Obrigatório!</span>
+            </small>
           </div>
           <div class="col-md-3 mt-3">
             <label for="cidade">Cidade</label>
             <input type="text" class="form-control form-control-lg rounded-0" formControlName="cidade">
+            <small
+              *ngIf="formPerfil.controls['endereco'].controls['cidade'].errors && !formPerfil.controls.endereco.controls.cidade.untouched"
+              class="form-text error">
+              <span *ngIf="formPerfil.controls['endereco'].controls['cidade'].errors.required"
+                style="color: red">
+                Obrigatório!</span>
+            </small>
           </div>
         </div>
         <div class="row">
@@ -145,6 +183,12 @@
               <option value="SE">Sergipe</option>
               <option value="TO">Tocantins</option>
             </select>
+            <small
+              *ngIf="formPerfil.controls['endereco'].controls['uf'].errors && !formPerfil.controls.endereco.controls.uf.untouched"
+              class="form-text error">
+              <span *ngIf="formPerfil.controls['endereco'].controls['uf'].errors.required" style="color: red">
+                Obrigatório!</span>
+            </small>
           </div>
         </div>
       </div>
