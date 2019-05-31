@@ -311,6 +311,10 @@ export class Bd {
         return this.mongodb.get(`/v2/ecommerce/produtos/${_id}`)
     }
 
+    teste(){
+        return this.mongodb.get(`/teste`);
+    }
+
     // public pesquisaOfertas(termo: string): Observable<Oferta[]> {
     //     return this.http.get(`${URL_API}/ofertas?titulo_like=${termo}`)
     //         .pipe(retry(10))

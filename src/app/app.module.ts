@@ -55,6 +55,7 @@ import { CarrinhoCompraComponent } from './ordem-compra/carrinho-compra/carrinho
 import { DadosAdicionaisComponent } from './ordem-compra/dados-adicionais/dados-adicionais.component';
 import { PagamentoComponent } from './ordem-compra/pagamento/pagamento.component';
 import { SessionService } from './sessao.service';
+import { MaskDirective } from './diretivas/mask.directive';
 
 @NgModule({
   declarations: [
@@ -91,6 +92,7 @@ import { SessionService } from './sessao.service';
     RecuperarSenhaComponent,
     RodaPeComponent,
     Mascara,
+    MaskDirective,
     CarrinhoCompraComponent,
     DadosAdicionaisComponent,
     PagamentoComponent

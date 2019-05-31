@@ -51,7 +51,7 @@ export class CarrinhoCompraComponent implements OnInit {
   usuarioPedido: any = {}
 
   constructor(
-    private carrinhoService: CarrinhoService,
+    public carrinhoService: CarrinhoService,
     private bd: Bd,
     private rota: Router,
     private rotaAtiva: ActivatedRoute,

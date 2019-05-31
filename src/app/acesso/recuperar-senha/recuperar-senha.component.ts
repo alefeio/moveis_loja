@@ -18,7 +18,7 @@ export class RecuperarSenhaComponent implements OnInit {
     'email': new FormControl(null, [Validators.required])
   })
 
-  constructor(private autenticacao: Autenticacao) { }
+  constructor(public autenticacao: Autenticacao) { }
 
   ngOnInit() {
   }

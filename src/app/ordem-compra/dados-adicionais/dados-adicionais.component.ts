@@ -78,7 +78,7 @@ export class DadosAdicionaisComponent implements OnInit {
   constructor(private http: Http,
     private bd: Bd,
     private rota: Router,
-    private carrinhoService: CarrinhoService,
+    public carrinhoService: CarrinhoService,
     private sessao: SessionService) { }
 
   ngOnInit() {

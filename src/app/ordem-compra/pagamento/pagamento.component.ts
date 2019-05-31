@@ -37,7 +37,7 @@ export class PagamentoComponent implements OnInit {
     parcela: new FormControl(null, [Validators.required])
   })
 
-  constructor(private carrinhoService: CarrinhoService,
+  constructor(public carrinhoService: CarrinhoService,
     private rota: Router,
     private bd: Bd) {
     $(function () {
